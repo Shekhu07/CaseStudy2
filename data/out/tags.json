@@ -1,0 +1,276 @@
+[
+  {
+    "id": "apple:cfe691a422d87141e116ad73f226861d70e7b943",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "I wish I had option to erase some clothes which I have been viewing since years",
+    "confidence": 0.8
+  },
+  {
+    "id": "apple:27c8977ea0b0361d8aabae4918cce17949bbbd94",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Compared to other shopping apps i feel the shopping experience is way better.",
+    "confidence": 0.95
+  },
+  {
+    "id": "apple:a5e9d92d9f9e02e53b115163fc7cdf8e2d3ec7b9",
+    "themes": [
+      "authenticity-and-condition-distrust",
+      "cross-brand-sizing-inconsistency"
+    ],
+    "severity": 4,
+    "journey_stage": "evaluate",
+    "intent_type": "unclear",
+    "information_needs": [
+      "fit_and_size",
+      "fabric_and_quality",
+      "seller_or_brand_trust"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [
+      "new_or_low_trust_user",
+      "fit_uncertainty_prone"
+    ],
+    "evidence_quote": "Myntra has become a cheap store sale platform, weird sizes, bad material quality, missing items",
+    "confidence": 0.85
+  },
+  {
+    "id": "apple:59f7e4e516c50ad5f00944bcbfa30d627188e941",
+    "themes": [
+      "visual-and-material-ambiguity"
+    ],
+    "severity": 3,
+    "journey_stage": "evaluate",
+    "intent_type": "unclear",
+    "information_needs": [
+      "true_colour_and_appearance",
+      "fabric_and_quality"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "some clothes are not as good as shown in the picture",
+    "confidence": 0.9
+  },
+  {
+    "id": "apple:53126377127aa679fce80265db3e7c9ebd542b9d",
+    "themes": [
+      "fulfillment-error-and-dispute-distrust"
+    ],
+    "severity": 5,
+    "journey_stage": "post_purchase",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "seller_or_brand_trust"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [
+      "brand_loyal"
+    ],
+    "evidence_quote": "Customer care is always busy it’s been 5 days i am returning the same product again and again n still didn’t get any sort of positive response from myntra customer care n continuously getting wrongs products",
+    "confidence": 0.9
+  },
+  {
+    "id": "apple:0e15bf9d711e6359b9ac5b206caff3977a116aeb",
+    "themes": [
+      "authenticity-and-condition-distrust"
+    ],
+    "severity": 4,
+    "journey_stage": "post_purchase",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "fabric_and_quality",
+      "seller_or_brand_trust"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "The bag has torned, and looks like it’s been placed in the shop for decades and has stains on it",
+    "confidence": 0.85
+  },
+  {
+    "id": "apple:68c7d49efdc51fc0e3eb05ea461492f16172450d",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "post_purchase",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Very nice and refreshing smell. But not long lasting",
+    "confidence": 0.95
+  },
+  {
+    "id": "apple:83f08ec6076a094869ed69f88754023444115375",
+    "themes": [
+      "chronic-size-stockouts-and-ghost-inventory"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "fit_and_size"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [
+      "price_sensitive"
+    ],
+    "evidence_quote": "Once a size is out of stock it does not come back in stock, less availability please improve so that we can make more orders , I am checking a dress of attire empire brand since 2 month still is is out of stock",
+    "confidence": 0.95
+  },
+  {
+    "id": "apple:7b16fbddbda7503bb762b40a8ce858d211f6baa8",
+    "themes": [
+      "visual-and-material-ambiguity"
+    ],
+    "severity": 2,
+    "journey_stage": "post_purchase",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "fabric_and_quality"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "just fabric isn’t as good as I was expecting but size & fitting to me is💯",
+    "confidence": 0.85
+  },
+  {
+    "id": "apple:11baa9d1ce15da80f63d427e190b98f76d3e76ce",
+    "themes": [
+      "visual-and-material-ambiguity"
+    ],
+    "severity": 5,
+    "journey_stage": "evaluate",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "fabric_and_quality",
+      "true_colour_and_appearance"
+    ],
+    "external_behaviour": [
+      "checked_other_app"
+    ],
+    "workaround": "started looking options at nykaa fashion instead",
+    "segment_signals": [
+      "premium_buyer"
+    ],
+    "evidence_quote": "Further use of AI models is another downturn as i cant even guess the cloth material and color because it never matches with AI images. I order something else and get another.",
+    "confidence": 0.95
+  },
+  {
+    "id": "apple:668d406f008fc5498805132bf868bcbe0cb915ce",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "post_purchase",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [
+      "brand_loyal"
+    ],
+    "evidence_quote": "Bata comfort 100% , this is my 4th pair in last 2 years",
+    "confidence": 0.95
+  },
+  {
+    "id": "apple:19c4988771b46db3bcfead6482a4af66874ccb80",
+    "themes": [
+      "authenticity-and-condition-distrust"
+    ],
+    "severity": 4,
+    "journey_stage": "post_purchase",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "seller_or_brand_trust"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [
+      "brand_loyal"
+    ],
+    "evidence_quote": "Hey myntra what happen with you, how can u send fake things like totally looks opposite..",
+    "confidence": 0.85
+  },
+  {
+    "id": "apple:6125700a6c67b4529aa04707b54aac77c787d657",
+    "themes": [
+      "fulfillment-error-and-dispute-distrust",
+      "doorstep-return-rejection-anxiety"
+    ],
+    "severity": 5,
+    "journey_stage": "post_purchase",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "return_and_exchange_certainty",
+      "seller_or_brand_trust"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "I have faced problems with two different orders from the seller Livewear, where the wrong products were delivered. Despite this, my return requests were denied without a proper investigation.",
+    "confidence": 0.95
+  },
+  {
+    "id": "apple:49a9c565e65a8eb72cd9e158936445d5b44d5580",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Good lets see how it works. Gotta wait n see the results",
+    "confidence": 0.95
+  },
+  {
+    "id": "apple:aa6bffa2c37e27fb394dab08b77796122afe6ef5",
+    "themes": [],
+    "severity": 5,
+    "journey_stage": "discover",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [
+      "checked_other_app"
+    ],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Myntra only allows login with an Indian mobile number and doesn’t even offer an email login option, which limits our ability to make purchases.",
+    "confidence": 0.9
+  },
+  {
+    "id": "apple:9aeb41d49b118ffc738373d4e541b60371d98797",
+    "themes": [
+      "incomplete-product-specifications",
+      "doorstep-return-rejection-anxiety"
+    ],
+    "severity": 5,
+    "journey_stage": "post_purchase",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "return_and_exchange_certainty"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "",
+    "confidence": 0.9
+  }
+]

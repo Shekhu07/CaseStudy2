@@ -23,8 +23,11 @@ import {
 export const TAGS_PATH = join(OUT_DIR, "tags.json");
 
 const BATCH = 8; // small: tagging output is far larger per document than Stage 1
-const CONCURRENCY = 3;
-const CHECKPOINT_EVERY = 15; // batches
+const CONCURRENCY = 2;
+// Deliberately frequent. Free-tier throughput means a full pass takes over an
+// hour, and a coarse interval both hides progress and risks losing a long
+// stretch of work to one interruption. Writing every few batches is cheap.
+const CHECKPOINT_EVERY = 4; // batches per worker between checkpoints
 
 /** Lenient at the edges, strict about the parts that drive the numbers. */
 const ResultSchema = z.object({

@@ -27,17 +27,28 @@ import { CACHE_DIR, log, sha1, sleep } from "../lib/io.ts";
  *             and the scoring judgements. Everything downstream inherits
  *             those, so they get the stronger model.
  */
-const GEMINI_QUALITY = process.env.GEMINI_MODEL ?? "gemini-3.7-flash";
-const GEMINI_BULK = process.env.GEMINI_MODEL_BULK ?? "gemini-3.1-flash-lite";
-const GROQ_QUALITY = process.env.GROQ_MODEL ?? "openai/gpt-oss-120b";
-const GROQ_BULK = process.env.GROQ_MODEL_BULK ?? "llama-3.3-70b-versatile";
-
 export type Tier = "bulk" | "quality";
 
 export const MODELS_USED = new Set<string>();
 
-const geminiModel = (t: Tier) => (t === "bulk" ? GEMINI_BULK : GEMINI_QUALITY);
-const groqModel = (t: Tier) => (t === "bulk" ? GROQ_BULK : GROQ_QUALITY);
+/*
+ * Read lazily, never into module-level consts.
+ *
+ * ES module imports are all evaluated before the importing module's own body
+ * runs, so this file is initialised BEFORE run.ts calls dotenv. Capturing
+ * process.env at module load silently ignored every model override in
+ * .env.local and quietly fell back to the defaults. API keys were unaffected
+ * only because they happen to be read inside the request functions.
+ */
+const geminiModel = (t: Tier) =>
+  t === "bulk"
+    ? (process.env.GEMINI_MODEL_BULK ?? "gemini-3.1-flash-lite")
+    : (process.env.GEMINI_MODEL ?? "gemini-3.7-flash");
+
+const groqModel = (t: Tier) =>
+  t === "bulk"
+    ? (process.env.GROQ_MODEL_BULK ?? "llama-3.3-70b-versatile")
+    : (process.env.GROQ_MODEL ?? "openai/gpt-oss-120b");
 
 export interface CallOptions {
   system: string;
@@ -51,6 +62,51 @@ export interface CallOptions {
 }
 
 class RateLimited extends Error {}
+
+/**
+ * A per-minute limit is worth waiting out; a per-DAY quota is not. Once a
+ * provider's daily free quota is gone it stays gone until Pacific midnight,
+ * and every subsequent retry cycle burns ~60s of wall clock before falling
+ * through. Providers that report daily exhaustion are parked for the rest
+ * of the process.
+ */
+/**
+ * Keyed by `provider:model`, never by provider alone. Free-tier quotas are
+ * per-model: burning llama-3.3-70b's daily tokens says nothing about
+ * gpt-oss-120b, and parking the whole provider on one dead model needlessly
+ * throws away working capacity.
+ */
+const exhausted = new Set<string>();
+
+/**
+ * Must be narrow. An earlier version matched the substring "per day" and so
+ * parked Groq — whose binding constraint is tokens per MINUTE — as though it
+ * were out for the day. Only explicit per-day wording counts; a TPM limit is
+ * a pause, not an outage.
+ */
+function isDailyQuota(body: string): boolean {
+  return (
+    /GenerateRequestsPerDay|GenerateContentInputTokensPerModelPerDay/i.test(body) ||
+    /per day \((RPD|TPD)\)/i.test(body)
+  );
+}
+
+/** Providers tell us exactly how long to wait; obey them instead of guessing. */
+function retryAfterMs(body: string, headers: Headers): number | null {
+  const header = headers.get("retry-after");
+  if (header && Number.isFinite(Number(header))) return Number(header) * 1000;
+
+  // Groq: "Please try again in 17.085s"  |  Gemini: "retryDelay": "34s"
+  const m = body.match(/try again in ([\d.]+)s/i) ?? body.match(/"retryDelay":\s*"([\d.]+)s"/i);
+  return m ? Math.ceil(Number(m[1]) * 1000) : null;
+}
+
+/** Carries a provider-specified wait so the retry loop does not guess. */
+class RetryAfter extends RateLimited {
+  constructor(public waitMs: number, message: string) {
+    super(message);
+  }
+}
 
 /* ------------------------------------------------------------------ *
  * Providers
@@ -84,9 +140,16 @@ async function callGemini(o: CallOptions): Promise<string> {
     },
   );
 
-  if (res.status === 429 || res.status >= 500) {
-    throw new RateLimited(`gemini ${res.status}`);
+  if (res.status === 429) {
+    const body = await res.text();
+    if (isDailyQuota(body)) {
+      exhausted.add(`gemini:${model}`);
+      throw new Error(`gemini daily free quota exhausted for ${model}`);
+    }
+    const wait = retryAfterMs(body, res.headers);
+    throw wait ? new RetryAfter(wait, "gemini 429") : new RateLimited("gemini 429");
   }
+  if (res.status >= 500) throw new RateLimited(`gemini ${res.status}`);
   if (!res.ok) throw new Error(`gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
 
   const json = await res.json();
@@ -121,9 +184,16 @@ async function callGroq(o: CallOptions): Promise<string> {
     }),
   });
 
-  if (res.status === 429 || res.status >= 500) {
-    throw new RateLimited(`groq ${res.status}`);
+  if (res.status === 429) {
+    const body = await res.text();
+    if (isDailyQuota(body)) {
+      exhausted.add(`groq:${model}`);
+      throw new Error(`groq daily free quota exhausted for ${model}`);
+    }
+    const wait = retryAfterMs(body, res.headers);
+    throw wait ? new RetryAfter(wait, "groq 429") : new RateLimited("groq 429");
   }
+  if (res.status >= 500) throw new RateLimited(`groq ${res.status}`);
   if (!res.ok) throw new Error(`groq ${res.status}: ${(await res.text()).slice(0, 300)}`);
 
   const json = await res.json();
@@ -160,52 +230,63 @@ export async function complete(o: CallOptions): Promise<string> {
     return readFileSync(path, "utf8");
   }
 
-  const providers: Array<[string, (o: CallOptions) => Promise<string>]> = [];
-  if (process.env.GEMINI_API_KEY) providers.push(["gemini", callGemini]);
-  if (process.env.GROQ_API_KEY) providers.push(["groq", callGroq]);
-  if (providers.length === 0) {
+  const all: Array<[string, (o: CallOptions) => Promise<string>]> = [];
+  if (process.env.GEMINI_API_KEY) all.push(["gemini", callGemini]);
+  if (process.env.GROQ_API_KEY) all.push(["groq", callGroq]);
+  if (all.length === 0) {
     throw new Error("No LLM key configured. Set GEMINI_API_KEY and/or GROQ_API_KEY.");
+  }
+
+  const tier = o.tier ?? "quality";
+  const modelFor: Record<string, string> = {
+    gemini: geminiModel(tier),
+    groq: groqModel(tier),
+  };
+  const providers = all.filter(([name]) => !exhausted.has(`${name}:${modelFor[name]}`));
+  if (providers.length === 0) {
+    throw new Error(
+      `every model for the "${tier}" tier has exhausted its daily free quota ` +
+        `(${[...exhausted].join(", ")}). Quotas reset at midnight US Pacific; re-run then ` +
+        "and the on-disk cache will resume exactly where this stopped.",
+    );
   }
 
   let lastErr: unknown;
 
   /*
-   * Two full sweeps over the providers. On free tiers both can be limited at
-   * the same moment, and giving up there costs real data — the caller has no
-   * good way to recover a document it was told is simply "not relevant".
-   * The second sweep waits out a longer window before conceding.
+   * One sweep, then give up quickly.
+   *
+   * An earlier version waited 60s and swept again. That was a hangover from
+   * misreading a per-minute limit as a daily outage, and it made throughput
+   * collapse: every contended call burned minutes before returning. Now that
+   * a failure is never persisted as a verdict, failing fast is strictly
+   * better — the stage finishes, checkpoints what it got, and the next run
+   * picks up the remainder for free from the cache.
    */
-  for (let sweep = 0; sweep < 2; sweep++) {
-    for (const [name, fn] of providers) {
-      for (let attempt = 0; attempt < 4; attempt++) {
-        try {
-          apiCalls++;
-          const text = await fn(o);
-          if (!o.noCache) {
-            mkdirSync(CACHE_DIR, { recursive: true });
-            writeFileSync(path, text);
-          }
-          return text;
-        } catch (err) {
-          lastErr = err;
-          if (err instanceof RateLimited) {
-            // Jittered so concurrent workers do not retry in lockstep and
-            // re-trigger the same limit together.
-            const wait = 2000 * 2 ** attempt * (1 + Math.random());
-            log("llm", `${name} rate-limited, retry in ${Math.round(wait)}ms`);
-            await sleep(wait);
-            continue;
-          }
-          // Non-retryable for this provider — try the next one.
-          log("llm", `${name} error: ${String(err).slice(0, 200)}`);
-          break;
+  for (const [name, fn] of providers) {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        apiCalls++;
+        const text = await fn(o);
+        if (!o.noCache) {
+          mkdirSync(CACHE_DIR, { recursive: true });
+          writeFileSync(path, text);
         }
+        return text;
+      } catch (err) {
+        lastErr = err;
+        if (err instanceof RateLimited) {
+          // Prefer the provider's own retry-after; jitter keeps concurrent
+          // workers from retrying in lockstep and re-triggering the limit.
+          const wait =
+            err instanceof RetryAfter
+              ? Math.min(err.waitMs * (1 + Math.random() * 0.3) + 500, 45_000)
+              : 1500 * 2 ** attempt * (1 + Math.random());
+          await sleep(wait);
+          continue;
+        }
+        break; // non-retryable for this provider; try the next
       }
-    }
-
-    if (sweep === 0) {
-      log("llm", "all providers limited — cooling off for 60s before a final sweep");
-      await sleep(60_000);
     }
   }
 
@@ -267,8 +348,8 @@ export async function completeJson<T>(
 }
 
 export const modelNames = () => ({
-  geminiQuality: GEMINI_QUALITY,
-  geminiBulk: GEMINI_BULK,
-  groqQuality: GROQ_QUALITY,
-  groqBulk: GROQ_BULK,
+  geminiQuality: geminiModel("quality"),
+  geminiBulk: geminiModel("bulk"),
+  groqQuality: groqModel("quality"),
+  groqBulk: groqModel("bulk"),
 });
