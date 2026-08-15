@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/*
+ * Palette: the dataviz reference instance, validated with
+ * scripts/validate_palette.js in both modes.
+ *   categorical (adjacent, 4 slots)  PASS light + dark
+ *   scatter     (all-pairs, 3 slots) PASS light + dark
+ * Two light-mode slots sit below 3:1 on the surface, so the relief rule
+ * applies throughout: every chart ships direct labels and a table view.
+ */
+:root {
+  color-scheme: light;
+
+  --page: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.1);
+
+  --series-1: #2a78d6; /* blue */
+  --series-2: #eb6834; /* orange */
+  --series-3: #1baf7a; /* aqua */
+  --series-4: #eda100; /* yellow */
+
+  /* sequential: blue, light -> dark */
+  --seq-100: #cde2fb;
+  --seq-250: #86b6ef;
+  --seq-400: #3987e5;
+  --seq-550: #1c5cab;
+  --seq-700: #0d366b;
+
+  /* diverging: blue <-> red about a gray midpoint */
+  --div-neg: #2a78d6;
+  --div-mid: #f0efec;
+  --div-pos: #d03b3b;
+
+  --good: #0ca30c;
+  --warning: #fab219;
+  --critical: #d03b3b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --page: #0d0d0d;
+    --surface-1: #1a1a19;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.1);
+
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+
+    --seq-100: #0d366b;
+    --seq-250: #184f95;
+    --seq-400: #2a78d6;
+    --seq-550: #5598e7;
+    --seq-700: #b7d3f6;
+
+    --div-neg: #3987e5;
+    --div-mid: #383835;
+    --div-pos: #d03b3b;
+
+    --good: #0ca30c;
+    --warning: #fab219;
+    --critical: #d03b3b;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --page: #0d0d0d;
+  --surface-1: #1a1a19;
+  --text-primary: #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted: #898781;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --border: rgba(255, 255, 255, 0.1);
+
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+
+  --seq-100: #0d366b;
+  --seq-250: #184f95;
+  --seq-400: #2a78d6;
+  --seq-550: #5598e7;
+  --seq-700: #b7d3f6;
+
+  --div-neg: #3987e5;
+  --div-mid: #383835;
+  --div-pos: #d03b3b;
+}
+
+html {
+  background: var(--page);
+}
+
+body {
+  background: var(--page);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------------------------------------------------------- */
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.scroll-x {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+/* Charts must scroll inside their own box; the page never scrolls sideways. */
+.scroll-x > * {
+  min-width: max-content;
+}
+
+a {
+  color: var(--series-1);
+}
+
+/* Keyboard focus must stay visible on every interactive mark. */
+:focus-visible {
+  outline: 2px solid var(--series-1);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

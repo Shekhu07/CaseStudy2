@@ -1,0 +1,9 @@
+# Kept in git for reproducibility, but not needed by the deployed app.
+# The dashboard reads only data/out/analysis.json and data/out/taxonomy.json;
+# everything else here is pipeline intermediate state.
+data/raw/
+data/cache/
+data/out/corpus.json
+data/out/relevance.json
+data/out/tags.json
+Case_Study2.pdf
