@@ -57,6 +57,13 @@ export interface CallOptions {
   maxOutputTokens?: number;
   /** Which model tier to use. Defaults to "quality". */
   tier?: Tier;
+  /**
+   * Refuse to fall back to the other tier. For steps where a weaker model
+   * silently producing a worse answer is more damaging than no answer —
+   * the final taxonomy consolidation being the clear case, since every
+   * downstream number inherits its definitions.
+   */
+  pinTier?: boolean;
   /** Bypass cache — used by the live API route. */
   noCache?: boolean;
 }
@@ -169,18 +176,44 @@ async function callGroq(o: CallOptions): Promise<string> {
   if (!key) throw new Error("no GROQ_API_KEY");
   const model = groqModel(o.tier ?? "quality");
 
+  const system = `${o.system}\n\nRespond with JSON only.`;
+
+  /*
+   * Groq bills `max_tokens` against the tokens-per-minute budget UP FRONT,
+   * as reserved capacity — the error reads "Requested 9071" for a request
+   * whose input is under 1k. With the old default of 8192 every single Groq
+   * call exceeded the 8,000 TPM ceiling before it sent a byte of input, so
+   * no Groq request could ever have succeeded.
+   *
+   * Reserve only what is left after the input, with headroom for the
+   * provider's own tokenisation differing from this estimate.
+   */
+  const tpm = Number(process.env.GROQ_TPM ?? 8000);
+  const estimatedInput = Math.ceil((system.length + o.prompt.length) / 3.5);
+  const headroom = 400;
+  const available = tpm - estimatedInput - headroom;
+
+  if (available < 400) {
+    // Not a rate problem: this prompt cannot fit the window at any speed.
+    throw new Error(
+      `groq prompt too large: ~${estimatedInput} input tokens leaves ${available} of a ${tpm} TPM budget. Reduce the batch size.`,
+    );
+  }
+
+  const maxTokens = Math.max(400, Math.min(o.maxOutputTokens ?? 4096, available));
+
   const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
     body: JSON.stringify({
       model,
       messages: [
-        { role: "system", content: `${o.system}\n\nRespond with JSON only.` },
+        { role: "system", content: system },
         { role: "user", content: o.prompt },
       ],
       response_format: { type: "json_object" },
       temperature: o.temperature ?? 0.1,
-      max_tokens: o.maxOutputTokens ?? 8192,
+      max_tokens: maxTokens,
     }),
   });
 
@@ -237,19 +270,48 @@ export async function complete(o: CallOptions): Promise<string> {
     throw new Error("No LLM key configured. Set GEMINI_API_KEY and/or GROQ_API_KEY.");
   }
 
-  const tier = o.tier ?? "quality";
-  const modelFor: Record<string, string> = {
-    gemini: geminiModel(tier),
-    groq: groqModel(tier),
+  const requested = o.tier ?? "quality";
+  const available = (t: Tier) => {
+    const modelFor: Record<string, string> = { gemini: geminiModel(t), groq: groqModel(t) };
+    return all.filter(([name]) => !exhausted.has(`${name}:${modelFor[name]}`));
   };
-  const providers = all.filter(([name]) => !exhausted.has(`${name}:${modelFor[name]}`));
+
+  /*
+   * Fall back across tiers, not just across providers. The tiers exist to
+   * spend the better models where quality matters, but a slightly weaker
+   * model that answers beats a preferred one that is out of quota — and the
+   * tiers draw on separate per-model daily allowances, so the other tier is
+   * often still live when this one is spent.
+   */
+  let tier = requested;
+  let providers = available(tier);
+
+  if (providers.length === 0 && o.pinTier) {
+    throw new Error(
+      `the "${requested}" tier is exhausted and this call is pinned to it — refusing to ` +
+        "answer with a weaker model. Re-run after the quota resets at midnight US Pacific.",
+    );
+  }
+
+  if (providers.length === 0) {
+    const other: Tier = requested === "quality" ? "bulk" : "quality";
+    const fallback = available(other);
+    if (fallback.length > 0) {
+      log("llm", `"${requested}" tier exhausted — falling back to the "${other}" tier`);
+      tier = other;
+      providers = fallback;
+    }
+  }
+
   if (providers.length === 0) {
     throw new Error(
-      `every model for the "${tier}" tier has exhausted its daily free quota ` +
+      `every model on both tiers has exhausted its daily free quota ` +
         `(${[...exhausted].join(", ")}). Quotas reset at midnight US Pacific; re-run then ` +
         "and the on-disk cache will resume exactly where this stopped.",
     );
   }
+
+  o = { ...o, tier };
 
   let lastErr: unknown;
 
@@ -315,7 +377,23 @@ export async function completeJson<T>(
 ): Promise<T> {
   const text = await complete(o);
 
-  const attempt = (raw: string) => schema.safeParse(JSON.parse(extractJson(raw)));
+  /*
+   * Models frequently return the bare payload — `[{…},{…}]` — where the
+   * schema asks for `{"results": [{…}]}`. The content is right; only the
+   * envelope is missing. Re-wrapping costs nothing and recovers batches that
+   * were previously discarded outright (16 of them in one tagging run).
+   */
+  const attempt = (raw: string) => {
+    const value = JSON.parse(extractJson(raw));
+    const first = schema.safeParse(value);
+    if (first.success || !Array.isArray(value)) return first;
+
+    for (const key of ["results", "themes", "judgements"]) {
+      const wrapped = schema.safeParse({ [key]: value });
+      if (wrapped.success) return wrapped;
+    }
+    return first;
+  };
 
   try {
     const parsed = attempt(text);

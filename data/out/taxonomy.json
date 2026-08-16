@@ -1,201 +1,210 @@
 {
-  "generatedAt": "2026-08-15T21:00:24.192Z",
+  "generatedAt": "2026-08-16T19:43:33.909Z",
   "model": "gemini-3.7-flash",
   "sampleSize": 320,
   "themes": [
     {
-      "id": "wishlist-navigation-and-organization-friction",
-      "name": "Wishlist Navigation and Organization Friction",
-      "definition": "Shoppers struggle to manage, sort, and navigate large lists of saved items due to viewport resets, truncation bugs, and lack of folder or categorization tools. This causes saved items to become lost, buried, or overwhelming to review, preventing shoppers from finalizing their selection.",
+      "id": "fit-size-uncertainty",
+      "name": "Fit & Size Uncertainty",
+      "definition": "Shoppers doubt whether an item will fit them because size charts are unclear or inconsistent. This uncertainty makes them hesitant to buy a saved item.",
       "includes": [
-        "Wishlist scroll position resets to the top after returning from a product detail page",
-        "Older wishlisted items disappear or silently truncate when new items are saved",
-        "Absence of folders, sub-lists, tags, or category filtering to organize saved outfits",
-        "Shortlist or cart items vanishing due to UI synchronization bugs"
+        "I don't know if this size will fit me",
+        "Size chart is confusing",
+        "I can't find a fit guide",
+        "The garment looks too big/small",
+        "I need a try‑on tool"
       ],
       "excludes": [
-        "Product detail pages failing to load due to general app crashes",
-        "Items being unavailable due to actual merchant inventory depletion"
+        "I don't like the color",
+        "I want to buy it later",
+        "I need to check price"
       ]
     },
     {
-      "id": "visual-and-material-ambiguity",
-      "name": "Visual and Material Representation Discrepancy",
-      "definition": "Shoppers are unable to gauge the true color, fabric weight, drape, and texture of a garment due to edited studio lighting, AI-rendered models, and limited angle shots. This creates fear of an 'expectation vs. reality' gap where the physical item will look cheap or different from the catalogue.",
+      "id": "product-authenticity-quality",
+      "name": "Product Authenticity & Quality",
+      "definition": "Shoppers question if the product is genuine or made of good material. Lack of confidence in authenticity or quality stops them from purchasing.",
       "includes": [
-        "Catalogue imagery heavily altered by studio lighting leading to color inaccuracy",
-        "AI-generated model imagery that obscures true garment fit and physical drape",
-        "Inability to discern fabric texture, thickness, transparency, or sheen from images",
-        "Lack of multiple angles showing how the clothing hangs in natural light"
+        "Is this brand authentic?",
+        "Material feels cheap",
+        "I suspect it's counterfeit",
+        "I doubt the quality",
+        "The stitching looks bad"
       ],
       "excludes": [
-        "Missing text specifications such as garment length or fabric blend percentage",
-        "Fear of receiving a counterfeit replica instead of the branded item"
+        "I don't have enough money",
+        "I want to buy later",
+        "I need to compare prices"
       ]
     },
     {
-      "id": "absence-of-customer-photo-reviews",
-      "name": "Absence of Customer Photo Reviews",
-      "definition": "Shoppers hesitate to commit to a saved item because the product page lacks authentic buyer reviews, ratings, and unedited real-world customer photos. Without visual proof from peers of various body shapes, shoppers lack the confidence to validate catalogue claims.",
+      "id": "platform-trust-security",
+      "name": "Platform Trust & Security",
+      "definition": "Shoppers worry about fraud, data privacy, or platform security when buying. This perceived risk creates a psychological barrier to buying saved items.",
       "includes": [
-        "Wishlisted items with zero customer reviews or text-only ratings",
-        "Absence of buyer-submitted try-on images showing real-world fit and fabric",
-        "Distrust in product ratings suspected of being fabricated or incentivized",
-        "Lack of customer feedback indicating whether an item shrunk or bled color after washing"
+        "I don't trust the site",
+        "My data might be stolen",
+        "I fear scams",
+        "The site looks fake",
+        "Payment security is unclear"
       ],
       "excludes": [
-        "Lack of standard brand-provided model measurement charts",
-        "Platform customer service responsiveness issues"
+        "I don't like the product",
+        "I need to check return policy",
+        "I want to buy later"
       ]
     },
     {
-      "id": "cross-brand-sizing-inconsistency",
-      "name": "Cross-Brand Sizing Inconsistency and Fit Uncertainty",
-      "definition": "Shoppers hesitate to purchase saved apparel and footwear because sizing varies wildly across different brands, labels, and standard charts. The anxiety of receiving a garment that runs significantly smaller or larger than expected stops them from completing the order.",
+      "id": "product-info-visual-gaps",
+      "name": "Product Info & Visual Gaps",
+      "definition": "Missing or unclear images, specs, or details prevent shoppers from visualizing or evaluating the item. This void blocks purchase confidence.",
       "includes": [
-        "Inconsistent fit where a shopper's standard size differs drastically between brands",
-        "Generic or contradictory size conversion charts that do not match the specific item",
-        "Uncertainty around whether apparel runs true-to-size, relaxed, or slim-fit",
-        "Footwear sizing discrepancies between UK, US, and Euro measurement standards"
+        "No product images",
+        "Specs are missing",
+        "No size chart",
+        "No care instructions",
+        "No product description"
       ],
       "excludes": [
-        "Inability to exchange an item for a different size due to stockouts",
-        "Missing technical measurements like inseam or rise specifications"
+        "I don't like the color",
+        "I want to buy later",
+        "I need to check price"
       ]
     },
     {
-      "id": "incomplete-product-specifications",
-      "name": "Inadequate Garment Measurements and Technical Specs",
-      "definition": "Product pages lack essential physical dimensions and detailed material compositions, leaving shoppers unable to verify if an item meets their functional requirements. This forces shoppers to abandon the item or look outside the app for basic garment information.",
+      "id": "social-proof-scarcity",
+      "name": "Social Proof Scarcity",
+      "definition": "When reviews, ratings, or user photos are missing or sparse, shoppers lack confidence in fit, quality, or style. The absence of peer validation reduces perceived reliability.",
       "includes": [
-        "Missing key garment dimensions such as exact length, waist rise, sleeve length, or heel height",
-        "Vague fabric descriptions lacking exact percentage breakdowns (e.g., poly-blend vs. 100% cotton)",
-        "Absence of details regarding garment stretch, lining, opacity, or pocket availability",
-        "Missing model height and sizing references on the product detail page"
+        "No reviews",
+        "No ratings",
+        "No user photos",
+        "Few comments",
+        "No testimonials"
       ],
       "excludes": [
-        "Color mismatch caused by edited studio photography",
-        "Subjective fit variations across different fashion brands"
+        "I don't like the product",
+        "I want to buy later",
+        "I need to check price"
       ]
     },
     {
-      "id": "chronic-size-stockouts-and-ghost-inventory",
-      "name": "Chronic Size Stockouts and Ghost Inventory",
-      "definition": "Shoppers shortlist items only to find that popular or standard sizes are perpetually out of stock, falsely displayed as available, or unavailable in extended size ranges. This dead-ends the buying journey without offering reliable restock notifications or cart reservations.",
+      "id": "wishlist-usability-friction",
+      "name": "Wishlist Usability Friction",
+      "definition": "Issues that make saving, locating, or moving items from the wishlist difficult. They cause users to forget or ignore saved items.",
       "includes": [
-        "Saved items displaying the user's required size as chronically out of stock",
-        "Items shown as available in the wishlist that turn out out of stock when added to bag",
-        "Absence of back-in-stock alerts or size availability notifications",
-        "Exclusion of standard plus or petite sizes in popular wishlist catalogue lines"
+        "Wishlist disappears",
+        "Can't find my wishlist",
+        "No add to cart from wishlist",
+        "Wishlist button missing",
+        "Wishlist items vanish"
       ],
       "excludes": [
-        "Delivery unserviceability caused by pincode or warehouse restrictions",
-        "Checkout drop-off caused by unexpected convenience fees"
+        "I don't like the product",
+        "I want to buy later",
+        "I need to check price"
       ]
     },
     {
-      "id": "pincode-serviceability-restrictions",
-      "name": "Late Pincode Serviceability and Delivery Restrictions",
-      "definition": "Shoppers evaluate and save items only to discover late during checkout that delivery is disabled for their specific pincode. The lack of upfront location-based availability filters creates frustration and prevents order placement.",
+      "id": "checkout-payment-friction",
+      "name": "Checkout & Payment Friction",
+      "definition": "Problems during the final purchase step, such as payment failures or confusing checkout flow, stop users from completing a transaction.",
       "includes": [
-        "Items showing as purchasable in the wishlist but marked unserviceable at bag or checkout",
-        "Absence of location-based inventory filters while browsing saved items",
-        "Vague or sudden delivery error messages tied to regional logistics coverage",
-        "Specific color or size variants being restricted to certain delivery zones"
+        "Payment failed",
+        "Checkout page crashes",
+        "Can't enter card details",
+        "Payment options limited",
+        "Checkout is confusing"
       ],
       "excludes": [
-        "General courier transit delays after an order has already shipped",
-        "Delivery personnel behavior during doorstep package handovers"
+        "I don't like the product",
+        "I want to buy later",
+        "I need to check price"
       ]
     },
     {
-      "id": "authenticity-and-condition-distrust",
-      "name": "Doubts on Authenticity and Garment Condition",
-      "definition": "Shoppers hold back from purchasing branded or heavily discounted fashion out of fear of receiving counterfeit items, replicas, or previously returned used garments. The lack of verified seller provenance undermines shopper trust in high-ticket or premium items.",
+      "id": "delivery-stock-uncertainty",
+      "name": "Delivery & Stock Uncertainty",
+      "definition": "Uncertainty about shipping windows, item availability, or delivery reliability makes users hesitant to commit to a purchase.",
       "includes": [
-        "Suspicion that deeply discounted branded apparel consists of replicas or first copies",
-        "Apprehension about receiving items with missing original tags or broken security seals",
-        "Fear that delivered goods may be used, stained, or altered returns from other buyers",
-        "Distrust in unverified third-party sellers listed on the marketplace"
+        "Item out of stock",
+        "Delivery date uncertain",
+        "Shipping cost high",
+        "No delivery options",
+        "Can't deliver to my area"
       ],
       "excludes": [
-        "Garment quality issues arising from poor fabric choices by legitimate brands",
-        "Studio lighting discrepancies between catalog images and real products"
+        "I don't like the product",
+        "I want to buy later",
+        "I need to check price"
       ]
     },
     {
-      "id": "doorstep-return-rejection-anxiety",
-      "name": "Doorstep Return Rejection and Reverse-QC Anxiety",
-      "definition": "Shoppers hesitate to purchase sizing-sensitive or expensive items out of fear that pickup agents will refuse returns during doorstep quality checks. The risk of being stuck with a wrong, defective, or untagged item due to rigid verification rules deters order commitment.",
+      "id": "return-exchange-friction",
+      "name": "Return & Exchange Friction",
+      "definition": "Perceived complexity, cost, or time required to return or exchange an item deters shoppers from committing to a purchase.",
       "includes": [
-        "Fear of pickup agents rejecting return requests over minor tag, fold, or packaging discrepancies",
-        "Deadlocks where an incorrect or tagless item sent by the seller cannot be returned",
-        "Burdensome photo-proof requirements and automated rejections of legitimate return claims",
-        "Anxiety over disputes with customer support when reverse logistics agents fail verification"
+        "Return process is hard",
+        "Exchange cost high",
+        "Return shipping not free",
+        "Return policy unclear",
+        "Can't exchange easily"
       ],
       "excludes": [
-        "Items explicitly categorized upfront as non-returnable under category policy",
-        "Non-refundable platform fees deducted on checkout"
+        "I don't like the product",
+        "I want to buy later",
+        "I need to check price"
       ]
     },
     {
-      "id": "restrictive-return-and-exchange-policies",
-      "name": "Hidden Non-Returnable and Restrictive Exchange Policies",
-      "definition": "Shoppers discover that saved fashion pieces or accessories are marked with strict 'no return', 'exchange only', or short-window policies. This inflexibility prevents purchase because shoppers cannot safely test garment fit and suitability at home.",
+      "id": "price-transparency-value",
+      "name": "Price Transparency & Value",
+      "definition": "Unexpected price changes, hidden fees, or perceived high price relative to value erode confidence and cause abandonment.",
       "includes": [
-        "Surprise non-returnable or final-sale tags on fit-sensitive apparel categories",
-        "Items silently restricted to exchange-only, preventing full refunds if unsuitable",
-        "Overly short return or exchange validity windows that create checkout hesitation",
-        "Ambiguous return eligibility terms that are difficult to locate on the product detail page"
+        "Hidden delivery fee",
+        "Price increased at checkout",
+        "Discount removed",
+        "Price seems too high",
+        "Unexpected tax"
       ],
       "excludes": [
-        "Logistics agents failing to collect a pre-approved return at the doorstep",
-        "Platform convenience fees deducted during order settlement"
+        "I don't like the product",
+        "I want to buy later",
+        "I need to check price"
       ]
     },
     {
-      "id": "size-exchange-inventory-friction",
-      "name": "Size Exchange Inventory and Logistics Bottlenecks",
-      "definition": "Shoppers hesitate to buy fitted garments because direct size exchanges are often blocked by out-of-stock replacement sizes or pincode limitations. The prospect of having to go through a risky return-and-reorder process makes shoppers abandon the initial purchase.",
+      "id": "platform-usability-performance",
+      "name": "Platform Usability & Performance",
+      "definition": "Interface glitches, slow loading, or app crashes make it hard to move from saved to purchase. They increase effort and fear of failure.",
       "includes": [
-        "Inability to request an exchange because adjacent sizes are out of stock",
-        "Direct size exchanges disabled for the shopper's delivery pincode",
-        "Friction requiring full return, refund wait, and re-ordering at an altered price point",
-        "Lack of seamless exchange reservation tooling for size swaps"
+        "App crashes",
+        "Page loads slowly",
+        "Broken links",
+        "Navigation confusing",
+        "Button not working"
       ],
       "excludes": [
-        "Initial uncertainty regarding brand sizing guides before placing an order",
-        "Non-returnable policy classifications on personal care or innerwear"
+        "I don't like the product",
+        "I want to buy later",
+        "I need to check price"
       ]
     },
     {
-      "id": "unexpected-checkout-fees-and-surcharges",
-      "name": "Unexpected Surcharges and Non-Refundable Platform Fees",
-      "definition": "Shoppers abandon their saved items at final checkout when unannounced platform fees, convenience charges, or non-refundable return penalties are added to the total. These fees increase the financial risk of trying on clothes that might need to be returned.",
+      "id": "customer-support-friction",
+      "name": "Customer Support Friction",
+      "definition": "Slow, unhelpful, or inaccessible support leaves doubts unresolved, discouraging finalization of a wishlist purchase.",
       "includes": [
-        "Mandatory non-refundable convenience or platform fees added at the final checkout step",
-        "Return processing fees deducted from refunds even when items are defective or misdescribed",
-        "COD handling surcharges that inflate the advertised wishlist price",
-        "Lack of transparent breakdown of added fees before entering the payment gateway"
+        "No response from support",
+        "Support is slow",
+        "Can't contact help",
+        "Chat not working",
+        "No help available"
       ],
       "excludes": [
-        "General item price inflation or seasonal discount rollbacks",
-        "Payment gateway OTP failures or bank server downtime"
-      ]
-    },
-    {
-      "id": "fulfillment-error-and-dispute-distrust",
-      "name": "Anticipation of Fulfillment Errors and Dispute Friction",
-      "definition": "Shoppers hesitate to proceed with purchases due to apprehension that warehouse fulfillment will dispatch the wrong size, color, or style. Past experiences with unilateral order cancellations and unhelpful dispute resolution create purchase paralysis.",
-      "includes": [
-        "Fear that warehouse packing will send a completely different color, pattern, or size",
-        "Anxiety that orders will be unilaterally cancelled post-confirmation due to inventory errors",
-        "Erosion of confidence in customer support channels resolving fulfillment mistakes",
-        "False delivery mark notifications where parcels are misreported as delivered"
-      ],
-      "excludes": [
-        "Courier delivery speed complaints on in-transit parcels",
-        "Strict doorstep return verification procedures conducted by logistics agents"
+        "I don't like the product",
+        "I want to buy later",
+        "I need to check price"
       ]
     }
   ]

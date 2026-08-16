@@ -136,7 +136,7 @@ Rules:
 export function taxonomyProposePrompt(texts: string[]): string {
   return `Here are ${texts.length} real shopper conversations.
 
-${texts.map((t, i) => `[${i}] ${t.slice(0, 700)}`).join("\n\n")}
+${texts.map((t, i) => `[${i}] ${t.slice(0, 500)}`).join("\n\n")}
 
 Induce the distinct frictions that prevent a liked/saved fashion item from being
 purchased. Return JSON:
@@ -146,18 +146,45 @@ Propose between 6 and 14 themes for this batch. Ground every theme in at least
 two documents from this batch.`;
 }
 
-export function taxonomyMergePrompt(candidates: string): string {
+export function taxonomyMergePrompt(candidates: string, target = "12 to 16"): string {
   return `Below are candidate friction themes independently induced from different
 batches of the same corpus. They overlap and use inconsistent wording.
 
 ${candidates}
 
-Consolidate them into a single clean taxonomy of 12 to 16 themes that covers the
-candidates without redundancy. Return JSON:
+Consolidate them into a single clean taxonomy of ${target} themes that covers the
+candidates without redundancy.
+
+PRESERVE SPECIFICITY. This is the hardest requirement and the one most often
+failed. Merging must combine overlapping themes WITHOUT abstracting away the
+concrete mechanism the shoppers actually described.
+
+  BAD  — "Product Info & Visual Gaps: missing or unclear images, specs or
+         details prevent shoppers from evaluating the item."
+  GOOD — "Studio Photography Misleads on Colour and Fabric: edited lighting,
+         AI-rendered models and single-angle shots leave shoppers unable to
+         judge true colour, fabric weight or drape, so they defer the buy."
+
+The bad version could have been written about any shopping site by someone who
+never read the corpus. The good version names the mechanism. If a definition
+you produce would be equally true of an electronics retailer, it is too
+abstract — put the specific detail back.
+
+Keep the vocabulary the shoppers used. Named specifics — size charts differing
+between brands, doorstep return QC, AI-looking model images, non-returnable
+tags discovered late, waiting for a sale that never lowers the price — are the
+value of this taxonomy. Do not sand them off.
+
+ALSO: drop candidates that are not pre-purchase frictions. App crashes, payment
+failures, slow support and delivery logistics belong in the taxonomy ONLY where
+the candidate says they make shoppers hesitate BEFORE buying. A generic
+"Customer Support Friction" or "Platform Performance" theme is out of scope.
+
+Return JSON:
 {"themes":[{
   "id":"kebab-case-slug",
   "name":"Short human-readable name (max 6 words)",
-  "definition":"Two sentences: what this friction is, and why it blocks purchase.",
+  "definition":"Two sentences naming the SPECIFIC mechanism, and why it blocks purchase.",
   "includes":["3-5 concrete signals that mean a document belongs here"],
   "excludes":["2-4 nearby signals that do NOT belong here"]
 }]}

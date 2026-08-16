@@ -112,14 +112,33 @@ say "relevant documents: $RELEVANT"
 # themes. The YouTube half of the corpus should surface them.
 
 say "re-inducing taxonomy over the full relevant corpus"
+
+# Verify the ARTIFACT changed, not that the command exited.
+#
+# A previous version logged "taxonomy: 13 themes" after induction had failed,
+# because it read the pre-existing file — then tagged 128 documents against a
+# taxonomy we already knew was wrong. An exit code is not evidence that work
+# happened; a changed file is.
+TAX_BEFORE=$(stat -f %m data/out/taxonomy.json 2>/dev/null || echo 0)
 npm run pipeline -- --stage taxonomy --force >> "$LOG" 2>&1
-say "taxonomy: $(node -e 'try{console.log(require("./data/out/taxonomy.json").themes.length)}catch(e){console.log(0)}') themes"
+TAX_AFTER=$(stat -f %m data/out/taxonomy.json 2>/dev/null || echo 0)
+
+if [[ "$TAX_BEFORE" == "$TAX_AFTER" ]]; then
+  say "ABORT: taxonomy induction did not write a new file — refusing to tag against a stale taxonomy"
+  exit 1
+fi
+
+THEME_COUNT=$(node -e 'try{console.log(require("./data/out/taxonomy.json").themes.length)}catch(e){console.log(0)}')
+if [[ "$THEME_COUNT" -lt 8 ]]; then
+  say "ABORT: taxonomy has only $THEME_COUNT themes — induction looks broken"
+  exit 1
+fi
+say "taxonomy re-induced: $THEME_COUNT themes"
 
 # Tags are keyed to theme ids, so a new taxonomy invalidates every old tag.
-if [[ -f data/out/tags.json ]]; then
-  mv data/out/tags.json data/out/tags.superseded.json
-  say "cleared tags from the previous taxonomy"
-fi
+for stale in data/out/tags.json data/out/tags.stale-taxonomy.json; do
+  [[ -f "$stale" ]] && rm -f "$stale" && say "removed $stale (built on the previous taxonomy)"
+done
 rm -f data/out/judgements.json
 
 # ------------------------------------------------------------ stage 3
