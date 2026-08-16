@@ -43,3 +43,8 @@ next-env.d.ts
 # pipeline
 .env.local
 data/cache/
+
+# quarantined intermediates (superseded by a taxonomy re-run)
+data/out/tags.stale-taxonomy.json
+data/out/tags.superseded.json
+data/resume-run.log
