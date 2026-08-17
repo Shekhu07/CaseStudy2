@@ -1,15 +1,15 @@
 # Status — resume here
 
-Last updated: 17 Aug 2026, 18:05 IST
+Last updated: 17 Aug 2026, 17:25 IST
 
 ## Where things stand
 
 | Stage | State |
 |---|---|
-| 0 · Ingest | **Done for five sources** — 17,511 unique docs. **Reddit implemented, not yet run** — needs `APIFY_TOKEN` |
-| 1 · Relevance | **Done** — 17,471 classified, **3,575 relevant (20.5%)**. 40 docs unjudged (schema failures), safely queued |
+| 0 · Ingest | **Done — six sources**, 19,143 unique docs. Reddit added: 1,636 docs over two Apify runs |
+| 1 · Relevance | **Done** — 19,143 classified, **3,922 relevant (20.5%)**, **0 unjudged**. The 40 old schema failures cleared, adding 9 |
 | 2 · Taxonomy | **Done** — re-induced from the full corpus, then hand-edited to **11 themes**. `data/out/taxonomy.json` |
-| 3 · Tagging | **Not started — held on purpose.** See the open question below before running it. 128 tags from the stale taxonomy stay quarantined in `tags.stale-taxonomy.json` |
+| 3 · Tagging | **Not started.** Nothing blocks it now — read the 12th-theme question below first. 128 tags from the stale taxonomy stay quarantined in `tags.stale-taxonomy.json` |
 | 4 · Scoring | Not started, blocked on tagging |
 | Deployment | Live shell at <https://myntra-wishlist-discovery-engine.vercel.app> — dashboard still shows the placeholder (no scoring output to render), `/api/classify` works in production |
 
@@ -19,14 +19,35 @@ Nothing is running in the background.
 
 | Source | Classified | Relevant | Rate |
 |---|---:|---:|---:|
-| YouTube | 7,685 | 2,138 | **27.8%** |
+| YouTube | 7,705 | 2,144 | **27.8%** |
 | Sitejabber | 153 | 37 | 24.2% |
+| Reddit | 1,632 | 338 | 20.7% |
 | Competitor apps | 4,571 | 905 | 19.8% |
-| Google Play | 3,871 | 406 | 10.5% |
+| Google Play | 3,891 | 409 | 10.5% |
 | Apple App Store | 1,191 | 89 | 7.5% |
+| **Total** | **19,143** | **3,922** | **20.5%** |
 
-YouTube supplies 60% of the relevant corpus and is 3.7× richer than App Store
+YouTube supplies 55% of the relevant corpus and is 3.7× richer than App Store
 reviews. Adding it was the highest-leverage decision in the build.
+
+Reddit splits sharply by query set, and the split is the lesson:
+
+| Reddit slice | Relevant / total | Rate |
+|---|---:|---:|
+| 11 Myntra-anchored core queries | 290 / 1,109 | **26.1%** |
+| 10 gap queries (occasion, styling, bookmarking) | 48 / 523 | 9.2% |
+
+Every query that works contains "myntra". The gap set mostly did not, so it
+pulled r/AmItheAsshole and r/CrusaderKings. It cost $1.20 for 48 relevant docs
+and did **not** test the occasion/styling hypothesis — see below.
+
+### Apify budget — effectively spent
+
+$4.40 of $5.00 used. The cycle resets **15 Sep**, after the 4 Sep deadline, so
+the remaining $0.60 is the end of it. More Reddit volume, if wanted, should come
+from the free OAuth route in `pipeline/sources/reddit.ts` — set
+`REDDIT_CLIENT_ID`/`REDDIT_CLIENT_SECRET`, clear `APIFY_TOKEN`, and it dedupes
+against what is already held.
 
 ## The taxonomy, as it now stands
 
@@ -53,7 +74,52 @@ split, the evidence divides across two rows and depresses both); merged
 "Broken Functional Buttons" into 9 (a dead button is mechanical effort, the
 same class of blocker as a wishlist that loses your place).
 
-## Check after tagging — not a blocker
+## Reddit coverage check — the 11 themes hold, but one is missing
+
+40 relevant Reddit documents, sampled with `random.seed(42)`, read by hand
+against the 11 definitions. Reddit is evidence the taxonomy was never induced
+from, so this was the last cheap check before tagging commits quota.
+
+- **~21 of 40 fit a theme cleanly.** Seller trust and authenticity is the
+  workhorse (fake ASICS from an offline store's mouth, grey-market perfume,
+  Bhima gold billing, "unknown brands don't spend on QC"). Returns, sizing and
+  wishlist-interface friction all show up in the shopper's own words.
+- **~10 more fit partially**, usually because the document is off-platform.
+- **~6 are off-domain noise** that passed the relevance filter — r/criterion,
+  r/JunoMains, a bike sprocket in r/TalesFromRetail. Structurally similar
+  hesitation, wrong product entirely. About 15% of the Reddit slice; worth
+  knowing when quoting Reddit as evidence.
+
+**Do not re-induce the taxonomy.** The 11 themes survive contact with Reddit.
+
+**But a 12th theme is missing, and it may be the most important one.**
+Repeatedly, shoppers describe the wishlist as *passive* — it stores an item and
+then does nothing:
+
+> "Every wishlist I've used is mark-and-forget. You save something and then
+> nothing ever happens — you either check manually forever, or you give up and
+> pay full price. The saving was never the hard part. Knowing when is."
+
+> "I always save stuff thinking I'll check back when there's a sale and then
+> completely forget about it."
+
+No current theme covers this. Theme 9 is *mechanical* friction — items vanish,
+scroll position lost, the 1,000-item cap. Theme 7 is price movement and theme 6
+is stock. This is different: the wishlist works exactly as built, and that is
+the problem. Nothing brings the shopper back.
+
+It is also the most metric-proximate friction in the set — the business metric
+is literally purchase-within-30-days-of-saving, and this names why the 30 days
+elapse. A theme that is both highly tractable without discounts (notify on price
+drop, low stock, back-in-size) and directly on-metric would likely top the
+opportunity ranking, which is exactly the kind of finding the ranking exists to
+surface.
+
+Suggested: **"Passive Wishlist — No Re-engagement Signal"**. Add it to
+`data/out/taxonomy.json` by hand before tagging, the same way the last three
+edits were made, and record it in `editNote`.
+
+## Also check after tagging — not a blocker
 
 Yesterday's watch-item was whether re-induction would surface **price
 uncertainty, occasion appropriateness and styling**. Their absence was the
@@ -84,20 +150,15 @@ All three blockers from the 16 Aug entry are closed in `882cd21`:
 
 ## Resuming
 
-Quotas reset at midnight US Pacific. Relevance and taxonomy are both cached
-and complete, so neither re-runs.
+LLM quotas reset at midnight US Pacific. Ingest, relevance and taxonomy are all
+complete and cached, so none of them re-run. The next decision is the 12th theme
+above — a hand edit to `data/out/taxonomy.json`, not a re-induction.
 
 ```bash
-# 1. Reddit — the one source the brief names that the corpus lacks.
-#    Set APIFY_TOKEN first. Dry-run the cap before spending the free credit:
-APIFY_MAX_ITEMS=20 npm run pipeline -- --stage ingest --only reddit
-npm run pipeline -- --stage ingest --only reddit    # full run, maxItems 1200
-npm run pipeline -- --stage relevance               # cached; Reddit docs only
+# 1. Optional but recommended: add the passive-wishlist theme by hand,
+#    then note the edit in the file's editNote field.
 
-# 2. Sample ~40 relevant Reddit docs against the 11 themes before deciding
-#    whether re-induction is warranted. Re-inducing discards the hand-edits.
-
-# 3. Then
+# 2. Tag, then score. This is where the remaining LLM quota goes.
 npm run pipeline -- --stage tag
 npm run pipeline -- --stage score
 npm run build && vercel --prod
@@ -109,8 +170,8 @@ agreement.
 
 ## Still outstanding
 
-- Reddit is implemented but not yet ingested — needs `APIFY_TOKEN` (see below).
-  Social media (X, Instagram, Facebook) stays scoped out on feasibility.
+- Reddit is ingested (1,636 docs). Social media (X, Instagram, Facebook) stays
+  scoped out on feasibility.
 - Parts 2–7 of the brief (metric decomposition, 5–6 user interviews, problem
   definition, MVP, success metrics, risks, 10-slide deck) remain yours.
   Deadline **4 September 2026, 3:59 PM IST** — 18 days out. Note the PDF
