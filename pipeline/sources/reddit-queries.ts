@@ -46,25 +46,36 @@ export const GLOBAL_QUERIES = [
 ];
 
 /**
- * The Apify route searches globally in one billed pass, which makes query
+ * EMPTY ON PURPOSE — do not repopulate without re-reading this.
+ *
+ * The actor accepts subreddit URLs as a first-class input, which looked like a
+ * clean replacement for search-operator hacks. A dry run showed why it is not:
+ * the subreddit lane returns each community's NEWEST posts, and `searchSort`
+ * governs only the keyword-search lane. The probe came back with a "Dinner date
+ * outfit" photo thread and five joke replies — on-community, on-topic for
+ * fashion, and containing nothing whatsoever about deciding whether to buy.
+ *
+ * Scaled to the full budget that lane would have spent real money filling the
+ * corpus with outfit photos for the relevance filter to reject.
+ *
+ * Keyword search reaches these same communities anyway, because the queries are
+ * Myntra-anchored and that is where Indians discuss Myntra: the earlier probe
+ * returned 12 of 12 documents from r/IndianFashionAddicts without naming it.
+ */
+export const SUBREDDIT_URLS: string[] = [];
+
+/**
+ * Keyword search runs globally, across all of Reddit, which makes query
  * anchoring load-bearing in a way it is not for the per-subreddit OAuth route.
  *
  * A dry run proved it: "wishlist never buy" returned r/Steam threads about
  * waiting for game sales — structurally the exact behaviour we study, about
- * entirely the wrong product. So every query here carries a domain anchor
- * ("myntra", or india + clothes), and the bare terms that are safe inside
- * r/IndianFashionAddicts are not reused.
- *
- * ORDER MATTERS. maxItems truncates a run in sequence, so the community-scoped
- * searches come first: if the budget runs out, it should run out on the
- * long-tail global queries, not on the threads most likely to be on-topic.
+ * entirely the wrong product. 10 of the first 13 documents were about video
+ * games. So every query here carries a domain anchor ("myntra", or india +
+ * clothes), and the bare terms that are safe inside r/IndianFashionAddicts are
+ * not reused here.
  */
 export const APIFY_SEARCHES = [
-  "subreddit:IndianFashionAddicts myntra",
-  "subreddit:IndianFashionAddicts sizing",
-  "subreddit:IndianFashionAddicts wishlist",
-  "subreddit:OnlineShoppingIndia myntra",
-  "subreddit:IndianStreetwear myntra sizing",
   "myntra wishlist",
   "myntra saved items",
   "myntra sizing inconsistent",

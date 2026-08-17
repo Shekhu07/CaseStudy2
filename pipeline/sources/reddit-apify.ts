@@ -1,16 +1,19 @@
 /**
- * Reddit via Apify's `trudax/reddit-scraper-lite`, which reads Reddit's public
+ * Reddit via Apify's `harshmaur/reddit-scraper`, which reads Reddit's public
  * pages and so needs no Reddit app registration — only APIFY_TOKEN.
  *
- * Billing is per result ($3.40/1,000 against a $5/month free allowance), so
- * `maxItems` is a SPEND CAP, not a scraping preference. The arithmetic that
- * sets the caps below is deliberate:
+ * Billing is $0.002 per saved result plus $0.02 per run, against a $5/month
+ * free allowance — roughly 2,450 documents.
  *
- *   16 searches x MAX_POSTS_PER_SEARCH posts x (1 + MAX_COMMENTS) ~= MAX_ITEMS
+ * THIS ACTOR HAS NO `maxItems`. There is no single knob that stops a run once
+ * it has cost enough, so the cap has to be computed here and enforced through
+ * the per-lane limits. `budget()` below is the only thing standing between a
+ * typo and the month's entire allowance, which is why it is arithmetic in code
+ * rather than three constants and a hopeful comment.
  *
- * Keeping demand near the cap matters because the cap truncates the run in
- * order: ask for far more than the budget allows and the last queries never
- * run at all, quietly narrowing the corpus to whatever the first few returned.
+ * A "lane" is one search term or one subreddit crawl. Each lane yields up to
+ * `postsPerLane` posts, and each post drags in up to COMMENTS_PER_POST
+ * comments, so total results ~= lanes x postsPerLane x (1 + COMMENTS_PER_POST).
  *
  * Comments are worth more than posts here — a "which size did you get" thread
  * is a hundred shoppers narrating the same hesitation — so the split favours
@@ -19,25 +22,68 @@
 import { runActor } from "../lib/apify.ts";
 import { clean, log, sha1 } from "../lib/io.ts";
 import type { Doc } from "../types.ts";
-import { APIFY_SEARCHES } from "./reddit-queries.ts";
+import { APIFY_SEARCHES, SUBREDDIT_URLS } from "./reddit-queries.ts";
 
-const ACTOR = "trudax/reddit-scraper-lite";
+const ACTOR = "harshmaur/reddit-scraper";
 
-const MAX_ITEMS = Number(process.env.APIFY_MAX_ITEMS ?? 1200);
-const MAX_POSTS_PER_SEARCH = 4;
-const MAX_COMMENTS = 15;
+/** Target result count. ~$2 per 1,000, so 1800 is ~$3.60 of the $5. */
+const TARGET_ITEMS = Number(process.env.APIFY_MAX_ITEMS ?? 1800);
+const COMMENTS_PER_POST = 11;
 
-/** Only the fields this mapper reads; the actor returns considerably more. */
+/**
+ * Fit the lanes to the budget. When the target is too small to give every lane
+ * a post — which is the case for a dry run — drop lanes rather than silently
+ * overshooting the spend, and report what was trimmed.
+ */
+function budget(): { searches: string[]; subreddits: string[]; postsPerLane: number } {
+  const perPost = 1 + COMMENTS_PER_POST;
+  const affordablePosts = Math.max(1, Math.floor(TARGET_ITEMS / perPost));
+  const allLanes = APIFY_SEARCHES.length + SUBREDDIT_URLS.length;
+
+  if (affordablePosts < allLanes) {
+    // Subreddit crawls are the higher-yield lane, so they survive the trim.
+    const lanes = Math.max(1, affordablePosts);
+    const subreddits = SUBREDDIT_URLS.slice(0, lanes);
+    return {
+      subreddits,
+      searches: APIFY_SEARCHES.slice(0, lanes - subreddits.length),
+      postsPerLane: 1,
+    };
+  }
+
+  return {
+    searches: [...APIFY_SEARCHES],
+    subreddits: [...SUBREDDIT_URLS],
+    postsPerLane: Math.floor(affordablePosts / allLanes),
+  };
+}
+
+/**
+ * Only the fields this mapper reads; the actor returns 75 per post and 41 per
+ * comment. Posts and comments do NOT share names for the same concepts — a post
+ * has `postUrl`/`createdAt`/`communityName`, a comment has
+ * `url`/`commentCreatedAt`/`subredditName` — so both spellings are declared and
+ * the accessors below coalesce them. Reading only the post spelling would not
+ * crash; it would emit comments with empty URLs and null dates, which pass
+ * schema validation and surface much later as broken citations.
+ */
 interface RedditItem {
   dataType?: string;
-  url?: string;
+  // post
+  postUrl?: string;
   title?: string;
-  body?: string;
   communityName?: string;
-  parsedCommunityName?: string;
   createdAt?: string;
   upVotes?: number;
-  numberOfComments?: number;
+  commentsCount?: number;
+  // comment
+  url?: string;
+  subredditName?: string;
+  commentCreatedAt?: string;
+  commentUpVotes?: number;
+  // both
+  body?: string;
+  score?: number;
 }
 
 /**
@@ -73,9 +119,13 @@ function decodeEntities(s: string): string {
  * otherwise the same subreddit splits into two buckets in the segment cross-tab.
  */
 function subredditOf(item: RedditItem): string {
-  const raw = item.parsedCommunityName ?? item.communityName ?? "";
+  const raw = item.communityName ?? item.subredditName ?? "";
   return raw.replace(/^\/?r\//, "");
 }
+
+const urlOf = (item: RedditItem) => item.postUrl ?? item.url ?? "";
+const createdAtOf = (item: RedditItem) => item.createdAt ?? item.commentCreatedAt;
+const scoreOf = (item: RedditItem) => Number(item.upVotes ?? item.commentUpVotes ?? item.score ?? 0);
 
 /**
  * Reddit-specific noise the OAuth route never sees enough of to matter, but
@@ -131,15 +181,15 @@ export function docsFromItems(items: RedditItem[]): Doc[] {
     docs.set(id, {
       id,
       source: "reddit",
-      url: item.url ?? "",
-      date: isoOrNull(item.createdAt),
+      url: urlOf(item),
+      date: isoOrNull(createdAtOf(item)),
       rating: null,
       text,
       meta: {
         kind: isPost ? "post" : "comment",
         subreddit: subredditOf(item),
-        score: Number(item.upVotes ?? 0),
-        ...(isPost ? { numComments: Number(item.numberOfComments ?? 0) } : {}),
+        score: scoreOf(item),
+        ...(isPost ? { numComments: Number(item.commentsCount ?? 0) } : {}),
       },
     });
 
@@ -152,24 +202,35 @@ export function docsFromItems(items: RedditItem[]): Doc[] {
 }
 
 export async function fetchRedditViaApify(): Promise<Doc[]> {
+  const { searches, subreddits, postsPerLane } = budget();
+  const lanes = searches.length + subreddits.length;
+  const ceiling = lanes * postsPerLane * (1 + COMMENTS_PER_POST);
+
+  log(
+    "reddit",
+    `budget: ${lanes} lanes x ${postsPerLane} posts x ${1 + COMMENTS_PER_POST} ` +
+      `≈ ${ceiling} results (~$${((ceiling * 0.002 + 0.02) as number).toFixed(2)})`,
+  );
+
   const items = await runActor<RedditItem>("reddit", ACTOR, {
-    searches: APIFY_SEARCHES,
+    searchTerms: searches,
+    subredditUrls: subreddits,
     searchPosts: true,
     searchComments: false, // comments arrive attached to their posts
     searchCommunities: false,
-    searchUsers: false,
-    searchMedia: false,
-    skipComments: false,
-    skipUserPosts: true,
-    skipCommunity: true,
-    includeMediaLinks: false,
+    // Defaults to FALSE on this actor — without it the run returns posts only
+    // and loses the comment threads that carry the deliberation.
+    crawlCommentsPerPost: true,
     includeNSFW: false,
-    // Lowercase. The actor accepts "", relevance, hot, top, new, rising and
-    // rejects the capitalised forms the store page documents.
-    sort: "relevance",
-    maxItems: MAX_ITEMS,
-    maxPostCount: MAX_POSTS_PER_SEARCH,
-    maxComments: MAX_COMMENTS,
+    searchSort: "relevance",
+    searchTime: "all",
+    maxPostsCount: postsPerLane,
+    maxCommentsPerPost: COMMENTS_PER_POST,
+    // Backstop: a global comment ceiling in case per-post limits are exceeded.
+    maxCommentsCount: ceiling,
+    // Costs extra per result for sentiment/intent scoring we already do better
+    // through our own taxonomy and prompts.
+    aiAnalysis: false,
     proxy: { useApifyProxy: true },
   });
 
