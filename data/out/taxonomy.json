@@ -1,211 +1,185 @@
 {
-  "generatedAt": "2026-08-16T19:43:33.909Z",
+  "generatedAt": "2026-08-17T04:12:30.736Z",
   "model": "gemini-3.7-flash",
   "sampleSize": 320,
   "themes": [
     {
-      "id": "fit-size-uncertainty",
-      "name": "Fit & Size Uncertainty",
-      "definition": "Shoppers doubt whether an item will fit them because size charts are unclear or inconsistent. This uncertainty makes them hesitant to buy a saved item.",
+      "id": "size-fit-info-unreliable",
+      "name": "Unreliable Size & Fit Info",
+      "definition": "Shoppers encounter contradictory or missing size charts, brand‑specific measurements, and vague fit descriptors that make it unclear whether the saved apparel will fit them. This uncertainty leads them to postpone or abandon the purchase.",
       "includes": [
-        "I don't know if this size will fit me",
-        "Size chart is confusing",
-        "I can't find a fit guide",
-        "The garment looks too big/small",
-        "I need a try‑on tool"
+        "size chart numbers differ between product page and model details",
+        "no measurements for sleeves, inseam, or length",
+        "fit described as \"relaxed\" vs \"true to size\" without clarification",
+        "brand‑specific sizing that shoppers cannot map to their own size"
       ],
       "excludes": [
-        "I don't like the color",
-        "I want to buy it later",
-        "I need to check price"
+        "general complaints about clothing style",
+        "issues with returns or refunds after purchase"
       ]
     },
     {
-      "id": "product-authenticity-quality",
-      "name": "Product Authenticity & Quality",
-      "definition": "Shoppers question if the product is genuine or made of good material. Lack of confidence in authenticity or quality stops them from purchasing.",
+      "id": "misleading-visual-media",
+      "name": "Misleading Visual Media",
+      "definition": "Product photos or videos are edited, taken from a single angle, use AI‑generated models, or have lighting that distorts colour, texture, and drape, so shoppers cannot trust the item will look as expected. This visual doubt blocks conversion from wishlist to cart.",
       "includes": [
-        "Is this brand authentic?",
-        "Material feels cheap",
-        "I suspect it's counterfeit",
-        "I doubt the quality",
-        "The stitching looks bad"
+        "colour appears different in real life vs image",
+        "fabric texture looks smooth in photo but feels rough",
+        "single‑angle shots hide garment length or cut",
+        "AI‑rendered model that does not reflect true body shape"
       ],
       "excludes": [
-        "I don't have enough money",
-        "I want to buy later",
-        "I need to compare prices"
+        "low‑resolution images that load slowly but are accurate",
+        "lack of any images (handled by missing specs theme)"
       ]
     },
     {
-      "id": "platform-trust-security",
-      "name": "Platform Trust & Security",
-      "definition": "Shoppers worry about fraud, data privacy, or platform security when buying. This perceived risk creates a psychological barrier to buying saved items.",
+      "id": "quality-authenticity-doubts",
+      "name": "Quality, Authenticity & Seller Trust",
+      "definition": "Shoppers doubt that what arrives will be genuine and as described — fearing counterfeit branding, inferior material or stitching, previously returned goods, or listings they read as outright dishonest. This suspicion about the item and the seller behind it stops the purchase.",
       "includes": [
-        "I don't trust the site",
-        "My data might be stolen",
-        "I fear scams",
-        "The site looks fake",
-        "Payment security is unclear"
+        "concern that item is counterfeit or from dubious drop‑shipping source",
+        "reviews mentioning thin fabric, loose stitching, or cheap material",
+        "absence of brand‑level quality guarantees",
+        "mentions of possible used or refurbished goods",
+        "reports of counterfeit products on the site",
+        "claims that prices are artificially inflated then reduced",
+        "mentions of “scam sellers” or “fake reviews”",
+        "fear that the platform will cancel orders without reason"
       ],
       "excludes": [
-        "I don't like the product",
-        "I need to check return policy",
-        "I want to buy later"
+        "price-related complaints about value for money (see price-volatile-hidden-fees)",
+        "return-policy concerns unrelated to trust (see return-exchange-policy-friction)"
       ]
     },
     {
-      "id": "product-info-visual-gaps",
-      "name": "Product Info & Visual Gaps",
-      "definition": "Missing or unclear images, specs, or details prevent shoppers from visualizing or evaluating the item. This void blocks purchase confidence.",
+      "id": "return-exchange-policy-friction",
+      "name": "Cumbersome Return & Exchange Policies",
+      "definition": "The platform’s return or exchange flow is multi‑step, fee‑laden, or restrictive (e.g., non‑returnable tags, mandatory pickup OTP, high restocking fees), making shoppers fear they will be stuck with an unsatisfactory item. This perceived risk deters buying.",
       "includes": [
-        "No product images",
-        "Specs are missing",
-        "No size chart",
-        "No care instructions",
-        "No product description"
+        "mandatory return‑pickup OTP or QR code",
+        "high return shipping fees or restocking charges",
+        "policy stating certain items are non‑returnable after sale",
+        "need to retain original tags and packaging"
       ],
       "excludes": [
-        "I don't like the color",
-        "I want to buy later",
-        "I need to check price"
+        "slow refunds after a successful return",
+        "delivery delays unrelated to return process"
       ]
     },
     {
-      "id": "social-proof-scarcity",
-      "name": "Social Proof Scarcity",
-      "definition": "When reviews, ratings, or user photos are missing or sparse, shoppers lack confidence in fit, quality, or style. The absence of peer validation reduces perceived reliability.",
+      "id": "prepurchase-support-gaps",
+      "name": "Pre‑Purchase Support Gaps",
+      "definition": "When shoppers ask about fit, stock, or return terms before buying, they receive slow, vague, scripted, or no responses, leaving doubts unresolved. The lack of timely clarification erodes confidence and halts conversion.",
       "includes": [
-        "No reviews",
-        "No ratings",
-        "No user photos",
-        "Few comments",
-        "No testimonials"
+        "no reply to chat/email query about size availability",
+        "generic FAQ answer that does not address specific product",
+        "support agent unable to confirm return eligibility for the item",
+        "long wait times before any pre‑purchase clarification"
       ],
       "excludes": [
-        "I don't like the product",
-        "I want to buy later",
-        "I need to check price"
+        "post‑purchase support issues like refund delays",
+        "technical app crashes unrelated to support interaction"
       ]
     },
     {
-      "id": "wishlist-usability-friction",
-      "name": "Wishlist Usability Friction",
-      "definition": "Issues that make saving, locating, or moving items from the wishlist difficult. They cause users to forget or ignore saved items.",
+      "id": "stock-availability-uncertainty",
+      "name": "Uncertain Stock & Availability Signals",
+      "definition": "The system shows an item as in‑stock when wishlisted, then it disappears, shows out‑of‑stock, or gets cancelled without clear alerts, leaving shoppers unsure if they can actually purchase later. This volatility reduces purchase intent.",
       "includes": [
-        "Wishlist disappears",
-        "Can't find my wishlist",
-        "No add to cart from wishlist",
-        "Wishlist button missing",
-        "Wishlist items vanish"
+        "item marked “available” on wishlist but out of stock at checkout",
+        "no notification when saved item goes out of stock",
+        "wishlist cap that hides additional saved items",
+        "sudden cancellation of order after adding to cart"
       ],
       "excludes": [
-        "I don't like the product",
-        "I want to buy later",
-        "I need to check price"
+        "stock‑related delivery delays after order placement",
+        "general complaints about limited inventory without wishlist context"
       ]
     },
     {
-      "id": "checkout-payment-friction",
-      "name": "Checkout & Payment Friction",
-      "definition": "Problems during the final purchase step, such as payment failures or confusing checkout flow, stop users from completing a transaction.",
+      "id": "price-volatile-hidden-fees",
+      "name": "Price Volatility & Hidden Checkout Fees",
+      "definition": "Shoppers see the price of a saved item rise, promotional discounts disappear, or unexpected fees (platform surcharge, COD penalty, return convenience fee) appear at checkout, making the final cost higher than expected and causing abandonment.",
       "includes": [
-        "Payment failed",
-        "Checkout page crashes",
-        "Can't enter card details",
-        "Payment options limited",
-        "Checkout is confusing"
+        "price increase between wishlist add and checkout",
+        "promo code removed at final payment step",
+        "extra platform service fee disclosed only at checkout",
+        "COD surcharge not shown on product page"
       ],
       "excludes": [
-        "I don't like the product",
-        "I want to buy later",
-        "I need to check price"
+        "overall high price perception unrelated to hidden changes",
+        "post‑purchase price adjustments or refunds"
       ]
     },
     {
-      "id": "delivery-stock-uncertainty",
-      "name": "Delivery & Stock Uncertainty",
-      "definition": "Uncertainty about shipping windows, item availability, or delivery reliability makes users hesitant to commit to a purchase.",
+      "id": "delivery-timeline-uncertainty",
+      "name": "Uncertain Delivery Timelines",
+      "definition": "Estimated delivery dates are vague, shift, or extend beyond the shopper’s needed timeframe, and there is no clear information about area coverage or reliability, causing shoppers to defer or cancel the purchase.",
       "includes": [
-        "Item out of stock",
-        "Delivery date uncertain",
-        "Shipping cost high",
-        "No delivery options",
-        "Can't deliver to my area"
+        "delivery estimate shown as “3‑7 days” with no exact date",
+        "shipping window that exceeds event date (e.g., wedding)",
+        "lack of coverage information for remote pin codes",
+        "history of delayed deliveries mentioned in reviews"
       ],
       "excludes": [
-        "I don't like the product",
-        "I want to buy later",
-        "I need to check price"
+        "late delivery after order has been placed",
+        "issues with package tracking after dispatch"
       ]
     },
     {
-      "id": "return-exchange-friction",
-      "name": "Return & Exchange Friction",
-      "definition": "Perceived complexity, cost, or time required to return or exchange an item deters shoppers from committing to a purchase.",
+      "id": "wishlist-ui-navigation-friction",
+      "name": "Wishlist Interface Friction",
+      "definition": "Getting from a saved item to a purchase takes avoidable mechanical effort — items vanish, scroll position resets, controls are hidden, or the move-to-cart and checkout actions simply do not respond. The added effort and unreliability lead shoppers to give up on saved items.",
       "includes": [
-        "Return process is hard",
-        "Exchange cost high",
-        "Return shipping not free",
-        "Return policy unclear",
-        "Can't exchange easily"
+        "saved item vanishes after app refresh",
+        "no visible “move to cart” button for certain items",
+        "scroll position resets when switching tabs",
+        "wishlist limit that prevents adding more items",
+        "add‑to‑cart button does not respond on saved item page",
+        "cannot cancel an order from the wishlist screen",
+        "checkout button greyed out with no explanation",
+        "error message when tapping ‘move to cart’"
       ],
       "excludes": [
-        "I don't like the product",
-        "I want to buy later",
-        "I need to check price"
+        "general app crashes unrelated to wishlist",
+        "payment gateway errors at checkout"
       ]
     },
     {
-      "id": "price-transparency-value",
-      "name": "Price Transparency & Value",
-      "definition": "Unexpected price changes, hidden fees, or perceived high price relative to value erode confidence and cause abandonment.",
+      "id": "missing-product-specs",
+      "name": "Missing Product Specifications",
+      "definition": "Listings omit the concrete attributes needed to judge suitability — fabric composition, exact garment measurements, care instructions, model height and worn size. Without them the shopper cannot resolve their own question about the saved item, so the decision stalls.",
       "includes": [
-        "Hidden delivery fee",
-        "Price increased at checkout",
-        "Discount removed",
-        "Price seems too high",
-        "Unexpected tax"
+        "no fabric composition listed on the product page",
+        "garment measurements absent (chest, length, sleeve)",
+        "no model height or worn-size reference",
+        "care or wash instructions missing",
+        "stated details contradict each other across the listing"
       ],
       "excludes": [
-        "I don't like the product",
-        "I want to buy later",
-        "I need to check price"
+        "reviews or buyer photos being absent (see absent-social-proof)",
+        "photography that misrepresents the item (see misleading-visual-media)",
+        "size charts that exist but are inconsistent (see size-fit-info-unreliable)"
       ]
     },
     {
-      "id": "platform-usability-performance",
-      "name": "Platform Usability & Performance",
-      "definition": "Interface glitches, slow loading, or app crashes make it hard to move from saved to purchase. They increase effort and fear of failure.",
+      "id": "absent-social-proof",
+      "name": "Absent Social Proof",
+      "definition": "The saved item carries few or no ratings, written reviews, or photographs from real buyers, so the shopper has no independent corroboration of fit, colour or quality. Lacking anyone else to vouch for it, they postpone rather than commit.",
       "includes": [
-        "App crashes",
-        "Page loads slowly",
-        "Broken links",
-        "Navigation confusing",
-        "Button not working"
+        "no customer reviews or ratings on the item",
+        "reviews exist but none include buyer photographs",
+        "shopper explicitly waits for reviews before buying",
+        "suspicion that the visible reviews are fake or incentivised",
+        "seeking opinions outside the app because the page offers none"
       ],
       "excludes": [
-        "I don't like the product",
-        "I want to buy later",
-        "I need to check price"
-      ]
-    },
-    {
-      "id": "customer-support-friction",
-      "name": "Customer Support Friction",
-      "definition": "Slow, unhelpful, or inaccessible support leaves doubts unresolved, discouraging finalization of a wishlist purchase.",
-      "includes": [
-        "No response from support",
-        "Support is slow",
-        "Can't contact help",
-        "Chat not working",
-        "No help available"
-      ],
-      "excludes": [
-        "I don't like the product",
-        "I want to buy later",
-        "I need to check price"
+        "reviews that are present and report quality problems (see quality-authenticity-doubts)",
+        "missing seller-supplied specifications (see missing-product-specs)"
       ]
     }
-  ]
+  ],
+  "editedAt": "2026-08-17T08:07:16.756Z",
+  "editNote": "Hand-edited after review: split specs from social proof; merged fraud perception into authenticity; merged broken buttons into wishlist interface friction."
 }
