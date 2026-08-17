@@ -37,6 +37,7 @@ Stage 3 prompts against anything you paste — so the workflow is genuinely test
 | Sitejabber | no key | long-form written reviews of myntra.com, read from its JSON-LD |
 | Competitor apps | no key | AJIO + Nykaa Fashion, both stores — where comparison talk lives |
 | YouTube | `YOUTUBE_API_KEY` | comments on haul, "is it worth it" and sizing-advice videos |
+| Reddit | `APIFY_TOKEN` | Indian fashion/shopping communities, posts with their comment threads |
 
 Sources with missing credentials are skipped with a warning rather than failing the run, and new
 sources merge into the existing corpus on a re-run without reprocessing what is already done.
@@ -45,12 +46,24 @@ Store reviews supply volume; YouTube and Reddit supply depth. App-store text is 
 one-line ratings-bait, so only a few percent survives the relevance filter, whereas comment threads
 under haul videos are where shoppers actually narrate deliberation at length.
 
+**On Reddit specifically.** Two routes are implemented and either fills the same `reddit` source,
+because they fail in different ways:
+
+- **Apify** (`pipeline/sources/reddit-apify.ts`, used when `APIFY_TOKEN` is set) runs
+  `trudax/reddit-scraper-lite` over Reddit's public pages. No Reddit account, but it bills per
+  result — $3.40/1,000 against a $5/month free allowance — so `maxItems` is a spend cap and the
+  Reddit slice of the corpus is budget-bounded, not exhaustive. Queries are global with
+  `subreddit:` operators rather than per-community, since a global pass costs one billed run.
+- **The official API** (`pipeline/sources/reddit.ts`) is the sanctioned route and free at this
+  volume; it needs a free *script* app for `REDDIT_CLIENT_ID`/`REDDIT_CLIENT_SECRET`. It searches
+  10 named subreddits across 12 queries and walks the comment trees of the 220 comment-richest
+  threads, so it reaches deeper than the budgeted Apify run when credentials exist.
+
+Documents are hashed on their text, so the two routes dedupe against each other and switching
+between them never double-counts.
+
 **Deliberately excluded, and why:**
 
-- **Reddit** — scoped out on policy grounds. A working OAuth scraper lives in
-  `pipeline/sources/reddit.ts` and is wired into the pipeline; set `REDDIT_CLIENT_ID` and
-  `REDDIT_CLIENT_SECRET` and re-run ingest to enable it. Note that re-inducing the taxonomy would
-  then be necessary, since theme definitions are derived from the corpus.
 - **Social media (X, Instagram, Facebook)** — no free, terms-compliant public read exists. X's API
   is paid-only; Instagram and Facebook are closed to this access pattern. Excluded on feasibility,
   not oversight.
@@ -70,7 +83,8 @@ cp .env.local.example .env.local   # then add at least one LLM key
 | `GEMINI_API_KEY` | <https://aistudio.google.com/apikey> — primary analysis model |
 | `GROQ_API_KEY` | <https://console.groq.com/keys> — fallback when Gemini rate-limits |
 | `YOUTUBE_API_KEY` | Google Cloud Console → enable *YouTube Data API v3* |
-| `REDDIT_CLIENT_ID` / `REDDIT_CLIENT_SECRET` | <https://www.reddit.com/prefs/apps> → create app → type **script** |
+| `APIFY_TOKEN` | <https://console.apify.com/settings/integrations> — Reddit; $5/month free, no card |
+| `REDDIT_CLIENT_ID` / `REDDIT_CLIENT_SECRET` | <https://www.reddit.com/prefs/apps> → create app → type **script**; alternative Reddit route, used only when `APIFY_TOKEN` is unset |
 
 ## Running the pipeline
 

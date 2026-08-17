@@ -1,53 +1,29 @@
 /**
- * Reddit via the official OAuth API.
+ * Reddit, by whichever route is configured.
  *
- * Anonymous www.reddit.com/*.json is now blocked for non-browser clients
- * (it returns HTML), so a free "script" app is required:
- *   reddit.com/prefs/apps -> create app -> type "script"
- *   -> REDDIT_CLIENT_ID (under the app name) + REDDIT_CLIENT_SECRET
+ * Two paths, because they fail in different ways and neither is strictly better:
  *
- * Missing credentials degrade to an empty source rather than failing the run.
+ * - APIFY_TOKEN -> `reddit-apify.ts`. Reads Reddit's public pages through a
+ *   hosted scraper. No Reddit app registration, but pay-per-result, so the
+ *   corpus size is capped by the credit allowance rather than by rate limits.
+ * - REDDIT_CLIENT_ID + REDDIT_CLIENT_SECRET -> the OAuth implementation below.
+ *   The sanctioned route and free at this volume; needs a free "script" app at
+ *   reddit.com/prefs/apps. Anonymous www.reddit.com/*.json is blocked for
+ *   non-browser clients (it returns HTML), so credentials are not optional.
+ *
+ * Apify wins when both are set: it is the route the corpus was actually built
+ * with, and mixing the two in one run would double-bill for documents that
+ * dedupe to the same text hash anyway.
+ *
+ * Neither configured degrades to an empty source rather than failing the run.
  */
+import { apifyToken } from "../lib/apify.ts";
 import { clean, log, sha1, sleep } from "../lib/io.ts";
 import type { Doc } from "../types.ts";
+import { fetchRedditViaApify } from "./reddit-apify.ts";
+import { GLOBAL_QUERIES, QUERIES, SUBREDDITS } from "./reddit-queries.ts";
 
 const UA = "node:myntra-wishlist-discovery-engine:1.0 (research)";
-
-const SUBREDDITS = [
-  "IndianFashionAddicts",
-  "IndianStreetwear",
-  "OnlineShoppingIndia",
-  "india",
-  "IndiaTech",
-  "TwoXIndia",
-  "IndianTeenagers",
-  "developersIndia",
-  "bangalore",
-  "mumbai",
-];
-
-const QUERIES = [
-  "myntra wishlist",
-  "wishlist",
-  "saved items",
-  "myntra size",
-  "myntra fit",
-  "myntra return",
-  "myntra quality",
-  "online shopping size problem",
-  "cart abandon",
-  "waiting for sale",
-  "myntra vs ajio",
-  "should i buy",
-];
-
-/** Reddit's global search catches conversations outside the subreddit list. */
-const GLOBAL_QUERIES = [
-  "myntra wishlist",
-  "myntra saved items",
-  "wishlist never buy",
-  "myntra sizing inconsistent",
-];
 
 const MAX_POSTS_FOR_COMMENTS = 220;
 
@@ -109,11 +85,18 @@ function walkComments(
 }
 
 export async function fetchReddit(): Promise<Doc[]> {
-  const token = await getToken();
-  if (!token) {
-    log("reddit", "SKIPPED — set REDDIT_CLIENT_ID and REDDIT_CLIENT_SECRET to enable");
+  if (apifyToken()) return fetchRedditViaApify();
+
+  if (!process.env.REDDIT_CLIENT_ID || !process.env.REDDIT_CLIENT_SECRET) {
+    log("reddit", "SKIPPED — set APIFY_TOKEN, or REDDIT_CLIENT_ID + REDDIT_CLIENT_SECRET");
     return [];
   }
+  return fetchRedditViaOAuth();
+}
+
+export async function fetchRedditViaOAuth(): Promise<Doc[]> {
+  const token = await getToken();
+  if (!token) return [];
 
   const docs = new Map<string, Doc>();
   const posts = new Map<string, { permalink: string; subreddit: string; comments: number }>();
