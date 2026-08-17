@@ -55,3 +55,12 @@ data/out/taxonomy.generic-v2.json
 data/taxonomy-run.log
 data/taxonomy-rerun.log
 data/out/taxonomy.pre-edit.json
+
+# scratch backups from paid re-runs
+data/raw/*.bak
+
+# reddit ingest + relevance run logs
+data/reddit-full-run.log
+data/reddit-gap-run.log
+data/relevance-reddit.log
+data/relevance-gap.log

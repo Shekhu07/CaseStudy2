@@ -75,6 +75,53 @@ export const SUBREDDIT_URLS: string[] = [];
  * clothes), and the bare terms that are safe inside r/IndianFashionAddicts are
  * not reused here.
  */
+/**
+ * Aimed at three things the corpus is suspected — not known — to be missing.
+ *
+ * The induced taxonomy names no theme for occasion appropriateness or styling,
+ * though the brief asks about both directly (p.4), and `INFORMATION_NEEDS` can
+ * already record them. Their absence has two possible explanations: the corpus
+ * never contained them, or they genuinely are not what blocks Indian shoppers.
+ * Those call for opposite conclusions in the deck and the evidence to date
+ * cannot separate them. The third group probes the p.3 question of when a
+ * wishlist is real intent versus a bookmark.
+ *
+ * Run separately from APIFY_SEARCHES via APIFY_QUERY_SET=gap so the budget is
+ * not spent re-fetching posts the core queries already returned.
+ *
+ * RESULT, 17 Aug 2026 — these queries FAILED, and the list is kept only so the
+ * failure is not repeated. 523 documents at 9.2% relevance against the core
+ * set's 26.1%: r/AmItheAsshole (33 docs, 0%), r/todayilearned (22, 0%),
+ * r/CrusaderKings (20, 0%), r/relationship_advice, r/childfree.
+ *
+ * The cause is weak anchoring. Every query that worked contains "myntra"; most
+ * of these do not, so "what to wear indian wedding online shopping unsure"
+ * matched wedding-guest drama and general-advice threads. This is the r/Steam
+ * failure from the first probe, under-corrected.
+ *
+ * Note what this does NOT show: occasion and styling were not tested and are
+ * not disproven. The question stays open, and the tagging pass answers it
+ * better and for free, via the occasion_appropriateness and styling_and_pairing
+ * shares over all 3,922 relevant documents. Do not cite this run as evidence
+ * that styling does not matter.
+ */
+export const GAP_SEARCHES = [
+  // occasion appropriateness
+  "myntra wedding outfit confused",
+  "myntra festive outfit not sure",
+  "what to wear indian wedding online shopping unsure",
+  // styling and pairing
+  "myntra how to style this kurta",
+  "what to pair with this indian outfit online",
+  "styling advice bought online india",
+  // wishlist as bookmark vs intent
+  "myntra wishlist forgot about it",
+  "wishlist full never buy india shopping",
+  "myntra saved items never ordered",
+  // social validation before buying
+  "should i buy this dress opinions india",
+];
+
 export const APIFY_SEARCHES = [
   "myntra wishlist",
   "myntra saved items",

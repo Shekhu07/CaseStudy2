@@ -16,7 +16,13 @@ const API = "https://api.apify.com/v2";
 const actorPath = (actor: string) => actor.replace("/", "~");
 
 const POLL_INTERVAL_MS = 5000;
-const POLL_TIMEOUT_MS = 15 * 60 * 1000;
+/*
+ * Sized from a measured rate, not a guess: a 44-result probe took ~42s, so a
+ * full ~1,700-result run lands near 25 minutes. Giving up early would not save
+ * any money — the run keeps going and keeps billing on Apify's side — it would
+ * only mean reading a dataset that is still being written.
+ */
+const POLL_TIMEOUT_MS = 45 * 60 * 1000;
 const PAGE_SIZE = 500;
 
 /** Terminal statuses other than SUCCEEDED — no point polling further. */

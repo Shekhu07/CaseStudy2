@@ -19,10 +19,11 @@
  * is a hundred shoppers narrating the same hesitation — so the split favours
  * fewer threads read deeply over many threads read shallowly.
  */
+import { join } from "node:path";
 import { runActor } from "../lib/apify.ts";
-import { clean, log, sha1 } from "../lib/io.ts";
+import { RAW_DIR, clean, log, readJson, sha1 } from "../lib/io.ts";
 import type { Doc } from "../types.ts";
-import { APIFY_SEARCHES, SUBREDDIT_URLS } from "./reddit-queries.ts";
+import { APIFY_SEARCHES, GAP_SEARCHES, SUBREDDIT_URLS } from "./reddit-queries.ts";
 
 const ACTOR = "harshmaur/reddit-scraper";
 
@@ -31,14 +32,32 @@ const TARGET_ITEMS = Number(process.env.APIFY_MAX_ITEMS ?? 1800);
 const COMMENTS_PER_POST = 11;
 
 /**
+ * APIFY_QUERY_SET picks which queries to spend on. Successive runs accumulate
+ * (see the merge in fetchRedditViaApify), so a later run should ask only for
+ * what earlier ones did not fetch — paying twice for the same post is the
+ * easiest way to waste a fixed allowance.
+ */
+function selectedSearches(): string[] {
+  switch (process.env.APIFY_QUERY_SET) {
+    case "gap":
+      return GAP_SEARCHES;
+    case "all":
+      return [...APIFY_SEARCHES, ...GAP_SEARCHES];
+    default:
+      return APIFY_SEARCHES;
+  }
+}
+
+/**
  * Fit the lanes to the budget. When the target is too small to give every lane
  * a post — which is the case for a dry run — drop lanes rather than silently
  * overshooting the spend, and report what was trimmed.
  */
 function budget(): { searches: string[]; subreddits: string[]; postsPerLane: number } {
+  const all = selectedSearches();
   const perPost = 1 + COMMENTS_PER_POST;
   const affordablePosts = Math.max(1, Math.floor(TARGET_ITEMS / perPost));
-  const allLanes = APIFY_SEARCHES.length + SUBREDDIT_URLS.length;
+  const allLanes = all.length + SUBREDDIT_URLS.length;
 
   if (affordablePosts < allLanes) {
     // Subreddit crawls are the higher-yield lane, so they survive the trim.
@@ -46,13 +65,13 @@ function budget(): { searches: string[]; subreddits: string[]; postsPerLane: num
     const subreddits = SUBREDDIT_URLS.slice(0, lanes);
     return {
       subreddits,
-      searches: APIFY_SEARCHES.slice(0, lanes - subreddits.length),
+      searches: all.slice(0, lanes - subreddits.length),
       postsPerLane: 1,
     };
   }
 
   return {
-    searches: [...APIFY_SEARCHES],
+    searches: all,
     subreddits: [...SUBREDDIT_URLS],
     postsPerLane: Math.floor(affordablePosts / allLanes),
   };
@@ -234,5 +253,35 @@ export async function fetchRedditViaApify(): Promise<Doc[]> {
     proxy: { useApifyProxy: true },
   });
 
-  return docsFromItems(items);
+  return mergeWithExisting(docsFromItems(items));
+}
+
+/**
+ * Stage 0 overwrites data/raw/<source>.json with whatever the fetcher returns,
+ * which is correct for free sources that can simply be re-fetched. It is not
+ * correct here: a targeted follow-up run asks for a deliberately narrow slice,
+ * and returning only that slice would discard documents this account has
+ * already been billed for and cannot re-fetch without paying again.
+ *
+ * So carry the previous file forward and union on id (the text hash), newest
+ * copy losing to the one already on disk — they are identical by construction.
+ */
+export function mergeWithExisting(fetched: Doc[]): Doc[] {
+  const previous = readJson<Doc[]>(join(RAW_DIR, "reddit.json")) ?? [];
+  if (previous.length === 0) return fetched;
+
+  const byId = new Map(previous.map((d) => [d.id, d]));
+  let added = 0;
+  for (const doc of fetched) {
+    if (byId.has(doc.id)) continue;
+    byId.set(doc.id, doc);
+    added++;
+  }
+
+  log(
+    "reddit",
+    `merge: ${previous.length} carried forward + ${added} new ` +
+      `(${fetched.length - added} already held) = ${byId.size}`,
+  );
+  return [...byId.values()];
 }
