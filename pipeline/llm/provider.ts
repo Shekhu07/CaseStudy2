@@ -388,11 +388,22 @@ export async function completeJson<T>(
     const first = schema.safeParse(value);
     if (first.success || !Array.isArray(value)) return first;
 
+    /*
+     * On failure, prefer the WRAPPED error over the bare one. If the envelope
+     * was the only thing missing, `{results: [...]}` gets much further before
+     * failing, and its error names the offending field — "results[0].workaround
+     * expected string" — where the unwrapped error only ever says "expected
+     * object, received array". That difference is not cosmetic: this error is
+     * what the repair round-trip below shows the model, so the useless version
+     * guaranteed the retry failed too, and the batch was discarded twice over.
+     */
+    let best = first;
     for (const key of ["results", "themes", "judgements"]) {
       const wrapped = schema.safeParse({ [key]: value });
       if (wrapped.success) return wrapped;
+      if (best === first) best = wrapped;
     }
-    return first;
+    return best;
   };
 
   try {

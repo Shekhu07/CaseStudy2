@@ -121,6 +121,14 @@ export type InformationNeed = (typeof INFORMATION_NEEDS)[number];
 export type ExternalBehaviour = (typeof EXTERNAL_BEHAVIOURS)[number];
 export type SegmentSignal = (typeof SEGMENT_SIGNALS)[number];
 
+/**
+ * "Nothing to report" is a legitimate answer for these two, and the prompt asks
+ * for an empty string — but models routinely express it as `null`, which failed
+ * validation and discarded the whole batch of ~20 documents along with it.
+ * Absence is data here, so the schema models it rather than rejecting it.
+ */
+const emptyIfNull = z.preprocess((v) => v ?? "", z.string());
+
 export const TagSchema = z.object({
   id: z.string(),
   themes: z.array(z.string()), // FrictionTheme ids
@@ -129,9 +137,9 @@ export const TagSchema = z.object({
   intent_type: z.enum(INTENT_TYPES),
   information_needs: z.array(z.enum(INFORMATION_NEEDS)),
   external_behaviour: z.array(z.enum(EXTERNAL_BEHAVIOURS)),
-  workaround: z.string(),
+  workaround: emptyIfNull,
   segment_signals: z.array(z.enum(SEGMENT_SIGNALS)),
-  evidence_quote: z.string(),
+  evidence_quote: emptyIfNull,
   confidence: z.number().min(0).max(1),
 });
 export type Tag = z.infer<typeof TagSchema>;

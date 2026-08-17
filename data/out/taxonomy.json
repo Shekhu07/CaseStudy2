@@ -178,8 +178,27 @@
         "reviews that are present and report quality problems (see quality-authenticity-doubts)",
         "missing seller-supplied specifications (see missing-product-specs)"
       ]
+    },
+    {
+      "id": "passive-wishlist-no-reengagement",
+      "name": "Passive Wishlist, No Re-engagement",
+      "definition": "The wishlist stores the item and then does nothing: no alert when the price drops, stock runs low, or the size comes back, so the shopper must remember to check manually. Saved items are forgotten rather than rejected, and the intent decays quietly instead of converting.",
+      "includes": [
+        "describes saving an item then forgetting about it entirely",
+        "checks the wishlist manually over weeks to catch a sale",
+        "wants to be told when a saved item drops in price or restocks",
+        "calls the wishlist a bookmark, a dumping ground or 'mark and forget'",
+        "misses a sale on something already saved",
+        "wishlist has grown so large the shopper no longer revisits it"
+      ],
+      "excludes": [
+        "the price actually changed unfavourably or fees appeared (price-volatile-hidden-fees)",
+        "the item went out of stock or was cancelled (stock-availability-uncertainty)",
+        "mechanical failures in the wishlist UI — vanishing items, dead buttons, item caps (wishlist-ui-navigation-friction)",
+        "deliberately deciding against a purchase for a stated reason"
+      ]
     }
   ],
-  "editedAt": "2026-08-17T08:07:16.756Z",
-  "editNote": "Hand-edited after review: split specs from social proof; merged fraud perception into authenticity; merged broken buttons into wishlist interface friction."
+  "editedAt": "2026-08-17T17:26:38.361013Z",
+  "editNote": "Hand-edited after review: split specs from social proof; merged fraud perception into authenticity; merged broken buttons into wishlist interface friction. 17 Aug: added passive-wishlist-no-reengagement as a 12th theme after a hand read of 40 relevant Reddit documents — shoppers repeatedly describe the wishlist as 'mark-and-forget' with nothing bringing them back, which no existing theme covered and which sits closest of all to the 30-day conversion metric."
 }
