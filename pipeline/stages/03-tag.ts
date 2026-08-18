@@ -29,19 +29,67 @@ const CONCURRENCY = 2;
 // stretch of work to one interruption. Writing every few batches is cheap.
 const CHECKPOINT_EVERY = 4; // batches per worker between checkpoints
 
+/**
+ * `null` is how models routinely express "nothing to report" for the two free
+ * -text fields, but `.default()` only fires on `undefined`, so a null took the
+ * whole ~20-document batch down with it. The sibling coercion in types.ts
+ * guards `TagSchema` (our output); this guards the LLM response, which is what
+ * actually gets validated here.
+ */
+const emptyIfNull = z.preprocess((v) => v ?? "", z.string());
+
+/**
+ * `.catch()` stops one malformed field from taking a whole ~20-document batch
+ * down with it, but it does so silently: rename an enum value in the taxonomy
+ * and every affected array quietly becomes empty instead of erroring, which
+ * reads downstream as "shoppers never did this" rather than "we stopped being
+ * able to see it". Count what gets swallowed and report it at the end of the
+ * stage, so a systematic coercion is visible rather than inferred later from a
+ * suspiciously low facet share.
+ */
+const coercions = new Map<string, { count: number; samples: Set<string> }>();
+
+function noteCoercion(field: string, input: unknown): void {
+  let entry = coercions.get(field);
+  if (!entry) coercions.set(field, (entry = { count: 0, samples: new Set() }));
+  entry.count++;
+  // A handful of examples is enough to tell a renamed enum from a stray null.
+  if (entry.samples.size < 5) entry.samples.add(JSON.stringify(input)?.slice(0, 80) ?? String(input));
+}
+
+/** Fallback for `.catch()` that records what it replaced before returning it. */
+const loud =
+  <T,>(field: string, fallback: T) =>
+  (ctx: { input: unknown }): T => {
+    noteCoercion(field, ctx.input);
+    return fallback;
+  };
+
+function reportCoercions(): void {
+  if (coercions.size === 0) {
+    log("tag", "no fields were silently coerced");
+    return;
+  }
+  const total = [...coercions.values()].reduce((n, e) => n + e.count, 0);
+  log("tag", `${total} field values were coerced to a fallback - these are NOT real absences:`);
+  for (const [field, e] of [...coercions.entries()].sort((a, b) => b[1].count - a[1].count)) {
+    log("tag", `  ${field}: ${e.count} (e.g. ${[...e.samples].join(", ")})`);
+  }
+}
+
 /** Lenient at the edges, strict about the parts that drive the numbers. */
 const ResultSchema = z.object({
   index: z.number().int(),
-  themes: z.array(z.string()).default([]),
-  severity: z.coerce.number().min(1).max(5).catch(3),
-  journey_stage: z.enum(JOURNEY_STAGES).catch("evaluate"),
-  intent_type: z.enum(INTENT_TYPES).catch("unclear"),
-  information_needs: z.array(z.enum(INFORMATION_NEEDS)).catch([]),
-  external_behaviour: z.array(z.enum(EXTERNAL_BEHAVIOURS)).catch([]),
-  workaround: z.string().default(""),
-  segment_signals: z.array(z.enum(SEGMENT_SIGNALS)).catch([]),
-  evidence_quote: z.string().default(""),
-  confidence: z.coerce.number().min(0).max(1).catch(0.5),
+  themes: z.array(z.string()).catch(loud("themes", [] as string[])),
+  severity: z.coerce.number().min(1).max(5).catch(loud("severity", 3)),
+  journey_stage: z.enum(JOURNEY_STAGES).catch(loud("journey_stage", "evaluate" as const)),
+  intent_type: z.enum(INTENT_TYPES).catch(loud("intent_type", "unclear" as const)),
+  information_needs: z.array(z.enum(INFORMATION_NEEDS)).catch(loud("information_needs", [])),
+  external_behaviour: z.array(z.enum(EXTERNAL_BEHAVIOURS)).catch(loud("external_behaviour", [])),
+  workaround: emptyIfNull,
+  segment_signals: z.array(z.enum(SEGMENT_SIGNALS)).catch(loud("segment_signals", [])),
+  evidence_quote: emptyIfNull,
+  confidence: z.coerce.number().min(0).max(1).catch(loud("confidence", 0.5)),
 });
 
 const ResponseSchema = z.object({ results: z.array(ResultSchema) });
@@ -49,6 +97,8 @@ const ResponseSchema = z.object({ results: z.array(ResultSchema) });
 export async function runTagging(docs: Doc[], taxonomy: Taxonomy): Promise<Tag[]> {
   const validThemes = new Set(taxonomy.themes.map((t) => t.id));
   const system = taggingSystem(taxonomy.themes);
+
+  coercions.clear();
 
   const existing = readJson<Tag[]>(TAGS_PATH) ?? [];
   const done = new Map(existing.map((t) => [t.id, t]));
@@ -124,5 +174,6 @@ export async function runTagging(docs: Doc[], taxonomy: Taxonomy): Promise<Tag[]
     "tag",
     `${all.length} tagged; ${withTheme} carry >=1 theme; ${withQuote} have a verified verbatim quote`,
   );
+  reportCoercions();
   return all;
 }

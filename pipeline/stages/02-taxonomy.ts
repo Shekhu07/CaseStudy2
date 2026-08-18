@@ -33,7 +33,11 @@ const ProposeSchema = z.object({
       // Never read downstream — it exists only to make the model ground its
       // proposals in real documents. Models return these as strings about a
       // third of the time, which was discarding otherwise perfect batches.
-      evidence_indices: z.array(z.unknown()).default([]),
+      // `.default()` never fixed that: it fires only on `undefined`, so a
+      // string or a null still threw and still took the batch with it.
+      // `.catch()` is what tolerates a wrong type, and since nothing reads
+      // this field, swallowing one silently is the intended behaviour.
+      evidence_indices: z.array(z.unknown()).catch([]),
     }),
   ),
 });

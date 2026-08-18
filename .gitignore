@@ -65,5 +65,6 @@ data/reddit-gap-run.log
 data/relevance-reddit.log
 data/relevance-gap.log
 
-# tagging run log
+# tagging run logs
 data/tag-run.log
+data/tag-run-resume.log

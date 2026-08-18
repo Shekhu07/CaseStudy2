@@ -21,7 +21,11 @@ export const DocumentSchema = z.object({
   date: z.string().nullable(), // ISO 8601
   rating: z.number().min(1).max(5).nullable(),
   text: z.string(),
-  meta: z.record(z.string(), z.unknown()).default({}),
+  // Written by the source adapters, never read downstream. `.default()` covers
+  // only a missing key, so a null — which is how a hand-edited or re-serialised
+  // corpus expresses "no metadata" — would throw away an otherwise good
+  // document for a field nothing consumes. `.catch()` keeps the document.
+  meta: z.record(z.string(), z.unknown()).catch({}),
 });
 export type Doc = z.infer<typeof DocumentSchema>;
 
