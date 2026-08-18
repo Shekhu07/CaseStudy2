@@ -1,6 +1,6 @@
 # Status — resume here
 
-Last updated: 18 Aug 2026, 14:06 IST
+Last updated: 18 Aug 2026, 14:18 IST
 
 ## Where things stand
 
@@ -11,7 +11,7 @@ Last updated: 18 Aug 2026, 14:06 IST
 | 2 · Taxonomy | **Done — 12 themes.** Induced, hand-edited three times, then a 12th added 17 Aug. `data/out/taxonomy.json` |
 | 3 · Tagging | **Done — 3,922 of 3,922**, and audited. Theme 9 re-tagged after the audit (see below) |
 | 4 · Scoring | **Done.** 12 themes ranked, both cohorts, → `data/out/analysis.json` |
-| Deployment | Live shell at <https://myntra-wishlist-discovery-engine.vercel.app> — **not yet redeployed with the analysis**. Builds clean locally and now renders real data; `vercel --prod` is the remaining step |
+| Deployment | **Live with the real dashboard** at <https://myntra-wishlist-discovery-engine.vercel.app> — deployed 18 Aug 08:35 UTC, placeholder gone, cohort toggle working. `/api/classify` works but is cold-start marginal (see below) |
 
 Nothing is running in the background.
 
@@ -379,14 +379,35 @@ Counters reset per run, so a resume reports only its own coercions.
 
 ## Resuming — deployment is next
 
+The pipeline is **complete and deployed**. Ingest → relevance → taxonomy →
+tagging → scoring all done, and the dashboard is live with real data.
+
 ```bash
-# Scoring is done. What remains is shipping the dashboard.
-npm run build && vercel --prod
+# Redeploy after any change to data/out/analysis.json or the UI.
+# --scope is required: without it the CLI returns "Not authorized".
+npm run build && vercel --prod --yes --scope shekhu07s-projects
 ```
 
-`npm run build` passes locally and the page now renders real data with the
-cohort toggle. Deploying is the only outward-facing step left and has not been
-done.
+### Known issue — `/api/classify` is cold-start marginal
+
+The live tester makes **two sequential LLM calls** (relevance, then tagging)
+against `maxDuration = 60` (`src/app/api/classify/route.ts:29`). Warm it
+returns in ~27s; **cold it can exceed 60s and returns 504
+`FUNCTION_INVOCATION_TIMEOUT`.** First hit after idle is the risky one, which
+is exactly what happens when someone opens the link for the first time.
+
+If this is being demoed, either raise `maxDuration` (the platform allows far
+more than 60s), warm the endpoint immediately before, or run the two calls
+concurrently — they do not depend on each other.
+
+### One more instance of the `.default()` null bug
+
+`src/app/api/classify/route.ts` carries its own copy of the tagging response
+schema, and it still has `workaround: z.string().default("")` and
+`evidence_quote: z.string().default("")` — the fourth instance of the defect
+fixed in the pipeline today. In the batch pipeline this cost a 20-document
+batch; here it would 500 the live demo on a single document whenever the model
+answers `null`. Not yet fixed, because fixing it means another deploy.
 
 The 50-document audit is **done** (see above) and theme 9 is corrected, so
 tagging is no longer the unverified link. What remains unverified is that the
