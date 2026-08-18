@@ -26,7 +26,15 @@ import {
  */
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+/**
+ * Latency here is LLM provider variance, not compute: a measured call ran 47s
+ * against the old 60s ceiling, leaving 22% headroom, and a cold sequential pair
+ * had already returned 504 to a first-time visitor. Parallelising the two calls
+ * halved the exposure; this removes what was left. The function only bills
+ * while it is actually awaiting, so a wider ceiling costs nothing on the fast
+ * path and simply stops a slow provider from becoming a 504.
+ */
+export const maxDuration = 120;
 
 const RequestSchema = z.object({ text: z.string().min(15).max(6000) });
 
@@ -43,20 +51,28 @@ const RelevanceResponse = z.object({
     .min(1),
 });
 
+/**
+ * Models express "nothing to report" as `null` for the two free-text fields,
+ * and `.default()` fires only on `undefined`. In the batch pipeline that cost a
+ * whole ~20-document batch; here it would 502 the live tester on a single
+ * document. Mirrors the coercion in pipeline/types.ts.
+ */
+const emptyIfNull = z.preprocess((v) => v ?? "", z.string());
+
 const TagResponse = z.object({
   results: z
     .array(
       z.object({
         index: z.number().int(),
-        themes: z.array(z.string()).default([]),
+        themes: z.array(z.string()).catch([]),
         severity: z.coerce.number().min(1).max(5).catch(3),
         journey_stage: z.enum(JOURNEY_STAGES).catch("evaluate"),
         intent_type: z.enum(INTENT_TYPES).catch("unclear"),
         information_needs: z.array(z.enum(INFORMATION_NEEDS)).catch([]),
         external_behaviour: z.array(z.enum(EXTERNAL_BEHAVIOURS)).catch([]),
-        workaround: z.string().default(""),
+        workaround: emptyIfNull,
         segment_signals: z.array(z.enum(SEGMENT_SIGNALS)).catch([]),
-        evidence_quote: z.string().default(""),
+        evidence_quote: emptyIfNull,
         confidence: z.coerce.number().min(0).max(1).catch(0.5),
       }),
     )
@@ -100,17 +116,43 @@ export async function POST(request: Request) {
   };
 
   try {
-    /* Stage 1 — is this even about the purchase decision? */
-    const rel = await completeJson(
-      {
-        system: relevanceSystem,
-        prompt: relevancePrompt([doc]),
-        temperature: 0,
-        noCache: true,
-      },
-      RelevanceResponse,
-    );
-    const relevance = rel.results[0];
+    /*
+     * Stage 1 and Stage 3 do not depend on each other — stage 3 only needs the
+     * document — so they run concurrently and the endpoint costs max(a, b)
+     * rather than a + b. That matters: two sequential calls exceeded
+     * `maxDuration` on a cold start and returned 504 to the first visitor.
+     *
+     * The trade is one wasted tagging call when a document turns out to be
+     * irrelevant. At live-tester volume that is worth ~25 seconds of latency,
+     * and the response contract below is unchanged — an irrelevant document
+     * still reports `tag: null`.
+     *
+     * allSettled, not all: a tagging failure must not fail a request whose
+     * answer is "filtered out at Stage 1" and never needed the tag.
+     */
+    const [relSettled, tagSettled] = await Promise.allSettled([
+      completeJson(
+        {
+          system: relevanceSystem,
+          prompt: relevancePrompt([doc]),
+          temperature: 0,
+          noCache: true,
+        },
+        RelevanceResponse,
+      ),
+      completeJson(
+        {
+          system: taggingSystem(taxonomy.themes),
+          prompt: taggingPrompt([doc]),
+          temperature: 0,
+          noCache: true,
+        },
+        TagResponse,
+      ),
+    ]);
+
+    if (relSettled.status === "rejected") throw relSettled.reason;
+    const relevance = relSettled.value.results[0];
 
     if (!relevance.relevant) {
       return NextResponse.json({
@@ -120,17 +162,8 @@ export async function POST(request: Request) {
       });
     }
 
-    /* Stage 3 — structured tagging against the induced taxonomy */
-    const tagged = await completeJson(
-      {
-        system: taggingSystem(taxonomy.themes),
-        prompt: taggingPrompt([doc]),
-        temperature: 0,
-        noCache: true,
-      },
-      TagResponse,
-    );
-    const r = tagged.results[0];
+    if (tagSettled.status === "rejected") throw tagSettled.reason;
+    const r = tagSettled.value.results[0];
 
     const validIds = new Set(taxonomy.themes.map((t) => t.id));
     const themes = [...new Set(r.themes.map((s) => s.trim()))]

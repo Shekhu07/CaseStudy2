@@ -1,6 +1,6 @@
 # Status — resume here
 
-Last updated: 18 Aug 2026, 14:18 IST
+Last updated: 18 Aug 2026, 14:41 IST
 
 ## Where things stand
 
@@ -11,7 +11,7 @@ Last updated: 18 Aug 2026, 14:18 IST
 | 2 · Taxonomy | **Done — 12 themes.** Induced, hand-edited three times, then a 12th added 17 Aug. `data/out/taxonomy.json` |
 | 3 · Tagging | **Done — 3,922 of 3,922**, and audited. Theme 9 re-tagged after the audit (see below) |
 | 4 · Scoring | **Done.** 12 themes ranked, both cohorts, → `data/out/analysis.json` |
-| Deployment | **Live with the real dashboard** at <https://myntra-wishlist-discovery-engine.vercel.app> — deployed 18 Aug 08:35 UTC, placeholder gone, cohort toggle working. `/api/classify` works but is cold-start marginal (see below) |
+| Deployment | **Live** at <https://myntra-wishlist-discovery-engine.vercel.app> — dashboard renders real data with the cohort toggle, `/api/classify` parallelised and no longer times out |
 
 Nothing is running in the background.
 
@@ -388,42 +388,39 @@ tagging → scoring all done, and the dashboard is live with real data.
 npm run build && vercel --prod --yes --scope shekhu07s-projects
 ```
 
-### Known issue — `/api/classify` is cold-start marginal
+### `/api/classify` — timeout fixed, provider limits remain
 
-The live tester makes **two sequential LLM calls** (relevance, then tagging)
-against `maxDuration = 60` (`src/app/api/classify/route.ts:29`). Warm it
-returns in ~27s; **cold it can exceed 60s and returns 504
-`FUNCTION_INVOCATION_TIMEOUT`.** First hit after idle is the risky one, which
-is exactly what happens when someone opens the link for the first time.
+Two changes, both deployed and verified in production:
 
-If this is being demoed, either raise `maxDuration` (the platform allows far
-more than 60s), warm the endpoint immediately before, or run the two calls
-concurrently — they do not depend on each other.
+- **The two LLM calls now run concurrently.** Stage 1 and Stage 3 do not depend
+  on each other, so the endpoint costs `max(a, b)` rather than `a + b`. They run
+  under `Promise.allSettled`, not `all`, so a tagging failure cannot fail a
+  request whose answer is "filtered out at Stage 1" and never needed the tag.
+  The response contract is unchanged — an irrelevant document still returns
+  `tag: null` with its note. The trade is one wasted tagging call when a
+  document turns out irrelevant, which at live-tester volume is worth the
+  latency.
+- **`maxDuration` 60 → 120.** A measured warm call took 47s against the old 60s
+  ceiling — 22% headroom. Latency here is provider variance, not compute, and
+  the function only bills while awaiting.
 
-### One more instance of the `.default()` null bug
+Measured in production after the change: **cold start 6.2s** (the exact case
+that previously returned 504), then 11s, 48s across warm runs. Spread is
+entirely LLM provider variance.
 
-`src/app/api/classify/route.ts` carries its own copy of the tagging response
-schema, and it still has `workaround: z.string().default("")` and
-`evidence_quote: z.string().default("")` — the fourth instance of the defect
-fixed in the pipeline today. In the batch pipeline this cost a 20-document
-batch; here it would 500 the live demo on a single document whenever the model
-answers `null`. Not yet fixed, because fixing it means another deploy.
+**What remains is rate limiting, not timeouts.** Three requests fired
+back-to-back produced one `502 Classification failed: all providers failed:
+Error: groq 429`. That was self-inflicted by the load test and the next request
+succeeded, but the free-tier keys will do this under any rapid succession. It
+fails cleanly with a readable message rather than hanging. If this is being
+demoed live, do not click the button repeatedly — and expect the daily free
+ceiling to be the real constraint, as it was during tagging.
 
-The 50-document audit is **done** (see above) and theme 9 is corrected, so
-tagging is no longer the unverified link. What remains unverified is that the
-audit was model-run, not human-run — a ~30-document human spot-check is the
-cheapest remaining credibility win before the deck.
-
-Two decisions to make before or during scoring:
-
-- **Theme 5** is 55% post-purchase. Re-scope, re-name, or footnote it.
-- **`severity` fallback** is mid-scale 3 for out-of-range values. A clamp is
-  more faithful and `severity` feeds `severityNorm` in the score.
-
-Watch during scoring: `ThemeScore.reach` is `count / relevantTotal` over the
-**full** corpus, so the ranking will inherit the competitor-mix issue described
-above. Consider whether the opportunity score should be computed Myntra-only, or
-reported both ways.
+The fourth instance of the `.default()` null defect is also fixed here:
+`workaround` and `evidence_quote` now use the same `emptyIfNull` preprocess as
+the pipeline, and `themes` moved to `.catch([])`. In the batch pipeline that bug
+cost a 20-document batch; here it would have 502'd the live demo on a single
+document.
 
 ## Still outstanding
 
