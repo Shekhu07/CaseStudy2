@@ -424,6 +424,24 @@ document.
 
 ## Still outstanding
 
+**The pipeline is complete and deployed.** Nothing technical is blocking. What
+is left is three judgement calls and the written deliverable.
+
+Open decisions, each described in full in its section above:
+
+1. **Theme 5 scoping.** 76 of 138 documents tagged `Pre-Purchase Support Gaps`
+   are `journey_stage: post_purchase`. Re-scope it, re-name it, or footnote it —
+   as a *pre-purchase* claim it is worth ~1.6%, not 3.5%. Untouched because the
+   answer changes what the theme means.
+2. **`severity` fallback.** Out-of-range values coerce to mid-scale 3; a clamp
+   (0 → 1, 7 → 5) is more faithful. Small effect (themed mean 3.82 → 3.84) but
+   `severity` feeds `severityNorm` in the opportunity score.
+3. **Human spot-check.** The 50-document audit was model-run. ~30 documents read
+   by a person is the cheapest remaining credibility win, because a model
+   auditing a model cannot catch a shared bias.
+
+Nice-to-have, not blocking:
+
 - Reddit is ingested (1,636 docs). Social media (X, Instagram, Facebook) stays
   scoped out on feasibility.
 - Parts 2–7 of the brief (metric decomposition, 5–6 user interviews, problem
