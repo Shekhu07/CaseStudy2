@@ -382,21 +382,6 @@
     "confidence": 0.9
   },
   {
-    "id": "apple:1bc9510c0c154faac9402df396f47cca7270fabb",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "evaluate",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "uninstall and install it",
-    "segment_signals": [],
-    "evidence_quote": "we need to always uninstall and install it for it to work properly... by dng this we will loose all the items we added in our cart",
-    "confidence": 0.9
-  },
-  {
     "id": "apple:5fa87ddbdfd5c71c615ebbc54c272b1d0d170ac3",
     "themes": [],
     "severity": 1,
@@ -639,21 +624,6 @@
     "confidence": 0.9
   },
   {
-    "id": "apple:b235ecab8a59866d65f98fd976d6d533e5cbbeb8",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Every time I try to add something cute they notify me that my wish list is full.",
-    "confidence": 0.9
-  },
-  {
     "id": "apple:4a3994a7b668c4b512961dbe8dd53de78c987703",
     "themes": [
       "size-fit-info-unreliable"
@@ -766,21 +736,6 @@
     "segment_signals": [],
     "evidence_quote": "app keep giving some message like “items out of stock” or “prices have changed”",
     "confidence": 0.9
-  },
-  {
-    "id": "apple:a6a66ec0b2c5d64368a14a17e89c8c4858a90498",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "bookmark",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "I don’t make payments from here, I just browse and save to bought later.",
-    "confidence": 0.8
   },
   {
     "id": "apple:0c5db0d3f4ac1f9b030a4d47cf656a86677b048d",
@@ -959,21 +914,6 @@
     "confidence": 0.9
   },
   {
-    "id": "apple:f103797b808dd038f5ead1bd76e00d54071bb28b",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "When you click on similar product links on below of product tiles nothing happen.",
-    "confidence": 0.9
-  },
-  {
     "id": "apple:031b3a2cfbc76ef6c4773dc1c93b5c9373a5e325",
     "themes": [
       "quality-authenticity-doubts",
@@ -1092,21 +1032,6 @@
     "confidence": 1
   },
   {
-    "id": "apple:f9c3ea3b2982a6db082fdfd7c5fa321352905ca2",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "Not willing to waste my time",
-    "segment_signals": [],
-    "evidence_quote": "I clicked on cart bammmm there are no items my cart is empty.",
-    "confidence": 0.9
-  },
-  {
     "id": "apple:74ae960fe216d776b640cb8743ae622e8aecd935",
     "themes": [],
     "severity": 3,
@@ -1191,25 +1116,6 @@
     "confidence": 0.9
   },
   {
-    "id": "apple:cbb7a935b3baeece896dc83ec85a22d9712380ca",
-    "themes": [
-      "wishlist-ui-navigation-friction",
-      "absent-social-proof",
-      "stock-availability-uncertainty"
-    ],
-    "severity": 5,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [
-      "social_validation"
-    ],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "My entire wishlist is vanished. Also, it’d be great if you guys included reviews and also notify us when a certain product we wishlist is out of stock.",
-    "confidence": 0.9
-  },
-  {
     "id": "apple:45bce1c24cd600e49c61d56277f966dc66fdf150",
     "themes": [
       "quality-authenticity-doubts"
@@ -1259,21 +1165,6 @@
     "segment_signals": [],
     "evidence_quote": "sizes run out too quickly",
     "confidence": 0.8
-  },
-  {
-    "id": "apple:1f25276ee1fd411f406aa7ce6f8d4a3acbbaebbc",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "I already started looking for the same items",
-    "segment_signals": [],
-    "evidence_quote": "when I go back my cart items vanished and later came back but I already started looking for the same items",
-    "confidence": 0.9
   },
   {
     "id": "apple:7409a783723d15abd8bb96150b7ff40952bf4db6",
@@ -1352,21 +1243,6 @@
     "workaround": "paid using net banking",
     "segment_signals": [],
     "evidence_quote": "Unable pay using upi or credit or debt card . After lot of trails I gave up on those options and paid using net banking.",
-    "confidence": 0.9
-  },
-  {
-    "id": "apple:b17e4040778a17fd57e730bf29076510eef20a98",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "I have to first add them to wishlist and them move to cart from there.",
-    "segment_signals": [],
-    "evidence_quote": "I was unable to add items to cart from the app. I have to first add them to wishlist and them move to cart from there.",
     "confidence": 0.9
   },
   {
@@ -1735,25 +1611,6 @@
       "new_or_low_trust_user"
     ],
     "evidence_quote": "",
-    "confidence": 0.9
-  },
-  {
-    "id": "play:8f73e5bce72f7a1a1f64a09b096c9d20b2a190a5",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [
-      "true_colour_and_appearance"
-    ],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [
-      "fit_uncertainty_prone"
-    ],
-    "evidence_quote": "once clicked on any item, it opens as a 3/4th page pop up(shows double click to wishlist) - why do I need to put in wishlist, if I couldnt even see the photos properly.",
     "confidence": 0.9
   },
   {
@@ -5387,21 +5244,6 @@
     "confidence": 0.9
   },
   {
-    "id": "play:cd6a6a9439469bf1c3cb3cf011e140cb883deb3d",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "I am unable to add fwd pass every time I am adding it to the cart and placing the order it is showing that you have reached the maximum limit in your card",
-    "confidence": 0.9
-  },
-  {
     "id": "play:34bb68215bdb69e70923e9f11557b35f4a6bc435",
     "themes": [
       "stock-availability-uncertainty",
@@ -5680,36 +5522,6 @@
       "price_sensitive"
     ],
     "evidence_quote": "The delivery agent himself rejected my product and when I contacted customer care, they said to place a fresh order. Where as its price increased by Rs 1000.",
-    "confidence": 0.9
-  },
-  {
-    "id": "play:4dd5c32ec2a3a2897dd790761eead71267209c21",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Why is the 'Apply' option not there in most of your filters? you give lots of options under the filter, but after selecting those filters there is no Apply option!!",
-    "confidence": 0.9
-  },
-  {
-    "id": "play:6376163ca07af721c78819b414aa9c0807e13f21",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Clicked on shirt then I don't see any apply button on my phone so I assumed it preserves my selection and clicked on back. I am back to same page where all categories are selected.",
     "confidence": 0.9
   },
   {
@@ -6626,21 +6438,6 @@
     "confidence": 0.9
   },
   {
-    "id": "play:32b6ab36053297dbb6510e86e645dfc1a97fb366",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "if I am selecting full sleeves Tshirts, it's showing both half sleeves as well as full sleeves tshirts",
-    "confidence": 0.9
-  },
-  {
     "id": "play:9b5075807995bdb30e997313721d3dcf5494b9d9",
     "themes": [],
     "severity": 1,
@@ -7185,21 +6982,6 @@
     "confidence": 0.8
   },
   {
-    "id": "play:aee609179a8a33fc8e5d1bfd6d2669fe3553b058",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "What happened to Myntras wishlist category? it save a lott of time. sometimes I only open wishlist products, do quick search and order.",
-    "confidence": 0.9
-  },
-  {
     "id": "play:73dfa28f1fde20983f485d97ed1a5ffd8c5771e9",
     "themes": [
       "misleading-visual-media",
@@ -7421,21 +7203,6 @@
     "confidence": 0.9
   },
   {
-    "id": "play:663426dd23b336e612bfb78c2becac5050ac5b6f",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "On that screen there is no any exit option and at that time while click on screen anywhere back end screen options will be selected and it's been executed.",
-    "confidence": 0.8
-  },
-  {
     "id": "play:1dc420e77fb0065ad4d21419e9d2e34ce4689dc8",
     "themes": [
       "quality-authenticity-doubts",
@@ -7572,21 +7339,6 @@
     ],
     "evidence_quote": "delivery agent during return time says it's tag isn't matching so we can't accept it on complaining I got zero sense response",
     "confidence": 0.9
-  },
-  {
-    "id": "play:e48e48923a6461fe8cd8f58bf5ae7d26d7ba557b",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "if you add any item to bag, suddenly scroll down and showing other suggestions which is very irritating.",
-    "confidence": 0.8
   },
   {
     "id": "play:23ad38ed5b5a0e4b58f6e94fa0258a3641ace0be",
@@ -7782,24 +7534,6 @@
     ],
     "evidence_quote": "customer care acts like a robot and only repeats: 'You cannot return this.'Even their delivery boys refuse to take the return unless you put a fake reason!",
     "confidence": 0.9
-  },
-  {
-    "id": "play:a06adc3b3c89560e5d7cf6ebea3879d0b1e44077",
-    "themes": [
-      "wishlist-ui-navigation-friction",
-      "missing-product-specs"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "unclear",
-    "information_needs": [
-      "true_colour_and_appearance"
-    ],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "the shopping products are not showing via image review or any product detail it's basically blank.",
-    "confidence": 0.8
   },
   {
     "id": "play:593531b84171534dabe2d7d3105433fa4dc26acb",
@@ -10401,21 +10135,6 @@
     "confidence": 0.8
   },
   {
-    "id": "reddit:295bd02aa1e2b85394cfeafe796f20bd6d8f539e",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Myntra doesn’t want me to wishlist the products 🙄",
-    "confidence": 0.9
-  },
-  {
     "id": "reddit:925876d1ec9fa4014b849fba6e3fa6f7a88d15c6",
     "themes": [
       "size-fit-info-unreliable"
@@ -12114,81 +11833,6 @@
       "price_sensitive"
     ],
     "evidence_quote": "Let me know if you find the group for deals.",
-    "confidence": 0.9
-  },
-  {
-    "id": "reddit:26f4daf8a641d2bcc9d5dc0ad74af6c9bcbe34b8",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "",
-    "confidence": 1
-  },
-  {
-    "id": "reddit:7d2095e23158084c15af194fc40e287d0783d318",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "I have to go there and remove some products to keep wishlisting new ones",
-    "segment_signals": [],
-    "evidence_quote": "It has a 1000 product limit which is so stupid! I have to go there and remove some products to keep wishlisting new ones",
-    "confidence": 1
-  },
-  {
-    "id": "reddit:5e9264221ce6d616fa4aec407a0c92dd0d7ae9af",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Yeah, the limit is 1000",
-    "confidence": 1
-  },
-  {
-    "id": "reddit:4166918218d9e1105a3488d1d3f34e87d59f9ebc",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "They be like go and buy some wish listed products first. Then come and save others😂😂😂",
-    "confidence": 0.9
-  },
-  {
-    "id": "reddit:bb7531268bc6750edc994d5883d11886044d1e23",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "shortlist",
-    "intent_type": "bookmark",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Urbanic/savana has a cap of 500 and I have definitely seen it on other sites too",
     "confidence": 0.9
   },
   {
@@ -15560,21 +15204,6 @@
     "confidence": 0.95
   },
   {
-    "id": "youtube:64adb8f02eeb9f93ba6471911dbdb566210c8382",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "First white dress ka link please di kr dijiye send",
-    "confidence": 0.7
-  },
-  {
     "id": "youtube:b631dbfce18bd899b5d01d61761a1aa9c10270fb",
     "themes": [
       "stock-availability-uncertainty"
@@ -15588,81 +15217,6 @@
     "segment_signals": [],
     "evidence_quote": "2nd pink colour dress nahi hai didi 😢",
     "confidence": 0.85
-  },
-  {
-    "id": "youtube:fd95339179a13724aef8565879b0547930ce6a0b",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Link white dress first one",
-    "confidence": 0.7
-  },
-  {
-    "id": "youtube:32601a5c2420d4f801b9298386501800a6fc098a",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Blue white wala achsha he please link",
-    "confidence": 0.7
-  },
-  {
-    "id": "youtube:e9028bc19615e5b31cf6b583bb7ac1931b0c7126",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Please silver dress ka link share kr dijiye",
-    "confidence": 0.7
-  },
-  {
-    "id": "youtube:47a54e58220cb1494b5a2db12818b96d5cb21aee",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Jo phni h uska link bhejo",
-    "confidence": 0.7
-  },
-  {
-    "id": "youtube:067d26af166ecb0487ba3548bf79a700de3feed3",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "2nd pink dress ki link dijiye",
-    "confidence": 0.9
   },
   {
     "id": "youtube:5e314b2f8bd0a457be325809648fd877e4ffaee0",
@@ -15814,21 +15368,6 @@
     "segment_signals": [],
     "evidence_quote": "How do you even wear that bag like thing????🤔🤔🤔",
     "confidence": 0.8
-  },
-  {
-    "id": "youtube:f7c0cd5afa36dc76954613ebc6970eb6a1010d27",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Particular nam hain kya is top ka? Kya likhke search karu?",
-    "confidence": 0.7
   },
   {
     "id": "youtube:26732af663ded49a64d3e44345c74b0e671423f3",
@@ -17748,21 +17287,6 @@
     "confidence": 1
   },
   {
-    "id": "youtube:dd9fc41eab7a4c6c18e743ebe95e8c994e01ac22",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Black top link please ❤😮😊",
-    "confidence": 0.7
-  },
-  {
     "id": "youtube:7881fdf6054b78fcdf8a9e3819fb676799e292db",
     "themes": [],
     "severity": 1,
@@ -17774,36 +17298,6 @@
     "segment_signals": [],
     "evidence_quote": "The last one would look good in a different colour",
     "confidence": 1
-  },
-  {
-    "id": "youtube:40b234ff3998c47e3224b965025de5c42fc66bdc",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "yh grreb olive kha se mngwaya h",
-    "confidence": 0.7
-  },
-  {
-    "id": "youtube:34118bffaf1cee47c0754ad146cad1981e819061",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Didi black wali ki link de do",
-    "confidence": 0.7
   },
   {
     "id": "youtube:5fcc3a2eb11b0de8ad30be23e7a32f0ab15359ca",
@@ -17821,21 +17315,6 @@
     "segment_signals": [],
     "evidence_quote": "I rate the royal blue one 5/10 it's ok-ok I think you should not buy it.",
     "confidence": 0.8
-  },
-  {
-    "id": "youtube:d8469a6e8c6f777f8de22c6fb75c5de87ba3ff78",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Would you send the link of this 2 outfit (white dress)",
-    "confidence": 0.7
   },
   {
     "id": "youtube:822be0a2ec1c93eb904de30e78bff2f7a5190fa8",
@@ -23517,21 +22996,6 @@
     "confidence": 0.9
   },
   {
-    "id": "youtube:87fa3bd54fe3052093a04115725ae1affc12ac52",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Ek hi kurti ko 2 different size me order kaise kre",
-    "confidence": 0.8
-  },
-  {
     "id": "youtube:e46abaa7b83842a0daede15641eec2c0e0fd6426",
     "themes": [
       "missing-product-specs"
@@ -24682,21 +24146,6 @@
     "confidence": 0.8
   },
   {
-    "id": "youtube:9b98f47e96ea6655013a930249d46427f58e3e37",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "evaluate",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Where is the link...without it no meaning",
-    "confidence": 0.9
-  },
-  {
     "id": "youtube:fbae48755b84bb47b59fdfd7647ddcae4e486c2c",
     "themes": [
       "missing-product-specs"
@@ -25503,21 +24952,6 @@
     "confidence": 0.9
   },
   {
-    "id": "youtube:df1bf0655acc107a680358ecb926174fdfd24b1e",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Didi kapde ke sath name bhi likh kar daal deti mein search karti hu toh pata nahi chalta hai",
-    "confidence": 0.8
-  },
-  {
     "id": "youtube:07e9371dd8143a024fc60eed85c9946fd25e2fec",
     "themes": [
       "quality-authenticity-doubts"
@@ -25744,21 +25178,6 @@
     "confidence": 0.9
   },
   {
-    "id": "youtube:859b45025cacfe37e080b104e76c37b5681e5893",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "2nd product ka link to nahi he plz give the link",
-    "confidence": 0.8
-  },
-  {
     "id": "youtube:3316abb4bb47d072e210ac87ba6f699c4b738d1c",
     "themes": [],
     "severity": 1,
@@ -25782,36 +25201,6 @@
     "workaround": "",
     "segment_signals": [],
     "evidence_quote": "Jo apne wear karwa hai vo uska link dijiye",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:405183f62e95975b940192c882a3afc141e26092",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Can't find any link. Please provide the link ❤",
-    "confidence": 0.8
-  },
-  {
-    "id": "youtube:15abbef0d2e54c6d91cef1476b48b700b2862dae",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "2nd kurti ki link hi nahi di hai aapne di",
     "confidence": 0.9
   },
   {
@@ -25923,21 +25312,6 @@
     "confidence": 0.9
   },
   {
-    "id": "youtube:8ac673fcae4a712ed073d3f9e205a9728f63ca7d",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "link kaha he. aap tag kyo nhi de rahe ho",
-    "confidence": 0.9
-  },
-  {
     "id": "youtube:cc8bc10e95f6383b203930481665d25d2827e888",
     "themes": [
       "missing-product-specs"
@@ -25957,143 +25331,6 @@
     "confidence": 0.9
   },
   {
-    "id": "youtube:b3e0effc4af2fbb3a9b7efde64c1e27e93755327",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Link of kurta you are wearing",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:503a655c4792fa47244c2f71279ff180ebd8b4ab",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "U dint tag the items only",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:abe2a8a41221bcd9130bb05dce13ea2caaeb15d9",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Plzzzzzzz share the links",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:e3a536ddd049d626dadee94cd740b74be3ac7876",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [
-      "seller_or_brand_trust"
-    ],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Ma'am, tag mein kuch aur hi khul raha hai. Brand bhi nahi bataya",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:768bde1ed5ffb1a4394f643ea0d449737fc4e8f0",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Ma'am second dress link is not visible in tagged Link",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:cf02b78ae83070cf8cb88f9a6acd0c5b3337de99",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Mam apne jo wear kiya hai uski link de do pl.",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:5b19d8eaccf2e93c7b19abd6ef1bf25b5b7b8b9d",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Aap wear kiya kurthy super link pls",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:fc12178908c8c276970133fae83368c959700001",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Link kha hai eska??😮😡😡",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:bc3a3e18d893c8e292ac7113e55de53b6e51b2f3",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Pls share link for red one",
-    "confidence": 0.9
-  },
-  {
     "id": "youtube:07a2ebd87e6922b0ab8ed8027ee19c5ef344940a",
     "themes": [
       "missing-product-specs"
@@ -26110,51 +25347,6 @@
       "fit_uncertainty_prone"
     ],
     "evidence_quote": "White wale me lining bhi hai kya Mam ??",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:c59a0724710fbae5fa2556da8ab44b071165b00f",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Taged product is not having link for red one",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:a21fa31b43d7446d3e1feedabead5b597fdb14a4",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Anu link open ni hote hai",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:4ad07932a2822dda4b3d039003e804d6034d0296",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Don't find tagged product",
     "confidence": 0.9
   },
   {
@@ -26460,21 +25652,6 @@
     "confidence": 0.8
   },
   {
-    "id": "youtube:c90c159c796cc7d89e383272febf60f812d58446",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Please provide links of these dresses, not able to find in Community post",
-    "confidence": 0.9
-  },
-  {
     "id": "youtube:195b6aef9eaeec34a28e7213d16722e389c04695",
     "themes": [],
     "severity": 1,
@@ -26489,21 +25666,6 @@
       "price_sensitive"
     ],
     "evidence_quote": "Kuch Affordable price me Kurti set please under 1200.",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:187b7f89b6f185ea5f07fc88da67d1c0840162fa",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Kaha se mil jata hai mujhe nahi mila",
     "confidence": 0.9
   },
   {
@@ -26526,36 +25688,6 @@
     "confidence": 0.9
   },
   {
-    "id": "youtube:f09b242d0d830bd542764b1f4329b51b64e2d7dc",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Didi pls send me link of all these outfits pls",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:c08d23d76f77cd1845f1d4e679c220bc7b5331b8",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Please link please please",
-    "confidence": 0.9
-  },
-  {
     "id": "youtube:2043ffd803561f08e1ddab18d7caab6a0224e359",
     "themes": [
       "misleading-visual-media"
@@ -26570,21 +25702,6 @@
     "workaround": "",
     "segment_signals": [],
     "evidence_quote": "Aap post kisi or dress ka Dale hai please red Wale ka daliye na",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:43a0e9eddd4e5f769c35a65f083f3b9b88e24e33",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Please links daliye na red Wale ka please",
     "confidence": 0.9
   },
   {
@@ -27124,130 +26241,6 @@
     "confidence": 1
   },
   {
-    "id": "youtube:5cc9abc0220b6933766c5b435f74d3f74f225bdd",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Why tags product are not showing",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:9114db2cf37f1014219086709823ee8489aafc44",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Tags products are not showing can u tag it again please",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:ba0a4f9d23ab148c6bc3ec1a303405dad533807b",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "From where can we see the tagged things??!",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:b8cf44bc9a38b838a5feab7cefc1855dc2d610d3",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Tagged product are not opening 😢",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:be7ec7698f2e8d63c6b55ea4e5cb7b19a38b1ecc",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "She only linked few products.Where are the remaining?",
-    "confidence": 0.8
-  },
-  {
-    "id": "youtube:bd0efd99a7b931bd4fe8a7821e3e0a25d0870bda",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "cant see the tag for some reason",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:266a7b95888cb277102644ae6946d9b4a39fa92e",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "evaluate",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [
-      "new_or_low_trust_user"
-    ],
-    "evidence_quote": "Pls don't say it is tagged the red one is not tagged",
-    "confidence": 0.9
-  },
-  {
-    "id": "youtube:87b12b39ddc43725f7141c8e08e3c03687b3f842",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "evaluate",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [
-      "new_or_low_trust_user"
-    ],
-    "evidence_quote": "Link toh jeans ka dia hua hai top dikhaye hai video mein toh",
-    "confidence": 0.9
-  },
-  {
     "id": "youtube:82fb667f40dda8f8b809668ddd9801c003cddf9c",
     "themes": [
       "missing-product-specs"
@@ -27452,36 +26445,6 @@
     "segment_signals": [],
     "evidence_quote": "What types of bra u wear on this dress",
     "confidence": 0.9
-  },
-  {
-    "id": "youtube:aeb3c1623a4b1e170d35497f38a104974cc44514",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "No link in description where is link?",
-    "confidence": 0.8
-  },
-  {
-    "id": "youtube:d0d6d47a9cf51367b1dc5ff7b8da65dc657a076f",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Can you share the link please",
-    "confidence": 0.8
   },
   {
     "id": "youtube:69f075c56199fb40083734601e101b0cc12464c6",
@@ -30361,21 +29324,6 @@
     "confidence": 0.9
   },
   {
-    "id": "youtube:76837f4bd7d76cb2b88cb4e5cd6df9a7d686b7ab",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Hii myntra glam can m ja kar sirf whi product show hota hai jo order kiya hai ? Ya whislist wale bhi hote hai",
-    "confidence": 0.8
-  },
-  {
     "id": "youtube:1fd75456e50250eae85a7f5a6de45efde9269fb7",
     "themes": [],
     "severity": 1,
@@ -30438,21 +29386,6 @@
     ],
     "evidence_quote": "Yea during sale i got alll alll kurti set withoit tag now not able to return",
     "confidence": 0.9
-  },
-  {
-    "id": "youtube:e22ed2626bf650af8f09d7c7ce186f63e9f07070",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Plz help,how l get my wishlist product see again ,if outof stock ho gaya,,, isliye mai add whislist,,,plz unfortunately product remove karsaktehu me",
-    "confidence": 0.8
   },
   {
     "id": "youtube:81c73efa2135b8626863d13f2da2efe068e58a78",
@@ -31671,21 +30604,6 @@
     ],
     "evidence_quote": "I DEFINITELY didn't think that the back would have less coverage",
     "confidence": 0.9
-  },
-  {
-    "id": "youtube:7557d8bc40dd8210789300b702e5e502a3f75020",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "evaluate",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "it was really annoying at first, but afterwards it got better.",
-    "segment_signals": [],
-    "evidence_quote": "the buckles the same pretty much how you just clip it on,and it doesn't Ashley Buckle. it was really annoying at first",
-    "confidence": 0.8
   },
   {
     "id": "youtube:005e61b5cfa653b7ef527f5bc7160d0a5af9e184",
@@ -50284,23 +49202,6 @@
     "confidence": 0.8
   },
   {
-    "id": "competitor:e9e0a3a0004fd99f20485ed53ed30a6dc17ba48d",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "discover",
-    "intent_type": "unclear",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [
-      "new_or_low_trust_user"
-    ],
-    "evidence_quote": "can't find profile icon or previous orders. there's only cart and wishlist. extremely bad experience.",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:70116ac4256ce0325cb433964d111dbbbd49b362",
     "themes": [
       "quality-authenticity-doubts",
@@ -51908,23 +50809,6 @@
     "confidence": 0.94
   },
   {
-    "id": "competitor:452a1fef0140b460eba6f174a7e963551ff89f3b",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [
-      "new_or_low_trust_user"
-    ],
-    "evidence_quote": "u removed my past wishlist items .I can see my recent wishlist items only ,as I add wishlist items the past wishlist items are removing",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:73d2609fbda49c135a1d6f9ecbf8f6be9e1847cc",
     "themes": [
       "quality-authenticity-doubts"
@@ -52944,23 +51828,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:2d40ab929b3a4d415a0641e6e5a77bb46001c555",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [
-      "new_or_low_trust_user"
-    ],
-    "evidence_quote": "only half the wishlist is visible and the old listed items are not visible.",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:1897b1300545c4c4a97cab8c0d2384caf95afdfb",
     "themes": [
       "return-exchange-policy-friction"
@@ -52977,21 +51844,6 @@
       "new_or_low_trust_user"
     ],
     "evidence_quote": "I wanted to return the jacket I ordered because I received the wrong size jacket. It's been weeks, contacted the support 4 times, no return no refund.",
-    "confidence": 0.9
-  },
-  {
-    "id": "competitor:5f39954f6f5b3eef2ae73db9b51e278d45fd756b",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "the wishlist is basically limited and if u add more to it, the old ones gets deleted from the wishlist. i wish they had atleast informed in the app that it's limited wishlist",
     "confidence": 0.9
   },
   {
@@ -53546,21 +52398,6 @@
     "confidence": 0.78
   },
   {
-    "id": "competitor:acf5594ff6f9b40b6fd626c5bb95fd559a3f72bc",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "evaluate",
-    "intent_type": "bookmark",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "",
-    "confidence": 0.93
-  },
-  {
     "id": "competitor:de706765f582171ef47537845a33428efb8b7ef4",
     "themes": [
       "quality-authenticity-doubts",
@@ -53751,36 +52588,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:f61c60dac71c07124afb75363045fc314e32db27",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "evaluate",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "",
-    "confidence": 0.95
-  },
-  {
-    "id": "competitor:589b42e7d4cc61c28e6f5dbea0cf55d3d4e0a42a",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "evaluate",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "A lot of times things in my closet disappears automatically and that really pisses me off.",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:0d8d469326594408aec5fe34d1d9608232de99c3",
     "themes": [
       "size-fit-info-unreliable"
@@ -53798,21 +52605,6 @@
     ],
     "evidence_quote": "Sizes are not clearly mentioned. Like for levis , 'Model wearing larger size for comfort fit' which made me buy larger size and this turned out to be very huge.",
     "confidence": 0.96
-  },
-  {
-    "id": "competitor:3eadff9e98415d00c789f8256b2dc7895e1eb0db",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "evaluate",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Whenever I'm browsing my wishlist and I click on something, and then wanna go back to wishlist, I'm back straight to the top.",
-    "confidence": 0.95
   },
   {
     "id": "competitor:b7f940cd1d0fbcc5dc7cf42ce2e83f1c1d132d35",
@@ -53843,24 +52635,6 @@
     "segment_signals": [],
     "evidence_quote": "Puma products always show in stock and suddenly when you try to place order, Boom!! They disappear into thin air..",
     "confidence": 0.94
-  },
-  {
-    "id": "competitor:bb84624341deb17fc2b72a1ab78542192450a1e1",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "evaluate",
-    "intent_type": "genuine_intent",
-    "information_needs": [
-      "fit_and_size",
-      "true_colour_and_appearance"
-    ],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "I'm not able to see the images of an item, it's description, size chsrt and also not able to add to bag.",
-    "confidence": 0.9
   },
   {
     "id": "competitor:d808100b2e9bc7c0008cb768b10d43bb1d5f7eaf",
@@ -53974,21 +52748,6 @@
     "confidence": 0.92
   },
   {
-    "id": "competitor:935b927c4eeaf9317b7119b8552c195dd5157a71",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "evaluate",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Whenever we're in wishlist and go into any product to see it more and comes back into wishlist, it starts from the top of the list always!!",
-    "confidence": 0.95
-  },
-  {
     "id": "competitor:695a42186aafaf8ab5d126e35281fcc5f6333332",
     "themes": [
       "stock-availability-uncertainty",
@@ -54060,21 +52819,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:8fea377ef51fe25f8c5c1679ced3cf402e92f633",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "sometimes it doesn't show my stuff in my closet, the product should be there even when it's out of stock",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:c57f6b013057d6fc5a0683f002ca0ea92a3906d5",
     "themes": [],
     "severity": 2,
@@ -54088,21 +52832,6 @@
     ],
     "evidence_quote": "I just wish they had the card on delivery option too",
     "confidence": 0.85
-  },
-  {
-    "id": "competitor:b3ad29f494d0b6a1f4cc3036db5f49fc32ddc7c9",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Would be great if the app allowed to view all items in the wishlist page instead on first 100 items",
-    "confidence": 0.9
   },
   {
     "id": "competitor:f5d746d6a21a29bac4b551cf3676664c31acdb8e",
@@ -54192,21 +52921,6 @@
     "segment_signals": [],
     "evidence_quote": "Yes, there should be improvement in Delivery and payment system",
     "confidence": 0.8
-  },
-  {
-    "id": "competitor:8ddf96b09fea66761472c7167bc2bf68c5f49040",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "",
-    "confidence": 0.9
   },
   {
     "id": "competitor:e84b97c6cdd0724dc92bbb2131b58d05a2c88747",
@@ -54372,21 +53086,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:d1f89522fd3cc02b3a07a665a930527b7f1177d7",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "When deleting items from wishlist there is some ptoblem",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:e4c708eedc2606a104ecd1f2d625461762174f17",
     "themes": [],
     "severity": 3,
@@ -54398,21 +53097,6 @@
     "segment_signals": [],
     "evidence_quote": "",
     "confidence": 1
-  },
-  {
-    "id": "competitor:cc62f5920d463b2f2196a3d77ce3c43a5a72cb4e",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "delete items to view other wishlisted products",
-    "segment_signals": [],
-    "evidence_quote": "wishlist items never come in total ,need to delete item to look past added wishlisted products",
-    "confidence": 0.9
   },
   {
     "id": "competitor:8cb8a50d6377889f8576a6cfe8562845ee63af87",
@@ -54481,21 +53165,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:52360121439bfe4a0700525e0d458392469dcb84",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "when we add something to wishlist we also need a kind of segregating them also according to different type ex. all shirts in one partition and jeans in other",
-    "confidence": 0.85
-  },
-  {
     "id": "competitor:7bf287833d5a7fddf3b86c953fdb073122ee39c5",
     "themes": [
       "stock-availability-uncertainty"
@@ -54549,21 +53218,6 @@
       "new_or_low_trust_user"
     ],
     "evidence_quote": "products are cheap compared to other platform but i will see quality when i get mine",
-    "confidence": 0.9
-  },
-  {
-    "id": "competitor:eff89ae56db111c4251686aab15820d4ef1c8eae",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "checklist should be there for items to be deleted in cart and wishlist as well",
     "confidence": 0.9
   },
   {
@@ -55600,23 +54254,6 @@
     ],
     "evidence_quote": "400rs kaha saving hui Shirt thi 882rs ki 😂ume 270 ka discount laga to 611rs ki uhi",
     "confidence": 0.9
-  },
-  {
-    "id": "youtube:6316f81a2555874fb0320e29ffcc18f7a30ee164",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [
-      "checked_other_app"
-    ],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Bohot bar Kiya 😂 ajio mai kiya par Myntra mai nahi kya..pata nahi tha Myntra may nhi apply ho sakta hai.",
-    "confidence": 0.8
   },
   {
     "id": "youtube:3a9196b5a9e030b14a5d96488cb57624e9adaf89",
@@ -57259,21 +55896,6 @@
     "confidence": 1
   },
   {
-    "id": "competitor:d7c75f3daf24af17fb9cd217f496b09cb640999f",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "App get hang at some areas. when we click similar products in the product image.",
-    "confidence": 0.8
-  },
-  {
     "id": "competitor:a93df6c4e41b83db0ec9614a5e22883172f4fd6e",
     "themes": [
       "delivery-timeline-uncertainty"
@@ -57810,21 +56432,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:abcb16cffe57265451fcefb98818fff7bcaf86fb",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "I need to move all the products in my cart to wishlist (or remove them)",
-    "segment_signals": [],
-    "evidence_quote": "please add \"buy now\" option for the products, each time when I want to buy a single product, I need to move all the products in my cart to wishlist",
-    "confidence": 1
-  },
-  {
     "id": "competitor:9bb45f0997725d5746045b5af13f4a5b71bcaea8",
     "themes": [],
     "severity": 1,
@@ -58048,25 +56655,6 @@
     "workaround": "",
     "segment_signals": [],
     "evidence_quote": "I received a poor-quality product in the wrong color.",
-    "confidence": 0.9
-  },
-  {
-    "id": "competitor:1dd9d190bc77715a67bb5b59e6e39454f5337b1c",
-    "themes": [
-      "absent-social-proof",
-      "wishlist-ui-navigation-friction",
-      "return-exchange-policy-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [
-      "social_validation"
-    ],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "no customer reviews, and we can barely save 50 products in our wishlist unlike other apps which lets us wishlist 500-1000 products.",
     "confidence": 0.9
   },
   {
@@ -58524,21 +57112,6 @@
       "new_or_low_trust_user"
     ],
     "evidence_quote": "They advertise dresses at attractive offer prices, but after placing the order, the product that arrives is of very poor quality.",
-    "confidence": 0.9
-  },
-  {
-    "id": "competitor:b531f005f6e66b7bd99822c6bc1321910a5a192b",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "bookmark",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "recently if I wishlist more items then the last items in the wishlist disappears. I already lost so many dresses in my wishlist bcoz of this issue..so pls take this as a priority and fix this sooner or did you set a limit to the wishlist?",
     "confidence": 0.9
   },
   {
@@ -59450,23 +58023,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:99776d8cb1b623fc1dc3b4cb91c4235fbf3c71df",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [
-      "price_sensitive"
-    ],
-    "evidence_quote": "App has few bugs related to wishlist which needs to be optimized.",
-    "confidence": 0.8
-  },
-  {
     "id": "competitor:e448d1b16afb0070aad11bfd8317e5f77199fae0",
     "themes": [
       "missing-product-specs",
@@ -59488,21 +58044,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:8bc5c702df6c61c7d5d91260fb4879cbad1e8d3b",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "If i add new items to wishlist old ones are getting deleted ... whyyyyyyyyy..",
-    "confidence": 1
-  },
-  {
     "id": "competitor:395f6d935686b7a66335f33fd906a984c4012fbb",
     "themes": [
       "stock-availability-uncertainty"
@@ -59516,21 +58057,6 @@
     "segment_signals": [],
     "evidence_quote": "The only thing i feel irritated was tat eventhough we complete our order after few days it shows the items are cancelled",
     "confidence": 0.9
-  },
-  {
-    "id": "competitor:f130b171de073b5a3216736b33111d4b98b1a560",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Just a small request about increasing the nom. Of products that we can save to our closet because whenever i add it turns out that the old ones are deleted.",
-    "confidence": 1
   },
   {
     "id": "competitor:8d0421d7f6efb871bfe07d69e76546f426e68e28",
@@ -59550,21 +58076,6 @@
     ],
     "evidence_quote": "need to confirm with the quality once my product is delivered",
     "confidence": 0.8
-  },
-  {
-    "id": "competitor:e0f419071e0929cb4698b95dbb26b50ac3265495",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Sometimes we don't find the item which we selected as it gets out of closet due to bulky addition",
-    "confidence": 0.9
   },
   {
     "id": "competitor:df20101774868c2d88dfcc10d07ff9d0431b2178",
@@ -59635,22 +58146,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:3c3a953d30d60f4a3209ea0aed65a897481106c7",
-    "themes": [
-      "prepurchase-support-gaps",
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "why the products are removing from wishlist if we add new products whats the problem with old items its being removing",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:81aa58f95a306a173c74c17b79003a8523b5b745",
     "themes": [
       "size-fit-info-unreliable"
@@ -59695,21 +58190,6 @@
     "workaround": "",
     "segment_signals": [],
     "evidence_quote": "",
-    "confidence": 0.9
-  },
-  {
-    "id": "competitor:cd93543aba29a7f5002ca6e257ad63030ffd4b6e",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "wishlist is limited, You can't add more than the limited number it will disappear automatically",
     "confidence": 0.9
   },
   {
@@ -59909,21 +58389,6 @@
     "confidence": 1
   },
   {
-    "id": "competitor:70d74e6f746f2e0d3aeb1fba6c1ffa5c990d8c11",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "I saved product but in cart but time of order my cart my bag was empty",
-    "confidence": 1
-  },
-  {
     "id": "competitor:b16616ba0640e449e57840e8a1f851947f79f375",
     "themes": [
       "absent-social-proof"
@@ -60000,21 +58465,6 @@
     "workaround": "",
     "segment_signals": [],
     "evidence_quote": "bt for size availability it is a little bit trouble ....so I am requesting the proper authority to increase the product availability more nd more",
-    "confidence": 0.9
-  },
-  {
-    "id": "competitor:a855852021e1a255c6d0f417f1133b2a6bfc2b04",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "If we again click on add to wishlist, then only message shows that product already in wishlist.",
-    "segment_signals": [],
-    "evidence_quote": "if a product is already in wishlist we can't identify it from search results. If we again click on add to wishlist, then only message shows that product already in wishlist.",
     "confidence": 0.9
   },
   {
@@ -60178,23 +58628,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:fb5f446364e0b5883a6091c1b205cc0a5ffadc0e",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "every time we need to check that size is available or not if we enter similar products catalog",
-    "segment_signals": [
-      "fit_uncertainty_prone"
-    ],
-    "evidence_quote": "Need one improvement once we select size in filtre that should get carry while complete search",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:ab655ec63fb27b6818fa6c816afbb7728eeeae82",
     "themes": [
       "stock-availability-uncertainty",
@@ -60231,23 +58664,6 @@
     ],
     "evidence_quote": "Product descriptions are wrong. Mentions cotton and send 100% polyester clothes.",
     "confidence": 0.9
-  },
-  {
-    "id": "competitor:5b9fdcf137aa60ccb14971ef6c7b5eedf217f7eb",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [
-      "new_or_low_trust_user"
-    ],
-    "evidence_quote": "you need to wait for 5 minutes to see the product bcz it loads so slow.And it’s with this app only. And mostly you don’t have that much patience so you give up.",
-    "confidence": 0.8
   },
   {
     "id": "competitor:4ffbb5e1d3a14828689be10c78ba085dbe093bef",
@@ -60341,23 +58757,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:e750b7eff1f1a93c1dd2ad05d40006a4cdd1812c",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [
-      "new_or_low_trust_user"
-    ],
-    "evidence_quote": "your cart is suddenly empty because everything you had added is now out of cart and not saved anywhere.",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:4aa2e66c5ded00c117b8939d907fa69a1094cbd7",
     "themes": [],
     "severity": 3,
@@ -60369,23 +58768,6 @@
     "segment_signals": [],
     "evidence_quote": "",
     "confidence": 1
-  },
-  {
-    "id": "competitor:32e35c5fcf549c95678275cf8e884e6a3872c1f6",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [
-      "new_or_low_trust_user"
-    ],
-    "evidence_quote": "Not able to add items in the cart while checking out.",
-    "confidence": 0.9
   },
   {
     "id": "competitor:6522044d80be54af029cce50baa5668173098f9d",
@@ -60687,21 +59069,6 @@
     ],
     "evidence_quote": "Things go out of stock as soon as I receive the link for payment and am about to pay. This time payment got deducted and the product went out of stock at the same time",
     "confidence": 0.9
-  },
-  {
-    "id": "competitor:0608c34358458ee4ecb553f6eb328a3fb8f8624e",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "the limit for how many items we can wishlist/add to bag at one time is unnecessarily stringent. Also, when you move from this app to another, it reboots - meaning you lose all the progress you made",
-    "confidence": 0.95
   },
   {
     "id": "competitor:1e497d67ba29059df0f9e985220be0202b958960",
@@ -61950,21 +60317,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:4598ae4c404e8fe9bc570d984065e03292762773",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "the issue was when I click on a product from a list of say women wear and then either add it to bag or just decide to come back the previous page would come to some position in the start .. all my scrolling would be just waste",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:7c763ed341975cbba35f31216e3baa2d74473dce",
     "themes": [
       "quality-authenticity-doubts"
@@ -62438,38 +60790,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:ba4f7c6caae8af8243751ec83ff9a3982de76282",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "If you are surfing apparels with lots of filters used and you switched to some other app for some task by the time you come back to ajio app, all your filters & all will be vanished and you will be redirected to homepage.",
-    "confidence": 0.9
-  },
-  {
-    "id": "competitor:e0cdf259616cb01b593f6055900b7db3a9c733b1",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [
-      "new_or_low_trust_user"
-    ],
-    "evidence_quote": "I added some products to cart but did not log in. And the next time I opened the app they were all gone.",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:e487959b05ebe858aa2303e0562f20aa30e243ba",
     "themes": [
       "absent-social-proof",
@@ -62558,21 +60878,6 @@
     "segment_signals": [],
     "evidence_quote": "Received products in wrong size and trying to return them from more than 11 days. Customer service will keep conning you and will ask you to wait and do nothing.",
     "confidence": 0.9
-  },
-  {
-    "id": "competitor:466c6c53dda6eb454bdd31cd0450cf420b8a3776",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "I’m unable to access my wish list at all—whenever I try to open it, nothing shows up, and it freezes.",
-    "confidence": 1
   },
   {
     "id": "competitor:6220dd946e708479820b6c1a3b4dc80e67513594",
@@ -62996,21 +61301,6 @@
     "segment_signals": [],
     "evidence_quote": "when I searched up a thing like jeans skirt it shows me random things!",
     "confidence": 0.8
-  },
-  {
-    "id": "competitor:8b0f9ab816a0cc3d0f0d50e0c79d30062908db5c",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "uninstalled the app and then reinstalled it",
-    "segment_signals": [],
-    "evidence_quote": "I added items to my cart. After some time when I checked my cart, it hanged in between. All items added to cart disappeared.",
-    "confidence": 0.9
   },
   {
     "id": "competitor:ab0839bb8590b155c4f144f2ab2b642bc572ea97",
@@ -66142,46 +64432,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:88a9b04e8e4d0bbd7716c79915aae7254463df00",
-    "themes": [
-      "delivery-timeline-uncertainty",
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [
-      "delivery_timing"
-    ],
-    "external_behaviour": [],
-    "workaround": "cancel the order",
-    "segment_signals": [
-      "new_or_low_trust_user"
-    ],
-    "evidence_quote": "in this app it doesn't show the delivery date which sometimes make me believe that the product will not arrive and I cancel the order.",
-    "confidence": 0.9
-  },
-  {
-    "id": "competitor:d903fe94dc356198f0aa251017d6d33a7d116b9a",
-    "themes": [
-      "prepurchase-support-gaps",
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [
-      "price_trajectory"
-    ],
-    "external_behaviour": [],
-    "workaround": "You need to put a specific limit every time.",
-    "segment_signals": [
-      "price_sensitive"
-    ],
-    "evidence_quote": "they always show the priciest products upfront. You need to put a specific limit every time.",
-    "confidence": 0.8
-  },
-  {
     "id": "competitor:96438d5085cb71d60af664fae2655b3fd4ab0da4",
     "themes": [
       "quality-authenticity-doubts",
@@ -66813,21 +65063,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:aa0cad9a0fb823ac537300d7dfe2a3bd92ae23ed",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "You have to delete some item from your wishlist in order to view the item that's next in line!",
-    "segment_signals": [],
-    "evidence_quote": "you CANNOT view all the items you have added on your Nykaa Fashion app's wishlist, it is impossible to do so, and becomes very frustrating.",
-    "confidence": 1
-  },
-  {
     "id": "competitor:df541288f4b4e616e0c878f36fdb14ae4cd104e5",
     "themes": [
       "misleading-visual-media",
@@ -66905,21 +65140,6 @@
     ],
     "evidence_quote": "",
     "confidence": 0.9
-  },
-  {
-    "id": "competitor:a608e875a52b882923312c7e1e5f9d18c90ad337",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "the wishlist is not showing completely only 10-20 products of the wishlist appears at a time...rest of wishlisted products are not showing.",
-    "confidence": 1
   },
   {
     "id": "competitor:d80b9275195e551138b9b7df39f1578cfb05ac90",
@@ -67074,21 +65294,6 @@
     "workaround": "",
     "segment_signals": [],
     "evidence_quote": "",
-    "confidence": 1
-  },
-  {
-    "id": "competitor:8ef8b396a571ce31906d4ce5c563dc934bbe35e8",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "remove few items to review previous saved items",
-    "segment_signals": [],
-    "evidence_quote": "We can't view the whole list you saved earlier in wishlist. We have to remove few items to review previous saved items.",
     "confidence": 1
   },
   {
@@ -67265,21 +65470,6 @@
     "workaround": "",
     "segment_signals": [],
     "evidence_quote": "",
-    "confidence": 1
-  },
-  {
-    "id": "competitor:714776e5a9e9655d5a871a0870accc1836464410",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 4,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "I need to delete items from wishlist to have a look on previously added items.",
-    "segment_signals": [],
-    "evidence_quote": "I'm experiencing trouble to have full access of my wishlist. I need to delete items from wishlist to have a look on previously added items.",
     "confidence": 1
   },
   {
@@ -67701,21 +65891,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:71d517e0f253bf9d1789d9fb67dbcc98130f70ec",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "I move to wishlist all items,after I order that selected item and continue shopping",
-    "segment_signals": [],
-    "evidence_quote": "I have no option to buy just one thing from cart,,so I move to wishlist all items",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:008b35972295c85189a0c5f3459603d0f058f379",
     "themes": [],
     "severity": 3,
@@ -67766,21 +65941,6 @@
       "fit_uncertainty_prone"
     ],
     "evidence_quote": "there some cloths are not available of my size",
-    "confidence": 0.9
-  },
-  {
-    "id": "competitor:1773edf67ab1a2dc6716ab53fdf14aad32ffe415",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 5,
-    "journey_stage": "checkout",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "It doesnt allow you to buy anything and preselected items cannot be checked out as well.",
     "confidence": 0.9
   },
   {
@@ -68114,21 +66274,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:a0cf099c03aaa476612ded07d5d09b4beb9acff8",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Half the times on the web, even after you open the product page it only shows “add to bag” option. It’s bizarre.",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:81044d35407d1f04535a85cac429779ccc915a08",
     "themes": [
       "misleading-visual-media",
@@ -68414,36 +66559,6 @@
     "confidence": 0.9
   },
   {
-    "id": "competitor:9349a0a845e73c1c6da7cbcb24d8017bc4d1d659",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "wish list style is not friendly at all. It should have a category header on top so automatically user can find easily.",
-    "confidence": 0.9
-  },
-  {
-    "id": "competitor:47d2361b2142aa4b24539bdd602259a37a0c438a",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 2,
-    "journey_stage": "discover",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "when I shop for multiple items, each selection opens in a new window. As a result, navigating back to the main or home window requires several taps of the back button",
-    "confidence": 0.9
-  },
-  {
     "id": "competitor:cd6e2f312865cec4a9b3d171b842be20aa4389f2",
     "themes": [
       "quality-authenticity-doubts"
@@ -68552,21 +66667,6 @@
     ],
     "evidence_quote": "After raising the return request pick is been canceled several times raised via chatting with help center- i was assured that the pick up will surely be done on call too. It got cancelled for the 3rd time",
     "confidence": 0.9
-  },
-  {
-    "id": "competitor:c3052a6df2668fef10df60eab0bfcd8ae01d9030",
-    "themes": [
-      "wishlist-ui-navigation-friction"
-    ],
-    "severity": 3,
-    "journey_stage": "shortlist",
-    "intent_type": "genuine_intent",
-    "information_needs": [],
-    "external_behaviour": [],
-    "workaround": "",
-    "segment_signals": [],
-    "evidence_quote": "Your selection or even your management of items in cart takes a very long time to load and refresh You would have to wait for one minute just to add or delete something from the cart",
-    "confidence": 0.8
   },
   {
     "id": "competitor:ac3a6f2011527c75638cfdbb45f0279e6c80a695",
@@ -68787,6 +66887,1789 @@
       "new_or_low_trust_user"
     ],
     "evidence_quote": "They don’t even let customers know if a product is out of stock..they need to manage this..when I placed an order they cancelled it after so many days saying it is out of stock",
+    "confidence": 0.9
+  },
+  {
+    "id": "apple:1bc9510c0c154faac9402df396f47cca7270fabb",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "evaluate",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "uninstall and install it",
+    "segment_signals": [],
+    "evidence_quote": "It’s so irritating that this app doesn’t load if we do not use it for 1week and we need to always uninstall and install it for it to work properly",
+    "confidence": 0.9
+  },
+  {
+    "id": "apple:b235ecab8a59866d65f98fd976d6d533e5cbbeb8",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Every time I try to add something cute they notify me that my wish list is full.",
+    "confidence": 1
+  },
+  {
+    "id": "apple:a6a66ec0b2c5d64368a14a17e89c8c4858a90498",
+    "themes": [],
+    "severity": 2,
+    "journey_stage": "discover",
+    "intent_type": "bookmark",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Myntra app was working fine until couple of months back the search results stopped loading.",
+    "confidence": 0.9
+  },
+  {
+    "id": "apple:f103797b808dd038f5ead1bd76e00d54071bb28b",
+    "themes": [],
+    "severity": 2,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "When you click on similar product links on below of product tiles nothing happen.",
+    "confidence": 0.9
+  },
+  {
+    "id": "apple:f9c3ea3b2982a6db082fdfd7c5fa321352905ca2",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "I clicked on cart bammmm there are no items my cart is empty.",
+    "confidence": 1
+  },
+  {
+    "id": "apple:cbb7a935b3baeece896dc83ec85a22d9712380ca",
+    "themes": [
+      "wishlist-ui-navigation-friction",
+      "absent-social-proof",
+      "stock-availability-uncertainty"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "social_validation"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "My entire wishlist is vanished. Also, it’d be great if you guys included reviews and also notify us when a certain product we wishlist is out of stock.",
+    "confidence": 0.9
+  },
+  {
+    "id": "apple:1f25276ee1fd411f406aa7ce6f8d4a3acbbaebbc",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "when I go back my cart items vanished and later came back",
+    "confidence": 0.9
+  },
+  {
+    "id": "apple:b17e4040778a17fd57e730bf29076510eef20a98",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "I have to first add them to wishlist and them move to cart from there.",
+    "segment_signals": [],
+    "evidence_quote": "I was unable to add items to cart from the app. I have to first add them to wishlist and them move to cart from there.",
+    "confidence": 0.9
+  },
+  {
+    "id": "play:8f73e5bce72f7a1a1f64a09b096c9d20b2a190a5",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [
+      "true_colour_and_appearance"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "once clicked on any item, it opens as a 3/4th page pop up(shows double click to wishlist) - why do I need to put in wishlist, if I couldnt even see the photos properly.",
+    "confidence": 0.9
+  },
+  {
+    "id": "play:cd6a6a9439469bf1c3cb3cf011e140cb883deb3d",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "I am unable to add fwd pass every time I am adding it to the cart and placing the order it is showing that you have reached the maximum limit in your card please modify the items in your cart.",
+    "confidence": 0.9
+  },
+  {
+    "id": "play:4dd5c32ec2a3a2897dd790761eead71267209c21",
+    "themes": [],
+    "severity": 2,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Why is the 'Apply' option not there in most of your filters? you give lots of options under the filter, but after selecting those filters there is no Apply option!!",
+    "confidence": 0.9
+  },
+  {
+    "id": "play:6376163ca07af721c78819b414aa9c0807e13f21",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Clicked on shirt then I don't see any apply button on my phone so I assumed it preserves my selection and clicked on back. I am back to same page where all categories are selected.",
+    "confidence": 0.9
+  },
+  {
+    "id": "play:32b6ab36053297dbb6510e86e645dfc1a97fb366",
+    "themes": [],
+    "severity": 2,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "if I am selecting full sleeves Tshirts, it's showing both half sleeves as well as full sleeves tshirts",
+    "confidence": 0.9
+  },
+  {
+    "id": "play:aee609179a8a33fc8e5d1bfd6d2669fe3553b058",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "What happened to Myntras wishlist category? it save a lott of time. sometimes I only open wishlist products, do quick search and order. please bring it back",
+    "confidence": 0.9
+  },
+  {
+    "id": "play:663426dd23b336e612bfb78c2becac5050ac5b6f",
+    "themes": [
+      "return-exchange-policy-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "return_and_exchange_certainty"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Before place order one screen is showed on UI like you pay the 50rs per product for return charges. On that screen there is no any exit option",
+    "confidence": 0.9
+  },
+  {
+    "id": "play:e48e48923a6461fe8cd8f58bf5ae7d26d7ba557b",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "if you add any item to bag, suddenly scroll down and showing other suggestions which is very irritating.",
+    "confidence": 0.8
+  },
+  {
+    "id": "play:a06adc3b3c89560e5d7cf6ebea3879d0b1e44077",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "evaluate",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "",
+    "confidence": 1
+  },
+  {
+    "id": "reddit:295bd02aa1e2b85394cfeafe796f20bd6d8f539e",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Myntra doesn’t want me to wishlist the products 🙄",
+    "confidence": 0.9
+  },
+  {
+    "id": "reddit:26f4daf8a641d2bcc9d5dc0ad74af6c9bcbe34b8",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Myntra won’t let me wishlist after a certain point of time.",
+    "confidence": 1
+  },
+  {
+    "id": "reddit:7d2095e23158084c15af194fc40e287d0783d318",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "I have to go there and remove some products to keep wishlisting new ones",
+    "segment_signals": [],
+    "evidence_quote": "It has a 1000 product limit which is so stupid! I have to go there and remove some products to keep wishlisting new ones¡",
+    "confidence": 1
+  },
+  {
+    "id": "reddit:5e9264221ce6d616fa4aec407a0c92dd0d7ae9af",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Yeah, the limit is 1000 😓",
+    "confidence": 1
+  },
+  {
+    "id": "reddit:4166918218d9e1105a3488d1d3f34e87d59f9ebc",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "They be like go and buy some wish listed products first. Then come and save others😂😂😂",
+    "confidence": 0.9
+  },
+  {
+    "id": "reddit:bb7531268bc6750edc994d5883d11886044d1e23",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 2,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [
+      "checked_other_app"
+    ],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Haha it’s so annoying to chronic online shoppers like me but this is not unique to myntra.",
+    "confidence": 0.9
+  },
+  {
+    "id": "youtube:64adb8f02eeb9f93ba6471911dbdb566210c8382",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:fd95339179a13724aef8565879b0547930ce6a0b",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Link white dress first one",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:32601a5c2420d4f801b9298386501800a6fc098a",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Blue white wala achsha he please link",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:e9028bc19615e5b31cf6b583bb7ac1931b0c7126",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Please silver dress ka link share kr dijiye",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:47a54e58220cb1494b5a2db12818b96d5cb21aee",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Jo phni h uska link bhejo",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:067d26af166ecb0487ba3548bf79a700de3feed3",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "2nd pink dress ki link dijiye",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:f7c0cd5afa36dc76954613ebc6970eb6a1010d27",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Particular nam hain kya is top ka? Kya likhke search karu?",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:dd9fc41eab7a4c6c18e743ebe95e8c994e01ac22",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Black top link please ❤😮😊",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:40b234ff3998c47e3224b965025de5c42fc66bdc",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "yh grreb olive kha se mngwaya h",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:34118bffaf1cee47c0754ad146cad1981e819061",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Didi black wali ki link de do",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:d8469a6e8c6f777f8de22c6fb75c5de87ba3ff78",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Would you send the link of this 2 outfit (white dress)",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:87fa3bd54fe3052093a04115725ae1affc12ac52",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Ek hi kurti ko 2 different size me order kaise kre",
+    "confidence": 0.9
+  },
+  {
+    "id": "youtube:9b98f47e96ea6655013a930249d46427f58e3e37",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Where is the link...without it no meaning",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:df1bf0655acc107a680358ecb926174fdfd24b1e",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 2,
+    "journey_stage": "discover",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "search karti hu",
+    "segment_signals": [],
+    "evidence_quote": "Didi kapde ke sath name bhi likh kar daal deti mein search karti hu toh pata nahi chalta hai",
+    "confidence": 0.8
+  },
+  {
+    "id": "youtube:859b45025cacfe37e080b104e76c37b5681e5893",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "2nd product ka link to nahi he plz give the link",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:405183f62e95975b940192c882a3afc141e26092",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Can't find any link. Please provide the link",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:15abbef0d2e54c6d91cef1476b48b700b2862dae",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "2nd kurti ki link hi nahi di hai aapne di",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:8ac673fcae4a712ed073d3f9e205a9728f63ca7d",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "link kaha he. aap tag kyo nhi de rahe ho",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:b3e0effc4af2fbb3a9b7efde64c1e27e93755327",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Link of kurta you are wearing",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:503a655c4792fa47244c2f71279ff180ebd8b4ab",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "U dint tag the items only",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:abe2a8a41221bcd9130bb05dce13ea2caaeb15d9",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Plzzzzzzz share the links",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:e3a536ddd049d626dadee94cd740b74be3ac7876",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "evaluate",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Ma'am, tag mein kuch aur hi khul raha hai. Brand bhi nahi bataya",
+    "confidence": 0.9
+  },
+  {
+    "id": "youtube:768bde1ed5ffb1a4394f643ea0d449737fc4e8f0",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "evaluate",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Ma'am second dress link is not visible in tagged Link",
+    "confidence": 0.9
+  },
+  {
+    "id": "youtube:cf02b78ae83070cf8cb88f9a6acd0c5b3337de99",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Mam apne jo wear kiya hai uski link de do pl.",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:5b19d8eaccf2e93c7b19abd6ef1bf25b5b7b8b9d",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Aap wear kiya kurthy super link pls",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:fc12178908c8c276970133fae83368c959700001",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Link kha hai eska??😮😡😡",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:bc3a3e18d893c8e292ac7113e55de53b6e51b2f3",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Pls share link for red one",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:c59a0724710fbae5fa2556da8ab44b071165b00f",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Taged product is not having link for red one",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:a21fa31b43d7446d3e1feedabead5b597fdb14a4",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Anu link open ni hote hai",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:4ad07932a2822dda4b3d039003e804d6034d0296",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Don't find tagged product",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:c90c159c796cc7d89e383272febf60f812d58446",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Please provide links of these dresses, not able to find in Community post",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:187b7f89b6f185ea5f07fc88da67d1c0840162fa",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Kaha se mil jata hai mujhe nahi mila",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:f09b242d0d830bd542764b1f4329b51b64e2d7dc",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Didi pls send me link of all these outfits pls 🙏👩‍💼",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:c08d23d76f77cd1845f1d4e679c220bc7b5331b8",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:43a0e9eddd4e5f769c35a65f083f3b9b88e24e33",
+    "themes": [],
+    "severity": 3,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:5cc9abc0220b6933766c5b435f74d3f74f225bdd",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Why tags product are not showing",
+    "confidence": 0.9
+  },
+  {
+    "id": "youtube:9114db2cf37f1014219086709823ee8489aafc44",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Tags products are not showing can u tag it again please",
+    "confidence": 0.9
+  },
+  {
+    "id": "youtube:ba0a4f9d23ab148c6bc3ec1a303405dad533807b",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 2,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "From where can we see the tagged things??!",
+    "confidence": 0.9
+  },
+  {
+    "id": "youtube:b8cf44bc9a38b838a5feab7cefc1855dc2d610d3",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Tagged product are not opening",
+    "confidence": 0.9
+  },
+  {
+    "id": "youtube:be7ec7698f2e8d63c6b55ea4e5cb7b19a38b1ecc",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "She only linked few products.Where are the remaining?",
+    "confidence": 0.8
+  },
+  {
+    "id": "youtube:bd0efd99a7b931bd4fe8a7821e3e0a25d0870bda",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "cant see the tag for some reason",
+    "confidence": 0.9
+  },
+  {
+    "id": "youtube:266a7b95888cb277102644ae6946d9b4a39fa92e",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Can u give the link of red one u wearing... Pls don't say it is tagged the red one is not tagged",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:87b12b39ddc43725f7141c8e08e3c03687b3f842",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Link toh jeans ka dia hua hai top dikhaye hai video mein toh",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:aeb3c1623a4b1e170d35497f38a104974cc44514",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "No link in description where is link?",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:d0d6d47a9cf51367b1dc5ff7b8da65dc657a076f",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Can you share the link please",
+    "confidence": 1
+  },
+  {
+    "id": "youtube:76837f4bd7d76cb2b88cb4e5cd6df9a7d686b7ab",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 2,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Hii myntra glam can m ja kar sirf whi product show hota hai jo order kiya hai ? Ya whislist wale bhi hote hai",
+    "confidence": 0.9
+  },
+  {
+    "id": "youtube:e22ed2626bf650af8f09d7c7ce186f63e9f07070",
+    "themes": [
+      "stock-availability-uncertainty",
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "add whislist",
+    "segment_signals": [],
+    "evidence_quote": "Plz help,how l get my wishlist product see again ,if outof stock ho gaya,,, isliye mai add whislist,,,plz unfortunately product remove karsaktehu me",
+    "confidence": 0.9
+  },
+  {
+    "id": "youtube:7557d8bc40dd8210789300b702e5e502a3f75020",
+    "themes": [
+      "quality-authenticity-doubts"
+    ],
+    "severity": 3,
+    "journey_stage": "evaluate",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "fabric_and_quality"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [
+      "fit_uncertainty_prone"
+    ],
+    "evidence_quote": "it was really annoying at first, but afterwards it got better.",
+    "confidence": 0.8
+  },
+  {
+    "id": "youtube:6316f81a2555874fb0320e29ffcc18f7a30ee164",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [
+      "checked_other_app"
+    ],
+    "workaround": "Let's try next time on Myntra",
+    "segment_signals": [],
+    "evidence_quote": "Bohot bar Kiya 😂 ajio mai kiya par Myntra mai nahi kya..pata nahi tha Myntra may nhi apply ho sakta hai.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:d7c75f3daf24af17fb9cd217f496b09cb640999f",
+    "themes": [],
+    "severity": 2,
+    "journey_stage": "discover",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "App get hang at some areas. when we click similar products in the product image.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:e9e0a3a0004fd99f20485ed53ed30a6dc17ba48d",
+    "themes": [],
+    "severity": 5,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "stopping the app and restarting",
+    "segment_signals": [],
+    "evidence_quote": "can't find profile icon or previous orders. there's only cart and wishlist. extremely bad experience.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:abcb16cffe57265451fcefb98818fff7bcaf86fb",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "move all the products in my cart to wishlist (or remove them)",
+    "segment_signals": [],
+    "evidence_quote": "each time when I want to buy a single product, I need to move all the products in my cart to wishlist (or remove them), so please add direct \"buy now\" option",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:1dd9d190bc77715a67bb5b59e6e39454f5337b1c",
+    "themes": [
+      "absent-social-proof",
+      "wishlist-ui-navigation-friction",
+      "return-exchange-policy-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "social_validation",
+      "return_and_exchange_certainty"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:b531f005f6e66b7bd99822c6bc1321910a5a192b",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "recently if I wishlist more items then the last items in the wishlist disappears. I already lost so many dresses in my wishlist bcoz of this issue",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:452a1fef0140b460eba6f174a7e963551ff89f3b",
+    "themes": [
+      "wishlist-ui-navigation-friction",
+      "prepurchase-support-gaps"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "u removed my past wishlist items .I can see my recent wishlist items only ,as I add wishlist items the past wishlist items are removing",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:2d40ab929b3a4d415a0641e6e5a77bb46001c555",
+    "themes": [
+      "wishlist-ui-navigation-friction",
+      "misleading-visual-media",
+      "absent-social-proof"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "true_colour_and_appearance",
+      "social_validation"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:5f39954f6f5b3eef2ae73db9b51e278d45fd756b",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "the wishlist is basically limited and if u add more to it, the old ones gets deleted from the wishlist.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:acf5594ff6f9b40b6fd626c5bb95fd559a3f72bc",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "bookmark",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "cuz wdym I can only wishlist a selected number of items...and adding more would just vanish the earlier ones! then what's the point of a wishlist!",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:f61c60dac71c07124afb75363045fc314e32db27",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:589b42e7d4cc61c28e6f5dbea0cf55d3d4e0a42a",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "A lot of times things in my closet disappears automatically and that really pisses me off.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:3eadff9e98415d00c789f8256b2dc7895e1eb0db",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Whenever I'm browsing my wishlist and I click on something, and then wanna go back to wishlist, I'm back straight to the top.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:bb84624341deb17fc2b72a1ab78542192450a1e1",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "evaluate",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "true_colour_and_appearance",
+      "fit_and_size"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "whenever I select an item, an error message \"oops, something went wrong, please try again\" pops up. I'm not able to see the images of an item, it's description, size chsrt and also not able to add to bag.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:935b927c4eeaf9317b7119b8552c195dd5157a71",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Whenever we're in wishlist and go into any product to see it more and comes back into wishlist, it starts from the top of the list always!!",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:8fea377ef51fe25f8c5c1679ced3cf402e92f633",
+    "themes": [
+      "stock-availability-uncertainty"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "sometimes it doesn't show my stuff in my closet, the product should be there even when it's out of stock so that I can see it. I found a lot of products which were in my closet but wasn't showing in my closet.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:99776d8cb1b623fc1dc3b4cb91c4235fbf3c71df",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 2,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "App has few bugs related to wishlist which needs to be optimized.",
+    "confidence": 0.8
+  },
+  {
+    "id": "competitor:8bc5c702df6c61c7d5d91260fb4879cbad1e8d3b",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "If i add new items to wishlist old ones are getting deleted ... whyyyyyyyyy",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:f130b171de073b5a3216736b33111d4b98b1a560",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "increasing the nom. Of products that we can save to our closet because whenever i add it turns out that the old ones are deleted.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:e0f419071e0929cb4698b95dbb26b50ac3265495",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "The only difficulty what I find is that just few items can be added to the closet. Sometimes we don't find the item which we selected as it gets out of closet due to bulky addition",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:b3ad29f494d0b6a1f4cc3036db5f49fc32ddc7c9",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Would be great if the app allowed to view all items in the wishlist page instead on first 100 items.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:8ddf96b09fea66761472c7167bc2bf68c5f49040",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "search for that item in serach option",
+    "segment_signals": [],
+    "evidence_quote": "when we add items to our closet after few days those items are not displayed in the closet",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:d1f89522fd3cc02b3a07a665a930527b7f1177d7",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "When deleting items from wishlist there is some ptoblem.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:cc62f5920d463b2f2196a3d77ce3c43a5a72cb4e",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "need to delete item to look past added wishlisted products",
+    "segment_signals": [],
+    "evidence_quote": "Only concern is that the wishlist items never come in total ,need to delete item to look past added wishlisted products.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:3c3a953d30d60f4a3209ea0aed65a897481106c7",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "why the products are removing from wishlist if we add new products whats the problem with old items its being removing.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:cd93543aba29a7f5002ca6e257ad63030ffd4b6e",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "wishlist is limited, You can't add more than the limited number it will disappear automatically",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:52360121439bfe4a0700525e0d458392469dcb84",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "shortlist",
+    "intent_type": "bookmark",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "when we add something to wishlist we also need a kind of segregating them also according to different type",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:eff89ae56db111c4251686aab15820d4ef1c8eae",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 2,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "The only thing missing is that checklist should be there for items to be deleted in cart and wishlist as well.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:70d74e6f746f2e0d3aeb1fba6c1ffa5c990d8c11",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "I saved product but in cart but time of order my cart my bag was empty",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:a855852021e1a255c6d0f417f1133b2a6bfc2b04",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 2,
+    "journey_stage": "discover",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "if a product is already in wishlist we can't identify it from search results.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:fb5f446364e0b5883a6091c1b205cc0a5ffadc0e",
+    "themes": [],
+    "severity": 2,
+    "journey_stage": "discover",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "fit_and_size"
+    ],
+    "external_behaviour": [],
+    "workaround": "every time we need to check that size is available or not if we enter similar products catalog",
+    "segment_signals": [
+      "fit_uncertainty_prone"
+    ],
+    "evidence_quote": "Need one improvement once we select size in filtre that should get carry while complete search",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:5b9fdcf137aa60ccb14971ef6c7b5eedf217f7eb",
+    "themes": [],
+    "severity": 4,
+    "journey_stage": "discover",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "you give up",
+    "segment_signals": [],
+    "evidence_quote": "you need to wait for 5 minutes to see the product bcz it loads so slow.And it’s with this app only.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:e750b7eff1f1a93c1dd2ad05d40006a4cdd1812c",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "After you do that your cart is suddenly empty because everything you had added is now out of cart and not saved anywhere.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:32e35c5fcf549c95678275cf8e884e6a3872c1f6",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Not able to add items in the cart while checking out.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:0608c34358458ee4ecb553f6eb328a3fb8f8624e",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "the limit for how many items we can wishlist/add to bag at one time is unnecessarily stringent.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:4598ae4c404e8fe9bc570d984065e03292762773",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "would prefer when I click back it just comes to the product which I had clicked",
+    "segment_signals": [],
+    "evidence_quote": "the issue was when I click on a product from a list of say women wear and then either add it to bag or just decide to come back the previous page would come to some position in the start .. all my scrolling would be just waste",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:ba4f7c6caae8af8243751ec83ff9a3982de76282",
+    "themes": [
+      "wishlist-ui-navigation-friction",
+      "delivery-timeline-uncertainty"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "delivery_timing"
+    ],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "if you are surfing apparels with lots of filters used and you switched to some other app for some task by the time you come back to ajio app, all your filters & all will be vanished and you will be redirected to homepage.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:e0cdf259616cb01b593f6055900b7db3a9c733b1",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "I added some products to cart but did not log in. And the next time I opened the app they were all gone.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:466c6c53dda6eb454bdd31cd0450cf420b8a3776",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "tried restarting my device, reinstalling the app",
+    "segment_signals": [],
+    "evidence_quote": "I’m unable to access my wish list at all—whenever I try to open it, nothing shows up, and it freezes.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:8b0f9ab816a0cc3d0f0d50e0c79d30062908db5c",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "uninstalled the app and then reinstalled it",
+    "segment_signals": [],
+    "evidence_quote": "I added items to my cart. After some time when I checked my cart, it hanged in between. All items added to cart disappeared.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:88a9b04e8e4d0bbd7716c79915aae7254463df00",
+    "themes": [
+      "delivery-timeline-uncertainty"
+    ],
+    "severity": 4,
+    "journey_stage": "evaluate",
+    "intent_type": "genuine_intent",
+    "information_needs": [
+      "delivery_timing"
+    ],
+    "external_behaviour": [],
+    "workaround": "I cancel the order",
+    "segment_signals": [],
+    "evidence_quote": "in this app it doesn't show the delivery date which sometimes make me believe that the product will not arrive and I cancel the order.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:d903fe94dc356198f0aa251017d6d33a7d116b9a",
+    "themes": [],
+    "severity": 1,
+    "journey_stage": "evaluate",
+    "intent_type": "unclear",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Extremely poor customer service.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:aa0cad9a0fb823ac537300d7dfe2a3bd92ae23ed",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "You have to delete some item from your wishlist in order to view the item that's next in line!",
+    "segment_signals": [],
+    "evidence_quote": "Unfortunately, you CANNOT view all the items you have added on your Nykaa Fashion app's wishlist, it is impossible to do so, and becomes very frustrating.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:a608e875a52b882923312c7e1e5f9d18c90ad337",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "the wishlist is not showing completely only 10-20 products of the wishlist appears at a time...rest of wishlisted products are not showing.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:8ef8b396a571ce31906d4ce5c563dc934bbe35e8",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "We have to remove few items to review previous saved items.",
+    "segment_signals": [],
+    "evidence_quote": "We can't view the whole list you saved earlier in wishlist. We have to remove few items to review previous saved items.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:714776e5a9e9655d5a871a0870accc1836464410",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "I need to delete items from wishlist to have a look on previously added items.",
+    "segment_signals": [],
+    "evidence_quote": "I'm experiencing trouble to have full access of my wishlist. I need to delete items from wishlist to have a look on previously added items.",
+    "confidence": 1
+  },
+  {
+    "id": "competitor:71d517e0f253bf9d1789d9fb67dbcc98130f70ec",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "so I move to wishlist all items,after I order that selected item and continue shopping",
+    "segment_signals": [],
+    "evidence_quote": "when I want to buy one thing from cart,,I have no option to buy just one thing from cart,,so I move to wishlist all items",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:1773edf67ab1a2dc6716ab53fdf14aad32ffe415",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 5,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "It doesnt allow you to buy anything and preselected items cannot be checked out as well.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:a0cf099c03aaa476612ded07d5d09b4beb9acff8",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 4,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Every time it shows the loading symbol with the Nykaa logo animation. It is genuinely frustrating to spend triple the amount of time to navigate and sort your cart.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:9349a0a845e73c1c6da7cbcb24d8017bc4d1d659",
+    "themes": [
+      "wishlist-ui-navigation-friction"
+    ],
+    "severity": 3,
+    "journey_stage": "shortlist",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "wish list style is not friendly at all. It should have a category header on top so automatically user can find easily.",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:47d2361b2142aa4b24539bdd602259a37a0c438a",
+    "themes": [],
+    "severity": 2,
+    "journey_stage": "discover",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "when I shop for multiple items, each selection opens in a new window. As a result, navigating back to the main or home window requires several taps of the back button",
+    "confidence": 0.9
+  },
+  {
+    "id": "competitor:c3052a6df2668fef10df60eab0bfcd8ae01d9030",
+    "themes": [],
+    "severity": 4,
+    "journey_stage": "checkout",
+    "intent_type": "genuine_intent",
+    "information_needs": [],
+    "external_behaviour": [],
+    "workaround": "",
+    "segment_signals": [],
+    "evidence_quote": "Your selection or even your management of items in cart takes a very long time to load and refresh You would have to wait for one minute just to add or delete something from the cart",
     "confidence": 0.9
   }
 ]

@@ -130,7 +130,7 @@
     {
       "id": "wishlist-ui-navigation-friction",
       "name": "Wishlist Interface Friction",
-      "definition": "Getting from a saved item to a purchase takes avoidable mechanical effort — items vanish, scroll position resets, controls are hidden, or the move-to-cart and checkout actions simply do not respond. The added effort and unreliability lead shoppers to give up on saved items.",
+      "definition": "Getting from a saved item to a purchase takes avoidable mechanical effort — items vanish, scroll position resets, controls are hidden, or the move-to-cart and checkout actions simply do not respond. The added effort and unreliability lead shoppers to give up on saved items. This theme requires the shopper to be acting on the platform itself — on a saved item, the wishlist, or the controls that move it toward purchase. Asking another person where to find an item is not this theme.",
       "includes": [
         "saved item vanishes after app refresh",
         "no visible “move to cart” button for certain items",
@@ -143,7 +143,10 @@
       ],
       "excludes": [
         "general app crashes unrelated to wishlist",
-        "payment gateway errors at checkout"
+        "payment gateway errors at checkout",
+        "asking a creator or another commenter for a product link, name, price, or where an item was bought",
+        "comments whose whole content is a request to share a link (\"link please\", \"kha se liya\", \"link de do\")",
+        "product search or discovery questions that do not involve a saved item, the wishlist, or cart controls"
       ]
     },
     {
@@ -199,6 +202,6 @@
       ]
     }
   ],
-  "editedAt": "2026-08-17T17:26:38.361013Z",
-  "editNote": "Hand-edited after review: split specs from social proof; merged fraud perception into authenticity; merged broken buttons into wishlist interface friction. 17 Aug: added passive-wishlist-no-reengagement as a 12th theme after a hand read of 40 relevant Reddit documents — shoppers repeatedly describe the wishlist as 'mark-and-forget' with nothing bringing them back, which no existing theme covered and which sits closest of all to the 30-day conversion metric."
+  "editedAt": "2026-08-18T08:14:52.117Z",
+  "editNote": "Hand-edited after review: split specs from social proof; merged fraud perception into authenticity; merged broken buttons into wishlist interface friction. 17 Aug: added passive-wishlist-no-reengagement as a 12th theme after a hand read of 40 relevant Reddit documents — shoppers repeatedly describe the wishlist as 'mark-and-forget' with nothing bringing them back, which no existing theme covered and which sits closest of all to the 30-day conversion metric. | Tightened wishlist-ui-navigation-friction excludes: a 50-doc tag audit found 31 of its 123 documents (25%) were YouTube \"send me the link\" comments, which are product-discovery requests rather than interface friction."
 }

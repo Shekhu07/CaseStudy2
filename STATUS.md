@@ -1,6 +1,6 @@
 # Status — resume here
 
-Last updated: 18 Aug 2026, 13:34 IST
+Last updated: 18 Aug 2026, 13:52 IST
 
 ## Where things stand
 
@@ -9,15 +9,16 @@ Last updated: 18 Aug 2026, 13:34 IST
 | 0 · Ingest | **Done — six sources**, 19,143 unique docs. Reddit added: 1,636 docs over two Apify runs |
 | 1 · Relevance | **Done** — 19,143 classified, **3,922 relevant (20.5%)**, **0 unjudged** |
 | 2 · Taxonomy | **Done — 12 themes.** Induced, hand-edited three times, then a 12th added 17 Aug. `data/out/taxonomy.json` |
-| 3 · Tagging | **Done — 3,922 of 3,922.** Finished 18 Aug 08:02 UTC, zero batch failures, 87 API calls for the last 680 |
-| 4 · Scoring | **Unblocked — not started.** This is the next command to run |
+| 3 · Tagging | **Done — 3,922 of 3,922**, and audited. Theme 9 re-tagged after the audit (see below) |
+| 4 · Scoring | **Unblocked — not started.** Tagging is complete and audited; this is the next command to run |
 | Deployment | Live shell at <https://myntra-wishlist-discovery-engine.vercel.app> — dashboard still shows the placeholder (no scoring output to render), `/api/classify` works in production |
 
 Nothing is running in the background.
 
-Tagging coverage: **2,987 of 3,922 (76.2%) carry ≥1 theme**; 935 (23.8%) carry
-none. **3,436 (87.6%) have a verified verbatim quote**; 381 record a workaround.
-Mean severity on themed documents is **3.82** of 5.
+Tagging coverage: **2,936 of 3,922 (74.9%) carry ≥1 theme**; 986 (25.1%) carry
+none. **3,433 (87.5%) have a verified verbatim quote**. Mean severity on themed
+documents is **3.84** of 5. (Coverage fell slightly after the theme 9 re-tag
+below — 51 documents correctly lost their only theme.)
 
 ### Relevance funnel by source
 
@@ -57,20 +58,22 @@ against what is already held.
 Reach is now over **all 3,922 tagged documents**. Documents can carry several
 themes, so these do not sum to 100%.
 
-| # | Theme | Docs | Reach | Was (80%) |
+| # | Theme | Docs | Reach | Myntra-only |
 |---|---|---:|---:|---:|
-| 3 | Quality, Authenticity & Seller Trust | 1,000 | **25.5%** | 24.7% |
-| 1 | Unreliable Size & Fit Info | 653 | **16.6%** | 18.9% |
-| 4 | Cumbersome Return & Exchange Policies | 632 | **16.1%** | 11.5% |
-| 2 | Misleading Visual Media | 317 | 8.1% | 7.8% |
-| 10 | Missing Product Specifications | 274 | 7.0% | 7.6% |
-| 6 | Uncertain Stock & Availability Signals | 180 | 4.6% | 3.6% |
-| 7 | Price Volatility & Hidden Checkout Fees | 171 | 4.4% | 3.7% |
-| 5 | Pre-Purchase Support Gaps | 139 | 3.5% | 2.6% |
-| 9 | Wishlist Interface Friction | 123 | 3.1% | 2.8% |
-| 11 | Absent Social Proof | 99 | 2.5% | 2.3% |
-| 8 | Uncertain Delivery Timelines | 84 | 2.1% | 1.3% |
-| 12 | Passive Wishlist, No Re-engagement | 18 | 0.5% | 0.4% |
+| 3 | Quality, Authenticity & Seller Trust | 1,001 | **25.5%** | 23.3% |
+| 1 | Unreliable Size & Fit Info | 653 | **16.6%** | **19.5%** |
+| 4 | Cumbersome Return & Exchange Policies | 633 | **16.1%** | 9.8% |
+| 2 | Misleading Visual Media | 318 | 8.1% | 7.9% |
+| 10 | Missing Product Specifications | 273 | 7.0% | 8.6% |
+| 6 | Uncertain Stock & Availability Signals | 182 | 4.6% | 2.7% |
+| 7 | Price Volatility & Hidden Checkout Fees | 171 | 4.4% | 3.2% |
+| 5 | Pre-Purchase Support Gaps | 138 | 3.5% | 2.7% |
+| 11 | Absent Social Proof | 100 | 2.5% | 2.1% |
+| 8 | Uncertain Delivery Timelines | 85 | 2.2% | 0.9% |
+| 9 | Wishlist Interface Friction | 68 | **1.7%** | 0.9% |
+| 12 | Passive Wishlist, No Re-engagement | 18 | 0.5% | 0.3% |
+
+Theme 9 is post-correction — it was 123 docs / 3.1% before the audit.
 
 **The gate on scoring was the right call, and there is now evidence for it.**
 Returns moved +4.6pp and jumped two places on the last 20% of the corpus; fit
@@ -92,7 +95,7 @@ depends on *which venue* a document came from:
 | Size & Fit | **24.3%** | 7.1% | 6.4% | 10.9% | 4.5% | 2.7% |
 | Return & Exchange | 6.5% | **37.3%** | 28.1% | 4.4% | 11.2% | 37.8% |
 | Misleading Visual Media | 8.1% | 8.7% | 10.3% | 4.1% | 4.5% | 13.5% |
-| Wishlist Interface Friction | 2.3% | 5.6% | 2.2% | 1.8% | 9.0% | 0.0% |
+| Wishlist Interface Friction | 0.6% | 4.5% | 1.0% | 1.8% | 5.6% | 0.0% |
 
 **905 of the 3,922 relevant documents (23%) are AJIO and Nykaa reviews, not
 Myntra.** They were ingested deliberately, to catch comparison talk — but they
@@ -102,7 +105,7 @@ carry the return-exchange theme at 37.3%. Excluding them:
 |---|---:|---:|---:|
 | Quality, Authenticity & Seller Trust | 25.5% | **23.3%** | −2.2 |
 | Unreliable Size & Fit Info | 16.6% | **19.5%** | +2.9 |
-| Cumbersome Return & Exchange Policies | 16.1% | **9.7%** | **−6.4** |
+| Cumbersome Return & Exchange Policies | 16.1% | **9.8%** | **−6.3** |
 | Missing Product Specifications | 7.0% | 8.7% | +1.7 |
 | Uncertain Delivery Timelines | 2.1% | 0.9% | −1.3 |
 
@@ -181,6 +184,98 @@ p.3 question ("what information do users seek outside Myntra") is *not
 measurable from this corpus* — **not** "only 2.2% check other apps". Let
 `information_needs` carry that slide instead; it answers the *what* robustly.
 
+## The tag audit — run 18 Aug, and it found two real defects
+
+50 documents, `npm run audit -- --stage tag --n 50 --seed 7`.
+
+| Measure | Result | Target |
+|---|---|---|
+| Theme agreement | **~83%** (29/35 themed docs) | ≥70% ✅ |
+| Relevance agreement | **90%** strict errors / **74%** incl. borderline | ≥85% ⚠️ |
+
+**Caveat on who did the auditing.** This pass was done by the same class of
+model that produced the tags. It catches blatant errors and systematic patterns;
+it cannot catch a bias the auditor shares with the tagger. A human spot-check of
+~30 documents is still worth doing before the deck.
+
+**Relevance is permissive, not wrong.** The clear false positives were
+low-information chatter — a joke ("Everyone seeing the outfit — Myntra; me
+seeing the price — Meesho 😂"), a Laneige lip-mask recommendation, "I am gonna
+so regret this 😶". These land in the no-theme pile, so they dilute the
+denominator rather than corrupt themes — which means every reach % above is very
+slightly *deflated*. Not worth a re-run.
+
+### Defect 1 — theme 9 was 25% false positives. Fixed and re-tagged.
+
+Of its 123 documents, **31 (25%) were YouTube "send me the link" comments** —
+product-discovery requests with nothing to do with a wishlist. The theme's
+`definition` was fine; its `excludes` simply never ruled them out, and the id's
+"navigation" invited over-extension.
+
+Three excludes were added to `wishlist-ui-navigation-friction` (link/where-to-buy
+requests, link-only comments, discovery search questions) plus a clarifying
+sentence in the definition, then those 123 documents alone were re-tagged.
+
+| | Before | After |
+|---|---:|---:|
+| Documents | 123 | **68** |
+| Reach | 3.1% | **1.7%** |
+| Link-request false positives | 31 | **1** |
+| Wishlist-specific / generic UI / link | 46 / 46 / 31 | **42 / 25 / 1** |
+
+51 of the 123 correctly ended with no theme; 13 moved to better-fitting themes.
+Survivors read exactly as the definition intends: *"Wish list limit"*, *"My
+entire wishlist is vanished"*, *"cart items vanish"*, *"Unable to add items to
+cart"*.
+
+The 25 generic app/UI documents (slow app, broken filters) were deliberately
+**kept** — folding "Broken Functional Buttons" into this theme was a considered
+hand-edit, and reversing it is a scope decision, not a bug fix.
+
+### Defect 2 — theme 5 is majority post-purchase. NOT fixed.
+
+**76 of 138 documents (55%) tagged `Pre-Purchase Support Gaps` carry
+`journey_stage: post_purchase`.** The name says pre-purchase; the evidence is
+mostly people chasing support *after* delivery. As a pre-purchase claim it is
+worth roughly **1.6%, not 3.5%**.
+
+Left alone deliberately — unlike theme 9 this is a scope question (is the theme
+mis-named, or mis-applied?), and answering it changes what the theme *means*.
+Decide before quoting it as a pre-purchase problem.
+
+### False negatives are modest, and the taxonomy holds up
+
+Of the 986 no-theme documents, only 58 (6%) are 1–2★ and substantial. Sampling
+them shows genuinely off-taxonomy complaints — NRI delivery, VISA cards, missing
+price filters, in-app ads. Real problems, but outside these 12 themes and
+outside the brief. That is a point in the taxonomy's favour.
+
+### The silent-coercion log paid for itself on its first run
+
+The theme 9 re-tag printed:
+
+```
+12 field values were coerced to a fallback - these are NOT real absences:
+  severity: 12 (e.g. 0)
+```
+
+Twelve documents returned `severity: 0` — outside the 1-5 range — and were
+silently coerced to the fallback **3**, the middle of the scale, when the model
+plainly meant "no friction here". Impact is small (mean severity on themed
+documents moved 3.82 → 3.84, and most were themeless), so it is **not fixed**.
+The honest fix is a clamp (0 → 1, 7 → 5) rather than a mid-scale fallback, since
+`severity` feeds `severityNorm` in the opportunity score. An hour earlier this
+would have been invisible.
+
+### What the audit means for the MVP argument
+
+Direct wishlist evidence is **thin**. Corrected theme 9 wishlist-specific
+documents (42) plus theme 12 (18) is **60 documents, ~1.5% of the corpus**.
+Theme 12 was already confirmed over-called. **This corpus does not support a
+wishlist-UI-centric MVP** — it supports fit and trust, which is where the reach
+actually is. That is a finding, not a gap: it says the wishlist does not convert
+because of doubt about the product, not because the wishlist screen is awkward.
+
 ## Fixed this session
 
 Three schema defects, all in the same family: **Zod's `.default()` fires only on
@@ -223,10 +318,16 @@ npm run pipeline -- --stage score
 npm run build && vercel --prod
 ```
 
-**Then:** hand-audit ~50 tagged documents (`npm run audit -- --stage tag --n 50`)
-before trusting the dashboard. Target ≥85% relevance agreement, ≥70% theme
-agreement. This is the last unverified link in the chain — every number above
-rests on the tagger being right, and it has not yet been checked against a human.
+The 50-document audit is **done** (see above) and theme 9 is corrected, so
+tagging is no longer the unverified link. What remains unverified is that the
+audit was model-run, not human-run — a ~30-document human spot-check is the
+cheapest remaining credibility win before the deck.
+
+Two decisions to make before or during scoring:
+
+- **Theme 5** is 55% post-purchase. Re-scope, re-name, or footnote it.
+- **`severity` fallback** is mid-scale 3 for out-of-range values. A clamp is
+  more faithful and `severity` feeds `severityNorm` in the score.
 
 Watch during scoring: `ThemeScore.reach` is `count / relevantTotal` over the
 **full** corpus, so the ranking will inherit the competitor-mix issue described
