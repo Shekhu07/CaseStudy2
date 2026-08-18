@@ -6,4 +6,5 @@ data/cache/
 data/out/corpus.json
 data/out/relevance.json
 data/out/tags.json
+data/out/judgements.json
 Case_Study2.pdf

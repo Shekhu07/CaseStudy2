@@ -73,70 +73,65 @@ function distribution(values: string[], total: number): Record<string, number> {
   return Object.fromEntries(Object.entries(out).sort((a, b) => b[1] - a[1]));
 }
 
-export async function runScoring(
-  corpus: Corpus,
-  relevantIds: Set<string>,
-  taxonomy: Taxonomy,
-  tags: Tag[],
-): Promise<Analysis> {
-  const docById = new Map(corpus.docs.map((d) => [d.id, d]));
-  const tagged = tags.filter((t) => relevantIds.has(t.id));
-  const total = tagged.length;
-  if (total === 0) throw new Error("no tagged relevant documents to score");
+type ThemeBase = Taxonomy["themes"][number] & {
+  members: Tag[];
+  count: number;
+  reach: number;
+  severityMean: number;
+};
 
-  /* ---------- corpus-wide segment baseline (denominator for lift) -------- */
-
-  const segmentTotals: Record<string, number> = {};
-  for (const t of tagged) {
-    for (const s of t.segment_signals) segmentTotals[s] = (segmentTotals[s] ?? 0) + 1;
-  }
-
-  /* ------------------------- per-theme aggregation ---------------------- */
-
+/** Group a cohort of tags per theme, with its reach and mean severity. */
+function aggregate(cohort: Tag[], taxonomy: Taxonomy): ThemeBase[] {
+  const total = cohort.length;
   const byTheme = new Map<string, Tag[]>();
-  for (const t of tagged) {
+  for (const t of cohort) {
     for (const id of t.themes) {
       if (!byTheme.has(id)) byTheme.set(id, []);
       byTheme.get(id)!.push(t);
     }
   }
+  return (
+    taxonomy.themes
+      .map((theme) => {
+        const members = byTheme.get(theme.id) ?? [];
+        const count = members.length;
+        const severityMean =
+          count > 0 ? members.reduce((a, t) => a + t.severity, 0) / count : 0;
+        return { ...theme, members, count, reach: total > 0 ? count / total : 0, severityMean };
+      })
+      // A theme with almost no evidence is noise, not a finding.
+      .filter((t) => t.count >= 5)
+  );
+}
 
-  const base = taxonomy.themes
-    .map((theme) => {
-      const members = byTheme.get(theme.id) ?? [];
-      const count = members.length;
-      const severityMean =
-        count > 0 ? members.reduce((a, t) => a + t.severity, 0) / count : 0;
-      return { ...theme, members, count, reach: count / total, severityMean };
-    })
-    // A theme with almost no evidence is noise, not a finding.
-    .filter((t) => t.count >= 5);
+/**
+ * Score one cohort. `judgeById` is passed in rather than derived, because
+ * metric proximity and tractability are properties of the theme itself — they
+ * do not change with which documents you count, and reusing them is what keeps
+ * two cohorts comparable. Only reach and severity move.
+ */
+function scoreFrom(
+  base: ThemeBase[],
+  cohort: Tag[],
+  judgeById: Map<string, z.infer<typeof ThemeJudgementSchema>>,
+  docById: Map<string, Doc>,
+): ThemeScore[] {
+  const total = cohort.length;
 
-  log("score", `${base.length}/${taxonomy.themes.length} themes cleared the n>=5 floor`);
-
-  /* --------------------- LLM judgement of the two axes ------------------ */
-
-  let judgements = readJson<z.infer<typeof ThemeJudgementSchema>[]>(JUDGEMENTS_PATH);
-  const haveAll =
-    judgements && base.every((t) => judgements!.some((j) => j.id === t.id));
-
-  if (!haveAll) {
-    log("score", "judging metric proximity and tractability");
-    const res = await completeJson(
-      {
-        system: judgementSystem(),
-        prompt: judgementPrompt(base),
-        temperature: 0.1,
-      },
-      JudgementResponse,
-    );
-    judgements = res.judgements;
-    writeJson(JUDGEMENTS_PATH, judgements);
+  // corpus-wide segment baseline (denominator for lift)
+  const segmentTotals: Record<string, number> = {};
+  for (const t of cohort) {
+    for (const s of t.segment_signals) segmentTotals[s] = (segmentTotals[s] ?? 0) + 1;
   }
 
-  const judgeById = new Map(judgements!.map((j) => [j.id, j]));
-
-  /* ---------------------------- theme scores ---------------------------- */
+  // Share of each month's documents in this cohort, for the trend line.
+  const monthTotals: Record<string, number> = {};
+  for (const m of cohort) {
+    const date = docById.get(m.id)?.date;
+    if (!date) continue;
+    const mo = date.slice(0, 7);
+    monthTotals[mo] = (monthTotals[mo] ?? 0) + 1;
+  }
 
   const themes: ThemeScore[] = base.map((t) => {
     const j = judgeById.get(t.id);
@@ -145,7 +140,7 @@ export async function runScoring(
     const severityNorm = (t.severityMean - 1) / 4;
 
     // Segment lift: how over-represented a segment is inside this theme
-    // relative to its share of the whole relevant corpus.
+    // relative to its share of the whole cohort.
     const segCounts: Record<string, number> = {};
     for (const m of t.members) {
       for (const s of m.segment_signals) segCounts[s] = (segCounts[s] ?? 0) + 1;
@@ -174,14 +169,6 @@ export async function runScoring(
         };
       });
 
-    // Share of each month's relevant documents that carry this theme.
-    const monthTotals: Record<string, number> = {};
-    for (const m of tagged) {
-      const date = docById.get(m.id)?.date;
-      if (!date) continue;
-      const mo = date.slice(0, 7);
-      monthTotals[mo] = (monthTotals[mo] ?? 0) + 1;
-    }
     const monthHits: Record<string, number> = {};
     for (const m of t.members) {
       const date = docById.get(m.id)?.date;
@@ -192,7 +179,11 @@ export async function runScoring(
     const trend = Object.keys(monthTotals)
       .sort()
       .filter((mo) => monthTotals[mo] >= 10) // thin months are not a trend
-      .map((mo) => ({ month: mo, share: (monthHits[mo] ?? 0) / monthTotals[mo], n: monthTotals[mo] }));
+      .map((mo) => ({
+        month: mo,
+        share: (monthHits[mo] ?? 0) / monthTotals[mo],
+        n: monthTotals[mo],
+      }));
 
     return {
       id: t.id,
@@ -222,6 +213,71 @@ export async function runScoring(
   });
 
   themes.sort((a, b) => b.opportunityScore - a.opportunityScore);
+  return themes;
+}
+
+export async function runScoring(
+  corpus: Corpus,
+  relevantIds: Set<string>,
+  taxonomy: Taxonomy,
+  tags: Tag[],
+): Promise<Analysis> {
+  const docById = new Map(corpus.docs.map((d) => [d.id, d]));
+  const tagged = tags.filter((t) => relevantIds.has(t.id));
+  const total = tagged.length;
+  if (total === 0) throw new Error("no tagged relevant documents to score");
+
+  /* ------------------------- per-theme aggregation ---------------------- */
+
+  const base = aggregate(tagged, taxonomy);
+  log("score", `${base.length}/${taxonomy.themes.length} themes cleared the n>=5 floor`);
+
+  /* --------------------- LLM judgement of the two axes ------------------ */
+
+  let judgements = readJson<z.infer<typeof ThemeJudgementSchema>[]>(JUDGEMENTS_PATH);
+  const haveAll =
+    judgements && base.every((t) => judgements!.some((j) => j.id === t.id));
+
+  if (!haveAll) {
+    log("score", "judging metric proximity and tractability");
+    const res = await completeJson(
+      {
+        system: judgementSystem(),
+        prompt: judgementPrompt(base),
+        temperature: 0.1,
+      },
+      JudgementResponse,
+    );
+    judgements = res.judgements;
+    writeJson(JUDGEMENTS_PATH, judgements);
+  }
+
+  const judgeById = new Map(judgements!.map((j) => [j.id, j]));
+
+  /* ---------------------------- theme scores ---------------------------- */
+
+  const themes = scoreFrom(base, tagged, judgeById, docById);
+
+  /*
+   * The same themes, re-scored with AJIO and Nykaa reviews excluded. 23% of the
+   * relevant corpus is competitor reviews, and they carry return-exchange
+   * friction at roughly four times the Myntra rate — enough to swap ranks 2 and
+   * 3. Reporting both makes the mix visible instead of letting one choice of
+   * denominator silently decide which problem looks second-biggest.
+   */
+  const exCompetitor = tagged.filter((t) => docById.get(t.id)?.source !== "competitor");
+  const themesExCompetitor = scoreFrom(
+    aggregate(exCompetitor, taxonomy),
+    exCompetitor,
+    judgeById,
+    docById,
+  );
+
+  // Segment baseline over the full cohort, for the corpus-level lift table.
+  const segmentTotals: Record<string, number> = {};
+  for (const t of tagged) {
+    for (const s of t.segment_signals) segmentTotals[s] = (segmentTotals[s] ?? 0) + 1;
+  }
 
   /* ------------------------------- overall ------------------------------ */
 
@@ -254,10 +310,12 @@ export async function runScoring(
       afterDedupe: corpus.afterDedupe,
       relevant: relevantIds.size,
       tagged: total,
+      taggedExCompetitor: exCompetitor.length,
       bySource,
       dateRange: corpus.dateRange,
     },
     themes,
+    themesExCompetitor,
     overall: {
       journeyStages: distribution(tagged.map((t) => t.journey_stage), total),
       intentTypes: distribution(tagged.map((t) => t.intent_type), total),
@@ -272,6 +330,10 @@ export async function runScoring(
   writeJson(ANALYSIS_PATH, analysis);
   log("score", `ranked ${themes.length} themes → data/out/analysis.json`);
   themes.slice(0, 5).forEach((t, i) =>
+    log("score", `  ${i + 1}. ${t.name} — score ${t.opportunityScore.toFixed(3)} (reach ${(t.reach * 100).toFixed(1)}%)`),
+  );
+  log("score", `Myntra-only (n=${exCompetitor.length}, competitor reviews excluded):`);
+  themesExCompetitor.slice(0, 5).forEach((t, i) =>
     log("score", `  ${i + 1}. ${t.name} — score ${t.opportunityScore.toFixed(3)} (reach ${(t.reach * 100).toFixed(1)}%)`),
   );
 

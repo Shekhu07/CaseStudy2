@@ -1,6 +1,6 @@
 # Status — resume here
 
-Last updated: 18 Aug 2026, 13:52 IST
+Last updated: 18 Aug 2026, 14:06 IST
 
 ## Where things stand
 
@@ -10,8 +10,8 @@ Last updated: 18 Aug 2026, 13:52 IST
 | 1 · Relevance | **Done** — 19,143 classified, **3,922 relevant (20.5%)**, **0 unjudged** |
 | 2 · Taxonomy | **Done — 12 themes.** Induced, hand-edited three times, then a 12th added 17 Aug. `data/out/taxonomy.json` |
 | 3 · Tagging | **Done — 3,922 of 3,922**, and audited. Theme 9 re-tagged after the audit (see below) |
-| 4 · Scoring | **Unblocked — not started.** Tagging is complete and audited; this is the next command to run |
-| Deployment | Live shell at <https://myntra-wishlist-discovery-engine.vercel.app> — dashboard still shows the placeholder (no scoring output to render), `/api/classify` works in production |
+| 4 · Scoring | **Done.** 12 themes ranked, both cohorts, → `data/out/analysis.json` |
+| Deployment | Live shell at <https://myntra-wishlist-discovery-engine.vercel.app> — **not yet redeployed with the analysis**. Builds clean locally and now renders real data; `vercel --prod` is the remaining step |
 
 Nothing is running in the background.
 
@@ -109,6 +109,9 @@ carry the return-exchange theme at 37.3%. Excluding them:
 | Missing Product Specifications | 7.0% | 8.7% | +1.7 |
 | Uncertain Delivery Timelines | 2.1% | 0.9% | −1.3 |
 
+This is not a hypothetical: it swaps ranks 2 and 3 in the final opportunity
+ranking (see Scoring below), which is why both cohorts now ship.
+
 Two consequences:
 
 1. **Returns rank #3 corpus-wide but #4 and much smaller on Myntra alone.**
@@ -183,6 +186,72 @@ simply do not narrate outside-app research. The honest framing for the brief's
 p.3 question ("what information do users seek outside Myntra") is *not
 measurable from this corpus* — **not** "only 2.2% check other apps". Let
 `information_needs` carry that slide instead; it answers the *what* robustly.
+
+## Scoring — done, and the ranking depends on one corpus decision
+
+`OpportunityScore = √reach × severityNorm × metricProximity × tractability`.
+Proximity and tractability are judged once per theme by the model with written
+rationales (`data/out/judgements.json`), so the ranking is arguable rather than
+a black box. Wilson 95% intervals accompany every reach figure.
+
+**Full corpus (n=3,922)**
+
+| # | Score | Reach (95% CI) | Sev | Prox | Tract | Theme |
+|---|---:|---|---:|---:|---:|---|
+| 1 | **0.256** | 25.5% [24.2–26.9] | 4.41 | 0.85 | 0.70 | Quality, Authenticity & Seller Trust |
+| 2 | **0.199** | 16.1% [15.0–17.3] | 4.67 | 0.90 | 0.60 | Cumbersome Return & Exchange |
+| 3 | **0.164** | 16.6% [15.5–17.8] | 3.36 | 0.80 | 0.85 | Unreliable Size & Fit Info |
+| 4 | 0.119 | 8.1% [7.3–9.0] | 3.78 | 0.75 | 0.80 | Misleading Visual Media |
+| 5 | 0.090 | 4.6% [4.0–5.3] | 4.17 | 0.75 | 0.70 | Uncertain Stock & Availability |
+| 6 | 0.086 | 3.5% [3.0–4.1] | 4.28 | 0.70 | 0.80 | Pre-Purchase Support Gaps |
+| 7 | 0.065 | 1.7% [1.4–2.2] | 3.75 | 0.80 | **0.90** | Wishlist Interface Friction |
+| 8 | 0.065 | 7.0% [6.2–7.8] | 2.93 | 0.60 | 0.85 | Missing Product Specifications |
+| 9 | 0.062 | 4.4% [3.8–5.0] | 4.05 | 0.65 | 0.60 | Price Volatility & Hidden Fees |
+| 10 | 0.049 | 2.2% [1.8–2.7] | 4.20 | 0.60 | 0.70 | Uncertain Delivery Timelines |
+| 11 | 0.036 | 2.5% [2.1–3.1] | 3.05 | 0.55 | 0.80 | Absent Social Proof |
+| 12 | 0.014 | 0.5% [0.3–0.7] | 3.00 | **0.50** | 0.85 | Passive Wishlist, No Re-engagement |
+
+**Myntra-only (n=3,017) — ranks 2 and 3 swap**
+
+| # | Score | Reach | Theme | Full-corpus rank |
+|---|---:|---:|---|---|
+| 1 | 0.234 | 23.3% | Quality, Authenticity & Seller Trust | #1 = |
+| 2 | **0.169** | 19.5% | **Unreliable Size & Fit Info** | #3 **+1** |
+| 3 | **0.150** | 9.8% | **Cumbersome Return & Exchange** | #2 **−1** |
+| 4 | 0.105 | 7.9% | Misleading Visual Media | #4 = |
+| 5 | 0.071 | 8.6% | Missing Product Specifications | #8 **+3** |
+| 6 | 0.069 | 2.7% | Uncertain Stock & Availability | #5 −1 |
+| 7 | 0.069 | 2.7% | Pre-Purchase Support Gaps | #6 −1 |
+| 9 | 0.037 | 0.9% | Wishlist Interface Friction | #7 −2 |
+| 12 | 0.011 | 0.3% | Passive Wishlist, No Re-engagement | #12 = |
+
+**"What is Myntra's #2 problem?" has two answers, and the difference is a
+corpus decision rather than a finding.** Returns win on the full corpus only
+because 23% of it is AJIO and Nykaa. Rank #1 is stable in both, which is the
+reassuring part. Both rankings now ship: `analysis.themes` and
+`analysis.themesExCompetitor`, with a toggle on the dashboard. Proximity and
+tractability are reused across cohorts, so only reach and severity move.
+
+The segment lift heatmap is always computed over all sources and does not
+follow the toggle — noted in its caption.
+
+### Two things the judged axes revealed
+
+**The judge contradicted the theme 12 hypothesis.** It assigned
+`metric_proximity: 0.50`, the **lowest of all twelve**, to the theme that was
+added on the reasoning that it "sits closest of all to the 30-day conversion
+metric". That is now three independent signals against it: 18 documents, 0.5%
+reach, lowest judged proximity. Do not build the MVP on it.
+
+**Wishlist Interface Friction over-performs its size** — rank 7 on 1.7% reach,
+because it drew the highest tractability in the set (0.90) and `sqrt(reach)`
+compresses frequency. Working as designed, but it rests on 68 documents and
+falls to #9 Myntra-only. Its high tractability is the honest argument for it,
+not its reach.
+
+Useful for the deck: the top theme's recorded workarounds are vivid — *"just buy
+offline than shop from here"*, *"purchase from the brand website directly"*,
+*"For that credit we end up buying something else what we do not want."*
 
 ## The tag audit — run 18 Aug, and it found two real defects
 
@@ -308,15 +377,16 @@ firing on a third of themes would train you to ignore the log.
 
 Counters reset per run, so a resume reports only its own coercions.
 
-## Resuming — scoring is next
+## Resuming — deployment is next
 
 ```bash
-# 1. Score. Tagging is complete, so this is now safe to run.
-npm run pipeline -- --stage score
-
-# 2. Ship the dashboard.
+# Scoring is done. What remains is shipping the dashboard.
 npm run build && vercel --prod
 ```
+
+`npm run build` passes locally and the page now renders real data with the
+cohort toggle. Deploying is the only outward-facing step left and has not been
+done.
 
 The 50-document audit is **done** (see above) and theme 9 is corrected, so
 tagging is no longer the unverified link. What remains unverified is that the

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "size-fit-info-unreliable",
+    "metric_proximity": 0.8,
+    "metric_proximity_rationale": "Accurate size data removes fit uncertainty, directly prompting purchase within days.",
+    "tractability": 0.85,
+    "tractability_rationale": "Can be solved with better charts, AI fit tools, and UI updates."
+  },
+  {
+    "id": "misleading-visual-media",
+    "metric_proximity": 0.75,
+    "metric_proximity_rationale": "Clear, trustworthy visuals boost confidence that the item matches expectations.",
+    "tractability": 0.8,
+    "tractability_rationale": "Improved photography, 360° view, AR previews are product‑controlled changes."
+  },
+  {
+    "id": "quality-authenticity-doubts",
+    "metric_proximity": 0.85,
+    "metric_proximity_rationale": "Authenticity guarantees remove a major purchase blocker for wishlisted items.",
+    "tractability": 0.7,
+    "tractability_rationale": "Requires verification badges and seller vetting, feasible but partly dependent on marketplace partners."
+  },
+  {
+    "id": "return-exchange-policy-friction",
+    "metric_proximity": 0.9,
+    "metric_proximity_rationale": "Simpler, fee‑free returns eliminate risk, driving fast conversion from wishlist.",
+    "tractability": 0.6,
+    "tractability_rationale": "Policy redesign needs business approval; UI clarification is easier than fee removal."
+  },
+  {
+    "id": "prepurchase-support-gaps",
+    "metric_proximity": 0.7,
+    "metric_proximity_rationale": "Timely answers to fit or stock queries directly enable purchase decisions.",
+    "tractability": 0.8,
+    "tractability_rationale": "Chatbots, faster FAQ, and in‑app messaging are fully controllable."
+  },
+  {
+    "id": "stock-availability-uncertainty",
+    "metric_proximity": 0.75,
+    "metric_proximity_rationale": "Reliable stock signals reassure shoppers they can actually buy the saved item.",
+    "tractability": 0.7,
+    "tractability_rationale": "Requires better inventory sync and clearer UI cues, within product scope."
+  },
+  {
+    "id": "price-volatile-hidden-fees",
+    "metric_proximity": 0.65,
+    "metric_proximity_rationale": "Transparent pricing and fee disclosure prevent surprise‑driven abandonment.",
+    "tractability": 0.6,
+    "tractability_rationale": "Price‑lock or fee‑display changes are possible but may need cross‑team coordination."
+  },
+  {
+    "id": "delivery-timeline-uncertainty",
+    "metric_proximity": 0.6,
+    "metric_proximity_rationale": "Accurate delivery windows reduce hesitation for time‑sensitive purchases.",
+    "tractability": 0.7,
+    "tractability_rationale": "Enhanced ETA algorithms and UI messaging are product‑level improvements."
+  },
+  {
+    "id": "wishlist-ui-navigation-friction",
+    "metric_proximity": 0.8,
+    "metric_proximity_rationale": "Smoother move‑to‑cart flow directly converts saved items.",
+    "tractability": 0.9,
+    "tractability_rationale": "Pure UI/UX fixes; highly implementable."
+  },
+  {
+    "id": "missing-product-specs",
+    "metric_proximity": 0.6,
+    "metric_proximity_rationale": "Complete specs answer fit and material questions, enabling purchase.",
+    "tractability": 0.85,
+    "tractability_rationale": "Adding mandatory attribute fields is straightforward."
+  },
+  {
+    "id": "absent-social-proof",
+    "metric_proximity": 0.55,
+    "metric_proximity_rationale": "Reviews and buyer photos build trust, modestly increasing conversion.",
+    "tractability": 0.8,
+    "tractability_rationale": "Encouraging reviews and displaying them are product‑controlled."
+  },
+  {
+    "id": "passive-wishlist-no-reengagement",
+    "metric_proximity": 0.5,
+    "metric_proximity_rationale": "Re‑engagement nudges forgotten wishes back into purchase consideration.",
+    "tractability": 0.85,
+    "tractability_rationale": "Push notifications, email alerts, and in‑app reminders are easy to implement."
+  }
+]

@@ -69,3 +69,6 @@ data/relevance-gap.log
 data/tag-run.log
 data/tag-run-resume.log
 data/tag-retag-theme9.log
+
+# scoring run log
+data/score-run.log

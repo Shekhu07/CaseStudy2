@@ -215,10 +215,19 @@ export interface Analysis {
     afterDedupe: number;
     relevant: number;
     tagged: number;
+    /** tagged documents excluding AJIO/Nykaa competitor reviews */
+    taggedExCompetitor: number;
     bySource: Record<string, { raw: number; relevant: number }>;
     dateRange: { from: string | null; to: string | null };
   };
   themes: ThemeScore[];
+  /**
+   * The same themes and the same judged axes, re-scored over Myntra-only
+   * documents. 23% of the relevant corpus is AJIO/Nykaa reviews carrying
+   * return-exchange friction at ~4x the Myntra rate, which is enough to swap
+   * ranks 2 and 3 — so the mix is reported, not assumed away.
+   */
+  themesExCompetitor: ThemeScore[];
   /** corpus-wide facet distributions, over relevant docs */
   overall: {
     journeyStages: Record<string, number>;
