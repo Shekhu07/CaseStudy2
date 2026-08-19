@@ -271,6 +271,42 @@ model that produced the tags. It catches blatant errors and systematic patterns;
 it cannot catch a bias the auditor shares with the tagger. A human spot-check of
 ~30 documents is still worth doing before the deck.
 
+## `genuine_intent` is inflated — measured 19 Aug
+
+Surfaced by the 30-document spot-check sample: post-purchase complaints were
+being tagged `intent_type: genuine_intent`, though a document written after
+delivery has no save event to have an intent *about*. Checked corpus-wide:
+
+| journey_stage | n | genuine_intent | bookmark | price_watch |
+|---|---:|---:|---:|---:|
+| discover | 292 | 33.9% | 9.6% | 1.4% |
+| shortlist | 95 | 85.3% | 6.3% | 8.4% |
+| evaluate | 2,264 | 78.3% | 0.3% | 1.8% |
+| checkout | 233 | 92.3% | 0.0% | 3.4% |
+| **post_purchase** | **1,038** | **94.5%** | **0.0%** | **0.0%** |
+
+`genuine_intent` peaks exactly where the question is meaningless, with zero
+bookmark and zero price_watch — the signature of a field filled in by default
+rather than observed. **31.2% of the whole genuine_intent pile sits in
+post_purchase.**
+
+| Cohort | Headline (all stages) | Pre-purchase only |
+|---|---:|---:|
+| Full corpus | 80.3% | 73.6% |
+| **Myntra-only** | 77.4% | **72.2%** |
+
+**Quote 72.2%, not 81.3%.** Restricting to discover + shortlist + evaluate, on
+the Myntra-only cohort, is the figure that survives the obvious grader question
+("how does a delivery complaint tell you what someone meant when they saved?").
+It is still a strong number and it is defensible; the headline one is not.
+
+> This contradicts GUARDRAILS rule 3, which leads with 81.3% and calls it "our
+> strongest single number". The claim survives — most saves carry real purchase
+> intent — but the number backing it has to change. Rule 3 needs editing before
+> the deck quotes it.
+
+No re-tagging required: this is a slicing correction, not a labelling one.
+
 ## The stability check — run 19 Aug
 
 Playbook QC check #2, and it had never been done.
