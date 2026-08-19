@@ -194,19 +194,25 @@ function createWishlistForm() {
    * Wired last: a choice can only point at a page break that exists.
    * ---------------------------------------------------------------- */
 
-  q3.setChoices([
-    q3.createChoice("0", aboutYouPage),
-    q3.createChoice("1-5"),
-    q3.createChoice("6-15"),
-    q3.createChoice("16-30"),
-    q3.createChoice("More than 30"),
-    q3.createChoice("I don't have a wishlist", aboutYouPage)
-  ]);
+  var CONTINUE = FormApp.PageNavigationType.CONTINUE;
 
-  q11.setChoices([
-    q11.createChoice("Yes", contactPage),
-    q11.createChoice("No", FormApp.PageNavigationType.SUBMIT)
-  ]);
+  // Every choice gets EXPLICIT navigation. Mixing navigated and un-navigated
+  // choices in one setChoices() call is a known way to get "Invalid data updating
+  // form", and CONTINUE is how you say "go to the next page" - naming the next
+  // page break directly is what broke the opt-in question.
+  wireBranch(q3, [
+    ["0", aboutYouPage],
+    ["1-5", CONTINUE],
+    ["6-15", CONTINUE],
+    ["16-30", CONTINUE],
+    ["More than 30", CONTINUE],
+    ["I don't have a wishlist", aboutYouPage]
+  ], "0 and \"I don't have a wishlist\" -> About you; everything else -> next section");
+
+  wireBranch(q11, [
+    ["Yes", CONTINUE],
+    ["No", FormApp.PageNavigationType.SUBMIT]
+  ], "No -> Submit form; Yes -> next section");
 
   Logger.log("Share this link:  " + form.getPublishedUrl());
   Logger.log("Edit it here:     " + form.getEditUrl());
@@ -226,5 +232,34 @@ function applySetting(form, name, value) {
     form[name](value);
   } catch (err) {
     Logger.log("Skipped " + name + " - " + err.message);
+  }
+}
+
+
+/**
+ * Applies branching to a multiple-choice item, and degrades to a plain question
+ * if the Forms API refuses it.
+ *
+ * Branching is the fiddliest corner of this API and the least valuable part of
+ * the form - it spares a few people four irrelevant questions. A throw here would
+ * cost you all eleven questions instead, so on failure the choices are set without
+ * navigation and the log says exactly what to click to restore it by hand.
+ *
+ * @param item   MultipleChoiceItem to wire
+ * @param pairs  [[choiceText, navigationTargetOrType], ...]
+ * @param label  what the branch should do, logged if it has to fall back
+ */
+function wireBranch(item, pairs, label) {
+  try {
+    item.setChoices(pairs.map(function (p) { return item.createChoice(p[0], p[1]); }));
+  } catch (err) {
+    item.setChoiceValues(pairs.map(function (p) { return p[0]; }));
+    Logger.log(
+      'COULD NOT SET BRANCHING on "' + item.getTitle() + '" - ' + err.message + '\n' +
+      '  The question itself is fine and the form is usable as-is.\n' +
+      '  To restore it: open the form, click the three dots under that question,\n' +
+      '  choose "Go to section based on answer", then set:\n' +
+      '    ' + label
+    );
   }
 }
