@@ -1,5 +1,9 @@
 # Status — resume here
 
+> **Read `GUARDRAILS.md` first.** Case Study 1 missed its cutoff by 8.21 points, on
+> Creativity of Solution and Data & Metrics Orientation — not on discovery depth.
+> Part 1 here is done; Parts 2–7 hold nearly all the remaining marks.
+
 Last updated: 18 Aug 2026, 14:41 IST
 
 ## Where things stand
