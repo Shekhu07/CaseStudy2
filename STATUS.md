@@ -88,8 +88,8 @@ content was hunted for directly and is not there at scale.
 
 **What it costs, and what it does not.** The wishlist add is a premise the brief
 supplies, not a claim we have to evidence. The chain that needs evidence is what
-*stops* conversion — fit 21.1%, trust 15.4%, return-certainty 11.3% — and 3,922
-documents carry it. What this corpus cannot describe is the wishlist *surface*:
+*stops* conversion — fit 30.6%, fabric/quality 11.4%, trust 9.7% pre-purchase,
+Myntra-only — and 2,340 pre-purchase documents carry it. What this corpus cannot describe is the wishlist *surface*:
 revisit rates, how anyone triages 40 saved items, whether they recall saving
 them. Same hole as the "% who return within 30 days" term that guardrails rule 3
 already flags as an assumption, and the reason AGENTS.md rules out a
@@ -174,6 +174,13 @@ and it *rises* to 19.5% on Myntra-only.
 
 ## Corpus-wide facets, over all 3,922
 
+> **These are full-corpus, all-stages figures — including AJIO/Nykaa and including
+> post-purchase documents.** They are correct for what they measure and wrong for
+> almost any claim in the deck. For anything about Myntra shoppers deciding whether
+> to buy, use the Myntra-only pre-purchase slice in
+> `docs/part2-metric-decomposition.md`, where fit is 30.6% (not 21.1%),
+> genuine_intent is 72.2% (not 81.3%) and return-certainty is 1.9% (not 11.3%).
+
 | information_need | Share | | intent_type | Share |
 |---|---:|---|---|---:|
 | fit_and_size | **21.1%** | | genuine_intent | **81.3%** |
@@ -188,8 +195,11 @@ and it *rises* to 19.5% on Myntra-only.
 | real_body_photos | 0.3% | | checkout | 5.9% |
 | occasion_appropriateness | 0.2% | | shortlist | 2.2% |
 
-`intent_type` at **81.3% genuine_intent against 1.0% bookmark** is a strong
-result for the problem definition: these are people who meant to buy.
+`intent_type` at 81.3% genuine_intent against 1.0% bookmark looks like a strong
+result for the problem definition, and the claim behind it holds — these are
+people who meant to buy. **But quote 72.2%**, the Myntra-only pre-purchase figure.
+The headline number is inflated by post-purchase documents, where the question
+does not apply; see the correction below.
 
 Top segment signals: `fit_uncertainty_prone` 24.5%, `new_or_low_trust_user`
 24.0%, `price_sensitive` 10.4%. The first two mirror the top two themes.

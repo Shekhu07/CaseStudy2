@@ -69,19 +69,40 @@ own corpus:
 
 ```
 30-day conversion
-  = % of adds carrying genuine purchase intent          → we measured 81.3% (vs 1.0% bookmark)
-  × % who return to the wishlist within 30 days         → not measurable from our corpus; state as assumption
-  × % whose blocking uncertainty gets resolved          → THE LEAK. fit_and_size 21.1%, trust 15.4%,
-                                                          return-certainty 11.3%, true-colour 8.0%
-  × % who then complete checkout                        → price/fees 4.4%, stock 4.6%
+  = % of adds carrying genuine purchase intent          → 72.2% (Myntra-only, pre-purchase)
+  × % who return to the wishlist within 30 days         → not measurable from our corpus; survey Q4 reads it
+  × % whose blocking uncertainty gets resolved          → THE LEAK. 66.1% of pre-purchase documents name
+                                                          a doubt the product never answers
+  × % who then complete checkout                        → dominant checkout need is price, 24.8% — banned
 ```
 
-`journey_stage` closes the argument quantitatively: **evaluate 57.8%** vs discover 7.7% and checkout
-5.9%. The leak is at evaluation, and the largest single unresolved need is fit at 21.1%. That is the
-"arithmetic, not context" move that was missing from CS1 — make it a slide.
+**These figures were corrected on 19 Aug. The originals were full-corpus and all-stages; every number
+here is Myntra-only and restricted to the stage the metric is actually about.** The full working is in
+`docs/part2-metric-decomposition.md`; do not re-derive them from `analysis.json` head-line shares,
+which are neither.
 
-The 81.3% genuine-intent figure is our strongest single number. It says these are people who meant to
-buy, which is what makes the whole problem worth solving. Lead with it.
+| Was | Now | Why it moved |
+|---|---|---|
+| genuine intent 81.3% | **72.2%** | 94.5% of post-purchase docs were tagged `genuine_intent` — a review written after delivery has no save event to have an intent about. Pre-purchase only |
+| fit 21.1% | **30.6%** of pre-purchase docs, **46.2%** of named doubts | full-corpus all-stages → Myntra-only pre-purchase |
+| trust 15.4% | 9.7% | same |
+| return-certainty 11.3% | **1.9%** | returns are overwhelmingly *post*-purchase. Real theme, 9.8% Myntra reach — but **not** what blocks a save from converting. Do not claim it is |
+| evaluate 57.8% | **67.9%** | Myntra-only |
+
+`journey_stage` closes the argument quantitatively: **evaluate 67.9%** against checkout 3.9%. The leak
+is at evaluation, and the largest single unresolved need is fit — **46.2% of every doubt shoppers name**,
+with nothing within 28 points of it. That is the "arithmetic, not context" move missing from CS1.
+
+72.2% is still the number to lead with: these are people who meant to buy, which is what makes the
+problem worth solving. It is lower than 81.3% and it is the one that survives the obvious question
+— *how does a delivery complaint tell you what someone meant when they saved?* Quote the defensible
+figure, not the flattering one.
+
+**One argument to avoid.** "Doubt-resolution has the most leverage" is arithmetically false: in a
+multiplicative model, equal *relative* lifts on any term move the north star identically (+25% each).
+The case for attacking it is **headroom** (nothing addresses it today), **ownership** (revisit is
+already served by notifications, checkout is mature), and the fact that the monetary-incentive ban
+rules out the checkout term's dominant friction.
 
 ## Rule 4 — Do not ship a notification again.
 
