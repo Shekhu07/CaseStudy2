@@ -36,7 +36,13 @@ anything.
 10. Which city?
 11. Happy to be contacted for a 30-minute call? → email, opt-ins only
 
-Six pages. One paragraph box. Everything else is a tap.
+Seven pages. One paragraph box. Everything else is a tap.
+
+Q3 and Q11 each sit **alone on their page**, and must stay that way: Google Forms
+only honours per-answer branching on the last question of a section, and the
+Apps Script `setChoices()` call throws *"Invalid data updating form"* if you
+attach navigation to a question with anything after it. Adding a question beside
+either one breaks the branch.
 
 ## What was cut, and where it went
 

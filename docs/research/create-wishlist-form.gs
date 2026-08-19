@@ -78,9 +78,17 @@ function createWishlistForm() {
     .setTitle("Your wishlist")
     .setHelpText("Open your Myntra wishlist and have a quick look before answering.");
 
+  // Alone on its page ON PURPOSE. Google Forms only honours per-answer branching
+  // on the LAST question of a section, and setChoices() throws "Invalid data
+  // updating form" if you attach navigation to a question with anything after it.
+  // If you add a question here, the branch below breaks.
   var q3 = form.addMultipleChoiceItem()
     .setTitle("How many items are in it right now?")
     .setRequired(true);
+
+  /* ---------------------------- Page 3 ---------------------------- */
+
+  form.addPageBreakItem().setTitle("The last 30 days");
 
   form.addMultipleChoiceItem()
     .setTitle("In the last 30 days, how many times did you open it?")
@@ -92,7 +100,7 @@ function createWishlistForm() {
     .setChoiceValues(["Yes, one item", "Yes, more than one", "No", "I don't remember"])
     .setRequired(true);
 
-  /* ---------------------------- Page 3 ---------------------------- */
+  /* ---------------------------- Page 4 ---------------------------- */
 
   form.addPageBreakItem()
     .setTitle("The last thing you saved")
@@ -145,7 +153,7 @@ function createWishlistForm() {
     .setHelpText("Whatever would actually settle it. One line is fine.")
     .setRequired(true);
 
-  /* ---------------------------- Page 4 ---------------------------- */
+  /* ---------------------------- Page 5 ---------------------------- */
 
   var aboutYouPage = form.addPageBreakItem().setTitle("About you");
 
@@ -158,7 +166,7 @@ function createWishlistForm() {
     .setTitle("Which city?")
     .setRequired(true);
 
-  /* ---------------------------- Page 5 ---------------------------- */
+  /* ---------------------------- Page 6 ---------------------------- */
 
   form.addPageBreakItem()
     .setTitle("Last thing")
@@ -167,11 +175,12 @@ function createWishlistForm() {
       "item by item. No payment, no sales pitch - I'll share what I find if you're curious."
     );
 
+  // Also alone on its page, for the same reason as q3.
   var q11 = form.addMultipleChoiceItem()
     .setTitle("Happy to be contacted for that?")
     .setRequired(true);
 
-  /* ---------------------------- Page 6 ---------------------------- */
+  /* ---------------------------- Page 7 ---------------------------- */
 
   var contactPage = form.addPageBreakItem()
     .setTitle("Thanks - how do I reach you?")
