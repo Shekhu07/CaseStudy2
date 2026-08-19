@@ -41,12 +41,15 @@ function createWishlistForm() {
     "because nobody remembers this accurately."
   );
 
-  form.setProgressBarEnabled(true);
-  form.setShuffleQuestions(false);
-  form.setCollectEmail(false);            // asked at Q11 only, and only from opt-ins
-  form.setLimitOneResponsePerUser(false); // requiring sign-in suppresses completion
-  form.setAllowResponseEdits(false);
-  form.setShowLinkToRespondAgain(false);
+  // Cosmetic settings only. Applied defensively because the Forms API renames
+  // these occasionally, and a form with all its questions beats a run that died
+  // on a progress bar. Anything that fails is logged and skipped.
+  applySetting(form, "setProgressBar", true);
+  applySetting(form, "setShuffleQuestions", false);
+  applySetting(form, "setCollectEmail", false);            // asked at Q11 only, from opt-ins
+  applySetting(form, "setLimitOneResponsePerUser", false); // sign-in suppresses completion
+  applySetting(form, "setAllowResponseEdits", false);
+  applySetting(form, "setShowLinkToRespondAgain", false);
 
   /* ---------------------------- Page 1 ---------------------------- */
 
@@ -198,4 +201,21 @@ function createWishlistForm() {
 
   Logger.log("Share this link:  " + form.getPublishedUrl());
   Logger.log("Edit it here:     " + form.getEditUrl());
+}
+
+/**
+ * Calls form[name](value) if that method exists, and logs instead of throwing if
+ * it does not. Used only for presentation settings - never for questions, which
+ * must fail loudly.
+ */
+function applySetting(form, name, value) {
+  if (typeof form[name] !== "function") {
+    Logger.log("Skipped " + name + " - not available in this version of the Forms API.");
+    return;
+  }
+  try {
+    form[name](value);
+  } catch (err) {
+    Logger.log("Skipped " + name + " - " + err.message);
+  }
 }
