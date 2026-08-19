@@ -14,7 +14,7 @@ const STAGES = [
   {
     n: "0",
     name: "Ingest",
-    what: "Five public sources scraped into one normalised schema, deduped by content hash across sources. Reddit and social media were scoped out — see the limitations below.",
+    what: "Six public sources scraped into one normalised schema, deduped by content hash across sources. The sources are deliberately structurally different — app-store reviews, long-form written reviews, forum threads and video comments — so no single channel's bias sets the agenda.",
   },
   {
     n: "1",
@@ -56,7 +56,7 @@ export default function Methodology({ analysis }: { analysis: Analysis }) {
         </h3>
         <div className="mt-3 grid gap-3 sm:grid-cols-4">
           {[
-            ["Scraped", corpus.raw, "documents pulled from five public sources"],
+            ["Scraped", corpus.raw, "documents pulled from six public sources"],
             ["After dedupe", corpus.afterDedupe, "unique documents"],
             ["Relevant", corpus.relevant, "survived the Stage 1 filter"],
             ["Tagged", corpus.tagged, "carry full structured tags"],
@@ -171,16 +171,34 @@ export default function Methodology({ analysis }: { analysis: Analysis }) {
             arguable inputs, deliberately exposed rather than hidden inside the score.
           </li>
           <li>
-            — Reddit and social media are excluded. Reddit was scoped out on platform-policy grounds;
-            X&rsquo;s API is paid-only and Meta&rsquo;s platforms are closed to this access pattern, so no
-            free compliant route exists. Both would have added conversational depth this corpus is
-            thinner on.
+            — X and Quora are absent. X&rsquo;s API is paid-only and Meta&rsquo;s platforms are closed to
+            this access pattern, so no free compliant route existed. Myntra&rsquo;s own product-page
+            reviews are also absent; the pre-purchase fear they encode is instead captured by the
+            relevance filter&rsquo;s expectation-gap rule.
+          </li>
+          <li>
+            — Comparison sets and occasion-bound saves are not separated out as intent types; both sit
+            inside genuine intent. This corpus can say how many shoppers meant to buy, not how many were
+            weighing one saved item against another. Interviews resolve that split.
           </li>
           <li>
             — This is discovery, not proof. It ranks where to look; primary research is what confirms
             the problem.
           </li>
         </ul>
+      </div>
+
+      {/* provenance */}
+      <div>
+        <h3 className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>
+          Data provenance
+        </h3>
+        <p className="mt-2 text-sm" style={{ color: "var(--text-secondary)", maxWidth: "72ch" }}>
+          Every document is publicly posted content, collected through official APIs or published
+          endpoints, aggregated and de-identified. No account data, no private messages and no personal
+          data are stored: the corpus keeps only the text, its source, its date and a content hash.
+          Usernames are not retained, and quotes are shown verbatim but unattributed.
+        </p>
       </div>
 
       <p className="text-xs" style={{ color: "var(--text-muted)" }}>

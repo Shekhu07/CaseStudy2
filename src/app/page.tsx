@@ -53,7 +53,7 @@ export default function Home() {
         <p className="mt-3 text-base" style={{ color: "var(--text-secondary)", maxWidth: "70ch" }}>
           An AI discovery engine over{" "}
           <strong style={{ color: "var(--text-primary)" }}>{corpus.afterDedupe.toLocaleString("en-IN")}</strong>{" "}
-          public conversations from five sources. It induces the frictions blocking wishlist purchases
+          public conversations from six sources. It induces the frictions blocking wishlist purchases
           bottom-up, quantifies each one, and ranks them by how much they could move the metric —
           under the constraint that no solution may use discounts or cashback.
         </p>

@@ -22,7 +22,7 @@ import {
 
 export const TAGS_PATH = join(OUT_DIR, "tags.json");
 
-const BATCH = 8; // small: tagging output is far larger per document than Stage 1
+export const BATCH = 8; // small: tagging output is far larger per document than Stage 1
 const CONCURRENCY = 2;
 // Deliberately frequent. Free-tier throughput means a full pass takes over an
 // hour, and a coarse interval both hides progress and risks losing a long
@@ -94,6 +94,56 @@ const ResultSchema = z.object({
 
 const ResponseSchema = z.object({ results: z.array(ResultSchema) });
 
+/**
+ * One batch of documents to their tags.
+ *
+ * Extracted from `runTagging` so the stability audit can re-tag a sample
+ * through the identical prompt, schema and post-processing without going
+ * anywhere near `tags.json`. A stability number measured through a
+ * reimplementation of this path would measure the reimplementation.
+ */
+export async function tagBatch(
+  batch: Doc[],
+  system: string,
+  validThemes: Set<string>,
+): Promise<Tag[]> {
+  const res = await completeJson(
+    { system, prompt: taggingPrompt(batch), temperature: 0, maxOutputTokens: 8192, tier: "bulk" },
+    ResponseSchema,
+  );
+  const byIndex = new Map(res.results.map((r) => [r.index, r]));
+
+  return batch.flatMap<Tag>((d, i) => {
+    const r = byIndex.get(i);
+    if (!r) return [];
+
+    // Drop hallucinated theme ids rather than letting them pollute counts.
+    const themes = [...new Set(r.themes.map((t) => t.trim()))].filter((t) => validThemes.has(t));
+
+    // A quote the model did not actually copy is worthless as evidence.
+    const normalise = (s: string) => s.toLowerCase().replace(/\s+/g, " ").trim();
+    const quote = normalise(d.text).includes(normalise(r.evidence_quote))
+      ? r.evidence_quote.slice(0, 240)
+      : "";
+
+    return [
+      {
+        id: d.id,
+        themes,
+        severity: r.severity,
+        journey_stage: r.journey_stage,
+        intent_type: r.intent_type,
+        information_needs: [...new Set(r.information_needs)].filter((n) => n !== "none"),
+        external_behaviour: [...new Set(r.external_behaviour)].filter((b) => b !== "none"),
+        workaround: r.workaround.slice(0, 300),
+        segment_signals: [...new Set(r.segment_signals)],
+        evidence_quote: quote,
+        confidence: r.confidence,
+      },
+    ];
+  });
+}
+
 export async function runTagging(docs: Doc[], taxonomy: Taxonomy): Promise<Tag[]> {
   const validThemes = new Set(taxonomy.themes.map((t) => t.id));
   const system = taggingSystem(taxonomy.themes);
@@ -115,43 +165,7 @@ export async function runTagging(docs: Doc[], taxonomy: Taxonomy): Promise<Tag[]
   for (const group of groups) {
     const groupTags = await mapLimit(group, CONCURRENCY, async (batch) => {
       try {
-        const res = await completeJson(
-          { system, prompt: taggingPrompt(batch), temperature: 0, maxOutputTokens: 8192, tier: "bulk" },
-          ResponseSchema,
-        );
-        const byIndex = new Map(res.results.map((r) => [r.index, r]));
-
-        return batch.flatMap<Tag>((d, i) => {
-          const r = byIndex.get(i);
-          if (!r) return [];
-
-          // Drop hallucinated theme ids rather than letting them pollute counts.
-          const themes = [...new Set(r.themes.map((t) => t.trim()))].filter((t) =>
-            validThemes.has(t),
-          );
-
-          // A quote the model did not actually copy is worthless as evidence.
-          const normalise = (s: string) => s.toLowerCase().replace(/\s+/g, " ").trim();
-          const quote = normalise(d.text).includes(normalise(r.evidence_quote))
-            ? r.evidence_quote.slice(0, 240)
-            : "";
-
-          return [
-            {
-              id: d.id,
-              themes,
-              severity: r.severity,
-              journey_stage: r.journey_stage,
-              intent_type: r.intent_type,
-              information_needs: [...new Set(r.information_needs)].filter((n) => n !== "none"),
-              external_behaviour: [...new Set(r.external_behaviour)].filter((b) => b !== "none"),
-              workaround: r.workaround.slice(0, 300),
-              segment_signals: [...new Set(r.segment_signals)],
-              evidence_quote: quote,
-              confidence: r.confidence,
-            },
-          ];
-        });
+        return await tagBatch(batch, system, validThemes);
       } catch (err) {
         log("tag", `batch failed, skipping: ${String(err).slice(0, 160)}`);
         return [];

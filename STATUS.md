@@ -271,6 +271,59 @@ model that produced the tags. It catches blatant errors and systematic patterns;
 it cannot catch a bias the auditor shares with the tagger. A human spot-check of
 ~30 documents is still worth doing before the deck.
 
+## The stability check — run 19 Aug
+
+Playbook QC check #2, and it had never been done.
+`npm run audit -- --stage stability --n 30 --seed 7` re-tags a seeded sample
+through the production path (`tagBatch`) and diffs against `tags.json`. It
+writes nothing.
+
+| Field | Same on re-run |
+|---|---|
+| themes (exact set) | 19/30 · **63%** |
+| journey_stage | 23/30 · 77% |
+| intent_type | 23/30 · 77% |
+| severity (exact) | 22/30 · 73% |
+| severity (within 1) | 26/30 · 87% |
+| information_needs (set) | 22/30 · 73% |
+| segment_signals (set) | 20/30 · 67% |
+
+Tagging runs at `temperature: 0`, so this is provider non-determinism, and it is
+lower than it should be. **Read it as a limit on document-level labels, not on
+the shares.** No single document's tag is ground truth. Aggregate reach is far
+steadier than 63% suggests, because independent flips partly cancel — but note
+the Wilson intervals on the dashboard express *sampling* uncertainty only and do
+**not** include this labelling noise. Say that plainly rather than quoting reach
+to two decimals.
+
+Do **not** cite the 192-document partial re-tag from 19 Aug as this figure. That
+run used a changed prompt, so its 17% theme churn is an upper bound on
+instability, not a measurement of it.
+
+## Out-of-market documents — measured 19 Aug, not worth fixing
+
+The stability sample surfaced a German-language Temu review and a Reddit thread
+about *Overwatch* character skins. Quantified corpus-wide: **73 tagged documents
+(1.86%)** come from YouTube or Reddit, name Temu/Shein/AliExpress, and never name
+Myntra, AJIO or Nykaa. 50 carry a theme. This is the r/Steam and r/CrusaderKings
+failure again — right behaviour, wrong market — leaking through the *core*
+queries this time, mostly via haul-video comment threads.
+
+App-store reviews are excluded from that count on purpose: a Play review that
+says "Meesho is cheaper" without naming Myntra is still a Myntra review.
+
+Dropping all 73 moves every theme by **≤0.36pp** and **changes no rank**:
+
+| Theme | Now | Cleaned | Δ |
+|---|---:|---:|---:|
+| Quality, Authenticity & Seller Trust | 25.52% | 25.67% | +0.15pp |
+| Cumbersome Return & Exchange Policies | 16.14% | 16.45% | +0.31pp |
+| Missing Product Specifications | 6.96% | 6.60% | −0.36pp |
+| Unreliable Size & Fit Info | 16.65% | 16.68% | +0.03pp |
+
+Same class as the severity clamp: real, measured, immaterial. **Skip it**, per
+GUARDRAILS rule 1. Footnote if a grader asks how out-of-market noise was handled.
+
 **Relevance is permissive, not wrong.** The clear false positives were
 low-information chatter — a joke ("Everyone seeing the outfit — Myntra; me
 seeing the price — Meesho 😂"), a Laneige lip-mask recommendation, "I am gonna
@@ -440,9 +493,11 @@ Open decisions, each described in full in its section above:
 2. **`severity` fallback.** Out-of-range values coerce to mid-scale 3; a clamp
    (0 → 1, 7 → 5) is more faithful. Small effect (themed mean 3.82 → 3.84) but
    `severity` feeds `severityNorm` in the opportunity score.
-3. **Human spot-check.** The 50-document audit was model-run. ~30 documents read
-   by a person is the cheapest remaining credibility win, because a model
-   auditing a model cannot catch a shared bias.
+3. **Human spot-check — the only one still open.** The 50-document audit was
+   model-run. ~30 documents read by a person is the cheapest remaining
+   credibility win, because a model auditing a model cannot catch a shared bias.
+   `npm run audit -- --stage tag --n 30 --seed 7` prints the sample; record the
+   agreement % beside the 83%/90% model figures above.
 
 Nice-to-have, not blocking:
 
