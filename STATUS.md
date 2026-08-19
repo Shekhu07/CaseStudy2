@@ -57,6 +57,48 @@ from the free OAuth route in `pipeline/sources/reddit.ts` — set
 `REDDIT_CLIENT_ID`/`REDDIT_CLIENT_SECRET`, clear `APIFY_TOKEN`, and it dedupes
 against what is already held.
 
+## Why almost nothing in here mentions the wishlist
+
+Read any sample of this corpus and you will find post-purchase complaints and
+product questions, and no wishlist. That is the corpus working as expected, and
+a grader will ask about it in exactly those words.
+
+**61 of 3,922 tagged documents (1.56%)** mention a wishlist, a saved item or
+save-for-later. Myntra-side only, that is **26 documents** (play 5, apple 4,
+reddit 14, youtube 3); the other 35 are AJIO/Nykaa. In the full 19,143-doc
+corpus the rate is 0.41%, so the relevance filter is *enriching* wishlist
+content roughly 4×. There simply is not much of it.
+
+At a 1.56% base rate, **a random 30-document sample contains none 62% of the
+time.** Seeing zero is the single most likely outcome, not a sampling failure.
+
+**Why the sources cannot supply it.** All six are public writing, and people
+write publicly in two situations: something went wrong after they paid (hence
+26.5% `post_purchase`), or they want information about something they can see. A
+wishlist generates neither — it is not a grievance, and it is not a question
+anyone else can answer. Saving also *relieves* the tension rather than resolving
+it, so there is no felt problem to report. The behaviour is invisible to
+text-mining by the same mechanism that makes it worth fixing.
+
+**This was tested, not assumed.** `GAP_SEARCHES` in `pipeline/sources/reddit-queries.ts`
+included "myntra wishlist forgot about it", "wishlist full never buy india
+shopping" and "myntra saved items never ordered". That run returned 9.2%
+relevance against the core set's 26.1%, at $1.20 for 48 relevant documents. The
+content was hunted for directly and is not there at scale.
+
+**What it costs, and what it does not.** The wishlist add is a premise the brief
+supplies, not a claim we have to evidence. The chain that needs evidence is what
+*stops* conversion — fit 21.1%, trust 15.4%, return-certainty 11.3% — and 3,922
+documents carry it. What this corpus cannot describe is the wishlist *surface*:
+revisit rates, how anyone triages 40 saved items, whether they recall saving
+them. Same hole as the "% who return within 30 days" term that guardrails rule 3
+already flags as an assumption, and the reason AGENTS.md rules out a
+wishlist-UI-centric MVP.
+
+Closed by the Part 3 wishlist walkthroughs and by `docs/teardown/`, which shows
+the surface directly without needing anyone to have written about it. Not by
+more scraping.
+
 ## The taxonomy — 12 themes, full-corpus reach
 
 Reach is now over **all 3,922 tagged documents**. Documents can carry several
