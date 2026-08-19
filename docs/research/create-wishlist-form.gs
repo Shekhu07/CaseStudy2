@@ -11,18 +11,18 @@
  * Re-running creates a SECOND form. Edit wording in the UI instead.
  *
  * ---------------------------------------------------------------------------
- * SCOPE - 11 questions, about 2 minutes, one free-text box.
+ * SCOPE - 10 questions, about 2 minutes, one free-text box.
  *
  * This form does only what a form is uniquely good at: counting things across
  * many people. Everything that needs a follow-up question is deliberately left
  * to the walkthrough interview, which is a better instrument for it.
  *
  * It measures exactly four things the 3,922-document corpus cannot:
- *   Q4  how often the wishlist is revisited   -> the assumed term in the Part 2 tree
- *   Q5  purchases from it in 30 days          -> the north-star metric itself
- *   Q6  why the item was saved                -> the intent split hidden in genuine_intent
- *   Q7  what is blocking it                   -> triangulates against the Part 1 themes
- * plus Q8, which is the test of whether the MVP resolves anything.
+ *   Q3  how often the wishlist is revisited   -> the assumed term in the Part 2 tree
+ *   Q4  purchases from it in 30 days          -> the north-star metric itself
+ *   Q5  why the item was saved                -> the intent split hidden in genuine_intent
+ *   Q6  what is blocking it                   -> triangulates against the Part 1 themes
+ * plus Q7, which is the test of whether the MVP resolves anything.
  *
  * Moved to the interview, where they are asked better: wishlist age, removal
  * behaviour, comparison-set size, occasion dates, the 0-10 still-want score,
@@ -35,7 +35,7 @@ function createWishlistForm() {
 
   form.setDescription(
     "I'm a product management fellow researching why clothes people genuinely want end up " +
-    "sitting in a wishlist unbought. Two minutes, 11 questions.\n\n" +
+    "sitting in a wishlist unbought. Two minutes, 10 questions.\n\n" +
     "Anonymous, used only for a student case study, reported as aggregate numbers.\n\n" +
     "HAVE YOUR PHONE HANDY - two questions ask you to glance at your actual wishlist, " +
     "because nobody remembers this accurately."
@@ -46,30 +46,24 @@ function createWishlistForm() {
   // on a progress bar. Anything that fails is logged and skipped.
   applySetting(form, "setProgressBar", true);
   applySetting(form, "setShuffleQuestions", false);
-  applySetting(form, "setCollectEmail", false);            // asked at Q11 only, from opt-ins
+  applySetting(form, "setCollectEmail", false);            // asked at the end only, from opt-ins
   applySetting(form, "setLimitOneResponsePerUser", false); // sign-in suppresses completion
   applySetting(form, "setAllowResponseEdits", false);
   applySetting(form, "setShowLinkToRespondAgain", false);
 
   /* ---------------------------- Page 1 ---------------------------- */
 
-  // Forms can only branch on multiple choice and dropdown, never checkboxes, so
-  // this does not screen anyone out. Filter "None of these" at analysis time.
-  // The real screen is Q3, which does branch.
-  form.addCheckboxItem()
-    .setTitle("Where do you shop for clothes?")
-    .setChoiceValues([
-      "Myntra",
-      "AJIO",
-      "Nykaa Fashion",
-      "Amazon / Flipkart Fashion",
-      "None of these"
-    ])
-    .setRequired(true);
-
   form.addCheckboxItem()
     .setTitle("Happy for your anonymous answers to be used in a student case study?")
     .setChoiceValues(["Yes"])
+    .setRequired(true);
+
+  // A real screen, and the only thing this needs to establish. Which OTHER apps
+  // someone uses feeds none of the four analyses, and AGENTS.md says Myntra
+  // claims are quoted Myntra-only regardless - so asking would cost a tap and
+  // buy nothing. Last on its page because that is what branching requires.
+  var q1 = form.addMultipleChoiceItem()
+    .setTitle("Do you shop for clothes on Myntra?")
     .setRequired(true);
 
   /* ---------------------------- Page 2 ---------------------------- */
@@ -171,8 +165,9 @@ function createWishlistForm() {
   form.addPageBreakItem()
     .setTitle("Last thing")
     .setHelpText(
-      "I'm running a few 30-minute video calls where people walk me through their wishlist " +
-      "item by item. No payment, no sales pitch - I'll share what I find if you're curious."
+      "I'm running a few 30-minute calls where people walk me through their wishlist item " +
+      "by item. You'd share your screen so I can see it - camera off is completely fine. " +
+      "No payment, no sales pitch, and I'll share what I find if you're curious."
     );
 
   // Also alone on its page, for the same reason as q3.
@@ -195,6 +190,11 @@ function createWishlistForm() {
    * ---------------------------------------------------------------- */
 
   var CONTINUE = FormApp.PageNavigationType.CONTINUE;
+
+  wireBranch(q1, [
+    ["Yes", CONTINUE],
+    ["No", FormApp.PageNavigationType.SUBMIT]
+  ], "No -> Submit form; Yes -> next section");
 
   // Every choice gets EXPLICIT navigation. Mixing navigated and un-navigated
   // choices in one setChoices() call is a known way to get "Invalid data updating
