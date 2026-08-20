@@ -106,13 +106,30 @@ The opt-in says "call", not "video call", and states that camera-off is fine. Th
 walkthrough needs their **screen**, not their face; asking for video raises the
 bar for no research benefit.
 
-Eight pages. One paragraph box. Everything else is a tap.
+Seven pages. One paragraph box. Everything else is a tap.
 
-Q2, Q3 and Q15 each sit **alone at the end of their page**, and must stay that way: Google Forms
-only honours per-answer branching on the last question of a section, and the
-Apps Script `setChoices()` call throws *"Invalid data updating form"* if you
-attach navigation to a question with anything after it. Adding a question beside
-either one breaks the branch.
+### The page structure, and why it is not shorter
+
+Q2, Q3 and Q15 must each be **the last question in their section.** Google Forms
+only honours per-answer branching on the final question of a page, and the Apps
+Script `setChoices()` call throws *"Invalid data updating form"* if you attach
+navigation to a question with anything after it. Adding a question *after* any of
+those three breaks the branch; adding one *before* is fine.
+
+That distinction is why the opt-in no longer has a page to itself — it sits at the
+foot of "About you" with age and city above it.
+
+Which merges are and are not available:
+
+| Pages | Merge? | Why |
+|---|---|---|
+| 6 + 7 · About you + opt-in | ✅ **Done** | The opt-in only has to be *last*, not alone |
+| 7 + 8 · opt-in + contact details | ❌ Never | Merging shows the email field to people who answered *No*. The whole point of the split is that only opt-ins are asked for contact details |
+| 5 + 6 · wishlist-in-general + About you | ❌ | Page 6 is the branch target for an empty wishlist. Merging would drop those respondents onto Q10–Q12, which they cannot answer |
+| 2 + 3 · wishlist count + last 30 days | ❌ | Q3 carries the empty-wishlist branch and must stay last on its page |
+| 3 + 4 · last 30 days + last saved item | ⚠️ Possible, rejected | The two pages use different frames — the whole list vs one item. Q5 asks whether you bought "FROM it" (the list) and Q6 asks why you saved "it" (the item). On one page that pronoun is ambiguous, and the scoping help text stops being a heading |
+
+Seven pages is the floor without breaking a branch or a frame of reference.
 
 ## What was cut, and where it went
 

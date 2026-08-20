@@ -11,7 +11,7 @@
  * Re-running creates a SECOND form. Edit wording in the UI instead.
  *
  * ---------------------------------------------------------------------------
- * SCOPE - 15 questions, about 3 minutes, one free-text box.
+ * SCOPE - 15 questions across 7 pages, about 3 minutes, one free-text box.
  *
  * This form does only what a form is uniquely good at: counting things across
  * many people. Everything that needs a follow-up question is deliberately left
@@ -290,7 +290,11 @@ function createWishlistForm() {
     ])
     .setRequired(true);
 
-  /* ---------------------------- Page 6 ---------------------------- */
+  /* ---------------------------- Page 6 ----------------------------
+   * Also the branch target for an empty wishlist, so everything on it must be
+   * answerable by someone who has never saved anything. Age, city and the
+   * interview opt-in all qualify.
+   * ---------------------------------------------------------------- */
 
   var aboutYouPage = form.addPageBreakItem().setTitle("About you");
 
@@ -303,22 +307,21 @@ function createWishlistForm() {
     .setTitle("Which city?")
     .setRequired(true);
 
-  /* ---------------------------- Page 7 ---------------------------- */
-
-  form.addPageBreakItem()
-    .setTitle("Last thing")
+  // The opt-in used to have a page to itself. It does not need one: branching only
+  // requires the question to be LAST in its section, not alone in it. Folded in
+  // here, and the call explanation moved from the page break onto the question.
+  //
+  // Nothing may be added after this question - see the note on q3.
+  var qOptIn = form.addMultipleChoiceItem()
+    .setTitle("Happy to be contacted for that?")
     .setHelpText(
       "I'm running a few 30-minute calls where people walk me through their wishlist item " +
       "by item. You'd share your screen so I can see it - camera off is completely fine. " +
       "No payment, no sales pitch, and I'll share what I find if you're curious."
-    );
-
-  // Also alone on its page, for the same reason as q3 - it is Q15 now, not Q11.
-  var qOptIn = form.addMultipleChoiceItem()
-    .setTitle("Happy to be contacted for that?")
+    )
     .setRequired(true);
 
-  /* ---------------------------- Page 8 ---------------------------- */
+  /* ---------------------------- Page 7 ---------------------------- */
 
   var contactPage = form.addPageBreakItem()
     .setTitle("Thanks - how do I reach you?")
