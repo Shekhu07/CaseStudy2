@@ -134,6 +134,53 @@ It deliberately never touches branching. Open the form and verify by eye:
 - [ ] The form is now **6 pages**, and *"Now think about the last thing you
       saved"* appears as a heading mid-page rather than as a page break
 
+---
+
+## Appendix — setting the two branches by hand
+
+`wireBranch` fails soft: if the Forms API refuses the navigation it sets the
+choices without it, logs `COULD NOT SET BRANCHING`, and the form goes live
+looking fine. This happened on the 20 Aug build. **Check the execution log after
+every run, and check the branches in Preview before sharing the link.**
+
+Repairing by hand is more reliable than re-running the script, because the same
+API call is liable to fail the same way.
+
+**Q2 — Section 1.** Click the **⋮** on the question card, choose *Go to section
+based on answer*, then:
+
+| Option | Goes to |
+|---|---|
+| Once a week or more | Continue to next section |
+| A few times a month | Continue to next section |
+| Every month or two | Continue to next section |
+| A few times a year | Continue to next section |
+| **Never - I don't buy clothes on Myntra** | **Submit form** |
+
+**Q3 — Section 2.** Same menu, then:
+
+| Option | Goes to |
+|---|---|
+| **0** | **Section 5 (About you)** |
+| 1-5 | Continue to next section |
+| 6-15 | Continue to next section |
+| 16-30 | Continue to next section |
+| More than 30 | Continue to next section |
+| **I don't have a wishlist** | **Section 5 (About you)** |
+
+**Then prove it in Preview** — the eye icon. Nothing else counts as verification:
+
+1. Answer Q2 "Never" → should land on the submit page immediately
+2. Restart, answer Q2 anything else, Q3 = **0** → should jump to "About you",
+   skipping Q4-Q12
+
+Two traps:
+
+- Once per-answer branching is on, the **"After section N"** footer dropdown no
+  longer applies. It is not the control for this.
+- **Set branching before editing any option's wording.** Editing an option's text
+  can drop the navigation attached to it.
+
 ## 10. Afterwards
 
 - **Re-running is safe.** Every patch is idempotent; a second run reports
