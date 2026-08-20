@@ -55,7 +55,7 @@ function createWishlistForm() {
 
   form.setDescription(
     "I'm a product management fellow researching why clothes people genuinely want end up " +
-      "sitting in a wishlist unbought. Three minutes, 12 questions.\n\n" +
+      "sitting in a wishlist unbought. Three minutes, 13 questions.\n\n" +
       "Completely anonymous - no email, no name, nothing that identifies you. Used only for a\n" +
       "student case study and reported as aggregate numbers.\n\n" +
       "HAVE YOUR PHONE HANDY - several questions ask you to look at your actual wishlist, " +
@@ -122,7 +122,7 @@ function createWishlistForm() {
   // If you add a question here, the branch below breaks.
   var q3 = form
     .addMultipleChoiceItem()
-    .setTitle("How many items are in it right now?")
+    .setTitle("How many items are in your wishlist right now?")
     .setRequired(true);
 
   /* ---------------------------- Page 3 ---------------------------- */
@@ -313,7 +313,7 @@ function createWishlistForm() {
   form
     .addMultipleChoiceItem()
     .setTitle(
-      "When two or three saved items are close alternatives, what usually happens?",
+      "When you've saved a few similar things and can only really buy one, what usually happens?",
     )
     .setChoiceValues([
       "I pick one fairly quickly",
@@ -337,7 +337,7 @@ function createWishlistForm() {
   form
     .addCheckboxItem()
     .setTitle(
-      "Across your whole wishlist, which of these are true of at least one item?",
+      "Thinking about everything in your wishlist - which of these apply to anything in there?",
     )
     .setChoiceValues([
       "I'm not sure it'll fit me",
@@ -399,9 +399,9 @@ function createWishlistForm() {
       ["A few times a month", CONTINUE],
       ["Every month or two", CONTINUE],
       ["A few times a year", CONTINUE],
-      ["Never - I don't shop on Myntra", FormApp.PageNavigationType.SUBMIT],
+      ["Never - I don't buy clothes on Myntra", FormApp.PageNavigationType.SUBMIT],
     ],
-    '"Never - I don\'t shop on Myntra" -> Submit form; everything else -> next section',
+    '"Never - I don\'t buy clothes on Myntra" -> Submit form; everything else -> next section',
   );
 
   // Every choice gets EXPLICIT navigation. Mixing navigated and un-navigated

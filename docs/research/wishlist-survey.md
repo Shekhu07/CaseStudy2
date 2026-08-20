@@ -75,8 +75,8 @@ one doubt or two.
 8. Did you try to find that out? Tick everywhere you looked. *(checkbox)*
 9. What would you need to know to decide on that item today — buy it, or delete it? *(paragraph)*
 10. The last time you removed something without buying it, why? *(8 reasons + never + Other)*
-11. When two or three saved items are close alternatives, what usually happens?
-12. Across your whole wishlist, which of these are true of at least one item? *(checkbox)*
+11. When you've saved a few similar things and can only really buy one, what usually happens?
+12. Thinking about everything in your wishlist — which of these apply to anything in there? *(checkbox)*
 13. Age *(optional)*
 14. Which city? *(optional)*
 
@@ -228,6 +228,18 @@ inflates the term-C share — the number the whole Part 2 argument rests on. Wit
 single-select by design — Q7's "single biggest" framing is meaningless otherwise —
 and the dry run confirmed a real respondent will have more to say on each. Q11 and
 Q12 catch the spillover. State it as a limit; do not "fix" it by going multi-select.
+
+## Two things to remember at analysis time
+
+- **Q8 is a checkbox, so "I didn't try" and "I tried, and still couldn't find
+  out" can both be ticked.** They contradict each other. Decide the rule before
+  you look at the data: a response carrying both counts as *tried and failed*,
+  since the second option is the more specific claim. Do not decide this after
+  seeing which way it helps.
+- **Q7 has 14 options.** It is the longest list on the form and the heaviest
+  scan on a phone. It stays long because it is the Part 1 blocker taxonomy and
+  collapsing it would break the comparison against the theme shares — but if
+  completion drops, this is the question to look at first.
 
 ## Do not add
 
