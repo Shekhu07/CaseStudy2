@@ -55,11 +55,11 @@ function createWishlistForm() {
 
   form.setDescription(
     "I'm a product management fellow researching why clothes people genuinely want end up " +
-    "sitting in a wishlist unbought. Three minutes, 12 questions.\n\n" +
-    "Completely anonymous - no email, no name, nothing that identifies you. Used only for a\n" +
-    "student case study and reported as aggregate numbers.\n\n" +
-    "HAVE YOUR PHONE HANDY - several questions ask you to look at your actual wishlist, " +
-    "because nobody remembers this accurately."
+      "sitting in a wishlist unbought. Three minutes, 12 questions.\n\n" +
+      "Completely anonymous - no email, no name, nothing that identifies you. Used only for a\n" +
+      "student case study and reported as aggregate numbers.\n\n" +
+      "HAVE YOUR PHONE HANDY - several questions ask you to look at your actual wishlist, " +
+      "because nobody remembers this accurately.",
   );
 
   // Cosmetic settings only. Applied defensively because the Forms API renames
@@ -67,15 +67,18 @@ function createWishlistForm() {
   // on a progress bar. Anything that fails is logged and skipped.
   applySetting(form, "setProgressBar", true);
   applySetting(form, "setShuffleQuestions", false);
-  applySetting(form, "setCollectEmail", false);            // nothing identifying is collected at all
+  applySetting(form, "setCollectEmail", false); // nothing identifying is collected at all
   applySetting(form, "setLimitOneResponsePerUser", false); // sign-in suppresses completion
   applySetting(form, "setAllowResponseEdits", false);
   applySetting(form, "setShowLinkToRespondAgain", false);
 
   /* ---------------------------- Page 1 ---------------------------- */
 
-  form.addCheckboxItem()
-    .setTitle("Happy for your anonymous answers to be used in a student case study?")
+  form
+    .addCheckboxItem()
+    .setTitle(
+      "Happy for your anonymous answers to be used in a student case study?",
+    )
     .setChoiceValues(["Yes"])
     .setRequired(true);
 
@@ -99,38 +102,59 @@ function createWishlistForm() {
   // feeds nothing here.
   //
   // Last on its page because that is what branching requires.
-  var q1 = form.addMultipleChoiceItem()
+  var q1 = form
+    .addMultipleChoiceItem()
     .setTitle("How often do you buy clothes on Myntra?")
     .setRequired(true);
 
   /* ---------------------------- Page 2 ---------------------------- */
 
-  form.addPageBreakItem()
+  form
+    .addPageBreakItem()
     .setTitle("Your wishlist")
-    .setHelpText("Open your Myntra wishlist and have a quick look before answering.");
+    .setHelpText(
+      "Open your Myntra wishlist and have a quick look before answering.",
+    );
 
   // Alone on its page ON PURPOSE. Google Forms only honours per-answer branching
   // on the LAST question of a section, and setChoices() throws "Invalid data
   // updating form" if you attach navigation to a question with anything after it.
   // If you add a question here, the branch below breaks.
-  var q3 = form.addMultipleChoiceItem()
+  var q3 = form
+    .addMultipleChoiceItem()
     .setTitle("How many items are in it right now?")
     .setRequired(true);
 
   /* ---------------------------- Page 3 ---------------------------- */
 
-  form.addPageBreakItem()
+  form
+    .addPageBreakItem()
     .setTitle("Your wishlist, and the last thing you saved")
-    .setHelpText("Open your Myntra wishlist if you closed it - the first two need a number.");
+    .setHelpText(
+      "Open your Myntra wishlist if you closed it - the first two need a number.",
+    );
 
-  form.addMultipleChoiceItem()
+  form
+    .addMultipleChoiceItem()
     .setTitle("In the last 30 days, how many times did you open your wishlist?")
-    .setChoiceValues(["Not once", "Once", "2-3 times", "4-10 times", "More than 10 times"])
+    .setChoiceValues([
+      "Not once",
+      "Once",
+      "2-3 times",
+      "4-10 times",
+      "More than 10 times",
+    ])
     .setRequired(true);
 
-  form.addMultipleChoiceItem()
+  form
+    .addMultipleChoiceItem()
     .setTitle("In the last 30 days, did you buy anything from your wishlist?")
-    .setChoiceValues(["Yes, one item", "Yes, more than one", "No", "I don't remember"])
+    .setChoiceValues([
+      "Yes, one item",
+      "Yes, more than one",
+      "No",
+      "I don't remember",
+    ])
     .setRequired(true);
 
   /* --------- Same page: the frame changes from list to item ---------
@@ -145,14 +169,18 @@ function createWishlistForm() {
    * longer disambiguated by a page heading.
    * ---------------------------------------------------------------- */
 
-  form.addSectionHeaderItem()
+  form
+    .addSectionHeaderItem()
     .setTitle("Now think about the last thing you saved")
-    .setHelpText("Look at the most recent item you saved and haven't bought. The next four questions are about that one item.");
+    .setHelpText(
+      "Look at the most recent item you saved and haven't bought. The next four questions are about that one item.",
+    );
 
   // The intent split. All of this collapses into genuine_intent in the Part 1
   // tags. "I honestly don't remember" is not a dead option - a high score on it
   // IS the finding, because it means the wishlist records no reason for itself.
-  form.addMultipleChoiceItem()
+  form
+    .addMultipleChoiceItem()
     .setTitle("Why did you save that item rather than buy it?")
     .setChoiceValues([
       "I wanted it, but wasn't sure about something (size, fabric, whether it'd suit me)",
@@ -162,7 +190,7 @@ function createWishlistForm() {
       "I just liked it - I wasn't really planning to buy it",
       "I was worried it would go out of stock",
       "I wanted to show someone before deciding",
-      "I honestly don't remember"
+      "I honestly don't remember",
     ])
     .setRequired(true);
 
@@ -175,8 +203,11 @@ function createWishlistForm() {
   // name a blocker here, and picks the least-wrong one. Every window-shopper then
   // injects a spurious blocker into the term-C distribution - the single number
   // the whole Part 2 argument rests on. Cheap option, material correction.
-  form.addMultipleChoiceItem()
-    .setTitle("What's the single biggest thing stopping you from buying that item?")
+  form
+    .addMultipleChoiceItem()
+    .setTitle(
+      "What's the single biggest thing stopping you from buying that item?",
+    )
     .setChoiceValues([
       "Not sure it'll fit / which size to order",
       "Not sure about the fabric or quality",
@@ -190,7 +221,7 @@ function createWishlistForm() {
       "Can't decide between this and something else",
       "I don't need it yet",
       "I'd forgotten about it until now",
-      "Nothing is stopping me - I'm not actually planning to buy it"
+      "Nothing is stopping me - I'm not actually planning to buy it",
     ])
     .showOtherOption(true)
     .setRequired(true);
@@ -212,9 +243,12 @@ function createWishlistForm() {
   // "I tried, and still couldn't find out" is the option the argument rests on.
   // A high share is the root cause stated in the users' own behaviour: the doubt
   // is not laziness, it is unanswerable on the surface where it arises.
-  form.addCheckboxItem()
+  form
+    .addCheckboxItem()
     .setTitle("Did you try to find that out? Tick everywhere you looked.")
-    .setHelpText("Still about that same item. Tick as many as apply - and if there was nothing to look up, just tick \"I didn't try\".")
+    .setHelpText(
+      'Still about that same item. Tick as many as apply - and if there was nothing to look up, just tick "I didn\'t try".',
+    )
     .setChoiceValues([
       "I didn't try",
       "The size chart on the product page",
@@ -225,15 +259,18 @@ function createWishlistForm() {
       "Checked the brand's own site, or another app",
       "Went to a shop to see it in person",
       "Planned to order two sizes and return one",
-      "I tried, and still couldn't find out"
+      "I tried, and still couldn't find out",
     ])
     .setRequired(true);
 
   // The only free-text box, and the sharpest test available of the MVP: if an
   // answer here is something our output would not tell them, we built a message
   // rather than a mechanism.
-  form.addParagraphTextItem()
-    .setTitle("What would you need to know to decide on that item today - buy it, or delete it?")
+  form
+    .addParagraphTextItem()
+    .setTitle(
+      "What would you need to know to decide on that item today - buy it, or delete it?",
+    )
     .setHelpText("Whatever would actually settle it. One line is fine.")
     .setRequired(true);
 
@@ -251,8 +288,11 @@ function createWishlistForm() {
   // see. Phrased as "the last time" rather than "usually" so it recalls an event
   // instead of inviting a self-description. Options mirror Q7's taxonomy, so
   // blockers-that-stall and blockers-that-kill can be compared directly.
-  form.addMultipleChoiceItem()
-    .setTitle("The last time you removed something from your wishlist without buying it, why?")
+  form
+    .addMultipleChoiceItem()
+    .setTitle(
+      "The last time you removed something from your wishlist without buying it, why?",
+    )
     .setChoiceValues([
       "I found something better, here or elsewhere",
       "I stopped trusting it would be right - fit, fabric or quality",
@@ -262,7 +302,7 @@ function createWishlistForm() {
       "I changed my mind about wanting it",
       "I was only using the wishlist to shortlist, and it lost",
       "I couldn't find out enough about it to decide",
-      "I've never removed anything without buying it"
+      "I've never removed anything without buying it",
     ])
     .showOtherOption(true)
     .setRequired(true);
@@ -270,14 +310,17 @@ function createWishlistForm() {
   // Choice overload, as behaviour rather than feeling. "Buy none of them" is the
   // option that matters: it is the failure mode a comparison-shaped MVP would
   // have to clear, and nothing else in this research measures its size.
-  form.addMultipleChoiceItem()
-    .setTitle("When two or three saved items are close alternatives, what usually happens?")
+  form
+    .addMultipleChoiceItem()
+    .setTitle(
+      "When two or three saved items are close alternatives, what usually happens?",
+    )
     .setChoiceValues([
       "I pick one fairly quickly",
       "I go back and forth for a while, then buy one",
       "I go back and forth and end up buying none of them",
       "I go looking for more options instead of choosing",
-      "This doesn't really happen to me"
+      "This doesn't really happen to me",
     ])
     .setRequired(true);
 
@@ -291,8 +334,11 @@ function createWishlistForm() {
   // across the whole list. If fit and trust are routinely ticked together, then
   // "lead with fit, trust is the second wave" is the wrong roadmap and the MVP has
   // to serve both - which is a Part 5 decision, not a slide-wording decision.
-  form.addCheckboxItem()
-    .setTitle("Across your whole wishlist, which of these are true of at least one item?")
+  form
+    .addCheckboxItem()
+    .setTitle(
+      "Across your whole wishlist, which of these are true of at least one item?",
+    )
     .setChoiceValues([
       "I'm not sure it'll fit me",
       "I'm not sure about the fabric or quality",
@@ -301,7 +347,7 @@ function createWishlistForm() {
       "I don't fully trust the seller or brand",
       "I'm waiting for the price to drop",
       "I'm saving it for an occasion",
-      "None of these"
+      "None of these",
     ])
     .setRequired(true);
 
@@ -318,14 +364,13 @@ function createWishlistForm() {
 
   var aboutYouPage = form.addPageBreakItem().setTitle("About you");
 
-  form.addMultipleChoiceItem()
+  form
+    .addMultipleChoiceItem()
     .setTitle("Age")
     .setChoiceValues(["Under 18", "18-24", "25-32", "33-40", "Over 40"])
     .setRequired(true);
 
-  form.addTextItem()
-    .setTitle("Which city?")
-    .setRequired(true);
+  form.addTextItem().setTitle("Which city?").setRequired(true);
 
   /* --------------------------- Navigation -------------------------
    * Wired last: a choice can only point at a page break that exists.
@@ -334,26 +379,34 @@ function createWishlistForm() {
 
   var CONTINUE = FormApp.PageNavigationType.CONTINUE;
 
-  wireBranch(q1, [
-    ["Once a week or more", CONTINUE],
-    ["A few times a month", CONTINUE],
-    ["Every month or two", CONTINUE],
-    ["A few times a year", CONTINUE],
-    ["Never - I don't shop on Myntra", FormApp.PageNavigationType.SUBMIT]
-  ], "\"Never - I don't shop on Myntra\" -> Submit form; everything else -> next section");
+  wireBranch(
+    q1,
+    [
+      ["Once a week or more", CONTINUE],
+      ["A few times a month", CONTINUE],
+      ["Every month or two", CONTINUE],
+      ["A few times a year", CONTINUE],
+      ["Never - I don't shop on Myntra", FormApp.PageNavigationType.SUBMIT],
+    ],
+    '"Never - I don\'t shop on Myntra" -> Submit form; everything else -> next section',
+  );
 
   // Every choice gets EXPLICIT navigation. Mixing navigated and un-navigated
   // choices in one setChoices() call is a known way to get "Invalid data updating
   // form", and CONTINUE is how you say "go to the next page" - naming the next
   // page break directly is what broke the opt-in question.
-  wireBranch(q3, [
-    ["0", aboutYouPage],
-    ["1-5", CONTINUE],
-    ["6-15", CONTINUE],
-    ["16-30", CONTINUE],
-    ["More than 30", CONTINUE],
-    ["I don't have a wishlist", aboutYouPage]
-  ], "0 and \"I don't have a wishlist\" -> About you; everything else -> next section");
+  wireBranch(
+    q3,
+    [
+      ["0", aboutYouPage],
+      ["1-5", CONTINUE],
+      ["6-15", CONTINUE],
+      ["16-30", CONTINUE],
+      ["More than 30", CONTINUE],
+      ["I don't have a wishlist", aboutYouPage],
+    ],
+    '0 and "I don\'t have a wishlist" -> About you; everything else -> next section',
+  );
 
   Logger.log("Share this link:  " + form.getPublishedUrl());
   Logger.log("Edit it here:     " + form.getEditUrl());
@@ -366,7 +419,9 @@ function createWishlistForm() {
  */
 function applySetting(form, name, value) {
   if (typeof form[name] !== "function") {
-    Logger.log("Skipped " + name + " - not available in this version of the Forms API.");
+    Logger.log(
+      "Skipped " + name + " - not available in this version of the Forms API.",
+    );
     return;
   }
   try {
@@ -375,7 +430,6 @@ function applySetting(form, name, value) {
     Logger.log("Skipped " + name + " - " + err.message);
   }
 }
-
 
 /**
  * Applies branching to a multiple-choice item, and degrades to a plain question
@@ -392,15 +446,28 @@ function applySetting(form, name, value) {
  */
 function wireBranch(item, pairs, label) {
   try {
-    item.setChoices(pairs.map(function (p) { return item.createChoice(p[0], p[1]); }));
+    item.setChoices(
+      pairs.map(function (p) {
+        return item.createChoice(p[0], p[1]);
+      }),
+    );
   } catch (err) {
-    item.setChoiceValues(pairs.map(function (p) { return p[0]; }));
+    item.setChoiceValues(
+      pairs.map(function (p) {
+        return p[0];
+      }),
+    );
     Logger.log(
-      'COULD NOT SET BRANCHING on "' + item.getTitle() + '" - ' + err.message + '\n' +
-      '  The question itself is fine and the form is usable as-is.\n' +
-      '  To restore it: open the form, click the three dots under that question,\n' +
-      '  choose "Go to section based on answer", then set:\n' +
-      '    ' + label
+      'COULD NOT SET BRANCHING on "' +
+        item.getTitle() +
+        '" - ' +
+        err.message +
+        "\n" +
+        "  The question itself is fine and the form is usable as-is.\n" +
+        "  To restore it: open the form, click the three dots under that question,\n" +
+        '  choose "Go to section based on answer", then set:\n' +
+        "    " +
+        label,
     );
   }
 }

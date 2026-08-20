@@ -77,8 +77,8 @@ one doubt or two.
 10. The last time you removed something without buying it, why? *(8 reasons + never + Other)*
 11. When two or three saved items are close alternatives, what usually happens?
 12. Across your whole wishlist, which of these are true of at least one item? *(checkbox)*
-13. Age
-14. Which city?
+13. Age *(optional)*
+14. Which city? *(optional)*
 
 Q10 and Q11 sit on their own page, after the Q3 branch target — so anyone who
 reported an empty wishlist skips both, correctly. They are deliberately *not*
@@ -105,6 +105,14 @@ longest deferrals in the sample and the most interesting wishlists in it.
 
 Still no list of other apps. Which *other* platforms someone uses feeds none of
 the analyses here, so the list would cost a tap and buy nothing.
+
+**Q13 and Q14 are optional.** They are the only two questions on the form that
+feed no analysis — not the Part 2 tree, not the segment work, not the MVP
+argument. They describe the sample and nothing else. Requiring them would ask for
+something we do not need at exactly the point a respondent is most likely to
+abandon, and city is the last free-text box on the form. They are kept rather than
+cut because the method note has to be able to say who answered, and both sit after
+every question that matters.
 
 **There is no interview opt-in.** An earlier version ended with one, plus an email
 field on an opt-ins-only page. Both are gone: the six walkthrough participants
