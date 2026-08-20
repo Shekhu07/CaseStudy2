@@ -11,7 +11,7 @@
  * Re-running creates a SECOND form. Edit wording in the UI instead.
  *
  * ---------------------------------------------------------------------------
- * SCOPE - 15 questions across 7 pages, about 3 minutes, one free-text box.
+ * SCOPE - 15 questions across 6 pages, about 3 minutes, one free-text box.
  *
  * This form does only what a form is uniquely good at: counting things across
  * many people. Everything that needs a follow-up question is deliberately left
@@ -116,29 +116,41 @@ function createWishlistForm() {
 
   /* ---------------------------- Page 3 ---------------------------- */
 
-  form.addPageBreakItem().setTitle("The last 30 days");
+  form.addPageBreakItem()
+    .setTitle("Your wishlist, and the last thing you saved")
+    .setHelpText("Open your Myntra wishlist if you closed it - the first two need a number.");
 
   form.addMultipleChoiceItem()
-    .setTitle("In the last 30 days, how many times did you open it?")
+    .setTitle("In the last 30 days, how many times did you open your wishlist?")
     .setChoiceValues(["Not once", "Once", "2-3 times", "4-10 times", "More than 10 times"])
     .setRequired(true);
 
   form.addMultipleChoiceItem()
-    .setTitle("In the last 30 days, did you buy anything FROM it?")
+    .setTitle("In the last 30 days, did you buy anything from your wishlist?")
     .setChoiceValues(["Yes, one item", "Yes, more than one", "No", "I don't remember"])
     .setRequired(true);
 
-  /* ---------------------------- Page 4 ---------------------------- */
+  /* --------- Same page: the frame changes from list to item ---------
+   * This was page 4 until it was merged in. A page BREAK was doing two jobs -
+   * splitting the form, and telling the respondent that the subject changes from
+   * the whole wishlist to one specific item. addSectionHeaderItem keeps the second
+   * job without the first: it renders as a titled block mid-page, so the scoping
+   * instruction is still a heading rather than a line of body text.
+   *
+   * The questions on both sides of it were also reworded to name their subject
+   * outright - "your wishlist" above, "that item" below - because "it" is no
+   * longer disambiguated by a page heading.
+   * ---------------------------------------------------------------- */
 
-  form.addPageBreakItem()
-    .setTitle("The last thing you saved")
+  form.addSectionHeaderItem()
+    .setTitle("Now think about the last thing you saved")
     .setHelpText("Look at the most recent item you saved and haven't bought. The next four questions are about that one item.");
 
   // The intent split. All of this collapses into genuine_intent in the Part 1
   // tags. "I honestly don't remember" is not a dead option - a high score on it
   // IS the finding, because it means the wishlist records no reason for itself.
   form.addMultipleChoiceItem()
-    .setTitle("Why did you save it rather than buy it?")
+    .setTitle("Why did you save that item rather than buy it?")
     .setChoiceValues([
       "I wanted it, but wasn't sure about something (size, fabric, whether it'd suit me)",
       "I was saving it for an occasion coming up",
@@ -161,7 +173,7 @@ function createWishlistForm() {
   // injects a spurious blocker into the term-C distribution - the single number
   // the whole Part 2 argument rests on. Cheap option, material correction.
   form.addMultipleChoiceItem()
-    .setTitle("What's the single biggest thing stopping you?")
+    .setTitle("What's the single biggest thing stopping you from buying that item?")
     .setChoiceValues([
       "Not sure it'll fit / which size to order",
       "Not sure about the fabric or quality",
@@ -218,13 +230,13 @@ function createWishlistForm() {
   // answer here is something our output would not tell them, we built a message
   // rather than a mechanism.
   form.addParagraphTextItem()
-    .setTitle("What would you need to know to decide today - buy it, or delete it?")
+    .setTitle("What would you need to know to decide on that item today - buy it, or delete it?")
     .setHelpText("Whatever would actually settle it. One line is fine.")
     .setRequired(true);
 
-  /* ---------------------------- Page 5 ----------------------------
+  /* ---------------------------- Page 4 ----------------------------
    * Both questions are about wishlist behaviour in general, not about the one
-   * item page 4 asks about - which is why they get their own page rather than
+   * item the section above asks about - which is why they get their own page rather than
    * being appended there. They sit AFTER the q3 branch target below, so anyone
    * who reported an empty wishlist skips them, correctly: neither means anything
    * to someone with nothing saved.
@@ -290,7 +302,7 @@ function createWishlistForm() {
     ])
     .setRequired(true);
 
-  /* ---------------------------- Page 6 ----------------------------
+  /* ---------------------------- Page 5 ----------------------------
    * Also the branch target for an empty wishlist, so everything on it must be
    * answerable by someone who has never saved anything. Age, city and the
    * interview opt-in all qualify.
@@ -321,7 +333,7 @@ function createWishlistForm() {
     )
     .setRequired(true);
 
-  /* ---------------------------- Page 7 ---------------------------- */
+  /* ---------------------------- Page 6 ---------------------------- */
 
   var contactPage = form.addPageBreakItem()
     .setTitle("Thanks - how do I reach you?")

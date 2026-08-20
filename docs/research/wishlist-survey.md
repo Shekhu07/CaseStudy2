@@ -63,12 +63,12 @@ one doubt or two.
 1. Consent *(checkbox)*
 2. How often do you **buy** clothes on Myntra? *(4 frequency bands + Never; screens out on Never)*
 3. How many items are in your wishlist right now? *(branches out if none)*
-4. In the last 30 days, how many times did you open it?
-5. In the last 30 days, did you buy anything from it?
-6. Why did you save it rather than buy it? *(the 7 motivations + "I honestly don't remember")*
-7. What's the single biggest thing stopping you? *(12 blockers + "nothing, I'm not planning to buy it" + Other)*
+4. In the last 30 days, how many times did you open your wishlist?
+5. In the last 30 days, did you buy anything from your wishlist?
+6. Why did you save that item rather than buy it? *(the 7 motivations + "I honestly don't remember")*
+7. What's the single biggest thing stopping you from buying that item? *(12 blockers + "nothing, I'm not planning to buy it" + Other)*
 8. Did you try to find that out? Tick everywhere you looked. *(checkbox)*
-9. What would you need to know to decide today — buy it, or delete it? *(paragraph)*
+9. What would you need to know to decide on that item today — buy it, or delete it? *(paragraph)*
 10. The last time you removed something without buying it, why? *(8 reasons + never + Other)*
 11. When two or three saved items are close alternatives, what usually happens?
 12. Across your whole wishlist, which of these are true of at least one item? *(checkbox)*
@@ -106,7 +106,7 @@ The opt-in says "call", not "video call", and states that camera-off is fine. Th
 walkthrough needs their **screen**, not their face; asking for video raises the
 bar for no research benefit.
 
-Seven pages. One paragraph box. Everything else is a tap.
+Six pages. One paragraph box. Everything else is a tap.
 
 ### The page structure, and why it is not shorter
 
@@ -127,9 +127,30 @@ Which merges are and are not available:
 | 7 + 8 · opt-in + contact details | ❌ Never | Merging shows the email field to people who answered *No*. The whole point of the split is that only opt-ins are asked for contact details |
 | 5 + 6 · wishlist-in-general + About you | ❌ | Page 6 is the branch target for an empty wishlist. Merging would drop those respondents onto Q10–Q12, which they cannot answer |
 | 2 + 3 · wishlist count + last 30 days | ❌ | Q3 carries the empty-wishlist branch and must stay last on its page |
-| 3 + 4 · last 30 days + last saved item | ⚠️ Possible, rejected | The two pages use different frames — the whole list vs one item. Q5 asks whether you bought "FROM it" (the list) and Q6 asks why you saved "it" (the item). On one page that pronoun is ambiguous, and the scoping help text stops being a heading |
+| 3 + 4 · last 30 days + last saved item | ✅ **Done**, with mitigation | See below |
 
-Seven pages is the floor without breaking a branch or a frame of reference.
+**Six pages is the floor.** Every remaining split either carries a branch or
+protects the opt-in.
+
+### The 3+4 merge, and what it cost
+
+The objection to merging these was a frame-of-reference change: Q4–Q5 are about
+the **whole wishlist**, Q6–Q9 about **one specific item**, and the page break was
+silently doing that work. Merged carelessly, "it" flips meaning mid-scroll.
+
+Two mitigations, both applied, and neither optional if this merge is kept:
+
+1. **`addSectionHeaderItem()` between Q5 and Q6.** Google Forms renders it as a
+   titled block *inside* a page — so "Now think about the last thing you saved"
+   is still a heading, not a line of body text people skim. This is the tool the
+   page break was being over-used for.
+2. **Every affected question names its subject outright.** "…open **your
+   wishlist**", "…buy anything **from your wishlist**", "why did you save **that
+   item**", "stopping you from buying **that item**". No pronoun on that page
+   depends on a heading any more.
+
+If anyone later edits this page, keep both. Removing the section header re-creates
+the ambiguity without any visible sign that it has.
 
 ## What was cut, and where it went
 

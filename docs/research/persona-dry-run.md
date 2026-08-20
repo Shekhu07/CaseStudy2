@@ -102,8 +102,8 @@ The ₹1,100 jacket from a brand he's never heard of, now discounted to ₹899.
 | 3 | How many items are in it right now? | **6–15** |
 | 4 | Opens in the last 30 days? | **4–10 times** |
 | 5 | Bought anything FROM it? | **No** |
-| 6 | Why did you save it rather than buy it? | **"I wanted it, but wasn't sure about something"** |
-| 7 | Single biggest thing stopping you? | **"I don't trust the seller or brand"** |
+| 6 | Why did you save that item rather than buy it? | **"I wanted it, but wasn't sure about something"** |
+| 7 | Single biggest thing stopping you buying that item? | **"I don't trust the seller or brand"** |
 | 8 | Did you try to find that out? | Reviews/customer photos · Ratings on the listing · YouTube or Instagram · Brand's own site or another app · Asked a friend · **"I tried, and still couldn't find out"** |
 | 9 | What would you need to know? | *"Whether this brand is actually any good or it's just a random seller. The reviews contradict each other and half look fake. If I knew someone real had bought it and it wasn't rubbish, I'd order."* |
 | 10 | Last removal without buying — why? | **"I stopped trusting it would be right — fit, fabric or quality"** |
@@ -135,8 +135,8 @@ respondent rather than an assumption.
 | 3 | How many items are in it right now? | **More than 30** |
 | 4 | Opens in the last 30 days? | **More than 10 times** |
 | 5 | Bought anything FROM it? | **Yes, more than one** |
-| 6 | Why did you save it rather than buy it? | **"I was waiting for the price to drop, or for a sale"** |
-| 7 | Single biggest thing stopping you? | **"I'm waiting for a sale"** |
+| 6 | Why did you save that item rather than buy it? | **"I was waiting for the price to drop, or for a sale"** |
+| 7 | Single biggest thing stopping you buying that item? | **"I'm waiting for a sale"** |
 | 8 | Did you try to find that out? | **"I didn't try"** |
 | 9 | What would you need to know? | *"Nothing really. I know what I want, I just want it at the right price. Tell me when it drops below 1500 and I'll buy it."* |
 | 10 | Last removal without buying — why? | **"The price never came down enough"** |
@@ -170,8 +170,8 @@ problem; it does not kill it.
 | 3 | How many items are in it right now? | **More than 30** |
 | 4 | Opens in the last 30 days? | **4–10 times** |
 | 5 | Bought anything FROM it? | **No** |
-| 6 | Why did you save it rather than buy it? | **"I just liked it — I wasn't really planning to buy it"** |
-| 7 | Single biggest thing stopping you? | **"Nothing is stopping me — I'm not actually planning to buy it"** *(option added because of this run — see defect 5)* |
+| 6 | Why did you save that item rather than buy it? | **"I just liked it — I wasn't really planning to buy it"** |
+| 7 | Single biggest thing stopping you buying that item? | **"Nothing is stopping me — I'm not actually planning to buy it"** *(option added because of this run — see defect 5)* |
 | 8 | Did you try to find that out? | **"I didn't try"** |
 | 9 | What would you need to know? | *"Nothing, honestly. I'm not going to buy it. I just like looking at it."* |
 | 10 | Last removal without buying — why? | **"I changed my mind about wanting it"** |
