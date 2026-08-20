@@ -362,15 +362,28 @@ function createWishlistForm() {
    * what the description has always claimed.
    * ---------------------------------------------------------------- */
 
-  var aboutYouPage = form.addPageBreakItem().setTitle("About you");
+  var aboutYouPage = form
+    .addPageBreakItem()
+    .setTitle("About you")
+    .setHelpText("Both optional - skip either if you'd rather not say.");
 
+  // OPTIONAL, deliberately. These are the only two questions here that feed no
+  // analysis: not the Part 2 tree, not the segment work, not the MVP argument.
+  // They describe the sample and nothing else, so requiring them asks for
+  // something we do not need at the one point where a respondent is most likely
+  // to abandon. City is also the last free-text box on the form - typing on a
+  // phone is real friction, and the data is messy anyway (Bengaluru / bangalore
+  // / blr all arrive).
+  //
+  // Kept rather than cut because a method note has to be able to say who
+  // answered, and both sit after every question that matters.
   form
     .addMultipleChoiceItem()
     .setTitle("Age")
     .setChoiceValues(["Under 18", "18-24", "25-32", "33-40", "Over 40"])
-    .setRequired(true);
+    .setRequired(false);
 
-  form.addTextItem().setTitle("Which city?").setRequired(true);
+  form.addTextItem().setTitle("Which city?").setRequired(false);
 
   /* --------------------------- Navigation -------------------------
    * Wired last: a choice can only point at a page break that exists.
