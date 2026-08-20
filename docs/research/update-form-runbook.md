@@ -16,12 +16,16 @@ Non-negotiable, because everything after this writes to a live form.
 
 Form → **Responses** → the green Sheets icon → **File → Download → CSV**.
 
-Save it **outside this repo** — the live form still carries the interview opt-in
-and its contact field (the spec dropped both; step 9 has you delete them), so the
-export contains contact details. While you have it open, note anyone who answered **Yes** to
-*"Happy to be contacted for that?"* and message them today. Interviews are the
-schedule long pole; a contact you have already earned is worth more than the
-survey row it came on.
+Save it **outside this repo** *if* the form you are patching still carries the
+interview opt-in and its contact field — then the export holds contact details.
+The spec dropped both, and the form put out for the survey on 20 Aug 2026 no
+longer has them, so its export is anonymous. The dry run in step 7 tells you
+which case you are in.
+
+Where the opt-in is still present: note anyone who answered **Yes** to *"Happy to
+be contacted for that?"* and message them today, before step 9 deletes it.
+Interviews are the schedule long pole; a contact you have already earned is worth
+more than the survey row it came on.
 
 ## 1. Get the form id
 
@@ -155,9 +159,9 @@ deletes anything. The log prints these as it goes; here they are in one place.
 - [ ] **Re-word Q2's screen-out option** to *"Never - I don't buy clothes on
       Myntra"*, then **re-set its branching to Submit form** — editing an
       option's text can drop the navigation attached to it.
-- [ ] **Delete the interview opt-in and the contact field**, once you have saved
-      any contact details already collected. They are out of the spec, and the
-      form description promises anonymity.
+- [ ] **Delete the interview opt-in and the contact field** — *only if the dry
+      run reported them.* They are out of the spec, and the form description
+      promises anonymity. Save any contact details already collected first.
 
 Only after all of that is the form **5 pages**: the screen / your wishlist / the
 item / your wishlist in general / About you. A higher count before then is
