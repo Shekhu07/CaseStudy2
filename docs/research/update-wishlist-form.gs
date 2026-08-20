@@ -89,6 +89,24 @@ function updateExistingForm() {
     }
   }
 
+  /* --- 0. The description is respondent-facing and states a question count.
+     Forms built before Q8 and Q12 were added still promise 12 or 13; there are
+     14. It is the first thing anyone reads, and the only claim on the form that
+     a respondent can check against the form itself. --- */
+
+  patch("form description: question count", function () {
+    var DESC =
+      "I'm a product management fellow researching why clothes people genuinely want end up " +
+      "sitting in a wishlist unbought. Three minutes, 14 questions.\n\n" +
+      "Completely anonymous - no email, no name, nothing that identifies you. Used only for a\n" +
+      "student case study and reported as aggregate numbers.\n\n" +
+      "HAVE YOUR PHONE HANDY - several questions ask you to look at your actual wishlist, " +
+      "because nobody remembers this accurately.";
+    if (form.getDescription() === DESC) return SKIP;
+    if (!DRY_RUN) form.setDescription(DESC);
+    return null;
+  });
+
   /* --- 1. Retitles. Titles only; choices are never touched, because Q2's
      choices carry the screen-out branch and rewriting them would drop it. --- */
 
@@ -153,29 +171,48 @@ function updateExistingForm() {
      item questions a page to themselves - so if a previous run already converted
      it, this asks for it back rather than pretending the form is current. --- */
 
+  var ITEM_PAGE_TITLE = "Now think about the last thing you saved";
+
   patch("page 3: title the item page", function () {
-    var TITLE = "Now think about the last thing you saved";
     var HELP =
       "Look at the most recent item you saved and haven't bought. " +
       "All four questions on this page are about that one item.";
 
-    var hdr = findByTitle(form, TITLE);
-    if (hdr && hdr.getType() === FormApp.ItemType.SECTION_HEADER) {
-      Logger.log("");
-      Logger.log('  BY HAND: "' + TITLE + '" is a section header, left over from');
-      Logger.log("  the old merged page. The spec now gives the item questions their own");
-      Logger.log("  page. Add a page break above the \"why did you save that item\" question");
-      Logger.log("  with that title and delete the header.");
-      return SKIP;
-    }
-
-    var brk = findFirstByTitles(form, [TITLE, "The last thing you saved"]);
+    // Every title this break has carried. "Your wishlist, and the last thing you
+    // saved" and "The last 30 days" are the merged-page names: on those forms the
+    // break already sits above the last-30-days pair, so once the pair moves up to
+    // page 2 this same break becomes the top of the item page. Reusing it is one
+    // retitle; adding a fresh break instead would leave the old one heading an
+    // empty page.
+    var brk = findBreakByTitles(form, [
+      ITEM_PAGE_TITLE,
+      "The last thing you saved",
+      "Your wishlist, and the last thing you saved",
+      "The last 30 days"
+    ]);
     if (!brk) return SKIP;
-    if (brk.getTitle() === TITLE && brk.getHelpText() === HELP) return SKIP;
+    if (brk.getTitle() === ITEM_PAGE_TITLE && brk.getHelpText() === HELP) return SKIP;
     if (!DRY_RUN) {
-      brk.asPageBreakItem().setTitle(TITLE).setHelpText(HELP);
+      brk.asPageBreakItem().setTitle(ITEM_PAGE_TITLE).setHelpText(HELP);
     }
     return null;
+  });
+
+  /* --- 4b. On a merged form the same words also exist as a SECTION HEADER, put
+     there to announce the frame change inside a shared page. Once the page break
+     above carries them, the header is a duplicate of the page title sitting a few
+     rows below it. Flagged, not deleted: it must go AFTER the last-30-days pair
+     moves out, or it is briefly the only thing marking the frame change. --- */
+
+  patch("check for the redundant section header", function () {
+    var hdr = findByTitleAndType(form, ITEM_PAGE_TITLE, FormApp.ItemType.SECTION_HEADER);
+    if (!hdr) return SKIP;
+    Logger.log("");
+    Logger.log('  BY HAND: "' + ITEM_PAGE_TITLE + '" exists twice - as the page');
+    Logger.log("  break title (set above) and as a section header left from the merged");
+    Logger.log("  page. Delete the HEADER, but only after moving the last-30-days pair up");
+    Logger.log("  to page 2. It carries no answers, so deleting it loses nothing.");
+    return SKIP;
   });
 
   /* --- 5. Age and city became OPTIONAL. They are the only two questions on
@@ -324,6 +361,29 @@ function findByTitle(form, title) {
   var items = form.getItems();
   for (var i = 0; i < items.length; i++) {
     if (items[i].getTitle() === title) return items[i];
+  }
+  return null;
+}
+
+function findByTitleAndType(form, title, type) {
+  var items = form.getItems();
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].getTitle() === title && items[i].getType() === type) return items[i];
+  }
+  return null;
+}
+
+/**
+ * Finds a PAGE BREAK under any of its historical titles.
+ *
+ * Type-checked on purpose: a merged form carries a section header with the same
+ * words as the break we are looking for, and a plain title match returns
+ * whichever comes first.
+ */
+function findBreakByTitles(form, titles) {
+  for (var i = 0; i < titles.length; i++) {
+    var it = findByTitleAndType(form, titles[i], FormApp.ItemType.PAGE_BREAK);
+    if (it) return it;
   }
   return null;
 }
