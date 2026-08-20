@@ -19,6 +19,12 @@ Last updated: 18 Aug 2026, 14:41 IST
 
 Nothing is running in the background.
 
+**Interviews are no longer the long pole.** Six participants confirmed from the
+researcher's own network as of **20 Aug 2026**. Guardrails rule 2 assumed
+recruiting would be the slowest thing in the project; it is done. The survey has
+been rebuilt accordingly — its interview opt-in and contact field were removed,
+so it now collects nothing identifying at all.
+
 Tagging coverage: **2,936 of 3,922 (74.9%) carry ≥1 theme**; 986 (25.1%) carry
 none. **3,433 (87.5%) have a verified verbatim quote**. Mean severity on themed
 documents is **3.84** of 5. (Coverage fell slightly after the theme 9 re-tag

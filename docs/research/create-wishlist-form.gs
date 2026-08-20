@@ -13,7 +13,7 @@
  * place and leaves collected responses alone.
  *
  * ---------------------------------------------------------------------------
- * SCOPE - 15 questions across 6 pages, about 3 minutes, one free-text box.
+ * SCOPE - 13 questions across 5 pages, about 3 minutes, one free-text box.
  *
  * This form does only what a form is uniquely good at: counting things across
  * many people. Everything that needs a follow-up question is deliberately left
@@ -55,8 +55,9 @@ function createWishlistForm() {
 
   form.setDescription(
     "I'm a product management fellow researching why clothes people genuinely want end up " +
-    "sitting in a wishlist unbought. Three minutes, 14 questions.\n\n" +
-    "Anonymous, used only for a student case study, reported as aggregate numbers.\n\n" +
+    "sitting in a wishlist unbought. Three minutes, 12 questions.\n\n" +
+    "Completely anonymous - no email, no name, nothing that identifies you. Used only for a\n" +
+    "student case study and reported as aggregate numbers.\n\n" +
     "HAVE YOUR PHONE HANDY - several questions ask you to look at your actual wishlist, " +
     "because nobody remembers this accurately."
   );
@@ -305,9 +306,14 @@ function createWishlistForm() {
     .setRequired(true);
 
   /* ---------------------------- Page 5 ----------------------------
-   * Also the branch target for an empty wishlist, so everything on it must be
-   * answerable by someone who has never saved anything. Age, city and the
-   * interview opt-in all qualify.
+   * The last page, and the branch target for an empty wishlist - so everything
+   * on it must be answerable by someone who has never saved anything.
+   *
+   * There is no interview opt-in and no contact field. The six walkthrough
+   * participants are recruited directly, so the form has no recruiting job to do
+   * and therefore no reason to ask anyone for their email. Removing it makes the
+   * form genuinely anonymous rather than anonymous-with-an-exception, which is
+   * what the description has always claimed.
    * ---------------------------------------------------------------- */
 
   var aboutYouPage = form.addPageBreakItem().setTitle("About you");
@@ -321,32 +327,9 @@ function createWishlistForm() {
     .setTitle("Which city?")
     .setRequired(true);
 
-  // The opt-in used to have a page to itself. It does not need one: branching only
-  // requires the question to be LAST in its section, not alone in it. Folded in
-  // here, and the call explanation moved from the page break onto the question.
-  //
-  // Nothing may be added after this question - see the note on q3.
-  var qOptIn = form.addMultipleChoiceItem()
-    .setTitle("Happy to be contacted for that?")
-    .setHelpText(
-      "I'm talking to a few people to understand how they really use their wishlist. " +
-      "It's a relaxed 30-minute call - you'd share your screen and walk me through your " +
-      "own list, camera off if you prefer. Nothing to prepare."
-    )
-    .setRequired(true);
-
-  /* ---------------------------- Page 6 ---------------------------- */
-
-  var contactPage = form.addPageBreakItem()
-    .setTitle("Thanks - how do I reach you?")
-    .setHelpText("Used only to arrange the call, and deleted afterwards.");
-
-  form.addTextItem()
-    .setTitle("Email or WhatsApp number")
-    .setRequired(true);
-
   /* --------------------------- Navigation -------------------------
    * Wired last: a choice can only point at a page break that exists.
+   * Two branches now, not three - the interview opt-in is gone.
    * ---------------------------------------------------------------- */
 
   var CONTINUE = FormApp.PageNavigationType.CONTINUE;
@@ -371,11 +354,6 @@ function createWishlistForm() {
     ["More than 30", CONTINUE],
     ["I don't have a wishlist", aboutYouPage]
   ], "0 and \"I don't have a wishlist\" -> About you; everything else -> next section");
-
-  wireBranch(qOptIn, [
-    ["Yes", CONTINUE],
-    ["No", FormApp.PageNavigationType.SUBMIT]
-  ], "No -> Submit form; Yes -> next section");
 
   Logger.log("Share this link:  " + form.getPublishedUrl());
   Logger.log("Edit it here:     " + form.getEditUrl());
@@ -405,7 +383,7 @@ function applySetting(form, name, value) {
  *
  * Branching is the fiddliest corner of this API and the least valuable part of
  * the form - it spares a few people four irrelevant questions. A throw here would
- * cost you all fifteen questions instead, so on failure the choices are set without
+ * cost you all thirteen questions instead, so on failure the choices are set without
  * navigation and the log says exactly what to click to restore it by hand.
  *
  * @param item   MultipleChoiceItem to wire

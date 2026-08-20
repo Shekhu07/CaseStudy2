@@ -143,22 +143,25 @@ function updateExistingForm() {
     return null;
   });
 
-  /* --- 6. Fold the opt-in into "About you": delete its page break and move the
-     explanation onto the question itself. The opt-in stays LAST in its section,
-     which is all its branch requires. --- */
+  /* --- 6. The interview opt-in and its contact field were REMOVED from the
+     spec: the six walkthrough participants are recruited directly, so the form
+     has no recruiting job and no reason to hold anyone's email.
 
-  patch("fold the opt-in into About you", function () {
-    var brk = findByTitle(form, "Last thing");
-    if (!brk) return SKIP;
+     This script will not delete them for you. Deleting a live question also
+     orphans its collected answers, and that is not a call a patch script should
+     make silently on data you have already gathered. It flags them instead. --- */
+
+  patch("check for the removed opt-in", function () {
     var optIn = findByTitle(form, "Happy to be contacted for that?");
-    if (!optIn) throw new Error("opt-in question not found - aborting rather than guessing");
-    assertNotANavigationTarget(form, brk);
-    var help = brk.asPageBreakItem().getHelpText();
-    if (!DRY_RUN) {
-      if (help) optIn.asMultipleChoiceItem().setHelpText(help);
-      form.deleteItem(brk);
-    }
-    return null;
+    var contact = findByTitle(form, "Email or WhatsApp number");
+    if (!optIn && !contact) return SKIP;
+    Logger.log("");
+    Logger.log("  NOTE: this form still has the interview opt-in and/or contact field.");
+    Logger.log("  They are no longer in the spec. Delete them BY HAND once you have");
+    Logger.log("  saved any contact details already collected - and remember the form");
+    Logger.log("  description promises anonymity, so an email field left in place");
+    Logger.log("  contradicts it.");
+    return SKIP;
   });
 
   /* --- Summary + the checks a human still has to do. --- */
@@ -175,13 +178,10 @@ function updateExistingForm() {
 
   Logger.log("");
   Logger.log("NOW CHECK BY HAND - the script deliberately does not touch branching:");
-  Logger.log("  1. Open the form. Under \"Happy to be contacted for that?\" -> three dots ->");
-  Logger.log('     "Go to section based on answer". No MUST still point at "Submit form".');
-  Logger.log("     That branch is what stops you asking for contact details from people who declined.");
-  Logger.log('  2. Under "How many items are in it right now?", 0 and "I don\'t have a wishlist"');
+  Logger.log('  1. Under "How many items are in it right now?", 0 and "I don\'t have a wishlist"');
   Logger.log('     must still point at "About you".');
-  Logger.log('  3. Under Q2, "Never - I don\'t shop on Myntra" must still point at "Submit form".');
-  Logger.log("  4. The form should now be 6 pages.");
+  Logger.log('  2. Under Q2, "Never - I don\'t shop on Myntra" must still point at "Submit form".');
+  Logger.log("  3. The form should now be 5 pages, ending on \"About you\".");
   Logger.log("");
   Logger.log("AND REMEMBER: responses collected before now are not comparable on Q2 or Q7.");
   Logger.log("Patched at: " + new Date());

@@ -45,7 +45,6 @@ The item in front of her is the ₹2,400 co-ord set she saved eleven days ago.
 | 12  | Across your whole wishlist, which are true of ≥1 item?              | Not sure it'll fit · Not sure about fabric/quality · Not sure it'll suit my body type · Don't fully trust the seller/brand · Waiting for price to drop · Saving for an occasion |
 | 13  | Age                                                                 | 25–32                                                                                                                                                                           |
 | 14  | City                                                                | Pune                                                                                                                                                                            |
-| 15  | Happy to be contacted?                                              | Yes → email                                                                                                                                                                     |
 
 ### Q9 in full — the only free-text answer, and the MVP's acceptance test
 
@@ -88,7 +87,6 @@ somewhere_.
 | 11    | **Part 5 fork**            | "Buy none of them" ⇒ the comparison failure is live for her                                                |
 | 12    | **Part 4(a)**              | Fit **and** trust ticked by one person — see below                                                         |
 | 13–14 | Recruiting, sample         | —                                                                                                          |
-| 15    | Part 3                     | One walkthrough recruited                                                                                  |
 
 ---
 
@@ -110,7 +108,6 @@ The ₹1,100 jacket from a brand he's never heard of, now discounted to ₹899.
 | 11 | Close alternatives? | **"I go looking for more options instead of choosing"** |
 | 12 | Across your whole wishlist | Not sure about fabric/quality · Don't fully trust the seller/brand · Not sure it'll look like the photos |
 | 13–14 | Age · City | 18–24 · Indore |
-| 15 | Contactable? | Yes |
 
 **What this run shows.** Q7 and Q12 route him cleanly to trust with **no fit
 signal at all** — the mirror image of Aditi, who ticked both. That contrast is
@@ -143,7 +140,6 @@ respondent rather than an assumption.
 | 11 | Close alternatives? | **"I pick one fairly quickly"** |
 | 12 | Across your whole wishlist | Waiting for the price to drop · Saving it for an occasion |
 | 13–14 | Age · City | 25–32 · Delhi |
-| 15 | Contactable? | No |
 
 **What this run shows — and it is the most valuable of the four.** Priya is
 cleanly excluded at three independent points: Q6, Q7 and Q12 all say price, and
@@ -178,7 +174,6 @@ problem; it does not kill it.
 | 11 | Close alternatives? | **"This doesn't really happen to me"** |
 | 12 | Across your whole wishlist | **"None of these"** |
 | 13–14 | Age · City | 18–24 · Bengaluru |
-| 15 | Contactable? | No |
 
 **What this run shows.** Q6 excludes her from term A exactly as the §2.6 coding
 rule intends, and Q9 and Q12 confirm it independently — three separate signals,
