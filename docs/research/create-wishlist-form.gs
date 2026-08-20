@@ -8,7 +8,9 @@
  *   4. Authorise (your own account, creating your own form)
  *   5. View -> Logs for the live and edit URLs
  *
- * Re-running creates a SECOND form. Edit wording in the UI instead.
+ * Re-running creates a SECOND form on a new URL. If the form is already
+ * published, use update-wishlist-form.gs instead - it patches a live form in
+ * place and leaves collected responses alone.
  *
  * ---------------------------------------------------------------------------
  * SCOPE - 15 questions across 6 pages, about 3 minutes, one free-text box.
