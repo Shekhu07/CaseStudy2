@@ -242,9 +242,21 @@ function updateExistingForm() {
     Logger.log("  anyone who bought everything they had saved - skips the purchase");
     Logger.log("  question, and the north-star number reads low.");
     Logger.log("  Drag both onto page 2, ABOVE the count question. The count must stay");
-    Logger.log("  LAST on that page or its branch stops working. Then delete the page");
-    Logger.log('  break they used to live under ("The last 30 days") - it now heads an');
-    Logger.log("  empty page. Re-check the branch and Preview afterwards.");
+    Logger.log("  LAST on that page or its branch stops working.");
+    Logger.log("");
+    Logger.log("  Then deal with the page break they used to live under - and WHICH");
+    Logger.log("  action is right depends on what else is on that page:");
+    if (itemQuestionsShareThePairsPage(form, opens)) {
+      Logger.log("    On this form the item questions sit on that same page. DO NOT delete");
+      Logger.log("    the break - once the pair moves up it becomes the top of the item");
+      Logger.log("    page, which is what the spec wants. Deleting it would push the item");
+      Logger.log("    questions onto page 2, leaving the count no longer last on its page");
+      Logger.log("    and its branch dead. The retitle patch above renames it for you.");
+    } else {
+      Logger.log("    On this form that break heads an empty page once the pair moves up.");
+      Logger.log("    Delete it.");
+    }
+    Logger.log("  Re-check the branch and Preview afterwards.");
     return SKIP;
   });
 
@@ -371,6 +383,35 @@ function makeOptional(form, titles) {
   if (!q.isRequired()) return SKIP;
   if (!DRY_RUN) q.setRequired(false);
   return null;
+}
+
+/**
+ * True if the one-item questions live on the SAME page as the last-30-days pair
+ * - i.e. this form still carries the 3+4 merge an earlier revision of this
+ * script applied.
+ *
+ * It decides whether the page break above the pair may be deleted once the pair
+ * moves to page 2. Merged, that break becomes the top of the item page and
+ * deleting it would spill the item questions onto page 2, leaving the count no
+ * longer last on its page and its branch dead. Unmerged, the break heads an
+ * empty page and should go.
+ *
+ * Scans forward from the pair for the first item question, stopping at the first
+ * page break.
+ */
+function itemQuestionsShareThePairsPage(form, opens) {
+  var items = form.getItems();
+  var ITEM_QUESTIONS = [
+    "Why did you save that item rather than buy it?",
+    "Why did you save it rather than buy it?"
+  ];
+  for (var i = opens.getIndex() + 1; i < items.length; i++) {
+    if (items[i].getType() === FormApp.ItemType.PAGE_BREAK) return false;
+    for (var q = 0; q < ITEM_QUESTIONS.length; q++) {
+      if (items[i].getTitle() === ITEM_QUESTIONS[q]) return true;
+    }
+  }
+  return false;
 }
 
 /**

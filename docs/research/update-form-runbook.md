@@ -147,7 +147,11 @@ deletes anything. The log prints these as it goes; here they are in one place.
       they had saved — is skipped past *"did you buy anything from your
       wishlist?"*. That is the north-star question dropping exactly the cases it
       exists to count. The count must stay **last** on that page or its branch
-      stops working. Then delete the page break the pair left empty.
+      stops working. Then read the log for what to do with the page break the
+      pair used to sit under: if the item questions share that page, it becomes
+      the top of the item page and must be **kept**; only if it is left empty
+      does it get deleted. Deleting it in the first case spills the item
+      questions onto page 2 and kills the count's branch.
 - [ ] **Re-word Q2's screen-out option** to *"Never - I don't buy clothes on
       Myntra"*, then **re-set its branching to Submit form** — editing an
       option's text can drop the navigation attached to it.
