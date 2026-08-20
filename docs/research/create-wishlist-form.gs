@@ -329,9 +329,9 @@ function createWishlistForm() {
   var qOptIn = form.addMultipleChoiceItem()
     .setTitle("Happy to be contacted for that?")
     .setHelpText(
-      "I'm running a few 30-minute calls where people walk me through their wishlist item " +
-      "by item. You'd share your screen so I can see it - camera off is completely fine. " +
-      "No payment, no sales pitch, and I'll share what I find if you're curious."
+      "I'm talking to a few people to understand how they really use their wishlist. " +
+      "It's a relaxed 30-minute call - you'd share your screen and walk me through your " +
+      "own list, camera off if you prefer. Nothing to prepare."
     )
     .setRequired(true);
 

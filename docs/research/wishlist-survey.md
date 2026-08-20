@@ -102,9 +102,19 @@ longest deferrals in the sample and the most interesting wishlists in it.
 Still no list of other apps. Which *other* platforms someone uses feeds none of
 the analyses here, so the list would cost a tap and buy nothing.
 
-The opt-in says "call", not "video call", and states that camera-off is fine. The
-walkthrough needs their **screen**, not their face; asking for video raises the
-bar for no research benefit.
+The opt-in is written as a person asking, not a researcher recruiting:
+
+> *"I'm talking to a few people to understand how they really use their wishlist.
+> It's a relaxed 30-minute call — you'd share your screen and walk me through your
+> own list, camera off if you prefer. Nothing to prepare."*
+
+Three facts survive the shortening, and they should stay: the **length**, the
+**screen share**, and that **camera-off is fine**. Those are what someone needs to
+decide, and the last one matters most — the walkthrough needs their *screen*, not
+their face, and asking for video raises the bar for no research benefit.
+
+"Nothing to prepare" replaced "no payment, no sales pitch". It answers the same
+worry without naming it.
 
 Six pages. One paragraph box. Everything else is a tap.
 
