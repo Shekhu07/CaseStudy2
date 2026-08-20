@@ -16,8 +16,9 @@ Non-negotiable, because everything after this writes to a live form.
 
 Form → **Responses** → the green Sheets icon → **File → Download → CSV**.
 
-Save it **outside this repo** — it contains contact details from the interview
-opt-in. While you have it open, note anyone who answered **Yes** to
+Save it **outside this repo** — the live form still carries the interview opt-in
+and its contact field (the spec dropped both; step 9 has you delete them), so the
+export contains contact details. While you have it open, note anyone who answered **Yes** to
 *"Happy to be contacted for that?"* and message them today. Interviews are the
 schedule long pole; a contact you have already earned is worth more than the
 survey row it came on.
@@ -94,8 +95,11 @@ Responses already collected: 3
 
   WOULD retitle: "How often do you shop for clothes on Myn..."
   WOULD Q7: add the no-intent option
+  WOULD make Age optional
   ...
-Applied: 8 | already current: 0 | failed: 0
+  BY HAND: the two last-30-days questions still sit AFTER the wishlist
+  ...
+Applied: 11 | already current: 0 | failed: 0
 
 DRY RUN - nothing was written. Set DRY_RUN = false and run again.
 ```
@@ -120,19 +124,52 @@ var DRY_RUN = false;
 
 The log now says `DID` instead of `WOULD`, and ends with the manual checks.
 
-## 9. The four checks the script will not do for you
+## 9. The checks and hand-edits the script will not do for you
 
-It deliberately never touches branching. Open the form and verify by eye:
+It deliberately never touches branching, never moves a question, and never
+deletes anything. The log prints these as it goes; here they are in one place.
 
-- [ ] **`Happy to be contacted for that?`** → three dots → *Go to section based on
-      answer* → **No** points at **Submit form**.
-      *This is the important one. It is what stops the form asking for contact
-      details from people who just declined.*
-- [ ] **`How many items are in it right now?`** → **0** and **I don't have a
-      wishlist** both point at **About you**
-- [ ] **Q2** → **Never - I don't shop on Myntra** points at **Submit form**
-- [ ] The form is now **6 pages**, and *"Now think about the last thing you
-      saved"* appears as a heading mid-page rather than as a page break
+**Verify by eye:**
+
+- [ ] **`How many items are in your wishlist right now?`** → three dots → *Go to
+      section based on answer* → **0** and **I don't have a wishlist** both point
+      at **About you**. This run may have just retitled that question; retitling
+      does not disturb branching, but check rather than assume.
+- [ ] **Q2** → the **Never** option still points at **Submit form**
+- [ ] *"Now think about the last thing you saved"* heads its own page, with the
+      four item questions under it and nothing else
+
+**Then do these by hand — the script flags them and stops:**
+
+- [ ] **Move the two last-30-days questions above the wishlist count**, onto the
+      *Your wishlist* page. Below the count they sit on the far side of its
+      branch, so anyone answering **0** — including anyone who bought everything
+      they had saved — is skipped past *"did you buy anything from your
+      wishlist?"*. That is the north-star question dropping exactly the cases it
+      exists to count. The count must stay **last** on that page or its branch
+      stops working. Then delete the page break the pair left empty.
+- [ ] **Re-word Q2's screen-out option** to *"Never - I don't buy clothes on
+      Myntra"*, then **re-set its branching to Submit form** — editing an
+      option's text can drop the navigation attached to it.
+- [ ] **Delete the interview opt-in and the contact field**, once you have saved
+      any contact details already collected. They are out of the spec, and the
+      form description promises anonymity.
+
+Only after all of that is the form **5 pages**: the screen / your wishlist / the
+item / your wishlist in general / About you. A higher count before then is
+expected, not a failed run.
+
+## 10. Afterwards
+
+- **Re-running is safe.** Every patch is idempotent; a second run reports
+  `already current` and changes nothing.
+- **Record the patch time.** The log prints it. Responses collected *before* it
+  answered a different Q2 and a Q7 with one fewer option — they do not pool on
+  those two questions. They pool fine on the other twelve. One line in the deck's
+  method note.
+- **Mirror any hand-edit back into the repo.** Once the form is live,
+  `create-wishlist-form.gs` stops being what is deployed unless you keep it in
+  step. The repo is what the deck cites.
 
 ---
 
@@ -140,7 +177,9 @@ It deliberately never touches branching. Open the form and verify by eye:
 
 `wireBranch` fails soft: if the Forms API refuses the navigation it sets the
 choices without it, logs `COULD NOT SET BRANCHING`, and the form goes live
-looking fine. This happened on the 20 Aug build. **Check the execution log after
+looking fine. This happened on the 20 Aug build. (If *both* calls fail it now
+throws instead — a required question with no options at all makes the whole form
+unsubmittable, which is not something to fail quietly about.) **Check the execution log after
 every run, and check the branches in Preview before sharing the link.**
 
 Repairing by hand is more reliable than re-running the script, because the same
@@ -157,7 +196,8 @@ based on answer*, then:
 | A few times a year | Continue to next section |
 | **Never - I don't buy clothes on Myntra** | **Submit form** |
 
-**Q3 — Section 2.** Same menu, then:
+**The wishlist count — Section 2**, the last question on that page. Same menu,
+then:
 
 | Option | Goes to |
 |---|---|
@@ -171,8 +211,9 @@ based on answer*, then:
 **Then prove it in Preview** — the eye icon. Nothing else counts as verification:
 
 1. Answer Q2 "Never" → should land on the submit page immediately
-2. Restart, answer Q2 anything else, Q3 = **0** → should jump to "About you",
-   skipping Q4-Q12
+2. Restart, answer Q2 anything else, then the wishlist count = **0** → should
+   jump to "About you", skipping Q6-Q12 but *after* the two last-30-days
+   questions, which now sit above the count
 
 Two traps:
 
@@ -180,15 +221,3 @@ Two traps:
   longer applies. It is not the control for this.
 - **Set branching before editing any option's wording.** Editing an option's text
   can drop the navigation attached to it.
-
-## 10. Afterwards
-
-- **Re-running is safe.** Every patch is idempotent; a second run reports
-  `already current` and changes nothing.
-- **Record the patch time.** The log prints it. Responses collected *before* it
-  answered a different Q2 and a Q7 with one fewer option — they do not pool on
-  those two questions. They pool fine on the other twelve. One line in the deck's
-  method note.
-- **Mirror any hand-edit back into the repo.** Once the form is live,
-  `create-wishlist-form.gs` stops being what is deployed unless you keep it in
-  step. The repo is what the deck cites.

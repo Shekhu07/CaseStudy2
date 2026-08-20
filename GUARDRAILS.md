@@ -70,7 +70,7 @@ own corpus:
 ```
 30-day conversion
   = % of adds carrying genuine purchase intent          → 72.2% (Myntra-only, pre-purchase)
-  × % who return to the wishlist within 30 days         → not measurable from our corpus; survey Q4 reads it
+  × % who return to the wishlist within 30 days         → not measurable from our corpus; survey Q3 reads it
   × % whose blocking uncertainty gets resolved          → THE LEAK. 66.1% of pre-purchase documents name
                                                           a doubt the product never answers
   × % who then complete checkout                        → dominant checkout need is price, 24.8% — banned

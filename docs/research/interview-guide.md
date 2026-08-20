@@ -164,8 +164,9 @@ For each one that lands: **what did it cost you** (time, favours, the return tri
 and **did it actually resolve the question**. A workaround that didn't work is as
 informative as one that did.
 
-`[SHARPEN]` — survey Q8 free text will name workarounds nobody listed here. Add
-them as named probes before call 1 rather than discovering them in call 5.
+`[SHARPEN]` — survey Q8's option list, and the Q9 free text, will name workarounds
+nobody listed here. Add them as named probes before call 1 rather than
+discovering them in call 5.
 
 ## 40–45 min · The falsification question, then close
 

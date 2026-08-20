@@ -11,6 +11,14 @@
 > the corpus, it does not go in. This file exists to be thrown away once real
 > responses land.
 
+> **Numbering here predates the reorder.** This pilot was run against the version
+> where the wishlist count was Q3 and the two last-30-days questions were Q4 and
+> Q5. The spec now asks the last-30-days pair first, so those three are Q3, Q4 and
+> Q5 respectively; a few question titles were also reworded afterwards. The
+> answers still test what they were written to test, so the tables are left as
+> they were run rather than retro-fitted. Read `wishlist-survey.md` for the
+> current numbering.
+
 Four respondents, chosen for **coverage, not variety**. Each tests something the
 instrument has to get right:
 

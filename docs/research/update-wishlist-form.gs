@@ -34,6 +34,30 @@
  * timestamps, so the affected rows stay identifiable - find the run time in the
  * log and treat earlier rows as n-3 (or whatever your count is) on Q2 and Q7.
  * State it once in the deck's method note. Do not quietly pool them.
+ *
+ * And FOUR CHANGES IN THE SPEC ARE HAND WORK. The script detects each one and
+ * prints what to do; it will not do them for you, because each would destroy
+ * something on the way:
+ *
+ *   a) Q2 still offers "Never - I don't shop on Myntra" under a stem that now
+ *      asks how often you BUY. Rewriting it means rewriting the choice list,
+ *      which drops the screen-out branch that choice carries.
+ *   b) The last-30-days pair (opens, bought) must move ABOVE the wishlist count,
+ *      onto page 2. Below it they sit on the far side of the count's branch, so
+ *      anyone answering "0" - including anyone who bought everything they had
+ *      saved - is skipped past the purchase question. Moving items by script
+ *      re-indexes the form under the branch that points into it. Delete the page
+ *      break the pair leaves empty while you are in there.
+ *   c) The interview opt-in and its contact field must go. Deleting a live
+ *      question orphans the answers already given to it - not a call a patch
+ *      script should make silently on data you have already collected.
+ *   d) Only if an EARLIER run of this script converted "Now think about the last
+ *      thing you saved" into a section header: it has to become a page break
+ *      again. The spec gives the item questions their own page. Retitling a
+ *      break is safe; rebuilding one under a live branch is not.
+ *
+ * Until (b) is done by hand the live form under-counts the north-star question.
+ * It is two drags in the editor; do it.
  * ---------------------------------------------------------------------------
  */
 
@@ -80,7 +104,17 @@ function updateExistingForm() {
     ["What's the single biggest thing stopping you?",
      "What's the single biggest thing stopping you from buying that item?"],
     ["What would you need to know to decide today - buy it, or delete it?",
-     "What would you need to know to decide on that item today - buy it, or delete it?"]
+     "What would you need to know to decide on that item today - buy it, or delete it?"],
+
+    // The three below were fixed in the spec while reading the LIVE form, and
+    // then only ever applied to create-wishlist-form.gs - which is not what is
+    // deployed. Without these the live form keeps the old wording forever.
+    ["How many items are in it right now?",
+     "How many items are in your wishlist right now?"],
+    ["When two or three saved items are close alternatives, what usually happens?",
+     "When you've saved a few similar things and can only really buy one, what usually happens?"],
+    ["Across your whole wishlist, which of these are true of at least one item?",
+     "Thinking about everything in your wishlist - which of these apply to anything in there?"]
   ].forEach(function (pair) {
     patch('retitle: "' + truncate(pair[0]) + '"', function () {
       return retitle(form, pair[0], pair[1]);
@@ -109,41 +143,112 @@ function updateExistingForm() {
     );
   });
 
-  /* --- 4. Page 3 heading now covers both halves of the merged page. --- */
+  /* --- 4. Page 3 is the one-item page, and its break carries that framing in
+     its title. It used to be titled "The last thing you saved" and sat one page
+     lower; with the last-30-days pair moving up to page 2 (see patch 7), this
+     break becomes the top of the item page and says so.
 
-  patch("page 3: retitle for the merged page", function () {
-    var it = findByTitle(form, "The last 30 days");
-    if (!it) return SKIP;
-    if (!DRY_RUN) {
-      it.asPageBreakItem()
-        .setTitle("Your wishlist, and the last thing you saved")
-        .setHelpText("Open your Myntra wishlist if you closed it - the first two need a number.");
+     An earlier revision of this script turned that break into a SECTION HEADER,
+     to merge two pages. The spec no longer does that - the reorder gives the
+     item questions a page to themselves - so if a previous run already converted
+     it, this asks for it back rather than pretending the form is current. --- */
+
+  patch("page 3: title the item page", function () {
+    var TITLE = "Now think about the last thing you saved";
+    var HELP =
+      "Look at the most recent item you saved and haven't bought. " +
+      "All four questions on this page are about that one item.";
+
+    var hdr = findByTitle(form, TITLE);
+    if (hdr && hdr.getType() === FormApp.ItemType.SECTION_HEADER) {
+      Logger.log("");
+      Logger.log('  BY HAND: "' + TITLE + '" is a section header, left over from');
+      Logger.log("  the old merged page. The spec now gives the item questions their own");
+      Logger.log("  page. Add a page break above the \"why did you save that item\" question");
+      Logger.log("  with that title and delete the header.");
+      return SKIP;
     }
-    return null;
-  });
 
-  /* --- 5. Merge pages 3+4: the page break becomes an in-page section header,
-     so the "one specific item" framing survives without splitting the form. --- */
-
-  patch("merge pages 3+4 (page break -> section header)", function () {
-    if (findByTitle(form, "Now think about the last thing you saved")) return SKIP;
-    var brk = findByTitle(form, "The last thing you saved");
+    var brk = findFirstByTitles(form, [TITLE, "The last thing you saved"]);
     if (!brk) return SKIP;
-    assertNotANavigationTarget(form, brk);
-    var idx = brk.getIndex();
-    var help = brk.asPageBreakItem().getHelpText();
+    if (brk.getTitle() === TITLE && brk.getHelpText() === HELP) return SKIP;
     if (!DRY_RUN) {
-      form.deleteItem(brk);
-      var hdr = form.addSectionHeaderItem()
-        .setTitle("Now think about the last thing you saved")
-        .setHelpText(help || "Look at the most recent item you saved and haven't bought. " +
-                             "The next four questions are about that one item.");
-      form.moveItem(hdr.getIndex(), idx);
+      brk.asPageBreakItem().setTitle(TITLE).setHelpText(HELP);
     }
     return null;
   });
 
-  /* --- 6. The interview opt-in and its contact field were REMOVED from the
+  /* --- 5. Age and city became OPTIONAL. They are the only two questions on
+     the form that feed no analysis - they describe the sample and nothing else -
+     and they sit at exactly the point a respondent is most likely to abandon.
+     Required on a live form, they cost completions and buy nothing. --- */
+
+  [["Age"], ["Which city?"]].forEach(function (titles) {
+    patch("make " + titles[0] + " optional", function () {
+      return makeOptional(form, titles);
+    });
+  });
+
+  /* --- 6. Q2's screen-out option still says "shop" under a stem that now asks
+     how often you BUY - the same ambiguity, moved from the stem into the answer.
+     The script will not touch it: that choice carries the screen-out branch, and
+     the only way to edit a choice from Apps Script is to rewrite the whole list,
+     which drops the navigation on every choice in it. Flag it. --- */
+
+  patch("check Q2's screen-out wording", function () {
+    var it = findFirstByTitles(form, [
+      "How often do you buy clothes on Myntra?",
+      "How often do you shop for clothes on Myntra?"
+    ]);
+    if (!it) return SKIP;
+    var choices = it.asMultipleChoiceItem().getChoices();
+    var stale = false;
+    for (var i = 0; i < choices.length; i++) {
+      if (choices[i].getValue() === "Never - I don't shop on Myntra") stale = true;
+    }
+    if (!stale) return SKIP;
+    Logger.log("");
+    Logger.log('  BY HAND: Q2 still offers "Never - I don\'t shop on Myntra" while the');
+    Logger.log("  question now asks how often you BUY. Edit that option to read");
+    Logger.log('  "Never - I don\'t buy clothes on Myntra" - then RE-SET its branching to');
+    Logger.log("  Submit form, because editing an option's text can drop the navigation");
+    Logger.log("  attached to it. Check it in Preview afterwards.");
+    return SKIP;
+  });
+
+  /* --- 7. The last-30-days pair must sit ABOVE the wishlist count, not below
+     it. Below, they are on the far side of the count's branch: anyone answering
+     "0" - which includes anyone who bought everything they had saved - is sent
+     to About you without ever being asked whether they bought anything. That is
+     the north-star question censoring exactly the cases it exists to count.
+
+     Not scripted. moveItem() re-indexes a form that has a branch pointing into
+     it, and the branch is the thing we are protecting. Two drags by hand. --- */
+
+  patch("check the last-30-days questions come first", function () {
+    var count = findFirstByTitles(form, [
+      "How many items are in your wishlist right now?",
+      "How many items are in it right now?"
+    ]);
+    var opens = findFirstByTitles(form, [
+      "In the last 30 days, how many times did you open your wishlist?",
+      "In the last 30 days, how many times did you open it?"
+    ]);
+    if (!count || !opens) return SKIP;
+    if (opens.getIndex() < count.getIndex()) return SKIP;
+    Logger.log("");
+    Logger.log("  BY HAND: the two last-30-days questions still sit AFTER the wishlist");
+    Logger.log("  count, so they are behind its branch. Anyone answering \"0\" - including");
+    Logger.log("  anyone who bought everything they had saved - skips the purchase");
+    Logger.log("  question, and the north-star number reads low.");
+    Logger.log("  Drag both onto page 2, ABOVE the count question. The count must stay");
+    Logger.log("  LAST on that page or its branch stops working. Then delete the page");
+    Logger.log('  break they used to live under ("The last 30 days") - it now heads an');
+    Logger.log("  empty page. Re-check the branch and Preview afterwards.");
+    return SKIP;
+  });
+
+  /* --- 8. The interview opt-in and its contact field were REMOVED from the
      spec: the six walkthrough participants are recruited directly, so the form
      has no recruiting job and no reason to hold anyone's email.
 
@@ -178,10 +283,19 @@ function updateExistingForm() {
 
   Logger.log("");
   Logger.log("NOW CHECK BY HAND - the script deliberately does not touch branching:");
-  Logger.log('  1. Under "How many items are in it right now?", 0 and "I don\'t have a wishlist"');
-  Logger.log('     must still point at "About you".');
-  Logger.log('  2. Under Q2, "Never - I don\'t shop on Myntra" must still point at "Submit form".');
-  Logger.log("  3. The form should now be 5 pages, ending on \"About you\".");
+  Logger.log('  1. Under "How many items are in your wishlist right now?" (this run may have');
+  Logger.log('     just retitled it), 0 and "I don\'t have a wishlist" must still point at');
+  Logger.log('     "About you". Retitling a question does not disturb its branching, but');
+  Logger.log("     check it rather than assume it.");
+  Logger.log('  2. Under Q2, the "Never" option must still point at "Submit form" - and see');
+  Logger.log("     the note above about its wording.");
+  Logger.log('  3. "Now think about the last thing you saved" heads its own page, with the');
+  Logger.log("     four item questions under it and nothing else.");
+  Logger.log("  4. Page count. The spec is 5 pages: the screen / your wishlist / the item /");
+  Logger.log("     your wishlist in general / About you. You only get there after the hand");
+  Logger.log("     steps this script printed above - moving the last-30-days pair, deleting");
+  Logger.log("     the page break they left empty, and deleting the opt-in and contact page.");
+  Logger.log("     A higher count before those is expected, not a failed run.");
   Logger.log("");
   Logger.log("AND REMEMBER: responses collected before now are not comparable on Q2 or Q7.");
   Logger.log("Patched at: " + new Date());
@@ -244,33 +358,40 @@ function addChoice(form, titles, newChoice) {
   return null;
 }
 
+/**
+ * Flips a question to optional. Idempotent: a question that is already optional
+ * reports "already current" rather than being written again.
+ */
+function makeOptional(form, titles) {
+  var it = findFirstByTitles(form, titles);
+  if (!it) throw new Error("question not found under any known wording");
+  // isRequired()/setRequired() live on the TYPED item, not on the generic Item
+  // that getItems() hands back - so this has to cast before it can ask.
+  var q = asQuestion(it);
+  if (!q.isRequired()) return SKIP;
+  if (!DRY_RUN) q.setRequired(false);
+  return null;
+}
+
+/**
+ * Casts a generic Item to its typed form. Throws on page breaks and section
+ * headers, which are not questions and have no required flag.
+ */
+function asQuestion(it) {
+  var t = it.getType();
+  if (t === FormApp.ItemType.MULTIPLE_CHOICE) return it.asMultipleChoiceItem();
+  if (t === FormApp.ItemType.CHECKBOX) return it.asCheckboxItem();
+  if (t === FormApp.ItemType.TEXT) return it.asTextItem();
+  if (t === FormApp.ItemType.PARAGRAPH_TEXT) return it.asParagraphTextItem();
+  if (t === FormApp.ItemType.LIST) return it.asListItem();
+  if (t === FormApp.ItemType.SCALE) return it.asScaleItem();
+  throw new Error('"' + it.getTitle() + '" is not a question (' + t + ')');
+}
+
 function setHelp(form, titles, help) {
   var it = findFirstByTitles(form, titles);
   if (!it) throw new Error("question not found under any known wording");
   if (it.getHelpText() === help) return SKIP;
   if (!DRY_RUN) it.setHelpText(help);
   return null;
-}
-
-/**
- * Deleting a page break that some choice navigates TO would silently break that
- * branch. Neither break this script removes should be a target - verify rather
- * than assume.
- */
-function assertNotANavigationTarget(form, pageBreak) {
-  var id = pageBreak.getId();
-  var items = form.getItems();
-  for (var i = 0; i < items.length; i++) {
-    var t = items[i].getType();
-    if (t !== FormApp.ItemType.MULTIPLE_CHOICE && t !== FormApp.ItemType.LIST) continue;
-    var choices = (t === FormApp.ItemType.MULTIPLE_CHOICE)
-      ? items[i].asMultipleChoiceItem().getChoices()
-      : items[i].asListItem().getChoices();
-    for (var c = 0; c < choices.length; c++) {
-      var target = choices[c].getGotoPage();
-      if (target && target.getId() === id) {
-        throw new Error('"' + items[i].getTitle() + '" navigates to this page break - refusing to delete it.');
-      }
-    }
-  }
 }

@@ -197,7 +197,7 @@ the return-rate guardrail catches.
 
 | Deliverable | Use |
 |---|---|
-| Part 3 | Recruiting screen — Q2 + Q3 + Q7 select for Aditi |
+| Part 3 | Recruiting screen — Q2 + Q5 + Q7 select for Aditi |
 | Part 4(a) | The segment, with the lift figures |
 | Part 4(c) | "Stores the item, discards the question" is her return moment |
 | Part 4(d) | Her workaround list is the section |
@@ -221,5 +221,5 @@ the return-rate guardrail catches.
 
 **What the corpus cannot support, and the persona must not claim:** that she is
 5'3" and 26 and in Pune; that she returns to the wishlist on day 11; that she has
-31 items. Those are illustrative scaffolding. Survey Q3, Q4 and Q13/Q14 replace
+31 items. Those are illustrative scaffolding. Survey Q3, Q5 and Q13/Q14 replace
 the first three with measured distributions — update this file when they land.

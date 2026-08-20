@@ -13,7 +13,7 @@
  * place and leaves collected responses alone.
  *
  * ---------------------------------------------------------------------------
- * SCOPE - 13 questions across 5 pages, about 3 minutes, one free-text box.
+ * SCOPE - 14 questions across 5 pages, about 3 minutes, one free-text box.
  *
  * This form does only what a form is uniquely good at: counting things across
  * many people. Everything that needs a follow-up question is deliberately left
@@ -21,8 +21,8 @@
  *
  * It measures exactly four things the 3,922-document corpus cannot (numbering
  * follows wishlist-survey.md, where the consent checkbox is Q1):
- *   Q4  how often the wishlist is revisited   -> the assumed term in the Part 2 tree
- *   Q5  purchases from it in 30 days          -> the north-star metric itself
+ *   Q3  how often the wishlist is revisited   -> the assumed term in the Part 2 tree
+ *   Q4  purchases from it in 30 days          -> the north-star metric itself
  *   Q6  why the item was saved                -> the intent split hidden in genuine_intent
  *   Q7  what is blocking it                   -> triangulates against the Part 1 themes
  * plus Q9, the free-text box, which is the test of whether the MVP resolves anything.
@@ -55,7 +55,7 @@ function createWishlistForm() {
 
   form.setDescription(
     "I'm a product management fellow researching why clothes people genuinely want end up " +
-      "sitting in a wishlist unbought. Three minutes, 13 questions.\n\n" +
+      "sitting in a wishlist unbought. Three minutes, 14 questions.\n\n" +
       "Completely anonymous - no email, no name, nothing that identifies you. Used only for a\n" +
       "student case study and reported as aggregate numbers.\n\n" +
       "HAVE YOUR PHONE HANDY - several questions ask you to look at your actual wishlist, " +
@@ -84,7 +84,7 @@ function createWishlistForm() {
 
   // The screen. Was a bare yes/no; reworked to a frequency question after a peer's
   // form showed the same tap can also describe the sample - "n% shop monthly or
-  // more" is a method-note line the yes/no could never produce, and it lets Q4-Q10
+  // more" is a method-note line the yes/no could never produce, and it lets Q3-Q12
   // be cut by shopping intensity for free.
   //
   // Two deliberate departures from the form it came from: it names Myntra rather
@@ -102,12 +102,15 @@ function createWishlistForm() {
   // feeds nothing here.
   //
   // Last on its page because that is what branching requires.
-  var q1 = form
+  var qBuyFrequency = form
     .addMultipleChoiceItem()
     .setTitle("How often do you buy clothes on Myntra?")
     .setRequired(true);
 
-  /* ---------------------------- Page 2 ---------------------------- */
+  /* ---------------------------- Page 2 ----------------------------
+   * The whole wishlist, in three questions. Everyone who passes the screen
+   * answers all three - there is no branch above this page.
+   * ---------------------------------------------------------------- */
 
   form
     .addPageBreakItem()
@@ -116,24 +119,18 @@ function createWishlistForm() {
       "Open your Myntra wishlist and have a quick look before answering.",
     );
 
-  // Alone on its page ON PURPOSE. Google Forms only honours per-answer branching
-  // on the LAST question of a section, and setChoices() throws "Invalid data
-  // updating form" if you attach navigation to a question with anything after it.
-  // If you add a question here, the branch below breaks.
-  var q3 = form
-    .addMultipleChoiceItem()
-    .setTitle("How many items are in your wishlist right now?")
-    .setRequired(true);
-
-  /* ---------------------------- Page 3 ---------------------------- */
-
-  form
-    .addPageBreakItem()
-    .setTitle("Your wishlist, and the last thing you saved")
-    .setHelpText(
-      "Open your Myntra wishlist if you closed it - the first two need a number.",
-    );
-
+  // Q3 and Q4 sit BEFORE the count on purpose, and moving them here fixed a
+  // real hole in the north-star measurement.
+  //
+  // They used to sit after the count, on the far side of its branch. But the
+  // branch sends "0" and "I don't have a wishlist" straight to About you - so a
+  // shopper who bought everything they had saved answers "0" truthfully and was
+  // then skipped past "did you buy anything from your wishlist?" before they
+  // could say yes. The purchases Q4 exists to count were exactly the ones the
+  // form dropped, and the bias ran one way: down.
+  //
+  // Asked first, they are answerable by everyone. Someone with nothing saved
+  // answers "Not once" and "No", which is data, not noise.
   form
     .addMultipleChoiceItem()
     .setTitle("In the last 30 days, how many times did you open your wishlist?")
@@ -157,23 +154,34 @@ function createWishlistForm() {
     ])
     .setRequired(true);
 
-  /* --------- Same page: the frame changes from list to item ---------
-   * This was page 4 until it was merged in. A page BREAK was doing two jobs -
-   * splitting the form, and telling the respondent that the subject changes from
-   * the whole wishlist to one specific item. addSectionHeaderItem keeps the second
-   * job without the first: it renders as a titled block mid-page, so the scoping
-   * instruction is still a heading rather than a line of body text.
+  // Q5, the count, and LAST ON ITS PAGE ON PURPOSE. Google Forms only honours
+  // per-answer branching on the LAST question of a section, and setChoices()
+  // throws "Invalid data updating form" if you attach navigation to a question
+  // with anything after it. Adding a question BEFORE it is free - that is what
+  // Q3 and Q4 above are doing. Adding one AFTER it breaks the branch below.
+  var qCount = form
+    .addMultipleChoiceItem()
+    .setTitle("How many items are in your wishlist right now?")
+    .setRequired(true);
+
+  /* ---------------------------- Page 3 ----------------------------
+   * One specific item, for the whole page.
    *
-   * The questions on both sides of it were also reworded to name their subject
-   * outright - "your wishlist" above, "that item" below - because "it" is no
-   * longer disambiguated by a page heading.
+   * This was two pages once, then one page with a section header inside it: a
+   * page break was doing double duty, splitting the form AND announcing that
+   * the subject changes from the whole wishlist to one item. With Q3-Q5 moved
+   * up to page 2, the page title does that job on its own and the extra header
+   * is gone with it.
+   *
+   * Every question here still names its subject outright - "that item" - so no
+   * pronoun depends on the heading.
    * ---------------------------------------------------------------- */
 
   form
-    .addSectionHeaderItem()
+    .addPageBreakItem()
     .setTitle("Now think about the last thing you saved")
     .setHelpText(
-      "Look at the most recent item you saved and haven't bought. The next four questions are about that one item.",
+      "Look at the most recent item you saved and haven't bought. All four questions on this page are about that one item.",
     );
 
   // The intent split. All of this collapses into genuine_intent in the Part 1
@@ -275,16 +283,16 @@ function createWishlistForm() {
     .setRequired(true);
 
   /* ---------------------------- Page 4 ----------------------------
-   * Both questions are about wishlist behaviour in general, not about the one
-   * item the section above asks about - which is why they get their own page rather than
-   * being appended there. They sit AFTER the q3 branch target below, so anyone
-   * who reported an empty wishlist skips them, correctly: neither means anything
-   * to someone with nothing saved.
+   * All three questions here are about wishlist behaviour in general, not about
+   * the one item page 3 asks about - which is why they get their own page rather
+   * than being appended there. They sit between the qCount branch and its
+   * target, so anyone who reported an empty wishlist skips all three,
+   * correctly: none of them means anything to someone with nothing saved.
    * ---------------------------------------------------------------- */
 
   form.addPageBreakItem().setTitle("Your wishlist in general");
 
-  // Abandonment - the other exit from the Part 2 tree, and the half Q4/Q5 cannot
+  // Abandonment - the other exit from the Part 2 tree, and the half Q3/Q4 cannot
   // see. Phrased as "the last time" rather than "usually" so it recalls an event
   // instead of inviting a self-description. Options mirror Q7's taxonomy, so
   // blockers-that-stall and blockers-that-kill can be compared directly.
@@ -393,7 +401,7 @@ function createWishlistForm() {
   var CONTINUE = FormApp.PageNavigationType.CONTINUE;
 
   wireBranch(
-    q1,
+    qBuyFrequency,
     [
       ["Once a week or more", CONTINUE],
       ["A few times a month", CONTINUE],
@@ -409,7 +417,7 @@ function createWishlistForm() {
   // form", and CONTINUE is how you say "go to the next page" - naming the next
   // page break directly is what broke the opt-in question.
   wireBranch(
-    q3,
+    qCount,
     [
       ["0", aboutYouPage],
       ["1-5", CONTINUE],
@@ -450,7 +458,7 @@ function applySetting(form, name, value) {
  *
  * Branching is the fiddliest corner of this API and the least valuable part of
  * the form - it spares a few people four irrelevant questions. A throw here would
- * cost you all thirteen questions instead, so on failure the choices are set without
+ * cost you all fourteen questions instead, so on failure the choices are set without
  * navigation and the log says exactly what to click to restore it by hand.
  *
  * @param item   MultipleChoiceItem to wire
@@ -465,11 +473,28 @@ function wireBranch(item, pairs, label) {
       }),
     );
   } catch (err) {
-    item.setChoiceValues(
-      pairs.map(function (p) {
-        return p[0];
-      }),
-    );
+    try {
+      item.setChoiceValues(
+        pairs.map(function (p) {
+          return p[0];
+        }),
+      );
+    } catch (fallbackErr) {
+      // Both calls failed, so the question is now live with NO options and
+      // setRequired(true) already on it - which makes the whole form
+      // unsubmittable, silently. Fail loudly instead: a run that stops here is
+      // recoverable, a form that nobody can submit is not.
+      throw new Error(
+        'Could not set the choices on "' +
+          item.getTitle() +
+          '" at all. setChoices: ' +
+          err.message +
+          " | setChoiceValues: " +
+          fallbackErr.message +
+          " - the question would have shipped with no options and the form " +
+          "would accept no responses. Fix this before sharing the link.",
+      );
+    }
     Logger.log(
       'COULD NOT SET BRANCHING on "' +
         item.getTitle() +

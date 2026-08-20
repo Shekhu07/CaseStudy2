@@ -30,7 +30,7 @@ W30  =  A. quality of save
 | | Term | What it asks | Our reading |
 |---|---|---|---|
 | **A** | Quality of save | Was this ever convertible? | **72.2%** carry genuine purchase intent |
-| **B** | Revisit | Do they come back inside 30 days? | **Not measurable from the corpus** — survey Q4 reads it |
+| **B** | Revisit | Do they come back inside 30 days? | **Not measurable from the corpus** — survey Q3 reads it |
 | **C** | Doubt resolution | Does the blocking question get answered? | **66.1%** name a doubt the product does not answer |
 | **D** | Mechanics | Does resolution become an order? | Checkout-stage friction is **24.8% price**, banned by the constraint |
 
@@ -139,7 +139,7 @@ not**, because it follows from 66.1% and 24.8%, which are measured.
 |---|---|---|---|---|
 | **North star** | W30, gross and net | Read from internal data, day 1 | **+15% relative** in 8 weeks | A/B, below |
 | Term A | % saves with genuine intent | 72.2% *(corpus proxy)* | Not a target — a segmentation input | Survey **Q6**; save-time intent capture once built |
-| Term B | 30-day wishlist revisit rate | Unknown | Not our lever | Survey Q4 for direction; instrument day 1 |
+| Term B | 30-day wishlist revisit rate | Unknown | Not our lever | Survey Q3 for direction; instrument day 1 |
 | **Term C** | **Doubt-resolution rate** | **Unknown; 66.1% carry an unresolved doubt** | **34% → 44%** | The MVP |
 | Term D | Wishlist → order completion | Unknown | Hold flat | Existing funnel telemetry |
 
@@ -149,10 +149,10 @@ really planning to buy it"*; *"I honestly don't remember"* is reported separatel
 rather than folded either way. Fix that coding rule now, before the responses land
 and it becomes a choice.
 
-**Q5 is not W30, and the deck must not imply it is.** §2.1 defines W30 on a rolling
-30 days from each item's *save event*; Q5 asks about the last 30 *calendar* days
+**Q4 is not W30, and the deck must not imply it is.** §2.1 defines W30 on a rolling
+30 days from each item's *save event*; Q4 asks about the last 30 *calendar* days
 regardless of when the item was saved. An item saved six months ago and bought last
-week counts in Q5 and not in W30. Q5 is a directional read on the same behaviour,
+week counts in Q4 and not in W30. Q4 is a directional read on the same behaviour,
 and the only pre-instrumentation read available.
 
 **Experiment design.** Randomise wishlisters, not sessions — W30 is user-level.
