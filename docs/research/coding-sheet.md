@@ -78,6 +78,10 @@ two columns is itself a finding.
 | `oldest_item_age` | roughly, from the scroll |
 | `opens_last_30d` | self-reported |
 | `bought_from_it_30d` | `yes` / `no` |
+| `revisit_trigger` | `price_drop_alert` · `other_notification` · `deliberate_visit` · `browsing_landed_there` · `doesnt_remember` — from probe 6. This is the only evidence in the project for Part 2 §2.4's claim that term B is already served |
+| `revisit_trigger_converted` | `yes` / `no` — did that return end in a purchase? "Came back on a price alert and still didn't buy" is the sentence §2.4 needs |
+| `affordances_used` | Observed, not asked. Any of `category_chips` · `price_drop_badge` · `promo_banner` · `share` · `move_to_bag` · `photo_zoom` — semicolon-separated. `photo_zoom` is a fit-inspection tell, log it even though it is not a feature |
+| `affordances_never_used` | From probe 7, their own words. Blank if they named none |
 | `segment_signal` | `fit_uncertainty_prone` · `new_or_low_trust_user` · `price_sensitive` · `occasion_buyer` · `brand_loyal` · `bulk_orderer_returner` · `premium_buyer` — **allow more than one.** Part 4 (a) flags that the corpus tagger assigned at most one per document, which is why we cannot claim the segments are distinct populations. Six people who can carry two labels is how that question gets answered |
 | `first_reaction_quote` | verbatim, from the unprompted scroll |
 | `falsification_answer` | **`mostly_unsure` / `mostly_waiting` / `mixed`** — plus the verbatim |

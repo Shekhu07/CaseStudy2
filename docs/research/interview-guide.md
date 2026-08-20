@@ -49,7 +49,7 @@ specific or just who they are.
 2. How long between first seeing it and actually paying?
 3. Was there a moment you nearly didn't buy it? What happened?
 
-## 5–10 min · The unprompted scroll
+## 5–12 min · The unprompted scroll — and the surface itself
 
 **"Open your wishlist, share your screen, and just scroll from the top. React out
 loud — whatever comes into your head."**
@@ -66,7 +66,47 @@ Then two questions:
 4. If you had to delete half of this right now, which half goes?
 5. When did you last open this list on your own, without me asking?
 
-## 10–32 min · Item-by-item walkthrough — **the core**
+### The surface itself — **watch, don't ask**
+
+Added after a review found this gap: nothing in the project tested it. Part 2 §2.4
+justifies not attacking term B on the grounds that **"revisit is already served by
+notifications and price-drop alerts."** That is one of the three legs the choice of
+term C stands on, and it has been an assumption throughout. This is where it gets
+checked.
+
+The teardown says what is *on* the Myntra wishlist. Only this block says what gets
+*used*. Their screen is already shared and they are already scrolling — so most of
+this is observation, and costs no interview time.
+
+**Observe silently during the scroll above. Tick what you actually see:**
+
+- [ ] Touches the **category chips** at all — and if so, what they were looking for
+- [ ] Reacts to a **PRICE DROP** badge — pauses, taps, or scrolls straight past
+- [ ] Notices the **cashback / promo banner** above the first product, or blanks it
+- [ ] Uses **share** on any card
+- [ ] Uses **move to bag** — and whether it is the item they were discussing
+- [ ] Any pinch, zoom, or long-press on a product photo *(a fit-inspection tell)*
+- [ ] Sorting or reordering behaviour — or visible frustration that none exists
+
+**Then two questions, and only two:**
+
+6. **What brought you back to this list the last few times — do you remember?**
+   → If they say a notification or a price drop: *which one, and did you buy?*
+   This is the term-B question. "Came back because of a price alert and still
+   didn't buy" is the strongest single sentence available for Part 2 §2.4.
+
+7. **Is there anything on this screen you've never used?**
+   → Ask *after* the scroll, never before — naming a feature makes them use it.
+
+**Do not ask** whether they like the wishlist, whether it is easy to use, or what
+they would add. Stated preference on a surface they open twice a month is worth
+nothing, and "what would you add" produces a feature request, not a problem. If
+they volunteer one, write it down and move on — do not follow it.
+
+`[SHARPEN]` — if the teardown screenshots show an affordance not listed above,
+add it to the tick-list before the first call so it is checked consistently.
+
+## 12–32 min · Item-by-item walkthrough — **the core**
 
 **5–8 items per participant.** Let them pick the first two, then you pick: one
 they scrolled past fast, one they lingered on, and the oldest item in the list.
