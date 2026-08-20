@@ -67,7 +67,7 @@ function createWishlistForm() {
   // on a progress bar. Anything that fails is logged and skipped.
   applySetting(form, "setProgressBar", true);
   applySetting(form, "setShuffleQuestions", false);
-  applySetting(form, "setCollectEmail", false);            // asked at the end only, from opt-ins
+  applySetting(form, "setCollectEmail", false);            // nothing identifying is collected at all
   applySetting(form, "setLimitOneResponsePerUser", false); // sign-in suppresses completion
   applySetting(form, "setAllowResponseEdits", false);
   applySetting(form, "setShowLinkToRespondAgain", false);
