@@ -11,22 +11,40 @@
  * Re-running creates a SECOND form. Edit wording in the UI instead.
  *
  * ---------------------------------------------------------------------------
- * SCOPE - 10 questions, about 2 minutes, one free-text box.
+ * SCOPE - 15 questions, about 3 minutes, one free-text box.
  *
  * This form does only what a form is uniquely good at: counting things across
  * many people. Everything that needs a follow-up question is deliberately left
  * to the walkthrough interview, which is a better instrument for it.
  *
- * It measures exactly four things the 3,922-document corpus cannot:
- *   Q3  how often the wishlist is revisited   -> the assumed term in the Part 2 tree
- *   Q4  purchases from it in 30 days          -> the north-star metric itself
- *   Q5  why the item was saved                -> the intent split hidden in genuine_intent
- *   Q6  what is blocking it                   -> triangulates against the Part 1 themes
- * plus Q7, which is the test of whether the MVP resolves anything.
+ * It measures exactly four things the 3,922-document corpus cannot (numbering
+ * follows wishlist-survey.md, where the consent checkbox is Q1):
+ *   Q4  how often the wishlist is revisited   -> the assumed term in the Part 2 tree
+ *   Q5  purchases from it in 30 days          -> the north-star metric itself
+ *   Q6  why the item was saved                -> the intent split hidden in genuine_intent
+ *   Q7  what is blocking it                   -> triangulates against the Part 1 themes
+ * plus Q9, the free-text box, which is the test of whether the MVP resolves anything.
  *
- * Moved to the interview, where they are asked better: wishlist age, removal
- * behaviour, comparison-set size, occasion dates, the 0-10 still-want score,
- * out-of-app workarounds, and "what tipped it last time".
+ * Q10 and Q11 were added later, after a peer's form showed both were survey-shaped
+ * rather than interview-shaped - you want a share across many people, not a probe:
+ *   Q10  why an item gets removed unbought -> abandonment, the other exit from the
+ *        Part 2 tree; same taxonomy as Q7, so the two can be laid against each other
+ *   Q11  what happens with close alternatives -> choice overload as observed
+ *        behaviour, which no other instrument here measures at all
+ *
+ * Q8 and Q12 were added in a stress test of this form against Parts 2 and 4:
+ *   Q8   did you try to resolve the doubt, and where did you look
+ *        -> Part 4(c) "is it still unresolved at revisit", and Part 4(d)
+ *           workarounds, which had no instrument at all after the original
+ *           workaround question was cut
+ *   Q12  which doubts co-occur across one person's whole list
+ *        -> Part 4(a): the corpus CANNOT settle whether fit-uncertain and
+ *           low-trust are one population or two, and Q7 cannot either, because
+ *           it is single-select on a single item
+ *
+ * Moved to the interview, where they are asked better: wishlist age,
+ * comparison-set size, occasion dates, the 0-10 still-want score, and "what
+ * tipped it last time".
  * ---------------------------------------------------------------------------
  */
 
@@ -35,9 +53,9 @@ function createWishlistForm() {
 
   form.setDescription(
     "I'm a product management fellow researching why clothes people genuinely want end up " +
-    "sitting in a wishlist unbought. Two minutes, 10 questions.\n\n" +
+    "sitting in a wishlist unbought. Three minutes, 14 questions.\n\n" +
     "Anonymous, used only for a student case study, reported as aggregate numbers.\n\n" +
-    "HAVE YOUR PHONE HANDY - two questions ask you to glance at your actual wishlist, " +
+    "HAVE YOUR PHONE HANDY - several questions ask you to look at your actual wishlist, " +
     "because nobody remembers this accurately."
   );
 
@@ -58,12 +76,28 @@ function createWishlistForm() {
     .setChoiceValues(["Yes"])
     .setRequired(true);
 
-  // A real screen, and the only thing this needs to establish. Which OTHER apps
-  // someone uses feeds none of the four analyses, and AGENTS.md says Myntra
-  // claims are quoted Myntra-only regardless - so asking would cost a tap and
-  // buy nothing. Last on its page because that is what branching requires.
+  // The screen. Was a bare yes/no; reworked to a frequency question after a peer's
+  // form showed the same tap can also describe the sample - "n% shop monthly or
+  // more" is a method-note line the yes/no could never produce, and it lets Q4-Q10
+  // be cut by shopping intensity for free.
+  //
+  // Two deliberate departures from the form it came from: it names Myntra rather
+  // than "online" (AGENTS.md - Myntra claims are quoted Myntra-only), and it uses
+  // time anchors rather than Very often / Often / Sometimes, which are not
+  // comparable between two respondents and cannot enter a metric tree.
+  //
+  // Only "Never" screens out. Once-a-year shoppers stay in: they are the longest
+  // deferrals in the sample and the most interesting wishlists in it.
+  //
+  // "buy", not "shop" - caught in the persona dry run. A shopper who browses four
+  // evenings a month and buys every other month cannot answer "how often do you
+  // shop" without inventing a rule, and each respondent invents a different one.
+  // Purchase frequency is the variable the segmentation wants; browsing frequency
+  // feeds nothing here.
+  //
+  // Last on its page because that is what branching requires.
   var q1 = form.addMultipleChoiceItem()
-    .setTitle("Do you shop for clothes on Myntra?")
+    .setTitle("How often do you buy clothes on Myntra?")
     .setRequired(true);
 
   /* ---------------------------- Page 2 ---------------------------- */
@@ -98,7 +132,7 @@ function createWishlistForm() {
 
   form.addPageBreakItem()
     .setTitle("The last thing you saved")
-    .setHelpText("Look at the most recent item you saved and haven't bought. These three are about that one item.");
+    .setHelpText("Look at the most recent item you saved and haven't bought. The next four questions are about that one item.");
 
   // The intent split. All of this collapses into genuine_intent in the Part 1
   // tags. "I honestly don't remember" is not a dead option - a high score on it
@@ -120,6 +154,12 @@ function createWishlistForm() {
   // Deliberately the Part 1 blocker taxonomy in plain language, so this
   // frequency table can be laid straight against the theme shares. Where the two
   // methods disagree is the point, not a problem.
+  //
+  // The last option was added after the persona dry run. Without it, a respondent
+  // who told Q6 "I just liked it, I wasn't planning to buy it" is still FORCED to
+  // name a blocker here, and picks the least-wrong one. Every window-shopper then
+  // injects a spurious blocker into the term-C distribution - the single number
+  // the whole Part 2 argument rests on. Cheap option, material correction.
   form.addMultipleChoiceItem()
     .setTitle("What's the single biggest thing stopping you?")
     .setChoiceValues([
@@ -134,9 +174,44 @@ function createWishlistForm() {
       "I already own something similar",
       "Can't decide between this and something else",
       "I don't need it yet",
-      "I'd forgotten about it until now"
+      "I'd forgotten about it until now",
+      "Nothing is stopping me - I'm not actually planning to buy it"
     ])
     .showOtherOption(true)
+    .setRequired(true);
+
+  // Q8 - added in the stress test against Part 4. It closes the single biggest
+  // hole in this instrument.
+  //
+  // Part 4(c) says the corpus "sees the doubt once, never twice" and so cannot
+  // show the doubt is STILL unresolved at revisit rather than resolved-and-
+  // declined. Without this question the form has exactly the same blindness: Q7
+  // records a doubt, and nothing establishes that the shopper tried to answer it
+  // and could not.
+  //
+  // It does double duty. Part 4(d) - existing workarounds, and the thinnest
+  // section in the whole case - currently has no instrument at all after the
+  // original workaround question was cut, leaving six interviews to evidence it.
+  // Six interviews give six anecdotes; this gives a distribution.
+  //
+  // "I tried, and still couldn't find out" is the option the argument rests on.
+  // A high share is the root cause stated in the users' own behaviour: the doubt
+  // is not laziness, it is unanswerable on the surface where it arises.
+  form.addCheckboxItem()
+    .setTitle("Did you try to find that out? Tick everywhere you looked.")
+    .setHelpText("Still about that same item. Tick as many as apply - and if there was nothing to look up, just tick \"I didn't try\".")
+    .setChoiceValues([
+      "I didn't try",
+      "The size chart on the product page",
+      "The reviews or customer photos",
+      "The ratings / fit feedback on the listing",
+      "Asked a friend or family member",
+      "Searched YouTube or Instagram for it",
+      "Checked the brand's own site, or another app",
+      "Went to a shop to see it in person",
+      "Planned to order two sizes and return one",
+      "I tried, and still couldn't find out"
+    ])
     .setRequired(true);
 
   // The only free-text box, and the sharpest test available of the MVP: if an
@@ -147,7 +222,75 @@ function createWishlistForm() {
     .setHelpText("Whatever would actually settle it. One line is fine.")
     .setRequired(true);
 
-  /* ---------------------------- Page 5 ---------------------------- */
+  /* ---------------------------- Page 5 ----------------------------
+   * Both questions are about wishlist behaviour in general, not about the one
+   * item page 4 asks about - which is why they get their own page rather than
+   * being appended there. They sit AFTER the q3 branch target below, so anyone
+   * who reported an empty wishlist skips them, correctly: neither means anything
+   * to someone with nothing saved.
+   * ---------------------------------------------------------------- */
+
+  form.addPageBreakItem().setTitle("Your wishlist in general");
+
+  // Abandonment - the other exit from the Part 2 tree, and the half Q4/Q5 cannot
+  // see. Phrased as "the last time" rather than "usually" so it recalls an event
+  // instead of inviting a self-description. Options mirror Q7's taxonomy, so
+  // blockers-that-stall and blockers-that-kill can be compared directly.
+  form.addMultipleChoiceItem()
+    .setTitle("The last time you removed something from your wishlist without buying it, why?")
+    .setChoiceValues([
+      "I found something better, here or elsewhere",
+      "I stopped trusting it would be right - fit, fabric or quality",
+      "The price never came down enough",
+      "It went out of stock, or my size did",
+      "I no longer needed it",
+      "I changed my mind about wanting it",
+      "I was only using the wishlist to shortlist, and it lost",
+      "I couldn't find out enough about it to decide",
+      "I've never removed anything without buying it"
+    ])
+    .showOtherOption(true)
+    .setRequired(true);
+
+  // Choice overload, as behaviour rather than feeling. "Buy none of them" is the
+  // option that matters: it is the failure mode a comparison-shaped MVP would
+  // have to clear, and nothing else in this research measures its size.
+  form.addMultipleChoiceItem()
+    .setTitle("When two or three saved items are close alternatives, what usually happens?")
+    .setChoiceValues([
+      "I pick one fairly quickly",
+      "I go back and forth for a while, then buy one",
+      "I go back and forth and end up buying none of them",
+      "I go looking for more options instead of choosing",
+      "This doesn't really happen to me"
+    ])
+    .setRequired(true);
+
+  // Q12 - added in the stress test. Q7 asks for the single biggest blocker on ONE
+  // item, so it cannot tell you whether one person carries several kinds of doubt.
+  // That matters: Part 4(a) concedes the two segments overlap on 1 document in
+  // 1,485, but flags it as a LABELLING ARTEFACT - the tagger allowed one segment
+  // signal per document, so the corpus is structurally incapable of settling it.
+  //
+  // This is the only question in the project that can. Checkbox, person-level,
+  // across the whole list. If fit and trust are routinely ticked together, then
+  // "lead with fit, trust is the second wave" is the wrong roadmap and the MVP has
+  // to serve both - which is a Part 5 decision, not a slide-wording decision.
+  form.addCheckboxItem()
+    .setTitle("Across your whole wishlist, which of these are true of at least one item?")
+    .setChoiceValues([
+      "I'm not sure it'll fit me",
+      "I'm not sure about the fabric or quality",
+      "I'm not sure it'll look like the photos",
+      "I'm not sure it'll suit me or my body type",
+      "I don't fully trust the seller or brand",
+      "I'm waiting for the price to drop",
+      "I'm saving it for an occasion",
+      "None of these"
+    ])
+    .setRequired(true);
+
+  /* ---------------------------- Page 6 ---------------------------- */
 
   var aboutYouPage = form.addPageBreakItem().setTitle("About you");
 
@@ -160,7 +303,7 @@ function createWishlistForm() {
     .setTitle("Which city?")
     .setRequired(true);
 
-  /* ---------------------------- Page 6 ---------------------------- */
+  /* ---------------------------- Page 7 ---------------------------- */
 
   form.addPageBreakItem()
     .setTitle("Last thing")
@@ -170,12 +313,12 @@ function createWishlistForm() {
       "No payment, no sales pitch, and I'll share what I find if you're curious."
     );
 
-  // Also alone on its page, for the same reason as q3.
-  var q11 = form.addMultipleChoiceItem()
+  // Also alone on its page, for the same reason as q3 - it is Q15 now, not Q11.
+  var qOptIn = form.addMultipleChoiceItem()
     .setTitle("Happy to be contacted for that?")
     .setRequired(true);
 
-  /* ---------------------------- Page 7 ---------------------------- */
+  /* ---------------------------- Page 8 ---------------------------- */
 
   var contactPage = form.addPageBreakItem()
     .setTitle("Thanks - how do I reach you?")
@@ -192,9 +335,12 @@ function createWishlistForm() {
   var CONTINUE = FormApp.PageNavigationType.CONTINUE;
 
   wireBranch(q1, [
-    ["Yes", CONTINUE],
-    ["No", FormApp.PageNavigationType.SUBMIT]
-  ], "No -> Submit form; Yes -> next section");
+    ["Once a week or more", CONTINUE],
+    ["A few times a month", CONTINUE],
+    ["Every month or two", CONTINUE],
+    ["A few times a year", CONTINUE],
+    ["Never - I don't shop on Myntra", FormApp.PageNavigationType.SUBMIT]
+  ], "\"Never - I don't shop on Myntra\" -> Submit form; everything else -> next section");
 
   // Every choice gets EXPLICIT navigation. Mixing navigated and un-navigated
   // choices in one setChoices() call is a known way to get "Invalid data updating
@@ -209,7 +355,7 @@ function createWishlistForm() {
     ["I don't have a wishlist", aboutYouPage]
   ], "0 and \"I don't have a wishlist\" -> About you; everything else -> next section");
 
-  wireBranch(q11, [
+  wireBranch(qOptIn, [
     ["Yes", CONTINUE],
     ["No", FormApp.PageNavigationType.SUBMIT]
   ], "No -> Submit form; Yes -> next section");
@@ -242,7 +388,7 @@ function applySetting(form, name, value) {
  *
  * Branching is the fiddliest corner of this API and the least valuable part of
  * the form - it spares a few people four irrelevant questions. A throw here would
- * cost you all eleven questions instead, so on failure the choices are set without
+ * cost you all fifteen questions instead, so on failure the choices are set without
  * navigation and the log says exactly what to click to restore it by hand.
  *
  * @param item   MultipleChoiceItem to wire

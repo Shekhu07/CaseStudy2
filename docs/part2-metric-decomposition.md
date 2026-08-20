@@ -93,7 +93,7 @@ The real case for C is **headroom and ownership**, not leverage:
 1. **C has the most room.** Two-thirds of pre-purchase deliberation names a doubt
    the product never answers. A 10-point gain on a term sitting near 34% is a far
    easier engineering problem than 10 points on a checkout already near 85%.
-2. **C is unowned.** B is already served by notifications and price-drop alerts.
+2. **C is unowned.** B is already served by notifications and price-drop alerts.[^b]
    D is a mature, well-optimised checkout. **Nothing in the product exists to
    resolve doubt** — the wishlist teardown shows every conversion lever on the
    surface is monetary.
@@ -103,6 +103,15 @@ The real case for C is **headroom and ownership**, not leverage:
 
 That third point converts the hardest constraint in the brief into the reason the
 choice is defensible.
+
+[^b]: **This leg was an assumption until 20 Aug and is now under test.** Nothing in
+the corpus or the survey shows *what* brings a shopper back to the wishlist. The
+walkthrough's surface block (probe 6) asks it directly and codes it as
+`revisit_trigger` / `revisit_trigger_converted`. The sentence to look for is
+"came back on a price alert and still didn't buy" — it would make this leg
+evidenced rather than asserted. If revisit turns out to be driven by something the
+product does *not* do today, reword this point; the case for C still stands on
+headroom and the constraint, but this leg would not.
 
 ## 2.5 The arithmetic
 
@@ -129,10 +138,22 @@ not**, because it follows from 66.1% and 24.8%, which are measured.
 | | Metric | Baseline | Target | How |
 |---|---|---|---|---|
 | **North star** | W30, gross and net | Read from internal data, day 1 | **+15% relative** in 8 weeks | A/B, below |
-| Term A | % saves with genuine intent | 72.2% *(corpus proxy)* | Not a target — a segmentation input | Survey Q5; save-time intent capture once built |
+| Term A | % saves with genuine intent | 72.2% *(corpus proxy)* | Not a target — a segmentation input | Survey **Q6**; save-time intent capture once built |
 | Term B | 30-day wishlist revisit rate | Unknown | Not our lever | Survey Q4 for direction; instrument day 1 |
 | **Term C** | **Doubt-resolution rate** | **Unknown; 66.1% carry an unresolved doubt** | **34% → 44%** | The MVP |
 | Term D | Wishlist → order completion | Unknown | Hold flat | Existing funnel telemetry |
+
+**Reading term A off the survey.** Q6 asks why the item was saved rather than
+bought. Every option counts as genuine intent except *"I just liked it — I wasn't
+really planning to buy it"*; *"I honestly don't remember"* is reported separately
+rather than folded either way. Fix that coding rule now, before the responses land
+and it becomes a choice.
+
+**Q5 is not W30, and the deck must not imply it is.** §2.1 defines W30 on a rolling
+30 days from each item's *save event*; Q5 asks about the last 30 *calendar* days
+regardless of when the item was saved. An item saved six months ago and bought last
+week counts in Q5 and not in W30. Q5 is a directional read on the same behaviour,
+and the only pre-instrumentation read available.
 
 **Experiment design.** Randomise wishlisters, not sessions — W30 is user-level.
 Control sees today's wishlist; treatment sees doubt resolution on saved items.
