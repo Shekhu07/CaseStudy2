@@ -2,7 +2,8 @@
 
 **6 participants · 45 minutes · screen-share required, camera optional.**
 
-Recruited from the survey's Q11 opt-in. This is a *walkthrough*, not a Q&A: the
+Recruited directly from the researcher's own network — the survey carries no
+opt-in and collects nothing identifying. This is a *walkthrough*, not a Q&A: the
 participant opens their real Myntra wishlist and narrates it item by item. People
 recall almost nothing accurately about why they saved something in general, and
 explain a specific item in front of them very well.
@@ -121,7 +122,14 @@ Run the same eight probes on each item. Fill one coding-sheet row per item as yo
 4. **What exactly is stopping you right now?** → then ladder: *"and what's behind that?"* **× 3**
 5. If you had to decide in the next 60 seconds — buy or delete? **What would you need to know to be sure?**
 6. Did you look at anything outside Myntra about this? What, where, why?
-7. Is there another item you're weighing this against? Show me.
+7. Is there another item you're weighing this against? **Show me.**
+   → *How would you go about picking between them?* — watch what they actually do:
+     open both, flick between tabs, go from memory, screenshot, ask someone.
+   → *Is the other one on Myntra, or somewhere else?*
+   Probe 7 was already here and its answer had nowhere to go. It now fills
+   `compared_against` and `comparison_method`. The **method** is the part the brief
+   asks for ("how do users compare shortlisted products") and the part neither the
+   corpus nor survey Q11 can see — Q11 measures only how the comparison *ends*.
 8. Last time you were unsure like this and *did* buy — what tipped you?
 
 ### On the laddering (probe 4) — this is the part that earns Part 4 (c)
@@ -145,7 +153,7 @@ they say "I don't know", sit in the silence for five seconds before rescuing the
 laddering line for it here so you push on it consistently rather than only when
 you remember.
 
-## 32–40 min · Workarounds & outside-the-app behaviour
+## 32–40 min · Workarounds, other apps & outside-the-app behaviour
 
 Part 4 (d) rests entirely on this block. `external_behaviour` reads 2.2% in the
 corpus and STATUS.md already concedes that is an artefact of scraped text — people
@@ -168,6 +176,41 @@ informative as one that did.
 nobody listed here. Add them as named probes before call 1 rather than
 discovering them in call 5.
 
+### The other apps — **~3 minutes, screen still shared**
+
+Added after an evaluator pointer: *competitor analysis, from the wishlist point of
+view.* The corpus cannot do this. 344 documents mention Myntra alongside a
+competitor and 90 carry an explicit preference — but only **10 also mention a
+wishlist**, and on reading, two or three are usable. Same structural blindness
+STATUS.md documents at the 1.56% wishlist base rate: people write about apps, not
+about what they saved in them.
+
+`docs/teardown/` answers the *product* half — what the three wishlist surfaces
+offer. This block answers the *user* half: which one they actually buy the saved
+item from, and why. Nothing else in the project asks it.
+
+**Where the time comes from.** The 2–3 concept stimuli at 40–45, already marked
+"time permitting only" and already the weakest data in the guide. Drop them before
+you shorten anything else.
+
+- **Which other shopping apps do you have on your phone?** *(let them list; don't prompt with names)*
+- **Open the one you use most. Is there anything saved in there?** *(screen is already shared)*
+  → How many, and how far back? Older or newer than the Myntra list?
+  → *Anything saved in both?*
+- **If the exact same item were saved in both — which would you actually buy it from, and why?**
+  → Then the five seconds of silence. The second sentence is the true one.
+- **When did you last buy something on another app that had been sitting in your Myntra wishlist?**
+  *(past-tense, per moderator rule 3 — "would you" invites a polite answer)*
+
+**Do not ask** which app is better, or why they prefer Myntra in general. That
+produces brand-loyalty boilerplate — delivery speed, return policy, the sale — that
+is true, well known, and answers a question the brief did not ask. The question
+here is narrower and it is the one worth having: **does a saved item in one app
+lose to a saved item in another, and on what.**
+
+If they have no other app or nothing saved elsewhere, that is a clean finding —
+record it and move on. Do not fish.
+
 ## 40–45 min · The falsification question, then close
 
 **Ask this of every participant, in these words, before any concept stimulus:**
@@ -186,7 +229,8 @@ Do not soften it, do not ask it last thing while they're putting on a coat, and
 do not follow it with a question that fishes for the answer you want.
 
 **Then, time permitting only** — 2–3 concept stimuli, described in one sentence
-each, for directional signal on the MVP. Reactions here are the weakest data you
+each, for directional signal on the MVP. **This is the block that gives way** when
+the call runs long; the other-apps probes at 32–40 outrank it. Reactions here are the weakest data you
 will collect; treat them as such and never let them override the walkthrough.
 
 **Close:** anything I should have asked and didn't? Thank them. Tell them where

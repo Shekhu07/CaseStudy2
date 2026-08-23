@@ -52,10 +52,21 @@ Log every addition in "Emergent codes" at the bottom of this file.
 | `theme_id` | maps the item onto the Part 1 taxonomy, for triangulation | `size-fit-info-unreliable` · `misleading-visual-media` · `quality-authenticity-doubts` · `return-exchange-policy-friction` · `prepurchase-support-gaps` · `stock-availability-uncertainty` · `price-volatile-hidden-fees` · `delivery-timeline-uncertainty` · `wishlist-ui-navigation-friction` · `missing-product-specs` · `absent-social-proof` · `passive-wishlist-no-reengagement` · `none` |
 | `workaround_used` | what they actually did about it | `searched_web` · `watched_video_review` · `asked_friends_or_family` · `checked_other_app` · `visited_offline_store` · `checked_brand_site` · `screenshot_to_chat` · `ordered_two_sizes` · `saved_elsewhere` · `none` |
 | `workaround_resolved` | did it actually answer the question | `yes` / `partly` / `no` / `n/a` |
+| `compared_against` | probe 7 — what this item is being weighed against, their words. Prefix `x:` if the rival is on **another app** | free text, `x:` prefix |
+| `comparison_method` | probe 7 — how they'd actually pick. **Observed where possible**, not asked | `open_both_tabs` · `from_memory` · `screenshot_compare` · `asked_someone` · `opened_other_app` · `no_method_freezes` · `n/a` |
 | `what_would_unblock` | probe 5, verbatim — **the highest-value column in the sheet** | free text |
 | `decide_now` | forced 60-second call | `buy` / `delete` / `still_stuck` |
 | `evidence_quote` | verbatim, their words, not your paraphrase | free text |
 | `coder_confidence` | flag rows you were unsure about so they can be re-read | `high` / `med` / `low` |
+
+**`compared_against` and `comparison_method` close a hole that predates them.**
+Probe 7 has always asked "is there another item you're weighing this against?" and
+the answer had no column to go in — asked, then discarded. The brief requires *how
+users compare multiple shortlisted products*, and no other instrument reaches it:
+`information_needs` has no comparison facet, and survey Q11 measures only how a
+comparison **ends** (pick quickly / dither and buy / dither and buy none), never
+how it is conducted. `no_method_freezes` is the value to watch — a comparison with
+no method is choice overload observed rather than inferred.
 
 `screenshot_to_chat`, `ordered_two_sizes` and `saved_elsewhere` extend the
 pipeline's `EXTERNAL_BEHAVIOURS` enum. They are the three workarounds the
@@ -82,6 +93,11 @@ two columns is itself a finding.
 | `revisit_trigger_converted` | `yes` / `no` — did that return end in a purchase? "Came back on a price alert and still didn't buy" is the sentence §2.4 needs |
 | `affordances_used` | Observed, not asked. Any of `category_chips` · `price_drop_badge` · `promo_banner` · `share` · `move_to_bag` · `photo_zoom` — semicolon-separated. `photo_zoom` is a fit-inspection tell, log it even though it is not a feature |
 | `affordances_never_used` | From probe 7, their own words. Blank if they named none |
+| `other_apps` | shopping apps they name unprompted, semicolon-separated. Blank if none | 
+| `parallel_wishlist` | is anything saved in the app they use most? `yes_active` (added to recently) / `yes_stale` / `no` / `no_other_app` |
+| `parallel_wishlist_size` | count observed on screen, not their estimate. `unknown` if they would not open it |
+| `buys_saved_from` | given the same item saved in both — `myntra` / `other` / `depends`, plus which app and the verbatim reason |
+| `myntra_chosen_because` | free text first, coded on a second pass once patterns appear — same treatment as `laddered_root_cause`. **Do not pre-invent the enum**; six people will not populate a list written before the first call |
 | `segment_signal` | `fit_uncertainty_prone` · `new_or_low_trust_user` · `price_sensitive` · `occasion_buyer` · `brand_loyal` · `bulk_orderer_returner` · `premium_buyer` — **allow more than one.** Part 4 (a) flags that the corpus tagger assigned at most one per document, which is why we cannot claim the segments are distinct populations. Six people who can carry two labels is how that question gets answered |
 | `first_reaction_quote` | verbatim, from the unprompted scroll |
 | `falsification_answer` | **`mostly_unsure` / `mostly_waiting` / `mixed`** — plus the verbatim |
@@ -90,11 +106,28 @@ two columns is itself a finding.
 
 ---
 
+**The five other-app columns answer an evaluator pointer** — *competitor analysis,
+from the wishlist point of view* — that no other instrument in the project can
+reach. The corpus holds 344 documents mentioning Myntra alongside a competitor and
+90 with an explicit preference, but only **10 that also mention a wishlist**, of
+which two or three are usable. `docs/teardown/` covers the *product* half, three
+wishlist surfaces side by side. These columns are the *user* half.
+
+**Read `buys_saved_from` against the teardown, not on its own.** The teardown's
+finding is that all three apps treat the wishlist as a discount-delivery channel.
+If participants say they buy the saved item wherever it is cheapest, that is the
+teardown's claim confirmed from the demand side — and it strengthens the
+no-monetary-incentives framing rather than undermining it.
+
 ## The three counts this has to produce
 
 1. **Blocker frequency across all coded items** → the Part 3 frequency table, and the direct comparison against the corpus's 46.2% fit share.
 2. **Workarounds by participant count, not item count.** The rule is fixed in advance so it can't be bent after the fact: **named by 4 of 6 → it goes on a slide. Named once → it is an anecdote and it stays in the appendix.**
 3. **`falsification_answer` tallied across all six.** If `mostly_waiting` wins, Part 4 (c) is wrong and the direction changes. Write that number down before you decide what it means.
+
+**Not a fourth count.** `comparison_method` and the other-app columns are reported
+as *"4 of 6 kept a parallel list in another app"* — participant counts, never
+shares. n=6 answers **how**, not **how many**; the evaluator asked how.
 
 Also worth pulling: the `still_wants_0_10` distribution (high wanting + high
 stuck is the exact population the MVP is for), and 3–4 verbatim quotes. Quotes
