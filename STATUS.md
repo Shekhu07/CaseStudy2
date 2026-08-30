@@ -6,6 +6,62 @@
 
 Last updated: 18 Aug 2026, 14:41 IST
 
+---
+
+## ⚠ Direction change — 29 Aug 2026: the MVP is no longer the Verdict Card
+
+**Read this before `docs/part2`, `part4` or `part6`. All three still argue the old
+thesis and are pending rewrite.**
+
+The submitted MVP is now the **Wishlist Search-Reconnection prototype** in
+`~/MVP_OPUS` — live at <https://wishlist-reconnection-prototype.vercel.app>, 546
+tests, ten measured acceptance gates, five experiment arms, a validated 30-day
+cohort model. The "Verdict Card + Intent Capture" MVP named in Part 6 was never
+built and is abandoned.
+
+Plan of record: `~/.claude/plans/i-am-going-with-glistening-scott.md` (approved).
+
+**It contradicts this repo's own findings in three places**, two of them written
+down here as findings:
+
+| Prototype | This repo says |
+|---|---|
+| Search-reconnection, *"did I save this?"* | Part 2 dismissed term B as "already served by notifications"; Part 4 calls a memory feature a guardrail failure |
+| Fit permanently `status: "unknown"` | Fit is 46.2% of every named doubt; Part 4(b) picks fit confidence as *the* outcome |
+| Cross-category pairing | `styling_and_pairing` 0.6%; Part 6 §6.8 committed in writing to not building this |
+
+Reconciliation chosen: **re-argue `B × C` at the search moment** — split term B
+into *scheduled* re-entry (notifications, price drops — owned, and banned for us by
+C-1/C-2) and *self-initiated* re-entry (the shopper searches again), which nothing
+serves. Pairing is **kept and defended**, on evidence bought by task T6 below.
+
+### Facts established 29 Aug, not yet acted on
+
+1. **The interview coding sheets are empty** — header rows only. Six combined
+   60-minute sessions, all by 31 Aug, are the critical path.
+2. **The guide's item target is unreachable as written.** It asks for "60–100 coded
+   items" at "5–8 items per participant" × 6 = 48 max. At 60 minutes with a
+   prototype block the realistic figure is **30–36**. Fix in the guide *and* in
+   Part 4(d).
+3. **The experiment arm cannot be set from a URL.** `resolveHarnessEnabled()` in
+   `app/src/harness/enabled.ts` reads `?harness=1` only; the arm is component state
+   in `StateSwitcher.tsx` with no param and no persistence. **So a participant sent
+   a plain link cannot be put into arm D**, and arm D is the only arm where the
+   pairing task T6 is reachable. Unresolved — either the moderator shares screen and
+   hands over remote control, or the participant sees the harness pill. Decide before
+   session 1.
+4. Both deployments answer 200 logged-out: prototype 0.12s, dashboard 0.78s.
+5. `docs/part5-solution-mvp.md` and `docs/part7-risks.md` do not exist yet.
+
+### Rules this departs from, not yet amended
+
+`AGENTS.md` rule 5 and its *"this corpus does not support a wishlist-UI-centric
+MVP"*, and `GUARDRAILS.md` rule 4's "build the fit answer", are pre-committed and
+now contradict the deliverable. They must be amended **with the reasoning, dated** —
+not quietly left standing.
+
+---
+
 ## Where things stand
 
 | Stage | State |
