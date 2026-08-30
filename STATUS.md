@@ -4,7 +4,7 @@
 > Creativity of Solution and Data & Metrics Orientation — not on discovery depth.
 > Part 1 here is done; Parts 2–7 hold nearly all the remaining marks.
 
-Last updated: 18 Aug 2026, 14:41 IST
+Last updated: 30 Aug 2026, 15:40 IST
 
 ---
 
@@ -35,23 +35,36 @@ into *scheduled* re-entry (notifications, price drops — owned, and banned for 
 C-1/C-2) and *self-initiated* re-entry (the shopper searches again), which nothing
 serves. Pairing is **kept and defended**, on evidence bought by task T6 below.
 
-### Facts established 29 Aug, not yet acted on
+### Facts established 29 Aug — reconfirmed 30 Aug, still none of it acted on
 
-1. **The interview coding sheets are empty** — header rows only. Six combined
-   60-minute sessions, all by 31 Aug, are the critical path.
-2. **The guide's item target is unreachable as written.** It asks for "60–100 coded
+**Re-checked against the actual files today, not carried forward on faith.** Every
+item below was still true as of 30 Aug 15:40 IST.
+
+1. **The interview coding sheets are still empty** — `docs/research/coding-sheet-items.csv`
+   and `coding-sheet-participants.csv` are header rows only, no data rows added since
+   they were created 23 Aug. No transcript, recording, or session note exists anywhere
+   in this repo or in `~/MVP_OPUS`. **The "all six by 31 Aug" commitment is now due
+   tomorrow with zero sessions run.** This is the single largest risk in the project —
+   ahead of any writing task below.
+2. **The guide's item target is still unreachable as written.** It asks for "60–100 coded
    items" at "5–8 items per participant" × 6 = 48 max. At 60 minutes with a
-   prototype block the realistic figure is **30–36**. Fix in the guide *and* in
+   prototype block the realistic figure is **30–36**. Not yet fixed in the guide or in
    Part 4(d).
-3. **The experiment arm cannot be set from a URL.** `resolveHarnessEnabled()` in
-   `app/src/harness/enabled.ts` reads `?harness=1` only; the arm is component state
-   in `StateSwitcher.tsx` with no param and no persistence. **So a participant sent
-   a plain link cannot be put into arm D**, and arm D is the only arm where the
-   pairing task T6 is reachable. Unresolved — either the moderator shares screen and
-   hands over remote control, or the participant sees the harness pill. Decide before
-   session 1.
-4. Both deployments answer 200 logged-out: prototype 0.12s, dashboard 0.78s.
-5. `docs/part5-solution-mvp.md` and `docs/part7-risks.md` do not exist yet.
+3. **The experiment arm still cannot be set from a URL.** Re-read `app/src/harness/enabled.ts`
+   in `~/MVP_OPUS` today: `resolveHarnessEnabled()` still only turns the harness pill
+   on/off from `?harness=1/0`. `StateSwitcher.tsx`'s `arm` prop is still plain component
+   state with no URL param and no persistence. **A participant sent a plain link still
+   cannot be put into arm D**, and arm D is the only arm where the pairing task T6 is
+   reachable. Still unresolved — either the moderator shares screen and hands over
+   remote control, or the participant sees the harness pill. Must be decided before
+   session 1, which — per point 1 — has not happened yet.
+4. Both deployments answered 200 logged-out as of 29 Aug: prototype 0.12s, dashboard 0.78s.
+5. `docs/part5-solution-mvp.md` and `docs/part7-risks.md` still do not exist.
+6. `AGENTS.md` rule 5 and `GUARDRAILS.md` rule 4 (quoting *"this corpus does not
+   support a wishlist-UI-centric MVP"* as the reason to build the fit answer) are
+   **still unamended** — re-checked today, the text is unchanged since the MVP switch.
+   They still contradict the shipped deliverable and still need the dated correction
+   called for below.
 
 ### Rules this departs from, not yet amended
 

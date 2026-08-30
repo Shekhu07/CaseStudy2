@@ -2,9 +2,15 @@
 
 An AI discovery engine for the question: **what stands between "I saved this" and "I bought this"?**
 
-Built for Part 1 of a product-management case study whose business metric is *the percentage of
+Built for **Part 1** of a product-management case study whose business metric is *the percentage of
 users who purchase at least one item from their wishlist within 30 days of adding it*, under a hard
 constraint that no solution may use monetary incentives.
+
+> **This repo is Part 1 (research/discovery) only.** The case study's submitted MVP — the Wishlist
+> Search-Reconnection prototype — lives in a separate repo (`~/MVP_OPUS`, live at
+> <https://wishlist-reconnection-prototype.vercel.app>) and is not built on top of this codebase.
+> See `STATUS.md`'s "Direction change" section for why, and for the open items (interviews not yet
+> run, Parts 5–7 not yet written) still blocking submission.
 
 The engine mines public conversations, **induces** the frictions blocking wishlist purchases
 bottom-up (no pre-baked list of e-commerce problems), quantifies each one, and ranks them so
