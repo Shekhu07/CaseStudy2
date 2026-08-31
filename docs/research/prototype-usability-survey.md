@@ -45,6 +45,14 @@ produce a complete look (men's shirt → jeans → belt → watch; women's kurta
 handbag → flats → earrings → belt). An unguided respondent typing an
 unrelated term would see nothing and rate a working feature as broken.
 
+**The live link is repeated three times in the form itself** — the top
+description, the consent question's help text, and the post-submit
+confirmation message — because Google Forms renders description and help
+text as unstyled paragraphs, and a description scrolls out of view on a
+phone once the questions start. All three point at the same
+`PROTOTYPE_URL` constant in the `.gs` file, so updating the deployment
+address only means editing it in one place.
+
 ## The questions
 
 | # | Measures | Feeds |

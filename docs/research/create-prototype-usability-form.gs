@@ -44,15 +44,25 @@
 function createPrototypeUsabilityForm() {
   var form = FormApp.create("Five minutes on the prototype");
 
+  // The live prototype URL, named once so the description, the consent
+  // question's help text and the confirmation screen all stay in sync - the
+  // link is repeated in three places because Google Forms renders plain
+  // description text and help text as unstyled paragraphs, and a bare domain
+  // without a scheme is not reliably auto-linked by every client. Using the
+  // full https:// form on its own line is what makes it clickable rather
+  // than just readable.
+  var PROTOTYPE_URL = "https://wishlist-reconnection-prototype.vercel.app";
+
   form.setDescription(
     "Thanks for trying the prototype. Before answering, please spend a few minutes on " +
       "it with these tasks:\n\n" +
-      "  1. Open wishlist-reconnection-prototype.vercel.app in another tab.\n" +
-      "  2. Search for one of: shirt, jeans, kurta, handbag.\n" +
-      "  3. If something you'd saved shows up, tap into it and look at what's shown.\n" +
-      "  4. Try to add it to your bag or buy it - and if a size or the item itself " +
+      "Open the prototype here:\n" +
+      PROTOTYPE_URL + "\n\n" +
+      "  1. Search for one of: shirt, jeans, kurta, handbag.\n" +
+      "  2. If something you'd saved shows up, tap into it and look at what's shown.\n" +
+      "  3. Try to add it to your bag or buy it - and if a size or the item itself " +
       "isn't available, see what the app does next.\n" +
-      "  5. If you have time, open two similar saved items and compare them.\n\n" +
+      "  4. If you have time, open two similar saved items and compare them.\n\n" +
       "Then come back here. It's about 4 minutes, 15 required questions.\n\n" +
       "Completely anonymous - no email, no name. Used only for a student case study " +
       "and reported as aggregate numbers.",
@@ -65,6 +75,13 @@ function createPrototypeUsabilityForm() {
   applySetting(form, "setAllowResponseEdits", false);
   applySetting(form, "setShowLinkToRespondAgain", false);
 
+  // Repeated here, not just in the description, so it is still visible at
+  // the exact moment someone is about to tick consent and start - the
+  // description scrolls out of view on a phone once the questions begin.
+  applySetting(form, "setConfirmationMessage",
+    "Thanks! If you'd like to explore the prototype again, it's here: " + PROTOTYPE_URL,
+  );
+
   /* ---------------------------- Page 1 ---------------------------- */
 
   form
@@ -72,6 +89,7 @@ function createPrototypeUsabilityForm() {
     .setTitle(
       "Happy for your anonymous answers to be used in a student case study?",
     )
+    .setHelpText("Prototype link, if you need it again: " + PROTOTYPE_URL)
     .setChoiceValues(["Yes"])
     .setRequired(true);
 
