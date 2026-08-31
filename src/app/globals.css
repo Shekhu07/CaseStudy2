@@ -1,107 +1,126 @@
 @import "tailwindcss";
 
 /*
- * Palette: the dataviz reference instance, validated with
- * scripts/validate_palette.js in both modes.
- *   categorical (adjacent, 4 slots)  PASS light + dark
- *   scatter     (all-pairs, 3 slots) PASS light + dark
- * Two light-mode slots sit below 3:1 on the surface, so the relief rule
- * applies throughout: every chart ships direct labels and a table view.
+ * Myntra Design Language (MDL) & DataViz Theme Tokens
+ * Primary Brand: #ff3f6c (Myntra Pink/Magenta)
+ * Neutral Dark: #282c3f (Myntra Navy Charcoal)
+ * Body Text: #535766 (Slate Grey)
+ * Muted Text: #94969f (Light Grey)
+ * Light Surface: #f5f5f6 / #ffffff
+ * Border: #eaeaec
+ * Semantic Accents: #03a685 (Verified Green), #ff905a (Warning/Urgency), #526cd0 (Info Blue)
  */
+
 :root {
   color-scheme: light;
 
-  --page: #f9f9f7;
-  --surface-1: #fcfcfb;
-  --text-primary: #0b0b0b;
-  --text-secondary: #52514e;
-  --text-muted: #898781;
-  --grid: #e1e0d9;
-  --axis: #c3c2b7;
-  --border: rgba(11, 11, 11, 0.1);
+  --page: #f5f5f6;
+  --surface-1: #ffffff;
+  --surface-2: #fcfcfc;
+  --text-primary: #282c3f;
+  --text-secondary: #535766;
+  --text-muted: #94969f;
+  --grid: #eaeaec;
+  --axis: #d4d5d9;
+  --border: #eaeaec;
 
-  --series-1: #2a78d6; /* blue */
-  --series-2: #eb6834; /* orange */
-  --series-3: #1baf7a; /* aqua */
-  --series-4: #eda100; /* yellow */
+  /* Myntra Brand Series */
+  --brand-myntra: #ff3f6c;
+  --brand-myntra-hover: #e02f5a;
+  --brand-myntra-light: #fff0f4;
 
-  /* sequential: blue, light -> dark */
-  --seq-100: #cde2fb;
-  --seq-250: #86b6ef;
-  --seq-400: #3987e5;
-  --seq-550: #1c5cab;
-  --seq-700: #0d366b;
+  --series-1: #ff3f6c; /* Myntra Magenta */
+  --series-2: #526cd0; /* Indigo */
+  --series-3: #03a685; /* Emerald Green */
+  --series-4: #ff905a; /* Coral Orange */
 
-  /* diverging: blue <-> red about a gray midpoint */
-  --div-neg: #2a78d6;
-  --div-mid: #f0efec;
-  --div-pos: #d03b3b;
+  /* Sequential: Myntra pink/magenta, light -> dark */
+  --seq-100: #ffd9e2;
+  --seq-250: #ff9bb5;
+  --seq-400: #ff6088;
+  --seq-550: #ff3f6c;
+  --seq-700: #b81b42;
 
-  --good: #0ca30c;
-  --warning: #fab219;
-  --critical: #d03b3b;
+  /* Diverging: Blue <-> Red about a gray midpoint */
+  --div-neg: #526cd0;
+  --div-mid: #f5f5f6;
+  --div-pos: #ff3f6c;
+
+  --good: #03a685;
+  --warning: #ff905a;
+  --critical: #d11e3b;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
 
-    --page: #0d0d0d;
-    --surface-1: #1a1a19;
-    --text-primary: #ffffff;
-    --text-secondary: #c3c2b7;
-    --text-muted: #898781;
-    --grid: #2c2c2a;
-    --axis: #383835;
+    --page: #121318;
+    --surface-1: #1a1c23;
+    --surface-2: #232530;
+    --text-primary: #f5f5f6;
+    --text-secondary: #c4c5cc;
+    --text-muted: #838591;
+    --grid: #2e303b;
+    --axis: #3f4252;
     --border: rgba(255, 255, 255, 0.1);
 
-    --series-1: #3987e5;
-    --series-2: #d95926;
-    --series-3: #199e70;
-    --series-4: #c98500;
+    --brand-myntra: #ff3f6c;
+    --brand-myntra-hover: #ff5e84;
+    --brand-myntra-light: #331520;
 
-    --seq-100: #0d366b;
-    --seq-250: #184f95;
-    --seq-400: #2a78d6;
-    --seq-550: #5598e7;
-    --seq-700: #b7d3f6;
+    --series-1: #ff3f6c;
+    --series-2: #6b84eb;
+    --series-3: #03a685;
+    --series-4: #ffa375;
 
-    --div-neg: #3987e5;
-    --div-mid: #383835;
-    --div-pos: #d03b3b;
+    --seq-100: #3a1622;
+    --seq-250: #661e35;
+    --seq-400: #aa2448;
+    --seq-550: #ff3f6c;
+    --seq-700: #ff8ca8;
 
-    --good: #0ca30c;
-    --warning: #fab219;
-    --critical: #d03b3b;
+    --div-neg: #6b84eb;
+    --div-mid: #2e303b;
+    --div-pos: #ff3f6c;
+
+    --good: #03a685;
+    --warning: #ffa375;
+    --critical: #f24e6a;
   }
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --page: #0d0d0d;
-  --surface-1: #1a1a19;
-  --text-primary: #ffffff;
-  --text-secondary: #c3c2b7;
-  --text-muted: #898781;
-  --grid: #2c2c2a;
-  --axis: #383835;
+  --page: #121318;
+  --surface-1: #1a1c23;
+  --surface-2: #232530;
+  --text-primary: #f5f5f6;
+  --text-secondary: #c4c5cc;
+  --text-muted: #838591;
+  --grid: #2e303b;
+  --axis: #3f4252;
   --border: rgba(255, 255, 255, 0.1);
 
-  --series-1: #3987e5;
-  --series-2: #d95926;
-  --series-3: #199e70;
-  --series-4: #c98500;
+  --brand-myntra: #ff3f6c;
+  --brand-myntra-hover: #ff5e84;
+  --brand-myntra-light: #331520;
 
-  --seq-100: #0d366b;
-  --seq-250: #184f95;
-  --seq-400: #2a78d6;
-  --seq-550: #5598e7;
-  --seq-700: #b7d3f6;
+  --series-1: #ff3f6c;
+  --series-2: #6b84eb;
+  --series-3: #03a685;
+  --series-4: #ffa375;
 
-  --div-neg: #3987e5;
-  --div-mid: #383835;
-  --div-pos: #d03b3b;
+  --seq-100: #3a1622;
+  --seq-250: #661e35;
+  --seq-400: #aa2448;
+  --seq-550: #ff3f6c;
+  --seq-700: #ff8ca8;
+
+  --div-neg: #6b84eb;
+  --div-mid: #2e303b;
+  --div-pos: #ff3f6c;
 }
 
 html {
@@ -111,7 +130,7 @@ html {
 body {
   background: var(--page);
   color: var(--text-primary);
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -120,7 +139,13 @@ body {
 .card {
   background: var(--surface-1);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(40, 44, 63, 0.04);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgba(255, 63, 108, 0.2);
 }
 
 .tnum {
@@ -138,14 +163,33 @@ body {
 }
 
 a {
-  color: var(--series-1);
+  color: var(--brand-myntra);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--brand-myntra-hover);
 }
 
 /* Keyboard focus must stay visible on every interactive mark. */
 :focus-visible {
-  outline: 2px solid var(--series-1);
+  outline: 2px solid var(--brand-myntra);
   outline-offset: 2px;
-  border-radius: 3px;
+  border-radius: 4px;
+}
+
+/* Myntra Pill Tag Styling */
+.badge-myntra {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 @media (prefers-reduced-motion: reduce) {
