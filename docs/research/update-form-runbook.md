@@ -1,3 +1,8 @@
+> **⚠ Note — 2 Sep 2026.** This runbook's premise that "interviews are the schedule long pole"
+> no longer holds: the interview track was retired on privacy grounds (`interview-guide.md`).
+> The Forms patching procedure below is still correct and still the only safe way to change a
+> live form.
+
 # Runbook — patching the live wishlist form
 
 Applies `update-wishlist-form.gs` to a form that is **already published and

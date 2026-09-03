@@ -50,16 +50,24 @@ Time-box the three open items in STATUS.md to **one day, total**:
 
 Anything else in the pipeline is polish on the part that gets **two slides out of ten**.
 
-## Rule 2 — Interviews start today. They are the long pole.
+## Rule 2 — ~~Interviews start today. They are the long pole.~~ Retired 2 Sep 2026.
 
-Part 3 needs **5–6 interviews**, and recruiting is the slowest thing in the project. CS1 finished with
-3 real interviews landing late.
+**Amended 2 Sep 2026.** The walkthrough track was cancelled on privacy grounds: it required
+participants to screen-share their real Myntra wishlist, which is their private shopping
+history, and no consent wording makes that a reasonable ask for a student case study. Zero
+sessions were run and none will be — see `docs/research/interview-guide.md` for the full note.
 
-The corpus already names the segment, so there is nothing to decide first:
+Part 3 is carried instead by two surveys, neither of which exposes anyone's own saved items:
+`wishlist-survey.md` (16 responses, about real wishlists, self-reported) and
+`prototype-usability-survey.md` (in field, respondents react to the live prototype). Recruiting
+is consequently no longer the long pole — the surveys are unmoderated and run in parallel.
+
+The corpus still names the segment, so there is nothing to decide first:
 `fit_uncertainty_prone` **24.5%** and `new_or_low_trust_user` **24.0%** — the two segment signals that
 mirror the top two themes. Recruit against those.
 
-Start the recruiting message today, in parallel with everything else.
+~~Start the recruiting message today, in parallel with everything else.~~ Superseded — the
+prototype survey link is what gets circulated instead.
 
 ## Rule 3 — Part 2 is the antidote to 20.63/40. Do it on paper, first, with our numbers.
 
@@ -115,6 +123,15 @@ bans monetary incentives, which deliberately rules out the other lazy answer (a 
 Our own audit already ruled out the other trap:
 
 > *"This corpus does not support a wishlist-UI-centric MVP — it supports fit and trust."*
+
+**Amended 2 Sep 2026 — the prohibition is lifted, the instruction below still stands.** The
+shipped MVP is wishlist-centric, so this rule needed reconciling with the deliverable rather
+than leaving the two in contradiction. The corpus is structurally blind to the wishlist
+re-entry moment: reviews are written after delivery, about the product, and nobody writes a
+review about an item they saved and never went back to. The ~1.5% share measures how often
+people *write about* wishlists, not how often wishlists fail. What follows is unaffected — the
+MVP still resolves the uncertainty rather than mentioning it, which was always this rule's
+real point. See `AGENTS.md`, "Claims about this corpus", for the same amendment.
 
 So build the thing that **resolves the uncertainty**, not the thing that mentions it. For fit, that means
 actually answering "will this fit me" — from the user's own purchase and return history, garment
@@ -194,18 +211,18 @@ Score the deck yourself against the four graded competencies before submitting:
   CS1 hedged so consistently it read as low conviction. State limits **once**, plainly, then commit.
 - **Presentation** — font 14, ≤10 slides, no name, key-message titles, links verified from a logged-out browser.
 
-## Schedule — 16 days (19 Aug → 4 Sep, 3:59 PM IST)
+## Schedule — 17 days (19 Aug → 5 Sep, 3:59:00 PM IST)
 
-The PDF says 5 Sep on page 1 and 4 Sep on page 8. **Plan for the 4th.**
+**5 September 2026, 3:59:00 PM IST.** Confirmed 3 Sep 2026 against the NextLeap project dashboard, which is the system of record and states "Submission deadline: Sep 5, 3:59:00 PM (Asia/Calcutta)". The brief PDF's page 8 still says 4 September; it is stale and the dashboard overrides it. Late submissions are rejected "even if it is by a few seconds", so finish on the 4th and submit with a day in hand.
 
 | Dates | Work |
 |---|---|
-| 19–20 Aug | Part 2 decomposition on paper. Lock segment + opportunity. **Send interview recruiting today.** Close the 3 Part-1 items. |
-| 20–27 Aug | Interviews (5–6). Runs in parallel with everything below. |
+| 19–20 Aug | Part 2 decomposition on paper. Lock segment + opportunity. Close the 3 Part-1 items. |
+| 20–27 Aug | ~~Interviews (5–6).~~ Retired 2 Sep — replaced by the two surveys, run unmoderated. |
 | 21–25 Aug | Build the MVP. |
 | 25–28 Aug | Deploy + harden it (Rule 7). |
 | 28–31 Aug | Write Parts 4, 6, 7. |
 | 1–3 Sep | Build the deck. |
 | 3 Sep | Freeze, self-check, verify every link logged-out. |
 
-Nothing ships on 4 Sep. The deadline rejects late submissions "even if it is by a few seconds".
+Nothing ships on 5 Sep — that is the cutoff, not the plan. Submit on the 4th.

@@ -1,3 +1,7 @@
+> **⚠ RETIRED — 2 Sep 2026.** The interview track these posts recruited for was cancelled on
+> privacy grounds; see `interview-guide.md`. Kept as a record. What gets circulated now is the
+> prototype survey link.
+
 # Recruiting copy
 
 Goal: **5–6 interviews**, plus as much survey volume as the channels give.

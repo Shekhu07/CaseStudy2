@@ -1,3 +1,12 @@
+> ## ⚠ RETIRED — 2 Sep 2026. Both sheets stay empty by decision.
+>
+> The six walkthroughs this sheet was built to code were cancelled on privacy
+> grounds — see `interview-guide.md`. No sessions were run, so
+> `coding-sheet-items.csv` and `coding-sheet-participants.csv` hold header rows and
+> nothing else, permanently. That is a decision, not an outstanding task. The
+> replacement instrument is `prototype-usability-survey.md`, whose closed-choice
+> questions tally directly and need no coding sheet.
+
 # Coding sheet — turning six calls into countable evidence
 
 Two tables. **Table 1 is one row per discussed item** (target 60–100 rows across

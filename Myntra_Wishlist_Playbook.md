@@ -5,7 +5,7 @@
 **Product chosen:** Myntra
 **Strategic goal:** Increase the % of users who purchase at least one item from their wishlist within 30 days of adding it.
 **Hard constraint:** No monetary incentives (no discounts, coupons, cashback, price drops as the mechanic).
-**Timeline note:** The brief states two deadlines — _Sep 5, 3:59 PM_ on the details card and _4 September 2026, 3:59:00 PM IST_ in the guidelines. **Plan for 4 September.** From 19 Aug that is ~16 days.
+**Timeline note:** Confirmed 3 Sep 2026 — the NextLeap project dashboard, the system of record, states **Sep 5, 3:59:00 PM (Asia/Calcutta)**. The brief PDF's page 8 still says 4 September and is stale. Deadline is the 5th; finish on the 4th anyway.
 
 ---
 
@@ -721,7 +721,7 @@ this", say it. Trust is the product.
 
 > That last instruction — _"if the honest answer is don't buy this, say it"_ — is worth a line in your deck. A decision engine that sometimes says "remove it" is the reason users will trust the times it says "buy". It also makes REMOVE-rate a legitimate success metric, which almost nobody will think to do.
 
-### Build sequence (16 days, working backwards from 4 Sept)
+### Build sequence (working backwards from 4 Sept — a day before the 5 Sept cutoff)
 
 | Days          | Work                                                                                              |
 | ------------- | ------------------------------------------------------------------------------------------------- |

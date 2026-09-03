@@ -1,3 +1,21 @@
+> ## ⚠ RETIRED — 2 Sep 2026. This instrument was never run.
+>
+> **Decision: do not ask participants to open their real Myntra wishlist.** A
+> person's saved items are their private shopping history — what they want, what
+> they can afford, what they have not told anyone they are considering. Asking
+> someone to screen-share that for a student case study is not a reasonable thing
+> to ask, and no consent wording makes it one. Zero of the six sessions were run,
+> and none will be.
+>
+> **Replaced by** `prototype-usability-survey.md`: respondents go through the live
+> prototype and report where it helped and what is still missing, against a seeded
+> demo catalog rather than their own saved items. Q10 and Q18 carry the two
+> questions this guide existed to answer — which doubt actually blocks a purchase,
+> and what really brings someone back — asked without anyone exposing their own
+> wishlist.
+>
+> Kept as a record of the design, not as a plan.
+
 # Wishlist walkthrough — moderator guide
 
 **6 participants · 45 minutes · screen-share required, camera optional.**
