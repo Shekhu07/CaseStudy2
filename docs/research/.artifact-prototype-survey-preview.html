@@ -1,0 +1,471 @@
+<title>Five Minutes on the Prototype</title>
+<style>
+  :root{
+    --paper:#faf7f5;
+    --ink:#201a1d;
+    --line:#e7dedf;
+    --line-strong:#d8caca;
+    --accent:#c4265b;
+    --accent-soft:#f4dce4;
+    --accent-ink:#7a1740;
+    --muted:#8a7b7e;
+    --card:#ffffff;
+    --focus:#1c6b6b;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#171113;
+      --ink:#f3eaea;
+      --line:#352c2f;
+      --line-strong:#4a3d40;
+      --accent:#ff6c93;
+      --accent-soft:#3a1e27;
+      --accent-ink:#ffb0c6;
+      --muted:#a99295;
+      --card:#1f181b;
+      --focus:#5fd6d6;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#171113;
+    --ink:#f3eaea;
+    --line:#352c2f;
+    --line-strong:#4a3d40;
+    --accent:#ff6c93;
+    --accent-soft:#3a1e27;
+    --accent-ink:#ffb0c6;
+    --muted:#a99295;
+    --card:#1f181b;
+    --focus:#5fd6d6;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    padding:48px 20px 96px;
+  }
+  h1,h2,h3{
+    font-family:"Manrope",system-ui,sans-serif;
+    text-wrap:balance;
+    margin:0;
+  }
+  .meta{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11.5px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    max-width:760px;
+    margin:0 auto 40px;
+  }
+  .masthead .kicker{
+    color:var(--accent-ink);
+    margin-bottom:10px;
+  }
+  .masthead h1{
+    font-size:clamp(28px,4vw,38px);
+    font-weight:800;
+    line-height:1.08;
+  }
+  .masthead p{
+    max-width:62ch;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.6;
+    margin-top:14px;
+  }
+  .masthead-stats{
+    display:flex;
+    gap:28px;
+    margin-top:24px;
+    flex-wrap:wrap;
+  }
+  .stat{
+    border-left:2px solid var(--accent);
+    padding-left:10px;
+  }
+  .stat b{
+    display:block;
+    font-family:"Manrope",sans-serif;
+    font-size:20px;
+    font-weight:800;
+  }
+  .stat span{
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  /* ---------- phone frame ---------- */
+  .stage{
+    max-width:760px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+  }
+  .device{
+    width:100%;
+    max-width:400px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:28px;
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.35);
+    overflow:hidden;
+  }
+  .device-bar{
+    height:6px;
+    background:var(--line);
+    position:relative;
+  }
+  .device-bar i{
+    display:block;
+    height:100%;
+    background:var(--accent);
+  }
+
+  .screen{
+    padding:26px 24px 30px;
+    border-bottom:10px solid var(--paper);
+  }
+  .screen:last-child{border-bottom:none;}
+
+  .page-tag{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:18px;
+  }
+  .page-tag .n{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+  .page-tag .label{
+    font-family:"Manrope",sans-serif;
+    font-weight:700;
+    font-size:14px;
+    color:var(--accent-ink);
+  }
+
+  .q{
+    margin-bottom:22px;
+  }
+  .q:last-child{margin-bottom:0;}
+  .q .qtitle{
+    font-size:15.5px;
+    font-weight:600;
+    line-height:1.4;
+    margin-bottom:4px;
+  }
+  .q .qhelp{
+    font-size:12.5px;
+    color:var(--muted);
+    margin-bottom:10px;
+    line-height:1.5;
+  }
+  .req{
+    color:var(--accent);
+    margin-left:2px;
+    font-weight:700;
+  }
+
+  .opt{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:9px 10px;
+    border-radius:10px;
+    font-size:14px;
+    color:var(--ink);
+    border:1px solid transparent;
+  }
+  .opt:hover{background:var(--paper);}
+  .opt .mark{
+    width:17px;height:17px;
+    border:1.6px solid var(--line-strong);
+    flex:0 0 auto;
+  }
+  .opt.radio .mark{border-radius:50%;}
+  .opt.check .mark{border-radius:4px;}
+  .opt.chosen{
+    background:var(--accent-soft);
+    border-color:var(--accent);
+  }
+  .opt.chosen .mark{
+    border-color:var(--accent);
+    background:var(--accent);
+    position:relative;
+  }
+  .opt.chosen.radio .mark::after{
+    content:"";
+    position:absolute;inset:4px;
+    border-radius:50%;
+    background:var(--card);
+  }
+  .opt.chosen.check .mark::after{
+    content:"✓";
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;color:var(--card);
+  }
+
+  .field{
+    border:1px solid var(--line-strong);
+    border-radius:10px;
+    padding:10px 12px;
+    font-size:13px;
+    color:var(--muted);
+    font-style:italic;
+    background:var(--paper);
+  }
+
+  .connector{
+    width:2px;
+    height:20px;
+    background:var(--line-strong);
+  }
+
+  /* ---------- annotation ---------- */
+  .note{
+    max-width:400px;
+    width:100%;
+    margin:6px 0 0;
+    font-size:12px;
+    line-height:1.5;
+    color:var(--muted);
+    display:flex;
+    gap:8px;
+    padding:0 6px;
+  }
+  .note .tag{
+    flex:0 0 auto;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10px;
+    letter-spacing:.04em;
+    background:var(--accent-soft);
+    color:var(--accent-ink);
+    border-radius:5px;
+    padding:2px 6px;
+    height:fit-content;
+  }
+
+  footer{
+    max-width:760px;
+    margin:56px auto 0;
+    border-top:1px solid var(--line);
+    padding-top:18px;
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+  footer code{
+    font-family:"IBM Plex Mono",monospace;
+    background:var(--accent-soft);
+    color:var(--accent-ink);
+    padding:1px 5px;
+    border-radius:4px;
+  }
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<div class="masthead">
+  <div class="meta kicker">Panel instrument · pre-launch preview</div>
+  <h1>Five minutes on the prototype</h1>
+  <p>Exactly what a panel tester sees, screen by screen — plain-language pass plus two new closed-choice questions built to tally against the discovery corpus, mirroring <code>create-prototype-usability-form.gs</code>. Read it top to bottom the way a respondent would, on the phone width it's built for.</p>
+  <div class="masthead-stats">
+    <div class="stat"><b>~5 min</b><span>target length</span></div>
+    <div class="stat"><b>14 + 5</b><span>required / optional</span></div>
+    <div class="stat"><b>6</b><span>pages, no branching</span></div>
+  </div>
+</div>
+
+<div class="stage">
+  <div class="device">
+    <div class="device-bar"><i style="width:100%"></i></div>
+
+    <!-- PAGE 1 -->
+    <div class="screen">
+      <div class="page-tag"><span class="n">Page 1 / 6</span><span class="label">Before you start</span></div>
+
+      <div class="q">
+        <div class="qtitle">OK to use your anonymous answers in a student case study?<span class="req">*</span></div>
+        <div class="qhelp">Prototype link, if you need it again: wishlist-reconnection-prototype.vercel.app</div>
+        <div class="opt check chosen"><span class="mark"></span>Yes</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">What did you do just now? (Check all that apply)<span class="req">*</span></div>
+        <div class="opt check chosen"><span class="mark"></span>Found something I'd saved earlier while searching</div>
+        <div class="opt check chosen"><span class="mark"></span>Opened it and looked at the details shown</div>
+        <div class="opt check"><span class="mark"></span>Tried to add it to my bag or buy it</div>
+        <div class="opt check"><span class="mark"></span>Compared it against a similar saved item</div>
+        <div class="opt check"><span class="mark"></span>None of the above – I did something else</div>
+      </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="screen">
+      <div class="page-tag"><span class="n">Page 2 / 6</span><span class="label">Finding what you'd saved</span></div>
+
+      <div class="q">
+        <div class="qtitle">Did you find something you'd saved earlier while searching?<span class="req">*</span></div>
+        <div class="opt radio chosen"><span class="mark"></span>Yes, easily</div>
+        <div class="opt radio"><span class="mark"></span>Yes, but I had to look for it</div>
+        <div class="opt radio"><span class="mark"></span>No, I didn't notice it</div>
+        <div class="opt radio"><span class="mark"></span>I didn't have anything saved that matched what I searched</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">Did you understand why it appeared?<span class="req">*</span></div>
+        <div class="opt radio chosen"><span class="mark"></span>Yes, clearly</div>
+        <div class="opt radio"><span class="mark"></span>Sort of</div>
+        <div class="opt radio"><span class="mark"></span>No, not really</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">What, if anything, was confusing about it?</div>
+        <div class="qhelp">Skip this if you answered "Yes, clearly" above.</div>
+        <div class="field">Your answer</div>
+      </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="screen">
+      <div class="page-tag"><span class="n">Page 3 / 6</span><span class="label">Deciding on that item</span></div>
+
+      <div class="q">
+        <div class="qtitle">How confident did that screen make you feel about buying it or not?<span class="req">*</span></div>
+        <div class="opt radio"><span class="mark"></span>Not at all confident</div>
+        <div class="opt radio"><span class="mark"></span>A little confident</div>
+        <div class="opt radio chosen"><span class="mark"></span>Somewhat confident</div>
+        <div class="opt radio"><span class="mark"></span>Confident</div>
+        <div class="opt radio"><span class="mark"></span>Extremely confident</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">Was that enough to decide, or would you still check elsewhere?<span class="req">*</span></div>
+        <div class="opt radio"><span class="mark"></span>Good enough to decide</div>
+        <div class="opt radio chosen"><span class="mark"></span>Helped, but I'd still check somewhere else</div>
+        <div class="opt radio"><span class="mark"></span>Not really useful</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">What would you still need to know before you'd buy it or delete it?<span class="req">*</span></div>
+        <div class="qhelp">Whatever would actually settle it. One line is fine.</div>
+        <div class="field">Your answer</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">What's the main thing still holding you back on this item?<span class="req">*</span></div>
+        <div class="opt radio chosen"><span class="mark"></span>Not sure it will fit me</div>
+        <div class="opt radio"><span class="mark"></span>Not sure it's good quality or genuine</div>
+        <div class="opt radio"><span class="mark"></span>Still thinking about the price</div>
+        <div class="opt radio"><span class="mark"></span>Returning it would be a hassle if I got it wrong</div>
+        <div class="opt radio"><span class="mark"></span>Nothing – I've already decided</div>
+        <div class="opt radio"><span class="mark"></span>Other:</div>
+      </div>
+      <div class="note"><span class="tag">check #1</span>Tallies straight against the corpus's own doubt split (fit 46.2%, trust 9.7%) — a number, not a quote to re-code.</div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="screen">
+      <div class="page-tag"><span class="n">Page 4 / 6</span><span class="label">If something wasn't available</span></div>
+
+      <div class="q">
+        <div class="qtitle">If your size or item wasn't available, was it clear what to do next?<span class="req">*</span></div>
+        <div class="opt radio chosen"><span class="mark"></span>Yes, totally clear</div>
+        <div class="opt radio"><span class="mark"></span>Somewhat clear</div>
+        <div class="opt radio"><span class="mark"></span>Confusing</div>
+        <div class="opt radio"><span class="mark"></span>I didn't run into this</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">When you tapped to buy or save it, did it feel like a real decision, or just a pop-up?<span class="req">*</span></div>
+        <div class="opt radio chosen"><span class="mark"></span>A real decision, with clear next steps</div>
+        <div class="opt radio"><span class="mark"></span>Just a pop-up message</div>
+        <div class="opt radio"><span class="mark"></span>Not sure</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">"Buy from Wishlist" or "Compare options" – which did you notice or tap first, and why?</div>
+        <div class="qhelp">One sentence. Leave blank if you didn't reach this screen.</div>
+        <div class="field">Your answer</div>
+      </div>
+    </div>
+
+    <!-- PAGE 5 -->
+    <div class="screen">
+      <div class="page-tag"><span class="n">Page 5 / 6</span><span class="label">Comparing and pairing</span></div>
+
+      <div class="q">
+        <div class="qtitle">If you compared two items, did sorting them by what mattered to you actually help?<span class="req">*</span></div>
+        <div class="opt radio chosen"><span class="mark"></span>Yes, it helped me decide</div>
+        <div class="opt radio"><span class="mark"></span>No, it just moved things around without helping</div>
+        <div class="opt radio"><span class="mark"></span>I didn't notice a difference</div>
+        <div class="opt radio"><span class="mark"></span>I didn't compare two items</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">If a "complete the look" or pairing suggestion appeared, was it useful?<span class="req">*</span></div>
+        <div class="opt radio chosen"><span class="mark"></span>Yes, it suggested something I'd actually pair it with</div>
+        <div class="opt radio"><span class="mark"></span>It appeared but didn't feel relevant</div>
+        <div class="opt radio"><span class="mark"></span>I didn't see one</div>
+      </div>
+    </div>
+
+    <!-- PAGE 6 -->
+    <div class="screen">
+      <div class="page-tag"><span class="n">Page 6 / 6</span><span class="label">Overall</span></div>
+
+      <div class="q">
+        <div class="qtitle">Overall, did this feel different from a normal wishlist reminder?<span class="req">*</span></div>
+        <div class="opt radio chosen"><span class="mark"></span>Different, in a useful way</div>
+        <div class="opt radio"><span class="mark"></span>Different, but not obviously better</div>
+        <div class="opt radio"><span class="mark"></span>Basically the same as a reminder</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">One sentence: what would make this actually useful for you?</div>
+        <div class="field">Your answer</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">Away from this demo: on wishlists you keep on real shopping apps, what actually brings you back to look at a saved item again?<span class="req">*</span></div>
+        <div class="qhelp">Check all that apply. Think about the last few times, not in general.</div>
+        <div class="opt check"><span class="mark"></span>A notification or price-drop alert</div>
+        <div class="opt check chosen"><span class="mark"></span>I go looking on my own, without any reminder</div>
+        <div class="opt check"><span class="mark"></span>Someone else mentions it or sends me something similar</div>
+        <div class="opt check"><span class="mark"></span>I mostly don't go back to things I've saved</div>
+      </div>
+      <div class="note"><span class="tag">check #2</span>Panel-scale (n=300–500) test of Part 2 §2.4's "revisit is already served by notifications" assumption — the same question the 6-person interview guide asks, run here before any interview session exists.</div>
+
+      <div class="q">
+        <div class="qtitle">Age</div>
+        <div class="opt radio"><span class="mark"></span>Under 18</div>
+        <div class="opt radio chosen"><span class="mark"></span>18–24</div>
+        <div class="opt radio"><span class="mark"></span>25–32</div>
+        <div class="opt radio"><span class="mark"></span>33–40</div>
+        <div class="opt radio"><span class="mark"></span>Over 40</div>
+      </div>
+
+      <div class="q">
+        <div class="qtitle">Which city?</div>
+        <div class="field">Your answer</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Source of truth is <code>docs/research/create-prototype-usability-form.gs</code> — this preview mirrors its titles, help text and choice values exactly, including the two contradiction-check questions (flagged inline). Fill states shown above (checked boxes, selected radios) are illustrative, not real response data. Re-running the script creates a <em>second</em> live form; if the current one already has responses, patch it the way <code>update-wishlist-form.gs</code> patches the wishlist survey instead.
+</footer>
