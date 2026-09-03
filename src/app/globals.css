@@ -29,10 +29,14 @@
   --brand-myntra-hover: #e02f5a;
   --brand-myntra-light: #fff0f4;
 
-  --series-1: #ff3f6c; /* Myntra Magenta */
-  --series-2: #526cd0; /* Indigo */
-  --series-3: #03a685; /* Emerald Green */
-  --series-4: #ff905a; /* Coral Orange */
+  --series-1: #ff3f6c;
+  /* Myntra Magenta */
+  --series-2: #526cd0;
+  /* Indigo */
+  --series-3: #03a685;
+  /* Emerald Green */
+  --series-4: #ff905a;
+  /* Coral Orange */
 
   /* Sequential: Myntra pink/magenta, light -> dark */
   --seq-100: #ffd9e2;
@@ -158,7 +162,7 @@ body {
 }
 
 /* Charts must scroll inside their own box; the page never scrolls sideways. */
-.scroll-x > * {
+.scroll-x>* {
   min-width: max-content;
 }
 

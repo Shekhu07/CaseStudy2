@@ -4,7 +4,7 @@
 > Creativity of Solution and Data & Metrics Orientation — not on discovery depth.
 > Part 1 here is done; Parts 2–7 hold nearly all the remaining marks.
 
-Last updated: 30 Aug 2026, 15:40 IST
+Last updated: 3 Sep 2026 — deadline reconfirmed as 5 Sep against the NextLeap dashboard
 
 ---
 
@@ -35,43 +35,74 @@ into *scheduled* re-entry (notifications, price drops — owned, and banned for 
 C-1/C-2) and *self-initiated* re-entry (the shopper searches again), which nothing
 serves. Pairing is **kept and defended**, on evidence bought by task T6 below.
 
-### Facts established 29 Aug — reconfirmed 30 Aug, still none of it acted on
+### Facts established 29 Aug — revised 2 Sep 2026
 
-**Re-checked against the actual files today, not carried forward on faith.** Every
-item below was still true as of 30 Aug 15:40 IST.
+**Re-checked against the actual files on 2 Sep.** Items 1 and 2 are now closed by a
+decision rather than by being done; 3, 5 and 6 have moved. Struck text is kept so the
+change of direction stays legible.
 
-1. **The interview coding sheets are still empty** — `docs/research/coding-sheet-items.csv`
-   and `coding-sheet-participants.csv` are header rows only, no data rows added since
-   they were created 23 Aug. No transcript, recording, or session note exists anywhere
-   in this repo or in `~/MVP_OPUS`. **The "all six by 31 Aug" commitment is now due
-   tomorrow with zero sessions run.** This is the single largest risk in the project —
-   ahead of any writing task below.
-2. **The guide's item target is still unreachable as written.** It asks for "60–100 coded
-   items" at "5–8 items per participant" × 6 = 48 max. At 60 minutes with a
-   prototype block the realistic figure is **30–36**. Not yet fixed in the guide or in
-   Part 4(d).
-3. **The experiment arm still cannot be set from a URL.** Re-read `app/src/harness/enabled.ts`
-   in `~/MVP_OPUS` today: `resolveHarnessEnabled()` still only turns the harness pill
-   on/off from `?harness=1/0`. `StateSwitcher.tsx`'s `arm` prop is still plain component
-   state with no URL param and no persistence. **A participant sent a plain link still
-   cannot be put into arm D**, and arm D is the only arm where the pairing task T6 is
-   reachable. Still unresolved — either the moderator shares screen and hands over
-   remote control, or the participant sees the harness pill. Must be decided before
-   session 1, which — per point 1 — has not happened yet.
+1. ~~The interview coding sheets are still empty… the single largest risk in the project.~~
+   **CLOSED 2 Sep 2026 — the walkthrough track is cancelled, not late.** Asking a
+   participant to screen-share their real Myntra wishlist means asking them to expose their
+   private shopping history — what they want, what they can afford, what they have told
+   nobody they are considering — to a stranger, for a student case study. No consent wording
+   makes that a reasonable ask. Zero sessions were run and none will be. Both coding sheets
+   stay header-only permanently, and `interview-guide.md` and `coding-sheet.md` now carry
+   dated retirement notices. Primary research is the two surveys instead:
+   `wishlist-survey.md` (16 responses, analysed in `wishlist-survey-results.md`) and
+   `prototype-usability-survey.md` (in field since 1 Sep; respondents react to the live
+   prototype, not to their own wishlist). This is no longer a project risk.
+2. ~~The guide's item target is still unreachable as written.~~ **Moot 2 Sep 2026** — the
+   guide is retired, so its 60–100-coded-item target no longer binds anything.
+3. **The experiment arm still cannot be set from a URL** — re-read 2 Sep and unchanged.
+   `resolveHarnessEnabled()` only toggles the harness pill from `?harness=1/0`;
+   `StateSwitcher.tsx`'s `arm` prop is plain component state with no URL param.
+   **The consequence has changed with the research method.** It no longer blocks a
+   moderated session (there are none). It now shapes what an unmoderated survey
+   respondent can see on a plain link:
+   - `App.tsx` initialises `arm` to **`treatment_b`**, not control, so the reconnection
+     module *does* render for a plain-link visitor. The survey is not accidentally
+     measuring a control experience.
+   - `lookCompletion` initialises to **`false`** and is only switchable from the harness
+     pill, so the **search-results pairing strip never appears** for a survey respondent.
+     The PDP "complete the look" strip is ungated and does appear, but only if the
+     respondent navigates to a product page — which the survey's page-1 task list does not
+     explicitly send them to.
+   - **Confirmed by tracing `App.tsx` against the live build, 2 Sep 2026.** There are exactly
+     two pairing surfaces, and the survey's own task list reaches neither:
+     the `LookStrip` at `App.tsx:1575` belongs to **`SearchResultsScreen`** and is gated by
+     `lookCompletion` (harness-only, default off); the ungated `LookStrip` at `App.tsx:1136`
+     belongs to **`ProductScreen`**, reached only by tapping an ordinary catalog tile
+     (`App.tsx:950`, `:1001`). Tapping a *saved* item routes to `SavedProductScreen`
+     (`App.tsx:992`, `:1520`), which takes no `lookCompletion` prop at all.
+     The survey instructs "search → tap a saved item → add or buy → compare two saved items",
+     so a respondent following it **cannot reach a pairing suggestion by any route**.
+   - Consequences: **Q15 is structurally void** — "I didn't see one" is the only honest answer
+     available and says nothing about pairing's value. **Q8 is biased toward "Less than I
+     expected"**, because page 1 promises "suggests other saved items that would pair well"
+     and the prescribed path never delivers it. Report both as instrument defects, not findings.
+     The one-line fix for any future round is to initialise `lookCompletion` to `true`, or add a
+     task step that opens a non-saved catalog product.
 4. Both deployments answered 200 logged-out as of 29 Aug: prototype 0.12s, dashboard 0.78s.
-5. `docs/part5-solution-mvp.md` and `docs/part7-risks.md` still do not exist.
-6. `AGENTS.md` rule 5 and `GUARDRAILS.md` rule 4 (quoting *"this corpus does not
-   support a wishlist-UI-centric MVP"* as the reason to build the fit answer) are
-   **still unamended** — re-checked today, the text is unchanged since the MVP switch.
-   They still contradict the shipped deliverable and still need the dated correction
-   called for below.
+5. `docs/part5-solution-mvp.md` and `docs/part7-risks.md` still do not exist — re-checked
+   2 Sep. Deck slides 7 and 9 carry that material; the files matter only if the written
+   parts are submitted or linked alongside the deck.
+6. ~~`AGENTS.md` rule 5 and `GUARDRAILS.md` rule 4 are still unamended.~~ **DONE
+   2 Sep 2026.** Both now carry dated amendments lifting the prohibition while keeping the
+   rule's positive half ("resolve the uncertainty, don't mention it"), with the reasoning
+   recorded: the corpus is structurally blind to the wishlist re-entry moment, because
+   reviews are written after delivery and nobody reviews an item they saved and never
+   returned to. GUARDRAILS rule 2 (interviews as the long pole) and its 20–27 Aug timeline
+   row are struck through for the same reason as item 1.
 
-### Rules this departs from, not yet amended
+### Rules this departs from — amended 2 Sep 2026
 
 `AGENTS.md` rule 5 and its *"this corpus does not support a wishlist-UI-centric
-MVP"*, and `GUARDRAILS.md` rule 4's "build the fit answer", are pre-committed and
-now contradict the deliverable. They must be amended **with the reasoning, dated** —
-not quietly left standing.
+MVP"*, and `GUARDRAILS.md` rule 4's "build the fit answer", were pre-committed and
+contradicted the deliverable. Both now carry dated amendments with the reasoning
+attached, as this section required — struck through, not deleted, so the departure
+stays on the record. `GUARDRAILS.md` rule 2 is retired on the same date, on privacy
+grounds rather than evidential ones.
 
 ---
 
@@ -88,9 +119,10 @@ not quietly left standing.
 
 Nothing is running in the background.
 
-**Interviews are no longer the long pole.** Six participants confirmed from the
-researcher's own network as of **20 Aug 2026**. Guardrails rule 2 assumed
-recruiting would be the slowest thing in the project; it is done. The survey has
+~~**Interviews are no longer the long pole.** Six participants confirmed from the
+researcher's own network as of 20 Aug 2026.~~ **Superseded 2 Sep 2026** — the walkthrough
+track was cancelled on privacy grounds (see the direction-change section above), so the six
+confirmed participants were stood down and never sat a session. Guardrails rule 2 is retired. The survey has
 been rebuilt accordingly — its interview opt-in and contact field were removed,
 so it now collects nothing identifying at all.
 
@@ -126,7 +158,7 @@ pulled r/AmItheAsshole and r/CrusaderKings. It cost $1.20 for 48 relevant docs.
 
 ### Apify budget — effectively spent
 
-$4.40 of $5.00 used. The cycle resets **15 Sep**, after the 4 Sep deadline, so
+$4.40 of $5.00 used. The cycle resets **15 Sep**, after the 5 Sep deadline, so
 the remaining $0.60 is the end of it. More Reddit volume, if wanted, should come
 from the free OAuth route in `pipeline/sources/reddit.ts` — set
 `REDDIT_CLIENT_ID`/`REDDIT_CLIENT_SECRET`, clear `APIFY_TOKEN`, and it dedupes
@@ -666,7 +698,10 @@ Nice-to-have, not blocking:
 
 - Reddit is ingested (1,636 docs). Social media (X, Instagram, Facebook) stays
   scoped out on feasibility.
-- Parts 2–7 of the brief (metric decomposition, 5–6 user interviews, problem
+- Parts 2–7 of the brief (metric decomposition, primary research, problem
   definition, MVP, success metrics, risks, 10-slide deck) remain yours.
-  Deadline **4 September 2026, 3:59 PM IST** — 17 days out. Note the PDF
-  contradicts itself and says 5 September on page 1; plan for the 4th.
+  Deadline **5 September 2026, 3:59:00 PM IST** — confirmed 3 Sep against the
+  NextLeap project dashboard, the system of record. The brief PDF's page 8 still
+  says 4 September and is stale. Submit on the 4th regardless; late submissions
+  are rejected "even if it is by a few seconds". The deck is built and compliant:
+  `NL Myntra.pdf`, 10 slides, 1920×1080, 26px minimum type, ~710 KB.
