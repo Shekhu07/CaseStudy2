@@ -8,33 +8,34 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root{
-    /* ---- Myntra tokens (app/src/design/tokens.ts) ---- */
-    --ink:#141414;           /* textPrimary */
-    --navy:#282C3F;          /* Myntra's real text/chrome navy — the structural dark */
-    --navy-2:#3A4054;        /* navy, lifted, for gradient ends */
-    --mut:#5C5C5C;           /* textSecondary */
-    --faint:#949494;
-    --rule:#E9E9E9;          /* borderSubtle */
-    --muted:#F4F4F4;         /* surfaceMuted */
-    --ground:#FAFAFA;        /* pageGround */
+    /* ---- Official Myntra palette (src/app/globals.css) ---- */
+    --ink:#282C3F;           /* Text primary */
+    --navy:#282C3F;          /* Myntra Navy Charcoal */
+    --navy-2:#3D4155;        /* navy lifted, gradient end */
+    --mut:#535766;           /* Slate Grey — body text */
+    --faint:#8A8C96;         /* Light Grey, one shade down so it clears AA on white */
+    --rule:#EAEAEC;          /* Border */
+    --muted:#F5F5F6;         /* Light surface */
+    --ground:#F5F5F6;
 
-    --pink:#FF3F6C;          /* brandPink — the accent, used like Blinkit's green */
-    --pink-dk:#E8305D;
-    --pink-tint:#FFE1E9;     /* bannerPink */
-    --pink-wash:#FFF2F6;     /* saleSurfaceFrom */
+    --pink:#FF3F6C;          /* Primary Brand — Myntra Pink */
+    --pink-dk:#B81B42;       /* seq-700, for pink text on light */
+    --pink-tint:#FFD9E2;     /* seq-100 */
+    --pink-wash:#FFF0F4;     /* brand-myntra-light */
 
-    --amber:#FF9A3F;         /* logoGradientTo — the single "look here" highlight */
-    --amber-tint:#FFF6E5;    /* recoverySurface */
-    --amber-rule:#F0DFC0;
-    --amber-ink:#7A5A1E;     /* signalAttention */
+    --amber:#FF905A;         /* Warning / Urgency */
+    --amber-tint:#FFF0E8;
+    --amber-rule:#FFD5C2;
+    --amber-ink:#9A4318;     /* darkened brand orange, for text */
 
-    --ok:#1B7A55;            /* signalOk */
-    --ok-tint:#E8F4EF;
-    --no:#B3261E;            /* signalBlocked */
-    --no-tint:#FDECEA;
+    --ok:#03A685;            /* Verified Green */
+    --ok-ink:#016B54;        /* darkened, for green text */
+    --ok-tint:#E6F7F2;
+    --no:#D11E3B;            /* Critical */
+    --no-tint:#FDE8EC;
 
-    --violet:#7C5CFF;        /* accentAssistant */
-    --violet-tint:#F0EDFF;
+    --violet:#526CD0;        /* Info Blue */
+    --violet-tint:#EEF1FA;
   }
 
   html,body{ background:#6E7382; }
@@ -55,6 +56,66 @@
   .eyebrow .n{ font-size:28px; font-weight:800; color:var(--pink); letter-spacing:0.5px; }
   .eyebrow .s{ font-size:28px; font-weight:700; color:var(--faint); text-transform:uppercase; letter-spacing:2.2px; }
   p,li,td,th,div.t{ font-size:27px; line-height:1.28; }
+  div.t.sm2{ font-size:26px; line-height:1.2; margin-top:2px; color:var(--mut); }
+  div.t.sm2 b.k{ color:inherit; }
+  .card.dark div.t.sm2{ color:#E3E6EE; }
+  .card.dark div.t.sm2 b.k{ color:#fff; }
+  .factbar{ flex:0 0 auto; display:flex; align-items:stretch; background:#F7F8FA;
+    border:1px solid var(--rule); border-radius:12px; padding:8px 18px; }
+  .factbar > div{ flex:1 1 0; min-width:0; font-size:26px; line-height:1.2; color:var(--mut);
+    padding:0 18px; border-right:1px solid var(--rule); }
+  .factbar > div:first-child{ padding-left:0; }
+  .factbar > div:last-child{ border-right:none; padding-right:0; }
+  .factbar b{ font-weight:800; color:var(--ink); }
+  .factbar .pk{ color:var(--pink-dk); }
+  .qrow{ border-left:4px solid var(--pink); padding-left:12px; margin-top:6px;
+    font-size:27px; line-height:1.16; font-weight:700; color:var(--ink); }
+  .hyp{ flex:1 1 0; min-width:0; background:#fff; border:1px solid var(--rule);
+    border-radius:14px; padding:9px 13px; display:flex; flex-direction:column; }
+  .hyp .hh{ font-size:26px; font-weight:800; letter-spacing:1px; color:var(--pink-dk); }
+  .hyp .hc{ font-size:27px; font-weight:800; line-height:1.14; margin-top:3px; color:var(--ink); }
+  .hyp .he{ font-size:26px; background:var(--muted); border-radius:8px; padding:3px 9px;
+    margin-top:5px; color:var(--mut); line-height:1.15; }
+  .hyp .ht{ font-size:26px; font-weight:800; color:var(--no); margin-top:6px; letter-spacing:.6px; }
+  .hyp .hd{ font-size:26px; line-height:1.16; color:var(--mut); margin-top:1px; }
+  .dstrip{ display:flex; border-radius:14px; overflow:hidden; flex:0 0 auto; }
+  .dstrip > div{ flex:1 1 0; background:var(--navy); color:#fff; padding:9px 16px; font-size:26px;
+    line-height:1.18; display:flex; gap:11px; align-items:center;
+    border-right:1px solid rgba(255,255,255,.20); }
+  .dstrip > div:last-child{ border-right:none; }
+  .dstrip .dn{ flex:0 0 auto; width:32px; height:32px; border-radius:999px; background:var(--amber);
+    color:var(--navy); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:26px; }
+  .arw{ flex:0 0 auto; display:flex; align-items:center; justify-content:center;
+    color:var(--pink); font-size:30px; font-weight:800; padding:0 3px; }
+  .fun{ display:flex; align-items:center; gap:9px; flex:1 1 0; min-width:0; }
+  .fun .fv{ font-size:42px; font-weight:800; letter-spacing:-1.2px; line-height:1;
+    font-variant-numeric:tabular-nums; color:var(--navy); }
+  .fun .fl{ font-size:26px; line-height:1.14; color:var(--mut); }
+  .step{ flex:1 1 0; min-width:0; background:#fff; border:1px solid var(--rule); border-radius:14px;
+    padding:9px 13px; display:flex; flex-direction:column; }
+  .step.on{ background:var(--navy); border-color:var(--navy); color:#fff; }
+  .step .sh{ font-size:27px; font-weight:800; color:var(--ink); line-height:1.1; }
+  .step.on .sh{ color:#fff; }
+  .step .sc{ font-size:26px; font-weight:800; letter-spacing:.8px; color:var(--pink-dk); margin:3px 0 4px; }
+  .step.on .sc{ color:var(--amber); }
+  .step .sb{ font-size:26px; line-height:1.18; color:var(--mut); }
+  .step.on .sb{ color:#E3E6EE; }
+  .sect{ display:inline-block; font-size:26px; font-weight:800; letter-spacing:1.1px;
+    border-radius:999px; padding:3px 17px; margin-bottom:7px; }
+  .sect.nv{ background:var(--navy); color:#fff; }
+  .sect.pk{ background:var(--pink); color:#fff; }
+  .sect.am{ background:var(--amber); color:var(--navy); }
+  .srow{ display:flex; align-items:baseline; gap:12px; }
+  .srow .sv{ font-size:40px; font-weight:800; letter-spacing:-1px; line-height:1.05;
+    font-variant-numeric:tabular-nums; flex:0 0 auto; }
+  .srow .sl{ font-size:26px; line-height:1.18; color:var(--ink); }
+  .srow .src{ font-size:26px; color:var(--faint); }
+  .warn.big{ display:block; text-align:center; font-size:27px; padding:7px 14px; }
+  .closer{ margin-top:auto; padding-top:9px; border-top:2px solid var(--rule);
+    font-size:27px; font-weight:800; text-align:center; color:var(--ink); }
+  .warn{ display:inline-block; background:var(--amber); color:var(--navy); font-weight:800;
+    border-radius:7px; padding:2px 10px; }
+  .body > .factbar:last-child{ flex:0 0 auto; }
   .sm{ font-size:26px; line-height:1.24; }
 
   /* ================= NAV STRIP ================= */
@@ -91,16 +152,16 @@
   .card{ background:#fff; border:1px solid var(--rule); border-radius:14px; padding:11px 16px; }
   .card.g{ background:var(--ground); }
   .card.pink{ background:var(--pink-wash); border-color:#FFD3DF; }
-  .card.ok{ background:var(--ok-tint); border-color:#CFE6DC; }
+  .card.ok{ background:var(--ok-tint); border-color:#B9E5D8; }
   .card.amber{ background:var(--amber-tint); border-color:var(--amber-rule); }
   .card.dark{ background:linear-gradient(135deg,var(--navy) 0%, var(--navy-2) 100%); border:none; color:#fff; }
   .card.dark .h{ color:var(--amber); }
   .h{ font-size:27px; font-weight:800; letter-spacing:0.9px; text-transform:uppercase; color:var(--pink); margin-bottom:8px;
       display:flex; align-items:center; gap:9px; }
-  .h.ink{ color:var(--ink); } .h.ok{ color:var(--ok); } .h.no{ color:var(--no); } .h.amb{ color:var(--amber-ink); }
+  .h.ink{ color:var(--ink); } .h.ok{ color:var(--ok-ink); } .h.no{ color:var(--no); } .h.amb{ color:var(--amber-ink); }
   .h .ic{ width:31px; height:31px; border-radius:999px; display:flex; align-items:center; justify-content:center; font-size:26px; flex:0 0 auto; }
   .ic.p{ background:var(--pink-tint); color:var(--pink-dk); }
-  .ic.o{ background:#D9EEE5; color:var(--ok); }
+  .ic.o{ background:#CFEDE4; color:var(--ok-ink); }
   .ic.n{ background:var(--no-tint); color:var(--no); }
   .ic.a{ background:#FFE9C9; color:var(--amber-ink); }
 
@@ -119,7 +180,7 @@
   .list li{ display:flex; gap:12px; align-items:flex-start; margin-bottom:8px; font-size:27px; line-height:1.26; }
   .list li:last-child{ margin-bottom:0; }
   .list .m{ flex:0 0 auto; font-weight:800; font-size:27px; line-height:1.26; }
-  .list.yes .m{ color:var(--ok); } .list.no .m{ color:var(--no); }
+  .list.yes .m{ color:var(--ok-ink); } .list.no .m{ color:var(--no); }
 
   /* ================= BAR CHART ================= */
   .bars{ width:100%; border-collapse:collapse; }
@@ -194,57 +255,66 @@
   <div class="head">
     <div>
       <div class="eyebrow"><span class="n">01</span><span class="s">The Opportunity</span></div>
-      <h1>Shoppers Do Come Back &#8212; Through Search.<br><span class="b">Two of the Four Steps to a Sale Are Unowned.</span></h1>
-      <div class="sub">Get more saved items bought within 30 days &#8212; with no discounts, coupons, cashback or sale urgency.</div>
+      <h1>Shoppers Do Come Back.<br><span class="b">They Come Back Through Search.</span></h1>
+      <div class="sub">Grow saved-item conversion within 30 days by protecting gross margins, avoiding promotional dilution, and driving organic conversion.</div>
     </div>
     
   </div>
 
   <div class="body">
-    <div class="row">
-      <div class="card g"><div class="h ink">A &#183; REAL INTENT TO BUY? <span class="sm" style="color:var(--faint)">&nbsp;user behaviour</span></div>
-        <div class="t"><b class="k">7 in 10</b> saves carry real intent to buy.</div>
-        <div class="t" style="margin-top:8px; color:var(--mut);">Healthy. Not our lever — but it makes the rest worth fixing.</div></div>
+    <div class="row" style="flex:1;">
 
-      <div class="card amber"><div class="h amb">B &#183; DO THEY COME BACK? <span class="sm" style="color:var(--faint)">&nbsp;user behaviour</span></div>
-        <div class="t">Two ways back. <b class="k">Alerts and reminders</b> — already built, and banned for us.</div>
-        <div class="t" style="margin-top:8px;"><b class="k">Or they search again themselves.</b> Nothing serves that.</div>
-        <div class="t" style="margin-top:8px; color:var(--mut);">Asked directly, <b class="k">none of five testers picked alerts</b>.</div></div>
+      <div class="card" style="flex:1; display:flex; flex-direction:column;">
+        <div><span class="sect nv">THE MARKET CHECK</span></div>
 
-      <div class="card amber"><div class="h amb">C &#183; DO THEY GET AN ANSWER? <span class="sm" style="color:var(--faint)">&nbsp;product outcome</span></div>
-        <div class="t"><b class="k">2 in 3</b> name a doubt the product never answers.</div>
-        <div class="t" style="margin-top:8px;">Of those who tried to settle it themselves, <b class="k">1 in 5 failed</b>.</div></div>
+        <div class="srow" style="margin-top:2px;"><div class="sv" style="color:var(--navy)">51.5M</div>
+          <div><div class="sl">weekly actives &#8212; India's largest fashion platform</div>
+          <div class="src">CLSA, 2026</div></div></div>
 
-      <div class="card g"><div class="h ink">D &#183; DOES IT CONVERT? <span class="sm" style="color:var(--faint)">&nbsp;product outcome</span></div>
-        <div class="t">The biggest blocker at checkout is <b class="k">price</b> — about 1 in 4.</div>
-        <div class="t" style="margin-top:8px; color:var(--mut);">The one thing we may not touch.</div></div>
-    </div>
+        <div class="srow" style="margin-top:11px;"><div class="sv" style="color:var(--navy)">&#8377;6,043cr</div>
+          <div><div class="sl">FY25 revenue, up 18% year on year</div>
+          <div class="src">MCA filings</div></div></div>
 
-    <div class="row">
-      <div class="card pink" style="flex:1.3;">
-        <div class="h">WHY B AND C, AND NOT THE OTHER TWO</div>
-        <div class="t">The four steps multiply, so a quarter gain on any one is a quarter gain overall. <b class="k">Equal leverage — the choice has to be made on something else.</b></div>
-        <div class="t" style="margin-top:9px;">So we chose on <b class="k">room to grow</b> (A and D are near their ceiling; B and C are not), on <b class="k">who owns them</b> (reminders and checkout are long optimised), and on what the no-discount rule leaves standing.</div>
+        <div class="srow" style="margin-top:11px;"><div class="sv" style="color:var(--pink-dk)">18&#215;</div>
+          <div><div class="sl">profit growth on the <b class="k">same</b> demand</div>
+          <div class="src">MCA filings</div></div></div>
+
+        <div class="srow" style="margin-top:11px;"><div class="sv" style="color:var(--pink-dk)">~9%</div>
+          <div><div class="sl">of wishlisters buy a saved item within 30 days</div>
+          <div class="src">= 0.72 &#215; 0.45 &#215; 0.34 &#215; 0.85 (A&#215;B&#215;C&#215;D). Intent measured; B, C, D assumed until day-one instrumentation.</div></div></div>
+
+        <div class="t sm2" style="margin-top:10px;">Myntra grows by <b class="k">converting shoppers it already has</b>, not by buying new ones.</div>
+
+        <div class="closer">Demand is already paid for.</div>
       </div>
-      <div class="card" style="flex:1;">
-        <div class="h ink">THE SCALE, AND THE GAIN WE'RE AFTER</div>
-        <div class="kpis" style="margin-top:4px;">
-          <div class="kpi"><div class="v">51.5M</div><div class="l">weekly actives <span style="color:var(--faint)">CLSA '26</span></div></div>
-          <div class="kpi"><div class="v">&#8377;6,043cr</div><div class="l">FY25 revenue, +18% <span style="color:var(--faint)">MCA</span></div></div>
-          <div class="kpi pk"><div class="v">~9&#8594;11%</div><div class="l">buy a saved item within 30 days</div></div>
-        </div>
-        <div class="t" style="margin-top:10px; color:var(--mut);">Profit rose <b class="k">18-fold</b> on the same demand — Myntra grows by converting shoppers it already has. Assume a fifth of weekly actives wishlist something in a month: two points is <b class="k">~200,000 more closed decisions</b>.</div>
+
+      <div class="card" style="flex:1.22; display:flex; flex-direction:column;">
+        <div><span class="sect pk">THE PREMISE</span></div>
+        <div class="t sm2">Four things have to go right for a saved item to sell. Fix any one and the whole number moves &#8212; so we picked the ones nobody owns.</div>
+
+        <table class="data tight" style="margin-top:6px;">
+          <tr><td style="width:52px"><b class="k">A</b></td><td>They meant to buy it &#8212; <b class="k">7 in 10</b> saves are genuine</td><td class="n" style="width:162px"><span class="pill gh">near ceiling</span></td></tr>
+          <tr class="hp"><td><b class="k">B</b></td><td><b class="k">Do they come back?</b> Alerts exist already and cost margin. When they search instead, nothing helps.</td><td class="n"><span class="pill pk">unowned</span></td></tr>
+          <tr class="hp"><td><b class="k">C</b></td><td><b class="k">Do they get an answer?</b> <b class="k">2 in 3</b> have a doubt we never answer. <b class="k">1 in 5</b> who looked gave up.</td><td class="n"><span class="pill pk">unowned</span></td></tr>
+          <tr style="border:none"><td style="border:none"><b class="k">D</b></td><td style="border:none"><b class="k">Do they buy?</b> Price stops about <b class="k">1 in 4</b> &#8212; and price is off-limits</td><td class="n" style="border:none"><span class="pill gh">excluded lever</span></td></tr>
+        </table>
+
+        <div style="margin-top:auto; padding-top:10px;"><span class="warn big">A and D are already handled. B and C are wide open.</span></div>
+      </div>
+
+      <div class="card ok" style="flex:1; display:flex; flex-direction:column;">
+        <div><span class="sect am">THE STRATEGIC GOAL</span></div>
+        <div class="t"><b class="k">Take W30 from ~9% to ~11% in eight weeks</b> &#8212; on organic conversion, with no discount, coupon or cashback spend behind it.</div>
+
+        <div class="t sm2" style="margin-top:10px; font-weight:800; color:var(--ink);">Why it matters:</div>
+
+        <div class="t sm2" style="margin-top:6px;"><b class="k">For shoppers</b> &#8212; the saved item comes back unprompted, and the doubt that stopped them is answered in the same place.</div>
+        <div class="t sm2" style="margin-top:8px;"><b class="k">For Myntra</b> &#8212; two points is <b class="k">~200,000</b> more closed decisions a month, about <b class="k">&#8377;40 Cr</b> of incremental GMV.</div>
+        <div class="t sm2" style="margin-top:8px;"><b class="k">For margin</b> &#8212; every point of that lift is earned without promotional dilution, on demand already paid for.</div>
+        <div class="closer">~9% &#8594; ~11% &#183; &#8776;&#8377;40 Cr/mo &#183; zero discount spend</div>
       </div>
     </div>
-  </div>
 
-  <div class="takeaway">
-    <div class="badge"><div class="star">&#9733;</div><b>THE TAKEAWAY</b></div>
-    <div class="txt">
-      <div class="l1">The "no discounts" rule isn't a handicap. It's the instruction.</div>
-      <div class="l2">Reminders already exist and money is off the table. What's left is the moment a shopper searches again, and the doubt waiting when they arrive. Today's 9% is modelled, not measured — one day of instrumentation replaces it.</div>
-    </div>
-    <div class="glyph">&#8599;</div>
   </div>
 </section>
 
@@ -253,7 +323,7 @@
   <div class="head">
     <div>
       <div class="eyebrow"><span class="n">02</span><span class="s">How the Discovery Engine Works</span></div>
-      <h1>We Read 19,143 Real Shopper Comments<br><span class="b">and Let the Complaints Sort Themselves.</span></h1>
+      <h1>Turning Customer Voice Into Actionable Insight,<br><span class="b">One Comment at a Time.</span></h1>
       <div class="sub">Six public sources, five steps — and an audit that changed our own answer.</div>
     </div>
     <div class="brand">
@@ -262,57 +332,67 @@
   </div>
 
   <div class="body">
-    <div class="row" style="flex:1;">
-      <div class="card" style="flex:1; display:flex; flex-direction:column;">
-        <div class="h">WHERE THE COMMENTS CAME FROM</div>
-        <table class="bars">
-          <tr><td class="lb">YouTube comments</td><td class="tr"><div class="track"><div class="fill" style="width:100%"></div></div></td><td class="vl">2,144</td></tr>
-          <tr><td class="lb">Competitor apps</td><td class="tr"><div class="track"><div class="fill r2" style="width:42%"></div></div></td><td class="vl">905</td></tr>
-          <tr><td class="lb">Google Play</td><td class="tr"><div class="track"><div class="fill r3" style="width:19%"></div></div></td><td class="vl">409</td></tr>
-          <tr><td class="lb">Reddit</td><td class="tr"><div class="track"><div class="fill r4" style="width:16%"></div></div></td><td class="vl">338</td></tr>
-          <tr><td class="lb">App Store &#183; Sitejabber</td><td class="tr"><div class="track"><div class="fill r5" style="width:6%"></div></div></td><td class="vl">126</td></tr>
-        </table>
-        <div class="card ok" style="margin-top:14px;">
-          <div class="t"><b class="k">YouTube gave us more than half of everything usable</b> — and roughly four times as much per comment as an app-store review. Adding it was the best decision in the build.</div>
-        </div>
-      </div>
 
-      <div class="card" style="flex:1; display:flex; flex-direction:column;">
-        <div class="h">THE FIVE STEPS</div>
-        <table class="data">
-          <tr><td style="width:32%"><b class="k">Collect</b></td><td>19,143 comments, duplicates removed</td></tr>
-          <tr><td><b class="k">Filter</b></td><td>keep the 3,922 about a buying decision</td></tr>
-          <tr><td><b class="k">Group</b></td><td>let 12 themes emerge, then edit them by hand</td></tr>
-          <tr><td><b class="k">Label</b></td><td>tag each one with its theme, severity and stage</td></tr>
-          <tr style="border:none"><td style="border:none"><b class="k">Rank</b></td><td style="border:none">by how many say it, how badly it blocks, how fixable</td></tr>
-        </table>
-        <div class="card amber" style="margin-top:14px; flex:1;">
-          <div class="t">One lesson worth the money it cost: searches containing "myntra" returned useful results <b class="k">three times as often</b> as broader ones. <b class="k">A corpus only tells you about the words you went looking for.</b></div>
-        </div>
-      </div>
+    <div class="dstrip">
+      <div><span class="dn">1</span><span>Reading <b>19,143</b> comments by hand is slow and inconsistent.</span></div>
+      <div><span class="dn">2</span><span>One model reads every comment the same way, so nothing is missed or judged differently.</span></div>
+      <div><span class="dn">3</span><span>Loose complaints become ranked, quotable evidence.</span></div>
+    </div>
 
-      <div class="card" style="flex:1; display:flex; flex-direction:column;">
-        <div class="h">HOW FAR WE TRUST IT</div>
-        <ul class="list" style="margin-bottom:14px;">
-          <li><span class="m" style="color:var(--amber-ink)">&#9888;</span><span>We audited 50 documents by hand and <b class="k">found two real mistakes</b>. One is fixed; one is written down and still open.</span></li>
-          <li><span class="m" style="color:var(--ok)">&#10003;</span><span>Nearly <b class="k">9 in 10</b> labelled comments carry a quote we can point to.</span></li>
-          <li><span class="m" style="color:var(--mut)">&#8776;</span><span>Re-label the same comment and it lands in the same theme about <b class="k">two-thirds</b> of the time. The order is solid; the exact percentages are not.</span></li>
-        </ul>
-        <div class="card g" style="flex:1;">
-          <div class="h ink" style="font-size:27px;">WHAT IT CAN'T TELL US</div>
-          <div class="t">People write reviews about <i>products</i>. <b class="k">Fewer than 2 in 100 of these comments mention a wishlist at all</b> — so this data can rank doubts, but it can say nothing about coming back to a saved item.</div>
-        </div>
+    <div class="row" style="flex:0 0 auto;">
+      <div class="card" style="flex:1.05; display:flex; align-items:center; gap:6px;">
+        <div class="fun"><div><div class="fv">19,143</div><div class="fl">comments<br>ingested</div></div></div>
+        <div class="arw">&#8594;</div>
+        <div class="fun"><div><div class="fv">3,922</div><div class="fl">about a<br>buying decision</div></div></div>
+        <div class="arw">&#8594;</div>
+        <div class="fun" style="background:var(--pink-wash); border-radius:11px; padding:7px 14px; flex:0 0 auto;">
+          <div><div class="fv" style="color:var(--pink-dk)">12</div><div class="fl">themes,<br>ranked</div></div></div>
+      </div>
+      <div class="card" style="flex:1;">
+        <div class="h ink">WHAT GETS DROPPED, AND WHY</div>
+        <div class="t sm2" style="margin-top:3px;">A yes/no check on every comment: <b class="k">is this about deciding to buy?</b> Late deliveries, refunds and app bugs go &#8212; leaving only pre-purchase doubt.</div>
       </div>
     </div>
-  </div>
 
-  <div class="takeaway">
-    <div class="badge"><div class="star">&#9733;</div><b>THE TAKEAWAY</b></div>
-    <div class="txt">
-      <div class="l1">The engine didn't make the decision. It counted something no one could have read by hand.</div>
-      <div class="l2">The dashboard is live, and the classifier will take any review you paste into it.</div>
+    <div class="row" style="flex:0 0 auto; align-items:stretch;">
+      <div class="step">
+        <div class="sh">Collect</div><div class="sc">19,143 COMMENTS</div>
+        <div class="sb">Six sources; YouTube gave <b>2,144</b> of the usable comments.</div>
+      </div>
+      <div class="arw">&#8594;</div>
+      <div class="step on">
+        <div class="sh">Filter</div><div class="sc">3,922 KEPT</div>
+        <div class="sb">Keeps only comments about a buying decision. Simple rules, <b>no AI yet</b> &#8212; fast and free.</div>
+      </div>
+      <div class="arw">&#8594;</div>
+      <div class="step">
+        <div class="sh">Group</div><div class="sc">12 THEMES</div>
+        <div class="sb">Themes emerge from the text, then edited by hand.</div>
+      </div>
+      <div class="arw">&#8594;</div>
+      <div class="step">
+        <div class="sh">Label</div><div class="sc">TAGGED</div>
+        <div class="sb">Each comment carries its theme, severity and journey stage.</div>
+      </div>
+      <div class="arw">&#8594;</div>
+      <div class="step">
+        <div class="sh">Rank</div><div class="sc">SCORED</div>
+        <div class="sb">By how many raise it, how badly it blocks, how fixable it is.</div>
+      </div>
     </div>
-    <div class="glyph">&#8599;</div>
+
+    <div class="row" style="flex:0 0 auto;">
+      <div class="card ok" style="flex:1.25;">
+        <div class="h ok"><span class="ic o">&#10003;</span> HOW FAR WE TRUST IT</div>
+        <div class="t sm2" style="margin-top:3px;">We audited <b class="k">50 documents by hand</b> and found two real mistakes &#8212; one fixed, one written down and still open. Nearly <b class="k">9 in 10</b> labelled comments carry a quote we can point to, and re-labelling lands in the same theme about <b class="k">two-thirds</b> of the time. The order is solid; the exact percentages are not.</div>
+      </div>
+      <div class="card amber" style="flex:1;">
+        <div class="h amb"><span class="ic a">&#9888;</span> WHAT IT CAN'T TELL US</div>
+        <div class="t sm2" style="margin-top:3px;"><b class="k">Fewer than 2 in 100 comments mention a wishlist at all.</b> People write reviews about products. This data can rank doubts &#8212; it says nothing about coming back to a saved item.</div>
+      </div>
+    </div>
+
+    <div class="factbar"><div>The <b>3,922</b> usable comments: YouTube <b>2,144</b>, competitor apps <b>905</b>, Play <b>409</b>, Reddit <b>338</b>, App Store <b>126</b></div><div>Brand-scoped searches returned useful results <b class="pk">3&#215; as often</b> as broad ones &#8212; a corpus only tells you about the words you went looking for</div></div>
   </div>
 </section>
 
@@ -321,58 +401,83 @@
   <div class="head">
     <div>
       <div class="eyebrow"><span class="n">03</span><span class="s">What the Engine Found</span></div>
-      <h1>It Put Trust and Fit at the Top.<br><span class="b">It Put the Thing We Built 9th and 12th.</span></h1>
-      <div class="sub">Twelve blockers, ranked. Bars show how often shoppers raise each one.</div>
+      <h1>The Data Speaks: Trust and Fit Win.<br><span class="b">Our Feature Ranks Ninth and Twelfth.</span></h1>
+      <div class="sub">What 19,143 comments settled, what they could not &#8212; and the four claims left for primary research to test.</div>
     </div>
     
   </div>
 
   <div class="body">
-    <div class="row" style="flex:1;">
-      <div class="card" style="flex:1.3; display:flex; flex-direction:column;">
-        <div class="h">RANKED BLOCKERS &#183; SHARE OF SHOPPERS WHO RAISE IT</div>
-        <table class="bars">
-          <tr><td class="lb"><b class="k">1 &#183; Quality &amp; seller trust</b></td><td class="tr"><div class="track"><div class="fill" style="width:100%"></div></div></td><td class="vl">23%</td></tr>
-          <tr><td class="lb"><b class="k">2 &#183; Unreliable size &amp; fit info</b></td><td class="tr"><div class="track"><div class="fill r2" style="width:84%"></div></div></td><td class="vl">20%</td></tr>
-          <tr><td class="lb">3 &#183; Difficult returns</td><td class="tr"><div class="track"><div class="fill r3" style="width:42%"></div></div></td><td class="vl">10%</td></tr>
-          <tr><td class="lb">4 &#183; Missing product details</td><td class="tr"><div class="track"><div class="fill r4" style="width:37%"></div></div></td><td class="vl">9%</td></tr>
-          <tr><td class="lb">5 &#183; Misleading photos</td><td class="tr"><div class="track"><div class="fill r5" style="width:34%"></div></div></td><td class="vl">8%</td></tr>
-          <tr><td class="lb" style="color:var(--faint)">6&#8211;8 &#183; stock, support, price</td><td class="tr"><div class="track" style="height:14px"><div class="fill r5" style="height:14px; width:13%"></div></div></td><td class="vl" style="color:var(--faint)">3%</td></tr>
-          <tr class="hl"><td class="lb"><b class="k">9 &#183; Wishlist is hard to use</b></td><td class="tr"><div class="track"><div class="fill amb" style="width:4%"></div></div></td><td class="vl">0.9%</td></tr>
-          <tr class="hl" style="border:none"><td class="lb"><b class="k">12 &#183; Wishlist does nothing</b></td><td class="tr"><div class="track"><div class="fill amb" style="width:2%"></div></div></td><td class="vl">0.3%</td></tr>
+    <div class="row" style="flex:0 0 auto;">
+
+      <div class="card" style="flex:1.3;">
+        <div class="h ink">RANKED BLOCKERS &#183; SHARE WHO RAISE IT</div>
+        <div class="t sm2" style="margin-top:2px;">Across 3,017 Myntra comments about a buying decision.</div>
+        <table class="bars" style="margin-top:4px;">
+          <tr><td class="lb" style="width:50%"><b class="k">Quality &amp; seller trust</b></td><td class="tr"><div class="track"><div class="fill pink" style="width:100%"></div></div></td><td class="vl">23%</td></tr>
+          <tr><td class="lb" style="width:50%"><b class="k">Unreliable size &amp; fit</b></td><td class="tr"><div class="track"><div class="fill pink" style="width:87%"></div></div></td><td class="vl">20%</td></tr>
+          <tr><td class="lb" style="width:50%">Difficult returns</td><td class="tr"><div class="track"><div class="fill r3" style="width:43%"></div></div></td><td class="vl">10%</td></tr>
+          <tr><td class="lb" style="width:50%">Missing product details</td><td class="tr"><div class="track"><div class="fill r4" style="width:39%"></div></div></td><td class="vl">9%</td></tr>
+          <tr><td class="lb" style="width:50%">Misleading photos</td><td class="tr"><div class="track"><div class="fill r4" style="width:35%"></div></div></td><td class="vl">8%</td></tr>
+          <tr style="border:none"><td class="lb" style="width:50%"><b class="k">The wishlist itself</b> <span class="sm" style="color:var(--faint)">two themes, 9th and 12th</span></td><td class="tr"><div class="track"><div class="fill amb" style="width:5%"></div></div></td><td class="vl">1%</td></tr>
         </table>
-        <div class="card g" style="margin-top:14px; flex:1;">
-          <div class="t">Ranking combines <b class="k">how many raise it, how badly it blocks, and how fixable it is</b>. The two amber rows lose on the first alone — they are in fact <b class="k">the most fixable problems in the list</b>.</div>
-        </div>
+        <div class="t sm2" style="margin-top:6px;">Returns hurt badly when they happen &#8212; but <b class="k">hurting is not the same as stopping the sale</b>.</div>
       </div>
 
-      <div class="col" style="flex:1; display:flex; flex-direction:column; gap:14px;">
-        <div class="card">
-          <div class="h ink">WHEN SHOPPERS NAME A DOUBT, THIS IS WHAT IT IS</div>
-          <table class="bars">
-            <tr><td class="lb"><b class="k">Will it fit me?</b></td><td class="tr"><div class="track"><div class="fill pink" style="width:100%"></div></div></td><td class="vl">46%</td></tr>
-            <tr><td class="lb">Is the fabric as claimed?</td><td class="tr"><div class="track"><div class="fill r3" style="width:37%"></div></div></td><td class="vl">17%</td></tr>
-            <tr><td class="lb">Can I trust this seller?</td><td class="tr"><div class="track"><div class="fill r4" style="width:32%"></div></div></td><td class="vl">15%</td></tr>
-            <tr style="border:none"><td class="lb">Will it look like the photos?</td><td class="tr"><div class="track"><div class="fill r4" style="width:29%"></div></div></td><td class="vl">13%</td></tr>
-          </table>
-          <div class="sm" style="margin-top:9px;"><b class="k">Fit is nearly half of everything shoppers couldn't work out.</b> Nothing else comes close.</div>
-        </div>
+      <div class="card ok" style="flex:1;">
+        <div class="h ok">ONE BARRIER, NOT FOUR</div>
+        <div class="t sm2" style="margin-top:3px;">The doubts people actually name:</div>
+        <table class="bars" style="margin-top:3px;">
+          <tr><td class="lb" style="width:58%"><b class="k">Will it fit me?</b></td><td class="tr"><div class="track"><div class="fill pink" style="width:100%"></div></div></td><td class="vl">46%</td></tr>
+          <tr><td class="lb" style="width:58%">Is the fabric right?</td><td class="tr"><div class="track"><div class="fill r3" style="width:37%"></div></div></td><td class="vl">17%</td></tr>
+          <tr><td class="lb" style="width:58%">Can I trust the seller?</td><td class="tr"><div class="track"><div class="fill r3" style="width:32%"></div></div></td><td class="vl">15%</td></tr>
+          <tr style="border:none"><td class="lb" style="width:58%">Will the colour match?</td><td class="tr"><div class="track"><div class="fill r4" style="width:29%"></div></div></td><td class="vl">13%</td></tr>
+        </table>
+        <div style="margin-top:6px;"><span class="warn big">One failure, not four: <b>9 in 10</b> doubts are things the page cannot verify.</span></div>
+        <div class="t sm2" style="margin-top:5px;"><b class="k">Two in three</b> hit a barrier they cannot resolve.</div>
+      </div>
 
-        <div class="card amber" style="flex:1;">
-          <div class="h amb"><span class="ic a">&#8635;</span> WHAT WE DROPPED, AND WHY IT MATTERS</div>
-          <div class="t">Returns looked like a top-three blocker until we separated complaints made <i>before</i> buying from those made <i>after</i>. <b class="k">Returns are what people complain about afterwards, not what stops them buying.</b> We dropped it, and fit moved up on the same correction.</div>
+      <div class="card" style="flex:1;">
+        <div class="h amb">WHAT THE ENGINE CANNOT SETTLE</div>
+        <div class="qrow">Does it stop the sale, or only delay it?</div>
+        <div class="qrow">What brings someone back to a saved item?</div>
+        <div class="qrow">Would answering it change the decision?</div>
+        <div class="card ok" style="margin-top:8px; padding:7px 12px;">
+          <div class="t sm2"><b class="k">Fewer than 2 in 100 comments mention a wishlist</b> &#8212; reviews are written after delivery. Primary research had to settle these, as four claims with tests.</div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="takeaway">
-    <div class="badge"><div class="star">&#9733;</div><b>THE TAKEAWAY</b></div>
-    <div class="txt">
-      <div class="l1">This chart measures what people write about — and nobody writes a review about the item they forgot they saved.</div>
-      <div class="l2">The ranking is sound. The instrument behind it has a blind spot, and the next slide is where it opens.</div>
+    <div class="row" style="flex:0 0 auto;">
+      <div class="hyp">
+        <div class="hh">CLAIM 1</div>
+        <div class="hc">Fit uncertainty is the single largest blocker.</div>
+        <div class="he">Size &amp; fit &#183; 46% of named doubts</div>
+        <div class="ht">THE TEST</div>
+        <div class="hd">Disproved if shoppers rank price above fit when asked.</div>
+      </div>
+      <div class="hyp">
+        <div class="hh">CLAIM 2</div>
+        <div class="hc">The doubt cannot be resolved on the product page.</div>
+        <div class="he">Blocked before buying: 2 in 3</div>
+        <div class="ht">THE TEST</div>
+        <div class="hd">Disproved if the answer was on the page and they missed it.</div>
+      </div>
+      <div class="hyp">
+        <div class="hh">CLAIM 3</div>
+        <div class="hc">Returns are a post-purchase grievance, not a blocker.</div>
+        <div class="he">Ranked 3rd on raw counts only</div>
+        <div class="ht">THE TEST</div>
+        <div class="hd">Disproved if returns still rank once the split is applied.</div>
+      </div>
+      <div class="hyp">
+        <div class="hh">CLAIM 4</div>
+        <div class="hc">The wishlist itself is not what people complain about.</div>
+        <div class="he">Two wishlist themes, both near the bottom of twelve</div>
+        <div class="ht">THE TEST</div>
+        <div class="hd">Disproved if wishlist usability is named in research.</div>
+      </div>
     </div>
-    <div class="glyph">&#8599;</div>
   </div>
 </section>
 
@@ -381,13 +486,15 @@
   <div class="head">
     <div>
       <div class="eyebrow"><span class="n">04</span><span class="s">Talking to Shoppers</span></div>
-      <h1>The Data Named the Doubt.<br><span class="b">People Named the Moment.</span></h1>
-      <div class="sub">Brief asked for 5&#8211;6 interviews. We ran none &#8212; a real wishlist is private. 16 surveyed, five on the prototype.</div>
+      <h1>Where Data Meets Human Truth:<br><span class="b">Naming the Moment of Doubt.</span></h1>
+      <div class="sub">Primary research: 16 survey responses and 11 prototype testers across two rounds &#8212; a method that never asks anyone to hand over a real wishlist.</div>
     </div>
-    
+    <div class="brand">
+      <div class="tag" style="margin-top:6px;"><a class="chip" href="https://myntra-wishlist-discovery-engine.vercel.app/research/wishlist"><b class="k">Live: User Research &#8599;</b></a></div>
+    </div>
   </div>
 
-  <div class="body">
+  <div class="body" style="justify-content:center;">
     <div class="row">
       <div class="card ok" style="flex:1;">
         <div class="h ok"><span class="ic o">&#10003;</span> WHAT IT CONFIRMED</div>
@@ -401,7 +508,7 @@
         <ul class="list no">
           <li><span class="m">&#10007;</span><span>Asked for their single biggest blocker, <b class="k">half said price or a sale</b> — not fit.</span></li>
           <li><span class="m">&#10007;</span><span>A reason the data never surfaced: <i>"I'd forgotten about it until now."</i></span></li>
-          <li><span class="m">&#10007;</span><span><b class="k">More than a third</b> get stuck comparing. And <b class="k">three of the first five</b> prototype testers named a blocker our data has no word for — <i>can't tell them apart, might be out of style, don't know what it goes with.</i> Not a missing fact. An unfinished decision.</span></li>
+          <li><span class="m">&#10007;</span><span><b class="k">More than a third</b> get stuck comparing. And <b class="k">four of eleven</b> prototype testers named a blocker our data has no word for — <i>can't tell them apart, might be out of style, don't know what it goes with.</i> Not a missing fact. An unfinished decision.</span></li>
         </ul>
       </div>
     </div>
@@ -417,22 +524,15 @@
         <div class="t2">The decision resumes instead of restarting.</div></div>
     </div>
 
-    <div class="card pink">
+    <div class="card pink" style="flex:0 0 auto;">
       <div class="h">WHY BOTH ANSWERS ARE RIGHT</div>
       <div class="row">
-        <div class="col t"><b class="k">Reviews are written after delivery.</b> The wishlist barely appears in them — not because it works, but because <b class="k">nobody writes about it</b>.</div>
-        <div class="col t"><b class="k">Ask about a saved item right now</b> and the blocker isn't missing information — it's a decision left open and never picked back up.</div>
+        <div class="col t"><b class="k">Fewer than 2 in 100 comments mention a wishlist</b> &#8212; reviews are written after delivery, so nobody writes about it. Silence is not evidence it works.</div>
+        <div class="col t"><b class="k">Ask about a saved item right now</b> and the blocker isn't missing information &#8212; it is a decision left open and never picked back up.</div>
       </div>
     </div>
-  </div>
 
-  <div class="takeaway">
-    <div class="badge"><div class="star">&#9733;</div><b>THE TAKEAWAY</b></div>
-    <div class="txt">
-      <div class="l1">The data told us what the doubt is. Shoppers told us when it needs answering — and the data could never have seen that.</div>
-      <div class="l2">Fourteen people answered item-level questions; five have used the prototype so far. Counts, not percentages — a check on the 19,143-document dataset, never proof in their own right.</div>
-    </div>
-    <div class="glyph">&#8599;</div>
+    <div class="factbar"><div><b>16</b> survey responses</div><div><b>11</b> testers on the live prototype</div><div><b>27</b> responses across two studies</div></div>
   </div>
 </section>
 
@@ -441,52 +541,61 @@
   <div class="head">
     <div>
       <div class="eyebrow"><span class="n">05</span><span class="s">The Problem, Stated</span></div>
-      <h1>The Wishlist Keeps the Item<br><span class="b">and Throws Away the Question.</span></h1>
-      <div class="sub">"I'm not sure it'll fit" is where the answer starts, not where it ends.</div>
+      <h1>The Wishlist Remembers What You Saved.<br><span class="b">It Forgets Why You Cared.</span></h1>
+      <div class="sub">The wishlist answers none of the four doubts that stop a saved purchase. Segment: fit-uncertain &amp; low-trust shoppers (48%).</div>
     </div>
     
   </div>
 
   <div class="body">
     <div class="row" style="flex:1;">
-      <div class="col" style="flex:1.05; display:flex; flex-direction:column; gap:14px;">
-        <div class="card">
-          <div class="h">FIVE WHYS, AND WHERE OUR EVIDENCE STOPS</div>
-          <table class="data">
-            <tr><td style="width:46px"><b class="k">1</b></td><td>Saved items don't get bought</td><td class="n" style="width:200px"><span class="pill gh">the brief</span></td></tr>
-            <tr><td><b class="k">2</b></td><td><i>"I'm not sure it'll fit" &#183; "I'll come back to it"</i></td><td class="n"><span class="pill dk">measured</span></td></tr>
+
+      <div class="col" style="flex:1.05; display:flex; flex-direction:column; gap:9px;">
+        <div class="card amber" style="flex:0 0 auto;">
+          <div class="h amb"><span class="ic a">&#9878;</span> THE PROBLEM, IN NUMBERS</div>
+          <div class="t sm2" style="margin-top:5px;"><b class="k">W30 near 9%</b> &#8212; nine in ten saved items go unbought inside 30 days.</div>
+          <div class="t sm2"><b class="k">2 in 3</b> name a doubt we never answer; <b class="k">1 in 5</b> who looked came back empty.</div>
+          <div class="t sm2">Every lever there is monetary &#8212; <b class="k">each leaves the item sitting</b>.</div>
+        </div>
+
+        <div class="card" style="flex:1;">
+          <div class="h">FIVE WHYS &#8212; METRIC TO ROOT CAUSE</div>
+          <table class="data tight">
+            <tr><td style="width:44px"><b class="k">1</b></td><td>Saved items don't get bought</td><td class="n" style="width:180px"><span class="pill gh">objective</span></td></tr>
+            <tr><td><b class="k">2</b></td><td><i>"not sure it'll fit" &#183; "can't tell them apart" &#183; "I'll come back to it"</i></td><td class="n"><span class="pill dk">measured</span></td></tr>
             <tr class="hp"><td><b class="k">3</b></td><td><b class="k">The wishlist saves the item, not the question</b></td><td class="n"><span class="pill pk">measured</span></td></tr>
             <tr><td><b class="k">4</b></td><td>What would settle it never reaches this shopper</td><td class="n"><span class="pill amb">survey</span></td></tr>
             <tr style="border:none"><td style="border:none"><b class="k">5</b></td><td style="border:none"><b class="k">So the shopper carries the risk of being wrong</b></td><td class="n" style="border:none"><span class="pill amb">to test</span></td></tr>
           </table>
         </div>
 
-        <div class="card ok" style="flex:1;">
-          <div class="h ok">WHAT THE WISHLIST OFFERS TODAY</div>
-          <div class="t">A flat, reverse-chronological grid with no memory of why anything was saved — plus a price-drop alert, a badge and a coupon. <b class="k">Every lever on that screen is monetary, and every one leaves the item sitting there.</b></div>
+        <div class="card ok" style="flex:0 0 auto;">
+          <div class="h ok">THE VALUE TO THE SHOPPER</div>
+          <div class="t sm2" style="margin-top:4px;">They screenshot to WhatsApp, hunt reviews, and <b class="k">order two sizes to return one, money up front</b>. We handed them the cost of their own doubt.</div>
         </div>
       </div>
 
-      <div class="col" style="flex:1; display:flex; flex-direction:column; gap:14px;">
-        <div class="card amber">
-          <div class="h amb"><span class="ic a">&#9878;</span> THE VALUE TO THE SHOPPER &#8212; WHAT THEY DO INSTEAD, AND WHAT IT COSTS THEM</div>
-          <table class="data">
-            <tr><th>What they do</th><th>What it costs them</th></tr>
-            <tr><td>Screenshot it into WhatsApp</td><td>a favour, and the wait</td></tr>
-            <tr><td>Hunt reviews for someone similar</td><td>time, often wasted</td></tr>
-            <tr class="hp"><td><b class="k">Order two sizes, return one</b></td><td><b class="k">money up front</b></td></tr>
-            <tr style="border:none"><td style="border:none">Keep the real shortlist in Notes</td><td style="border:none">doing the job twice</td></tr>
-          </table>
-          <div class="t" style="margin-top:10px;">Read the right-hand column: <b class="k">we have handed shoppers the cost of resolving their own doubt, and they are paying it.</b></div>
+      <div class="col" style="flex:1; display:flex; flex-direction:column; gap:11px;">
+        <div class="card" style="flex:1;">
+          <div class="h ink">WHAT THE RESEARCH PRODUCED</div>
+
+          <div class="t" style="margin-top:6px;"><b class="k">19,143 comments</b> &nbsp;<span class="pill gh">discovery engine</span></div>
+          <div class="t sm2">Twelve blockers ranked: trust <b class="k">23%</b>, fit <b class="k">20%</b>. The wishlist itself ranks <b class="k">9th and 12th</b> &#8212; fewer than 2 in 100 comments mention one at all.</div>
+
+          <div class="t" style="margin-top:8px;"><b class="k">16 survey responses</b> &nbsp;<span class="pill amb">primary research</span></div>
+          <div class="t sm2">Half name price or a sale, <b class="k">more than a third get stuck comparing</b>, and one reason the corpus never surfaced: <i>"I'd forgotten about it until now."</i></div>
+
+          <div class="t" style="margin-top:8px;"><b class="k">11 prototype testers</b> &nbsp;<span class="pill pk">two rounds, live build</span></div>
+          <div class="t sm2">All eleven found the saved item; <b class="k">five still could not say why it appeared</b>. Four named a blocker the corpus has no word for.</div>
         </div>
 
-        <div class="card dark" style="flex:1;">
+        <div class="card dark" style="flex:0 0 auto;">
           <div class="h">HOW THE THINKING MOVED, STAGE BY STAGE</div>
-          <div class="t" style="margin-top:4px;"><b class="k">Business metric</b> &#8594; four terms; two unowned</div>
-          <div class="t" style="margin-top:4px;"><b class="k">Product outcomes</b> &#8594; they re-enter alone, the doubt gets answered</div>
-          <div class="t" style="margin-top:4px;"><b class="k">AI discovery</b> &#8594; 19,143 comments, blind to re-entry</div>
-          <div class="t" style="margin-top:4px;"><b class="k">Primary research</b> &#8594; doubt confirmed, moment moved</div>
-          <div class="t" style="margin-top:4px;"><b class="k">Problem definition</b> &#8594; item kept, question discarded</div>
+          <div class="t sm2" style="margin-top:4px;"><b class="k">Business metric</b> &#8594; four terms; two unowned</div>
+          <div class="t sm2"><b class="k">Product outcomes</b> &#8594; they re-enter alone, the doubt gets answered</div>
+          <div class="t sm2"><b class="k">AI discovery</b> &#8594; 19,143 comments, blind to re-entry</div>
+          <div class="t sm2"><b class="k">Primary research</b> &#8594; doubt confirmed, moment moved</div>
+          <div class="t sm2"><b class="k">Problem definition</b> &#8594; item kept, question discarded</div>
         </div>
       </div>
     </div>
@@ -513,7 +622,7 @@
     
   </div>
 
-  <div class="body">
+  <div class="body" style="justify-content:center;">
     <div class="row">
       <div class="card" style="flex:1;">
         <div class="h ink">DIRECTION 1 &nbsp;<span class="pill amb">PARTLY TAKEN</span></div>
@@ -534,21 +643,14 @@
       </div>
     </div>
 
-    <table class="data" style="flex:1;">
+    <table class="data" style="flex:0 0 auto;">
       <tr><th style="width:40%">Scored across eighteen ideas, before we knew which would win</th><th>Evidence</th><th>Moat</th><th>Build</th><th>Demo</th><th style="width:26%">Decision</th></tr>
       <tr class="hl"><td><b class="k">Verdict Card</b> &#8212; fit, wardrobe, evidence, worth-it</td><td>5</td><td>5</td><td>4</td><td>5</td><td><b class="k">Fused in</b> &#8212; it is the confidence panel</td></tr>
       <tr class="hl"><td><b class="k">The Duel</b> &#8212; collapse the near-duplicates</td><td>5</td><td>2</td><td>5</td><td>5</td><td><b class="k">Fused in</b> &#8212; it is the compare screen</td></tr>
       <tr style="border:none"><td style="border:none"><b class="k">Fit Twins</b> &#8212; a cohort with the same return history</td><td style="border:none">5</td><td style="border:none">5</td><td style="border:none">4</td><td style="border:none">4</td><td style="border:none">Rejected as the headline</td></tr>
     </table>
-  </div>
 
-  <div class="takeaway">
-    <div class="badge"><div class="star">&#9733;</div><b>THE TAKEAWAY</b></div>
-    <div class="txt">
-      <div class="l1">Every idea we ranked assumed the shopper would open the wishlist. The research said they don't &#8212; they search.</div>
-      <div class="l2">So we kept the two answers that scored highest and moved them to the moment people actually arrive. Those scores were written before the pivot, not after it.</div>
-    </div>
-    <div class="glyph">&#8599;</div>
+    <div class="factbar"><div><b>15 of the 18</b> never made the deck</div><div>the three shown <b>scored highest</b></div><div>the winner changed <b class="pk">after</b> the research, not before</div></div>
   </div>
 </section>
 
@@ -558,7 +660,7 @@
   <div class="head">
     <div>
       <div class="eyebrow"><span class="n">07</span><span class="s">What We Built</span></div>
-      <h1>Bring the Saved Item Back<br><span class="b">Before They Finish Typing.</span></h1>
+      <h1>Reuniting Shoppers With What They Love<br><span class="b">Before They Even Ask.</span></h1>
       <div class="sub">Four screens, one decision. All captured from the working prototype.</div>
     </div>
     <div class="brand">
@@ -613,50 +715,71 @@
   <div class="head">
     <div>
       <div class="eyebrow"><span class="n">08</span><span class="s">What Testers Said</span></div>
-      <h1>Everyone Found Their Saved Item.<br><span class="b">Only Two of Five Could Say Why It Appeared.</span></h1>
-      <div class="sub">Five people, five minutes each, on the live prototype. Counts, not percentages &#8212; a direction, not a result.</div>
+      <h1>A Promising First Step:<br><span class="b">Users Found It, Trust Is Still a Work in Progress.</span></h1>
+      <div class="sub">Eleven people across two rounds, five minutes each. Counts, not percentages &#8212; a direction, not a result.</div>
     </div>
-    
+    <div class="brand">
+      <div class="tag" style="margin-top:6px;"><a class="chip" href="https://myntra-wishlist-discovery-engine.vercel.app/research/prototype"><b class="k">Live: Prototype Survey &#8599;</b></a></div>
+    </div>
   </div>
 
-  <div class="body">
+  <div class="body" style="justify-content:center;">
     <div class="row">
       <div class="card ok" style="flex:1;">
         <div class="h ok"><span class="ic o">&#10003;</span> WHAT HELD UP</div>
         <ul class="list yes">
-          <li><span class="m">&#10003;</span><span><b class="k">All five</b> found a wishlisted item while searching &#8212; four spotted it straight away.</span></li>
-          <li><span class="m">&#10003;</span><span><b class="k">Three of five</b> could decide from what the screen showed, without going elsewhere.</span></li>
-          <li><span class="m">&#10003;</span><span>Of those who compared, <b class="k">all said reordering by what mattered helped them decide</b>.</span></li>
+          <li><span class="m">&#10003;</span><span><b class="k">All eleven</b> found a wishlisted item while searching &#8212; ten spotted it right away.</span></li>
+          <li><span class="m">&#10003;</span><span><b class="k">Nine of eleven</b> would actually wear the pairing the module suggested &#8212; one never found it.</span></li>
+          <li><span class="m">&#10003;</span><span><b class="k">All nine who compared</b> said reordering helped them decide.</span></li>
         </ul>
       </div>
       <div class="card" style="flex:1;">
         <div class="h no"><span class="ic n">&#10007;</span> WHAT DIDN'T</div>
         <ul class="list no">
-          <li><span class="m">&#10007;</span><span>Only <b class="k">two of five</b> could say clearly why the item appeared. Three managed "sort of".</span></li>
+          <li><span class="m">&#10007;</span><span><b class="k">Five of eleven</b> still could not say clearly why the item appeared. Deciding in place got <i>worse</i> between rounds &#8212; <b class="k">3 of 5, then 1 of 6</b>.</span></li>
           <li><span class="m">&#10007;</span><span>One found a real defect: <b class="k">an item removed from the wishlist still came back, still labelled saved</b>.</span></li>
-          <li><span class="m">&#10007;</span><span>Every confidence rating sat mid-scale. The module is being found and used &#8212; <b class="k">not yet believed</b>.</span></li>
+          <li><span class="m">&#10007;</span><span>"It answered my doubt": <b class="k">3.4</b> then <b class="k">4.0</b> &#8212; improving, still mid-scale.</span></li>
         </ul>
       </div>
     </div>
 
-    <div class="card pink">
+    <div class="card pink" style="flex:0 0 auto;">
       <div class="h">WHAT THEY ASKED FOR, IN THEIR OWN WORDS</div>
       <div class="row">
-        <div class="col t"><i>"It said 'good match' but didn't say why, or whether it'd actually fit someone my height."</i><br><b class="k">The evidence is there. The reason it applies to you is not.</b></div>
-        <div class="col t"><i>"Let me save my 'winner' after comparing so I don't have to redo it next time."</i><br><b class="k">The same failure one level up &#8212; the comparison reaches a judgement, then throws it away.</b></div>
-        <div class="col t"><i>"I'd want to know if a new collection has come in that's better looking than the one I saved."</i><br><b class="k">Staleness &#8212; a doubt that appears nowhere in 19,143 reviews.</b></div>
+        <div class="col t"><i>"It said 'good match' but didn't say why, or whether it'd actually fit someone my height."</i><br><b class="k">Relevance, not evidence</b> &#8212; not why it fits <i>you</i>.</div>
+        <div class="col t"><i>"Let me save my 'winner' after comparing so I don't have to redo it next time."</i><br><b class="k">The judgement is reached, then discarded.</b></div>
+        <div class="col t"><i>"I'd want to know if a new collection has come in that's better looking than the one I saved."</i><br><b class="k">Staleness</b> &#8212; absent from 19,143 comments.</div>
+      </div>
+    </div>
+    <div class="row" style="flex:0 0 auto;">
+      <div class="card" style="flex:1.3; padding:9px 16px;">
+        <div class="h ink">ELEVEN TESTERS, TWO ROUNDS &#8212; THE COUNTS</div>
+        <div class="kpis" style="margin-top:6px;">
+          <div class="kpi"><div class="v">11/11</div><div class="l">found the saved item</div></div>
+          <div class="kpi hl"><div class="v">6/11</div><div class="l">could say why</div></div>
+          <div class="kpi"><div class="v">4/11</div><div class="l">decided in place</div></div>
+          <div class="kpi pk"><div class="v">5/11</div><div class="l">want a price alert</div></div>
+        </div>
+      </div>
+      <div class="card amber" style="flex:1;">
+        <div class="h amb">WHAT'S STOPPING THEM &#8212; ALL 11 BLOCKERS</div>
+        <table class="bars" style="margin-top:4px;">
+          <tr><td class="lb" style="width:56%">Price &#8212; the excluded lever</td><td class="tr"><div class="track"><div class="fill amb" style="width:82%"></div></div></td><td class="vl">4</td></tr>
+          <tr><td class="lb" style="width:56%">Doubts we have no word for</td><td class="tr"><div class="track"><div class="fill pink" style="width:82%"></div></div></td><td class="vl">4</td></tr>
+          <tr><td class="lb" style="width:56%">Fit, quality, or nothing</td><td class="tr"><div class="track"><div class="fill r3" style="width:61%"></div></div></td><td class="vl">3</td></tr>
+        </table>
       </div>
     </div>
   </div>
-
   <div class="takeaway">
     <div class="badge"><div class="star">&#9733;</div><b>THE TAKEAWAY</b></div>
     <div class="txt">
-      <div class="l1">The reconnection works. The explanation doesn't yet &#8212; and that is the half we can fix.</div>
-      <div class="l2">Five people, one session, on a demo wishlist. Enough to find a defect and a weak spot; nowhere near enough to claim a lift. Testing continues.</div>
+      <div class="l1">Eleven found it. Six could say why. The mechanic works &#8212; the explanation does not, yet.</div>
+      <div class="l2">Same question both rounds: <b>none of the first five named a price alert, then five of six did</b>. At n=11 that answer is unstable, and the live A/B settles it &#8212; not the panel.</div>
     </div>
     <div class="glyph">&#8599;</div>
   </div>
+
 </section>
 
 <section class="slide">
@@ -664,40 +787,59 @@
   <div class="head">
     <div>
       <div class="eyebrow"><span class="n">09</span><span class="s">How We'll Know It Worked</span></div>
-      <h1>The Number That Proves Our Judgement<br><span class="b">Is the One That Must Not Move.</span></h1>
-      <div class="sub">One north star, three leading indicators, two guardrails — each sitting on one of the four steps from slide 1.</div>
+      <h1>One Number We Mean to Move.<br><span class="b">Four That Must Not Move With It.</span></h1>
+      <div class="sub">8-week user-level A/B &#8212; Control: search vs Treatment: reconnection module &#8212; ~7,200 users/arm (95/80% power, +15% MDE).</div>
     </div>
     
   </div>
 
   <div class="body">
-    <table class="data tight" style="flex:1;">
-      <tr><th style="width:26%">What we measure</th><th style="width:48%">What it tells us</th><th>Where we want it</th></tr>
 
-      <tr class="hp"><td><span class="sm" style="color:var(--pink)">NORTH STAR</span> &nbsp;<b class="k">The headline</b><br>Saved items bought within 30 days<br><span class="sm" style="color:var(--mut)">bought &#8805;1 saved item within 30d &#247; all wishlisters</span></td>
-        <td>The only number needing the whole chain. Reported <b class="k">before and after returns</b> — the second is the honest one.</td>
-        <td><b class="k">From about 9% to about 11%</b>, in eight weeks</td></tr>
+    <div class="card pink" style="flex:0 0 auto;">
+      <div class="h"><span class="ic p">&#9733;</span> NORTH STAR METRIC</div>
+      <div class="t" style="margin-top:4px;"><b class="k">W30 &#8212; wishlist-to-purchase conversion</b> = wishlisters who buy at least one saved item within 30 days &#247; all wishlisters.</div>
+      <div class="t sm2"><b>Saved item</b> = anything added to the wishlist. &nbsp;&#183;&nbsp; <b>Bought</b> = a purchase counted <b class="k">after returns</b>, not before &#8212; the honest number.</div>
+    </div>
 
-      <tr><td><span class="sm" style="color:var(--faint)">LEADING</span> &nbsp;Does the module appear, and do people use it?</td>
-        <td>Without it a flat result is unreadable — a bad answer looks like one nobody saw.</td>
-        <td>Tapped by <b class="k">2 in 5</b> of the people who see it</td></tr>
+    <div class="row" style="flex:1;">
 
-      <tr class="hl"><td><span class="sm" style="color:var(--faint)">LEADING</span> &nbsp;<b class="k">Decisions closed</b> &#9733;<br>Items bought <i>or</i> deliberately removed</td>
-        <td>Counting only purchases would score us on whether we <b class="k">sell</b> — which is what a discount does. This scores whether we help people <b class="k">decide</b>.</td>
-        <td>From about <b class="k">1 in 3 to 4 in 10</b></td></tr>
+      <div class="card" style="flex:1; display:flex; flex-direction:column;">
+        <div class="h ink"><span class="ic p">&#9654;</span> LEADING INDICATORS</div>
+        <div class="t sm2" style="margin-top:5px;">They move first. If these stay flat, the north star never will.</div>
 
-      <tr><td><span class="sm" style="color:var(--faint)">LEADING</span> &nbsp;How long a decision stays open</td>
-        <td>An answer in three days beats the same answer in thirty — it lands inside the window.</td>
-        <td>Falling</td></tr>
+        <div class="t sm2" style="margin-top:5px;"><b class="k">Module reach and use</b> &#8212; does the saved item appear in the search, and is it tapped? Without this, a flat result is unreadable.</div>
+        <div class="t sm2" style="margin-top:5px;"><b class="k">Decisions closed</b> &#8212; bought <i>or</i> deliberately removed &#247; all saved items. Counts deciding, not just selling.</div>
+        <div class="t sm2" style="margin-top:5px;"><b class="k">Time a decision stays open</b> &#8212; days from save to a resolution either way. Three days beats thirty.</div>
+      </div>
 
-      <tr class="hl"><td><span class="sm" style="color:var(--faint)">GUARDRAIL</span> &nbsp;<b class="k">Returns on items we helped with</b> &#9733;</td>
-        <td><b class="k">The one that proves the judgement.</b> Confidently pushing people into the wrong size would lift the headline and destroy the value behind it — and it would look like a win for the whole test.</td>
-        <td><b class="k">No higher than normal.</b> No tolerance</td></tr>
+      <div class="card amber" style="flex:1; display:flex; flex-direction:column;">
+        <div class="h amb"><span class="ic a">&#9888;</span> GUARDRAIL METRICS</div>
+        <div class="t sm2" style="margin-top:5px;"><span class="warn">These must not break, even if the north star rises.</span></div>
 
-      <tr style="border:none"><td style="border:none"><span class="sm" style="color:var(--faint)">GUARDRAIL</span> &nbsp;Saves, dismissals, basket size, search speed</td>
-        <td style="border:none">Dismissals catch the quiet failure — a module people learn to ignore. Basket size catches the cheap win of steering shoppers to safer, cheaper things.</td>
-        <td style="border:none">All unchanged</td></tr>
-    </table>
+        <div class="t sm2" style="margin-top:5px;"><b class="k">Return rate on helped items</b> &#8212; a wrong-size push destroys the value behind the win.</div>
+        <div class="t sm2" style="margin-top:5px;"><b class="k">Dismissal rate</b> &#8212; catches a module people quietly learn to ignore.</div>
+        <div class="t sm2" style="margin-top:5px;"><b class="k">Basket size</b> &#8212; catches the cheap win of steering shoppers to cheaper things.</div>
+        <div class="t sm2" style="margin-top:5px;"><b class="k">Search latency</b> &#8212; core search must not slow; the module fails open at 30ms.</div>
+      </div>
+
+      <div class="card ok" style="flex:1.04; display:flex; flex-direction:column;">
+        <div class="h ok"><span class="ic o">&#9673;</span> TARGETS &#8212; FIRST EIGHT WEEKS</div>
+
+        <div class="t" style="margin-top:5px;"><b class="k">North star</b> &#8212; W30, <b class="k">+15% relative</b></div>
+        <table class="bars" style="margin-top:2px;">
+          <tr><td class="lb">today</td><td class="tr"><div class="track"><div class="fill r3" style="width:45%"></div></div></td><td class="vl">~9%</td></tr>
+          <tr><td class="lb">8 weeks</td><td class="tr"><div class="track"><div class="fill pink" style="width:55%"></div></div></td><td class="vl">~11%</td></tr>
+        </table>
+
+        <div class="t" style="margin-top:5px;"><b class="k">Leading indicators</b></div>
+        <div class="t sm2">Tapped by <b class="k">2 in 5</b> &#183; decisions closed <b class="k">1 in 3 &#8594; 4 in 10</b> &#183; time falling.</div>
+
+        <div class="t" style="margin-top:5px;"><b class="k">Guardrails</b></div>
+        <div class="t sm2">Returns <b class="k">no higher than normal</b> &#183; dismissals, basket, speed unchanged.</div>
+
+        <div class="t sm2" style="margin-top:5px;"><i>Today's 9% is modelled &#8212; instrumentation replaces it first.</i></div>
+      </div>
+    </div>
   </div>
 
   <div class="takeaway">
@@ -714,40 +856,60 @@
   <div class="nav"><span>Opportunity</span><span>Engine</span><span>Findings</span><span>Research</span><span>Problem</span><span>Prioritisation</span><span>Solution</span><span>Tested</span><span>Measuring</span><span class="on">Way Ahead</span></div>
   <div class="head">
     <div>
-      <div class="eyebrow"><span class="n">10</span><span class="s">What Could Go Wrong, and What's Live</span></div>
-      <h1>The Risk Isn't That It Fails.<br><span class="b">It's That We Can't Tell Whether It Did.</span></h1>
-      <div class="sub">Three risks, each with the response agreed before the results come in.</div>
+      <div class="eyebrow"><span class="n">10</span><span class="s">Risks, Rollout and What's Live</span></div>
+      <h1>Charting the Path Forward:<br><span class="b">Embracing Risk, Demanding Clarity.</span></h1>
+      <div class="sub">Four ways this fails, the response agreed in advance for each, and the three phases that would prove it.</div>
     </div>
     
   </div>
 
   <div class="body">
-    <table class="data" style="flex:1;">
-      <tr><th style="width:25%">Risk</th><th style="width:35%">Why it's real</th><th>What we do about it</th></tr>
+    <div class="row" style="flex:1;">
 
-      <tr class="hl"><td><b class="k">Our test group is far too small</b><br><span class="sm" style="color:var(--amber-ink)">the biggest risk here</span></td>
-        <td>We planned on 300&#8211;500 testers. To see the improvement we're aiming for we'd need roughly <b class="k">19,000</b> — and about <b class="k">120,000</b> to explain <i>why</i> it worked.</td>
-        <td>Use the small group for what it's good at — does the screen make sense, does recovery work. Run the real comparison on live traffic. Recruiting takes two weeks and the window a month, so <b class="k">plan for six weeks</b>.</td></tr>
+      <div class="card" style="flex:1.02; display:flex; flex-direction:column;">
+        <div class="h no"><span class="ic n">&#9888;</span> FAILURE MODES &amp; MITIGATION</div>
 
-      <tr><td><b class="k">One wrong match and people stop looking</b></td>
-        <td>A false "you saved this" is worse than missing one — and it's unrecoverable, because the next correct one won't be believed either.</td>
-        <td>Exact matching only, no guessing. A higher bar for voice and image. Below the bar we show nothing, and dismissing it teaches the module to stay away.</td></tr>
+        <div class="t" style="margin-top:4px;"><b class="k">The test group is too small</b> &nbsp;<span class="pill amb">biggest risk</span></div>
+        <div class="t sm2"><b>Risk</b> &#8212; 300&#8211;500 testers; the lift needs <b class="k">~19,000</b> to detect, <b class="k">~120,000</b> to explain. <b>Mitigation</b> &#8212; they test comprehension; the read runs live.</div>
 
-      <tr style="border:none"><td style="border:none"><b class="k">Being honest costs us sales this quarter</b></td>
-        <td style="border:none">Removals go up by design, and helping someone decide "no" books no revenue today.</td>
-        <td style="border:none">Measure whether those shoppers come back and buy over the following two to three months, with that expectation stated now so it can't be renegotiated later.</td></tr>
-    </table>
+        <div class="t" style="margin-top:5px;"><b class="k">One wrong match and the module is dead</b></div>
+        <div class="t sm2"><b>Risk</b> &#8212; a false "you saved this" is unrecoverable; the next correct one isn't believed. <b>Mitigation</b> &#8212; exact matching only, nothing shown below the bar.</div>
 
-    <div class="row">
-      <div class="card pink" style="flex:1;">
-        <div class="h">WHAT'S LIVE &#8212; BOTH OPEN, NO LOGIN</div>
-        <div class="t" style="margin-top:4px;"><b class="k">Dashboard</b> &nbsp;<a class="chip" href="https://myntra-wishlist-discovery-engine.vercel.app">myntra-wishlist-discovery-engine.vercel.app &#8599;</a></div>
-        <div class="t" style="margin-top:5px;"><b class="k">Prototype</b> &nbsp;<a class="chip" href="https://wishlist-reconnection-prototype.vercel.app">wishlist-reconnection-prototype.vercel.app &#8599;</a></div>
+
+        <div class="t" style="margin-top:5px;"><b class="k">The module slows core search</b></div>
+        <div class="t sm2"><b>Risk</b> &#8212; latency added to search costs more than this feature earns. <b>Mitigation</b> &#8212; IndexedDB match <b class="k">&lt;0.1ms</b>, <b class="k">30ms fail-open</b>.</div>
+
+        <div class="t" style="margin-top:5px;"><b class="k">A shared device exposes someone's saved items</b></div>
+        <div class="t sm2"><b>Risk</b> &#8212; reconnection on a logged-out or shared session leaks a private list. <b>Mitigation</b> &#8212; signed-in only; signed out, the module shows nothing. Tested, and a launch blocker.</div>
       </div>
-      <div class="card amber" style="flex:1;">
-        <div class="h amb">WHAT WOULD CHANGE MY MIND</div>
-        <div class="t" style="margin-top:6px;">If shoppers describe not <i>knowing</i> rather than not wanting to be wrong, the risk framing goes. If many see the module but nothing moves, <b class="k">that's a kill, not an iteration.</b></div>
+
+      <div class="col" style="flex:1; display:flex; flex-direction:column; gap:8px;">
+
+        <div class="card ok" style="flex:1; display:flex; flex-direction:column;">
+          <div class="h ok"><span class="ic o">&#9654;</span> ROLLOUT &#8212; THREE PHASES</div>
+
+          <div class="t" style="margin-top:4px;"><b class="k">Phase 1 &#183; Comprehension</b> &nbsp;<span class="pill gh">weeks 1&#8211;2</span></div>
+          <div class="t sm2">300&#8211;500 testers on the live prototype. <b>Goal</b> &#8212; does it read as "you saved this", does dismissal work, is the removed-item defect gone.</div>
+
+          <div class="t" style="margin-top:5px;"><b class="k">Phase 2 &#183; Live A/B</b> &nbsp;<span class="pill dk">weeks 3&#8211;10</span></div>
+          <div class="t sm2">User-level split, <b class="k">~7,200 per arm</b>: standard search against the reconnection module. <b>Goal</b> &#8212; W30 <b class="k">9% &#8594; 11%</b>, returns flat.</div>
+
+          <div class="t" style="margin-top:5px;"><b class="k">Phase 3 &#183; Ramp or kill</b> &nbsp;<span class="pill pk">week 11+</span></div>
+          <div class="t sm2">Ramp only if returns hold. If many see it and nothing moves, <b class="k">that's a kill, not an iteration</b>.</div>
+        </div>
+
+        <div class="card pink" style="flex:0 0 auto; padding:8px 16px;">
+          <div class="h">WHAT WINNING LOOKS LIKE AT EIGHT WEEKS</div>
+          <div class="row" style="margin-top:4px;">
+            <div class="col t sm2"><b class="k">Shoppers</b> &#8212; item returns unprompted, doubt answered.</div>
+            <div class="col t sm2"><b class="k">Myntra</b> &#8212; <b class="k">&#8776;&#8377;40 Cr/mo</b> GMV, <b class="k">1 in 3 &#8594; 4 in 10</b> closed.</div>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div class="card pink" style="flex:0 0 auto; padding:8px 16px;">
+      <div class="t"><b class="k">Both live, no login</b> &nbsp; <a class="chip" href="https://myntra-wishlist-discovery-engine.vercel.app">Live: Discovery Engine &#8599;</a> &nbsp; <a class="chip" href="https://wishlist-reconnection-prototype.vercel.app">Live: Prototype &#8599;</a></div>
     </div>
   </div>
 
@@ -755,7 +917,7 @@
     <div class="badge"><div class="star">&#9733;</div><b>THE TAKEAWAY</b></div>
     <div class="txt">
       <div class="l1">One rule we broke on purpose: our own notes said this data couldn't justify a wishlist feature. We built one anyway &#8212; and wrote down why, with the date.</div>
-      <div class="l2">Honest limits: today's 9% is modelled rather than measured, and our tests guard against regressions rather than prove shoppers buy more. Privacy is a launch blocker, not a risk row &#8212; a signed-out shopper learns nothing, and we tested that.</div>
+      <div class="l2">Honest limits: today's 9% is modelled rather than measured, and these tests guard against regressions rather than prove shoppers buy more.</div>
     </div>
     <div class="glyph">&#8599;</div>
   </div>
