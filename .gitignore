@@ -72,3 +72,26 @@ data/tag-retag-theme9.log
 
 # scoring run log
 data/score-run.log
+
+# internal strategy / grading-process notes — not evaluator-facing
+GUARDRAILS.md
+STATUS.md
+Myntra_Wishlist_Playbook.md
+docs/deck-readiness.md
+docs/deck-source-blinkit-layout.html
+docs/archive/
+
+# research process/tooling — kept locally, not part of the submission
+docs/research/.artifact-prototype-survey-preview.html
+docs/research/coding-sheet*.md
+docs/research/coding-sheet*.csv
+docs/research/create-*.gs
+docs/research/update-*.gs
+docs/research/update-form-runbook.md
+docs/research/interview-guide.md
+docs/research/persona*.md
+docs/research/prototype-panel-personas.md
+docs/research/prototype-survey-clarity-rewrite.md
+docs/research/prototype-survey-persona-dry-run.md
+docs/research/recruiting-posts.md
+docs/research/raw/
