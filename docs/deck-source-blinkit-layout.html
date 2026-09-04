@@ -283,9 +283,9 @@
           <div><div class="sl">profit growth on the <b class="k">same</b> demand</div>
           <div class="src">MCA filings</div></div></div>
 
-        <div class="srow" style="margin-top:11px;"><div class="sv" style="color:var(--pink-dk)">~9%</div>
+        <div class="srow" style="margin-top:11px;"><div class="sv" style="color:var(--pink-dk)">9.4%</div>
           <div><div class="sl">of wishlisters buy a saved item within 30 days</div>
-          <div class="src">= 0.72 &#215; 0.45 &#215; 0.34 &#215; 0.85 (A&#215;B&#215;C&#215;D). Intent measured; B, C, D assumed until day-one instrumentation.</div></div></div>
+          <div class="src">= 0.722 &#215; 0.45 &#215; 0.34 &#215; 0.85 (A&#215;B&#215;C&#215;D). Intent measured; B, C, D assumed until day-one instrumentation.</div></div></div>
 
         <div class="t sm2" style="margin-top:10px;">Myntra grows by <b class="k">converting shoppers it already has</b>, not by buying new ones.</div>
 
@@ -308,14 +308,14 @@
 
       <div class="card ok" style="flex:1; display:flex; flex-direction:column;">
         <div><span class="sect am">THE STRATEGIC GOAL</span></div>
-        <div class="t"><b class="k">Take W30 from ~9% to ~11% in eight weeks</b> &#8212; on organic conversion, with no discount, coupon or cashback spend behind it.</div>
+        <div class="t"><b class="k">Take W30 from 9.4% to 10.8% in eight weeks</b> &#8212; <b class="k">+15% relative</b> &#8212; on organic conversion, with no discount, coupon or cashback spend behind it.</div>
 
         <div class="t sm2" style="margin-top:10px; font-weight:800; color:var(--ink);">Why it matters:</div>
 
         <div class="t sm2" style="margin-top:6px;"><b class="k">For shoppers</b> &#8212; the saved item comes back unprompted, and the doubt that stopped them is answered in the same place.</div>
-        <div class="t sm2" style="margin-top:8px;"><b class="k">For Myntra</b> &#8212; two points is <b class="k">~200,000</b> more closed decisions a month, about <b class="k">&#8377;40 Cr</b> of incremental GMV.</div>
+        <div class="t sm2" style="margin-top:8px;"><b class="k">For Myntra</b> &#8212; on a 10M-wishlister month, <b class="k">+1.4pp</b> is <b class="k">~140,000</b> more closed decisions, about <b class="k">&#8377;28 Cr</b> of GMV at a &#8377;2,000 basket.</div>
         <div class="t sm2" style="margin-top:8px;"><b class="k">For margin</b> &#8212; every point of that lift is earned without promotional dilution, on demand already paid for.</div>
-        <div class="closer">~9% &#8594; ~11% &#183; &#8776;&#8377;40 Cr/mo &#183; zero discount spend</div>
+        <div class="closer">9.4% &#8594; 10.8% &#183; &#8776;&#8377;28 Cr/mo &#183; zero discount spend</div>
       </div>
     </div>
 
@@ -825,7 +825,7 @@
         <div class="t sm2" style="margin-top:5px;"><b class="k">Return rate on helped items</b> &#8212; a wrong-size push destroys the value behind the win.</div>
         <div class="t sm2" style="margin-top:5px;"><b class="k">Dismissal rate</b> &#8212; catches a module people quietly learn to ignore.</div>
         <div class="t sm2" style="margin-top:5px;"><b class="k">Basket size</b> &#8212; catches the cheap win of steering shoppers to cheaper things.</div>
-        <div class="t sm2" style="margin-top:5px;"><b class="k">Search latency</b> &#8212; core search must not slow; the module fails open at 30ms.</div>
+        <div class="t sm2" style="margin-top:5px;"><b class="k">Search latency</b> &#8212; core search must not slow; the match has a <b class="k">250ms</b> hard timeout and fails open.</div>
       </div>
 
       <div class="card ok" style="flex:1.04; display:flex; flex-direction:column;">
@@ -833,8 +833,8 @@
 
         <div class="t" style="margin-top:5px;"><b class="k">North star</b> &#8212; W30, <b class="k">+15% relative</b></div>
         <table class="bars" style="margin-top:2px;">
-          <tr><td class="lb">today</td><td class="tr"><div class="track"><div class="fill r3" style="width:45%"></div></div></td><td class="vl">~9%</td></tr>
-          <tr><td class="lb">8 weeks</td><td class="tr"><div class="track"><div class="fill pink" style="width:55%"></div></div></td><td class="vl">~11%</td></tr>
+          <tr><td class="lb">today</td><td class="tr"><div class="track"><div class="fill r3" style="width:45%"></div></div></td><td class="vl">9.4%</td></tr>
+          <tr><td class="lb">8 weeks</td><td class="tr"><div class="track"><div class="fill pink" style="width:52%"></div></div></td><td class="vl">10.8%</td></tr>
         </table>
 
         <div class="t" style="margin-top:5px;"><b class="k">Leading indicators</b></div>
@@ -843,7 +843,7 @@
         <div class="t" style="margin-top:5px;"><b class="k">Guardrails</b></div>
         <div class="t sm2">Returns <b class="k">no higher than normal</b> &#183; dismissals, basket, speed unchanged.</div>
 
-        <div class="t sm2" style="margin-top:5px;"><i>9% is modelled, not measured; external wishlist-to-purchase benchmarks run <b>5&#8211;20%</b>.</i></div>
+        <div class="t sm2" style="margin-top:5px;"><i>9.4% is modelled, not measured; external wishlist-to-purchase benchmarks run <b>5&#8211;20%</b>.</i></div>
       </div>
     </div>
   </div>
@@ -876,14 +876,14 @@
         <div class="h no"><span class="ic n">&#9888;</span> FAILURE MODES &amp; MITIGATION</div>
 
         <div class="t" style="margin-top:4px;"><b class="k">The test group is too small</b> &nbsp;<span class="pill amb">biggest risk</span></div>
-        <div class="t sm2"><b>Risk</b> &#8212; 300&#8211;500 testers; the lift needs <b class="k">~19,000</b> to detect, <b class="k">~120,000</b> to explain. <b>Mitigation</b> &#8212; they test comprehension; the read runs live.</div>
+        <div class="t sm2"><b>Risk</b> &#8212; 300&#8211;500 testers; the two-arm read needs <b class="k">~14,000</b>, isolating <i>why</i> needs <b class="k">~120,000</b>. <b>Mitigation</b> &#8212; they test comprehension; the read runs live.</div>
 
         <div class="t" style="margin-top:5px;"><b class="k">One wrong match and the module is dead</b></div>
         <div class="t sm2"><b>Risk</b> &#8212; a false "you saved this" is unrecoverable; the next correct one isn't believed. <b>Mitigation</b> &#8212; exact matching only, nothing shown below the bar.</div>
 
 
         <div class="t" style="margin-top:5px;"><b class="k">The module slows core search</b></div>
-        <div class="t sm2"><b>Risk</b> &#8212; latency added to search costs more than this feature earns. <b>Mitigation</b> &#8212; IndexedDB match <b class="k">&lt;0.1ms</b>, <b class="k">30ms fail-open</b>.</div>
+        <div class="t sm2"><b>Risk</b> &#8212; latency added to search costs more than this feature earns. <b>Mitigation</b> &#8212; matching runs beside search, never before it: <b class="k">+0.03ms</b> measured, <b class="k">250ms fail-open</b>.</div>
 
         <div class="t" style="margin-top:5px;"><b class="k">A shared device exposes someone's saved items</b></div>
         <div class="t sm2"><b>Risk</b> &#8212; reconnection on a logged-out or shared session leaks a private list. <b>Mitigation</b> &#8212; signed-in only; signed out, the module shows nothing. Tested, and a launch blocker.</div>
@@ -898,7 +898,7 @@
           <div class="t sm2">300&#8211;500 testers on the live prototype. <b>Goal</b> &#8212; does it read as "you saved this", does dismissal work, is the removed-item defect gone. Plus a <b class="k">shadow pass</b>: matches logged, nothing shown.</div>
 
           <div class="t" style="margin-top:5px;"><b class="k">Phase 2 &#183; Live A/B</b> &nbsp;<span class="pill dk">weeks 3&#8211;10</span></div>
-          <div class="t sm2">User-level split, <b class="k">~7,200 per arm</b>, search against the module. <b>Goal</b> &#8212; W30 <b class="k">9% &#8594; 11%</b>, returns flat.</div>
+          <div class="t sm2">User-level split, <b class="k">~7,200 per arm</b>, search against the module. <b>Goal</b> &#8212; W30 <b class="k">9.4% &#8594; 10.8%</b>, returns flat.</div>
 
           <div class="t" style="margin-top:5px;"><b class="k">Phase 3 &#183; Ramp or kill</b> &nbsp;<span class="pill pk">week 11+</span></div>
           <div class="t sm2">Ramp only if returns hold. Seen at volume and nothing moves &#8212; <b class="k">a kill, not an iteration</b>.</div>
@@ -908,7 +908,7 @@
           <div class="h">WHAT WINNING LOOKS LIKE AT EIGHT WEEKS</div>
           <div class="row" style="margin-top:4px;">
             <div class="col t sm2"><b class="k">Shoppers</b> &#8212; the item returns unprompted, doubt answered.</div>
-            <div class="col t sm2"><b class="k">Myntra</b> &#8212; <b class="k">&#8776;&#8377;40 Cr/mo</b> GMV, decisions <b class="k">1 in 3 &#8594; 4 in 10</b>.</div>
+            <div class="col t sm2"><b class="k">Myntra</b> &#8212; <b class="k">&#8776;&#8377;28 Cr/mo</b> GMV, decisions <b class="k">1 in 3 &#8594; 4 in 10</b>.</div>
           </div>
         </div>
       </div>
@@ -927,7 +927,7 @@
     <div class="badge"><div class="star">&#9733;</div><b>THE TAKEAWAY</b></div>
     <div class="txt">
       <div class="l1">One rule we broke on purpose: our own notes said this data couldn't justify a wishlist feature. We built one anyway &#8212; and wrote down why, with the date.</div>
-      <div class="l2">Honest limits: today's 9% is modelled rather than measured, and these tests guard against regressions rather than prove shoppers buy more.</div>
+      <div class="l2">Honest limits: today's 9.4% is modelled rather than measured, and these tests guard against regressions rather than prove shoppers buy more.</div>
     </div>
     <div class="glyph">&#8599;</div>
   </div>
